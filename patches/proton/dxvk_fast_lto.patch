@@ -1,0 +1,20 @@
+diff --git a/meson.build b/meson.build
+index d7d4406..c8b5aa6 100644
+--- a/meson.build
++++ b/meson.build
+@@ -25,9 +25,14 @@ compiler_args = [
+   '-Wno-extern-c-compat',
+   '-Wno-unused-const-variable',
+   '-Wno-missing-braces',
++  '-Ofast',
++  '-flto=auto',
+ ]
+ 
+-link_args = []
++link_args = [
++  '-Ofast',
++  '-flto=auto',
++]
+ 
+ if get_option('build_id')
+   link_args += [
