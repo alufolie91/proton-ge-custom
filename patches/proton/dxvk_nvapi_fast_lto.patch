@@ -1,0 +1,24 @@
+diff --git a/meson.build b/meson.build
+index 0b44c27..ed86b96 100644
+--- a/meson.build
++++ b/meson.build
+@@ -11,8 +11,17 @@ cpp = meson.get_compiler('cpp')
+ 
+ dxvk_is_msvc = cpp.get_argument_syntax() == 'msvc'
+ 
+-compiler_args = ['-DNOMINMAX', '-DWIN32_LEAN_AND_MEAN']
+-link_args = []
++compiler_args = [
++  '-DNOMINMAX',
++  '-DWIN32_LEAN_AND_MEAN',
++  '-Ofast',
++  '-flto=auto',
++]
++link_args = [
++  '-Ofast',
++  '-flto=auto',
++]
++
+ if not dxvk_is_msvc
+   compiler_args += ['-Wno-unused-parameter']
+   if get_option('buildtype') == 'debug' or get_option('buildtype') == 'debugoptimized'

@@ -31,6 +31,10 @@
     git clean -xdf
     #echo "DXVK-NVAPI: -Nvidia Reflex- Add support for Reflex"
     #patch -Np1 < ../patches/proton/82-nv_low_latency_dxvk_nvapi.patch
+
+    echo "DXVK-NVAPI: Compile with -Ofast and -flto"
+    patch -Np1 < ../patches/proton/dxvk_nvapi_fast_lto.patch
+    popd
     popd
 
     pushd gstreamer
