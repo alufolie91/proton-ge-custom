@@ -332,6 +332,9 @@
     patch -Np1 < ../patches/custom/dualsense1.patch
     patch -Np1 < ../patches/custom/dualsense2.patch
 
+    echo "WINE: Wineserver LTO compile"
+    patch -Np1 < ../patches/custom/server-Enable-link-time-optimization.patch
+
     popd
 
 ### END PROTON-GE ADDITIONAL CUSTOM PATCHES ###
