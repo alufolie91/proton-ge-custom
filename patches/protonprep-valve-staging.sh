@@ -17,6 +17,14 @@
     patch -Np1 < ../patches/proton/dxvk_fast_lto.patch
     popd
 
+    pushd vkd3d
+    git reset --hard HEAD
+    git clean -xdf
+
+    echo "VKD3D: Compile with -Ofast and -flto"
+    patch -Np1 < ../patches/proton/vkd3d_fast_lto.patch
+    popd
+
     pushd vkd3d-proton
     git reset --hard HEAD
     git clean -xdf
