@@ -1,0 +1,22 @@
+diff --git a/meson.build b/meson.build
+index be1028f..1f03ce4 100644
+--- a/meson.build
++++ b/meson.build
+@@ -111,9 +111,17 @@ add_project_arguments(vkd3d_compiler.get_supported_arguments([
+     '/wd4334', # Result of 32-bit shift cast to 64-bit
+     '/wd4146', # Unary minus on unsigned
+     '/wd4305', # Truncation from double to float
++    '-Ofast',
++    '-flto=12',
+     ]),
+   language : 'c')
+ 
++add_global_link_arguments(vkd3d_compiler.get_supported_link_arguments([
++    '-Ofast',
++    '-flto=12',
++    ]),
++   language : [ 'c', 'cpp' ])
++
+ if cpu_family == 'x86'
+   add_global_link_arguments(vkd3d_compiler.get_supported_link_arguments([
+       '-Wl,--kill-at',

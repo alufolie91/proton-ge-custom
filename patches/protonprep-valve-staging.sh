@@ -24,6 +24,9 @@
     #echo "VKD3D-PROTON: -Nvidia Reflex- Add NV low latency support"
     #pushd khronos/Vulkan-Headers; git pull; git checkout bbe0f575ebd6098369f0ac6c6a43532732ed0ba6; popd
     #patch -Np1 < ../patches/proton/81-nv_low_latency_vkd3d_proton.patch
+
+    echo "VKD3D-PROTON: Compile with -Ofast and -flto"
+    atch -Np1 < ../patches/proton/vkd3d-proton_fast_lto.patch
     popd
 
     pushd dxvk-nvapi
