@@ -8,12 +8,14 @@ index d7d4406..c8b5aa6 100644
    '-Wno-missing-braces',
 +  '-Ofast',
 +  '-flto=auto',
++  '-march=native',
  ]
  
 -link_args = []
 +link_args = [
 +  '-Ofast',
 +  '-flto=auto',
++  '-march=native',
 +]
  
  if get_option('build_id')

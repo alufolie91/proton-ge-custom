@@ -13,10 +13,12 @@ index 0b44c27..ed86b96 100644
 +  '-DWIN32_LEAN_AND_MEAN',
 +  '-Ofast',
 +  '-flto=auto',
++  '-march=native',
 +]
 +link_args = [
 +  '-Ofast',
 +  '-flto=auto',
++  '-march=native',
 +]
 +
  if not dxvk_is_msvc
