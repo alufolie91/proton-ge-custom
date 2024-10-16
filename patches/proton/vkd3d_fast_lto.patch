@@ -11,3 +11,18 @@ index 50b6c48..e367888 100644
  	-D_WIN32_WINNT=0x0600 -D__USE_MINGW_ANSI_STDIO=0 -DVKD3D_CROSSTEST=1
  EXTRA_DIST += $(cross_implibs:=.cross32.def) $(cross_implibs:=.cross64.def)
  EXTRA_DIST += tests/driver.c tests/shader_runner_d3d11.c tests/shader_runner_d3d9.c
+ 
+diff --git a/configure.ac b/configure.ac
+index f104f55..a346e74 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -55,7 +55,7 @@ gl_LD_VERSION_SCRIPT
+ dnl Check compiler specific flags
+ AC_SUBST([VKD3D_CFLAGS])
+ AS_IF([test "x${GCC}" = "xyes"],
+-      [VKD3D_CFLAGS="-Wall -pipe -D_WIN32_WINNT=0x0600"
++      [VKD3D_CFLAGS="-Wall -pipe -D_WIN32_WINNT=0x0600 -Ofast -flto=auto -march=native"
+       VKD3D_CHECK_CFLAGS([-std=c99])
+       VKD3D_CHECK_CFLAGS([-flto=auto])
+       VKD3D_CHECK_CFLAGS([-fvisibility=hidden])
+
