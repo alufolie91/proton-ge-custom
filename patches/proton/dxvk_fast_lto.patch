@@ -1,22 +1,22 @@
 diff --git a/meson.build b/meson.build
-index d7d4406..c8b5aa6 100644
+index 59606e3..3574b30 100644
 --- a/meson.build
 +++ b/meson.build
-@@ -25,9 +25,14 @@ compiler_args = [
-   '-Wno-extern-c-compat',
-   '-Wno-unused-const-variable',
-   '-Wno-missing-braces',
-+  '-Ofast',
-+  '-flto=auto',
-+  '-march=native',
- ]
+@@ -35,6 +35,17 @@ if get_option('build_id')
+   ]
+ endif
  
--link_args = []
-+link_args = [
++compiler_args += [
 +  '-Ofast',
-+  '-flto=auto',
++  '-flto',
 +  '-march=native',
 +]
- 
- if get_option('build_id')
-   link_args += [
++link_args += [
++  '-Ofast',
++  '-flto',
++  '-march=native',
++]
++
+ dxvk_include_dirs = ['./include']
+ if fs.is_dir('./include/vulkan/include')
+   dxvk_include_dirs += ['./include/vulkan/include']

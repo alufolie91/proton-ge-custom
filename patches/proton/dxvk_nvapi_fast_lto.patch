@@ -1,26 +1,21 @@
 diff --git a/meson.build b/meson.build
-index 0b44c27..ed86b96 100644
+index aee915f..61aba40 100644
 --- a/meson.build
 +++ b/meson.build
-@@ -11,8 +11,17 @@ cpp = meson.get_compiler('cpp')
+@@ -33,6 +33,16 @@ else
+   link_args += ['/FILEALIGN:4096']
+ endif
  
- dxvk_is_msvc = cpp.get_argument_syntax() == 'msvc'
- 
--compiler_args = ['-DNOMINMAX', '-DWIN32_LEAN_AND_MEAN']
--link_args = []
-+compiler_args = [
-+  '-DNOMINMAX',
-+  '-DWIN32_LEAN_AND_MEAN',
++compiler_args += [
 +  '-Ofast',
-+  '-flto=auto',
++  '-flto',
 +  '-march=native',
 +]
-+link_args = [
++link_args += [
 +  '-Ofast',
-+  '-flto=auto',
++  '-flto',
 +  '-march=native',
 +]
-+
- if not dxvk_is_msvc
-   compiler_args += ['-Wno-unused-parameter']
-   if get_option('buildtype') == 'debug' or get_option('buildtype') == 'debugoptimized'
+ 
+ add_project_arguments(cpp.get_supported_arguments(compiler_args), language: 'cpp')
+ add_project_link_arguments(cpp.get_supported_link_arguments(link_args), language: 'cpp')
