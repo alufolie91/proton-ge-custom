@@ -7,14 +7,14 @@ index be1028f..1f03ce4 100644
      '/wd4146', # Unary minus on unsigned
      '/wd4305', # Truncation from double to float
 +    '-Ofast',
-+    '-flto=12',
++    '-flto',
 +    '-march=native',
      ]),
    language : 'c')
  
 +add_global_link_arguments(vkd3d_compiler.get_supported_link_arguments([
 +    '-Ofast',
-+    '-flto=12',
++    '-flto',
 +    '-march=native',
 +    ]),
 +   language : [ 'c', 'cpp' ])
