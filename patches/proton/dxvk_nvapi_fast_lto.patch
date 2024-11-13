@@ -8,12 +8,10 @@ index aee915f..61aba40 100644
  
 +compiler_args += [
 +  '-Ofast',
-+  '-flto',
 +  '-march=native',
 +]
 +link_args += [
 +  '-Ofast',
-+  '-flto',
 +  '-march=native',
 +]
  

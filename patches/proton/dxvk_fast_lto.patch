@@ -8,12 +8,10 @@ index 59606e3..3574b30 100644
  
 +compiler_args += [
 +  '-Ofast',
-+  '-flto',
 +  '-march=native',
 +]
 +link_args += [
 +  '-Ofast',
-+  '-flto',
 +  '-march=native',
 +]
 +
