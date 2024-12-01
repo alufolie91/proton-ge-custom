@@ -1,0 +1,20 @@
+diff --git a/meson.build b/meson.build
+index ea8e412..c287191 100644
+--- a/meson.build
++++ b/meson.build
+@@ -406,6 +406,15 @@ int main () {
+   endif
+ endif
+ 
++common_cflags += [
++  '-Ofast',
++  '-march=native',
++]
++common_ldflags += [
++  '-Ofast',
++  '-march=native',
++]
++
+ # Scalar is always available as a fallback
+ graphene_simd += [ 'scalar' ]
+ 

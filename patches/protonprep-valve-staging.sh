@@ -48,6 +48,13 @@
     popd
     popd
 
+    pushd graphene
+    git reset --hard HEAD
+    git clean -xdf
+    echo "GRAPHENE: Compile with -Ofast and -march=native"
+    patch -Np1 < ../patches/custom/graphene_fast_native.patch
+    popd
+
     pushd gstreamer
     git reset --hard HEAD
     git clean -xdf
