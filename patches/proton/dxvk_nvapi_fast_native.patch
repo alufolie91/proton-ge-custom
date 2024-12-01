@@ -1,19 +1,17 @@
 diff --git a/meson.build b/meson.build
-index aee915f..61aba40 100644
+index aee915f..5f0e931 100644
 --- a/meson.build
 +++ b/meson.build
-@@ -33,6 +33,16 @@ else
+@@ -33,6 +33,14 @@ else
    link_args += ['/FILEALIGN:4096']
  endif
  
 +compiler_args += [
 +  '-Ofast',
-+  '-flto=12',
 +  '-march=native',
 +]
 +link_args += [
 +  '-Ofast',
-+  '-flto=12',
 +  '-march=native',
 +]
  

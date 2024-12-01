@@ -13,8 +13,8 @@
     #pushd include/vulkan; git pull; git checkout bbe0f575ebd6098369f0ac6c6a43532732ed0ba6; popd
     #patch -Np1 < ../patches/proton/80-nv_low_latency_dxvk.patch
 
-    echo "DXVK: Compile with -Ofast and -flto"
-    patch -Np1 < ../patches/proton/dxvk_fast_lto.patch
+    echo "DXVK: Compile with -Ofast and -march=native"
+    patch -Np1 < ../patches/proton/dxvk_fast_native.patch
     popd
 
     pushd vkd3d
@@ -43,8 +43,8 @@
     #echo "DXVK-NVAPI: -Nvidia Reflex- Add support for Reflex"
     #patch -Np1 < ../patches/proton/82-nv_low_latency_dxvk_nvapi.patch
 
-    echo "DXVK-NVAPI: Compile with -Ofast and -flto"
-    patch -Np1 < ../patches/proton/dxvk_nvapi_fast_lto.patch
+    echo "DXVK-NVAPI: Compile with -Ofast and -march=native"
+    patch -Np1 < ../patches/proton/dxvk_nvapi_fast_native.patch
     popd
     popd
 
