@@ -34,7 +34,7 @@
     #patch -Np1 < ../patches/proton/81-nv_low_latency_vkd3d_proton.patch
 
     echo "VKD3D-PROTON: Compile with -Ofast and -flto"
-    atch -Np1 < ../patches/proton/vkd3d-proton_fast_lto.patch
+    patch -Np1 < ../patches/proton/vkd3d-proton_fast_lto.patch
     popd
 
     pushd dxvk-nvapi
