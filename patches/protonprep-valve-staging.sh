@@ -21,8 +21,8 @@
     git reset --hard HEAD
     git clean -xdf
 
-    echo "VKD3D: Compile with -Ofast and -flto"
-    patch -Np1 < ../patches/proton/vkd3d_fast_lto.patch
+    echo "VKD3D: Compile with -Ofast and -march=native"
+    patch -Np1 < ../patches/proton/vkd3d_fast_native.patch
     popd
 
     pushd vkd3d-proton
@@ -33,8 +33,8 @@
     #pushd khronos/Vulkan-Headers; git pull; git checkout bbe0f575ebd6098369f0ac6c6a43532732ed0ba6; popd
     #patch -Np1 < ../patches/proton/81-nv_low_latency_vkd3d_proton.patch
 
-    echo "VKD3D-PROTON: Compile with -Ofast and -flto"
-    patch -Np1 < ../patches/proton/vkd3d-proton_fast_lto.patch
+    echo "VKD3D-PROTON: Compile with -Ofast and -march=native"
+    patch -Np1 < ../patches/proton/vkd3d-proton_fast_native.patch
     popd
 
     pushd dxvk-nvapi

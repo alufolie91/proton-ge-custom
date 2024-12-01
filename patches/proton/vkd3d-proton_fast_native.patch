@@ -1,21 +1,19 @@
 diff --git a/meson.build b/meson.build
-index be1028f..7b6fbdf 100644
+index be1028f..68a3e72 100644
 --- a/meson.build
 +++ b/meson.build
-@@ -114,6 +114,20 @@ add_project_arguments(vkd3d_compiler.get_supported_arguments([
+@@ -114,6 +114,18 @@ add_project_arguments(vkd3d_compiler.get_supported_arguments([
      ]),
    language : 'c')
  
 +add_project_arguments(vkd3d_compiler.get_supported_arguments([
 +    '-Ofast',
-+    '-flto=12',
 +    '-march=native',
 +    ]),
 +  language : [ 'c', 'cpp' ])
 +
 +add_global_link_arguments(vkd3d_compiler.get_supported_link_arguments([
 +    '-Ofast',
-+    '-flto=12',
 +    '-march=native',
 +    ]),
 +  language : [ 'c', 'cpp' ])
