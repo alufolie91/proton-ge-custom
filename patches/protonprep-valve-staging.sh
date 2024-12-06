@@ -377,6 +377,9 @@
     echo "WINE: Wineserver LTO compile"
     patch -Np1 < ../patches/custom/server-Enable-link-time-optimization.patch
 
+    echo "WINE: -CUSTOM- Fix wine bug #56653 - GetLogicalProcessorInformation can be missing Cache information"
+    patch -Np1 < ../patches/wine-bug-56653.patch
+
     popd
 
 ### END PROTON-GE ADDITIONAL CUSTOM PATCHES ###
