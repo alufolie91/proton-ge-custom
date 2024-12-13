@@ -28,7 +28,7 @@
     pushd vkd3d-proton
     git reset --hard HEAD
     git clean -xdf
-    
+
     #echo "VKD3D-PROTON: -Nvidia Reflex- Add NV low latency support"
     #pushd khronos/Vulkan-Headers; git pull; git checkout bbe0f575ebd6098369f0ac6c6a43532732ed0ba6; popd
     #patch -Np1 < ../patches/proton/81-nv_low_latency_vkd3d_proton.patch
@@ -371,8 +371,15 @@
     patch -Np1 < ../patches/custom/ping-fix.patch
 
     echo "WINE: Add DualSense patches"
-    patch -Np1 < ../patches/custom/dualsense1.patch
-    patch -Np1 < ../patches/custom/dualsense2.patch
+    patch -Np1 < ../patches/custom/DualSense_1-mmdevapi_support_VT_CLSID_for_containerId_property_in_MMDevice_SetPropValue.patch
+    patch -Np1 < ../patches/custom/DualSense_2-mmdevapi_decode_ContainerId_property_to_CLSID_in_MMDevice_GetPropValue.patch
+    patch -Np1 < ../patches/custom/DualSense_3-mmdevapi_copy_ContainerID_from_audio_driver_if_available.patch
+    patch -Np1 < ../patches/custom/DualSense_4-mmdevapi_Invalidate_ContainerID_of_unavailable_audio_devices.patch
+    patch -Np1 < ../patches/custom/DualSense_5-winepulse_Store_PulseAudio_devices_sysfs_path_when_available.patch
+    patch -Np1 < ../patches/custom/DualSense_6-winepulse_Add_support_for_containerId_property_from_sysfs_path.patch
+    patch -Np1 < ../patches/custom/DualSense_7-winebus_store_container_sysfs_path_from_udev_backend.patch
+    patch -Np1 < ../patches/custom/DualSense_8-winebus_implement_BusQueryContainerID_based_on_container_sysfs_path.patch
+    patch -Np1 < ../patches/custom/DualSense_9-Implement_SetupDiGetDeviceInterfacePropertyW_for_DEVPKEY_Device_InstanceId.patch
 
     echo "WINE: Wineserver LTO compile"
     patch -Np1 < ../patches/custom/server-Enable-link-time-optimization.patch
