@@ -7,11 +7,11 @@ index aee915f..5f0e931 100644
  endif
  
 +compiler_args += [
-+  '-Ofast',
++  '-O3',
 +  '-march=native',
 +]
 +link_args += [
-+  '-Ofast',
++  '-O3',
 +  '-march=native',
 +]
  

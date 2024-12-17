@@ -7,11 +7,11 @@ index ea8e412..c287191 100644
  endif
  
 +common_cflags += [
-+  '-Ofast',
++  '-O3',
 +  '-march=native',
 +]
 +common_ldflags += [
-+  '-Ofast',
++  '-O3',
 +  '-march=native',
 +]
 +

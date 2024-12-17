@@ -13,16 +13,16 @@
     #pushd include/vulkan; git pull; git checkout bbe0f575ebd6098369f0ac6c6a43532732ed0ba6; popd
     #patch -Np1 < ../patches/proton/80-nv_low_latency_dxvk.patch
 
-    echo "DXVK: Compile with -Ofast and -march=native"
-    patch -Np1 < ../patches/proton/dxvk_fast_native.patch
+    echo "DXVK: Compile with -O3 and -march=native"
+    patch -Np1 < ../patches/proton/dxvk_O3_native.patch
     popd
 
     pushd vkd3d
     git reset --hard HEAD
     git clean -xdf
 
-    echo "VKD3D: Compile with -Ofast and -march=native"
-    patch -Np1 < ../patches/proton/vkd3d_fast_native.patch
+    echo "VKD3D: Compile with -O3 and -march=native"
+    patch -Np1 < ../patches/proton/vkd3d_O3_native.patch
     popd
 
     pushd vkd3d-proton
@@ -33,8 +33,8 @@
     #pushd khronos/Vulkan-Headers; git pull; git checkout bbe0f575ebd6098369f0ac6c6a43532732ed0ba6; popd
     #patch -Np1 < ../patches/proton/81-nv_low_latency_vkd3d_proton.patch
 
-    echo "VKD3D-PROTON: Compile with -Ofast and -march=native"
-    patch -Np1 < ../patches/proton/vkd3d-proton_fast_native.patch
+    echo "VKD3D-PROTON: Compile with -O3 and -march=native"
+    patch -Np1 < ../patches/proton/vkd3d-proton_O3_native.patch
     popd
 
     pushd dxvk-nvapi
@@ -43,16 +43,16 @@
     #echo "DXVK-NVAPI: -Nvidia Reflex- Add support for Reflex"
     #patch -Np1 < ../patches/proton/82-nv_low_latency_dxvk_nvapi.patch
 
-    echo "DXVK-NVAPI: Compile with -Ofast and -march=native"
-    patch -Np1 < ../patches/proton/dxvk_nvapi_fast_native.patch
+    echo "DXVK-NVAPI: Compile with -O3 and -march=native"
+    patch -Np1 < ../patches/proton/dxvk_nvapi_O3_native.patch
     popd
     popd
 
     pushd graphene
     git reset --hard HEAD
     git clean -xdf
-    echo "GRAPHENE: Compile with -Ofast and -march=native"
-    patch -Np1 < ../patches/custom/graphene_fast_native.patch
+    echo "GRAPHENE: Compile with -O3 and -march=native"
+    patch -Np1 < ../patches/custom/graphene_O3_native.patch
     popd
 
     pushd gstreamer
