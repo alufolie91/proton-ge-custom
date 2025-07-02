@@ -362,6 +362,27 @@
     echo "WINE: -CUSTOM- Add WINE_NO_WM_DECORATION option to disable window decorations so that borders behave properly"
     patch -Np1 < ../patches/proton/WINE_NO_WM_DECORATION.patch
 
+    # https://gitlab.winehq.org/wine/wine/-/merge_requests/7238
+    echo "WINE: -CUSTOM- Add enhanced dualsense patches"
+    echo "WINE: -CUSTOM- DualSense_1-mmdevapi_support_VT_CLSID_for_containerId_property_in_MMDevice_SetPropValue"
+    patch -Np1 < ../patches/proton/DualSense_1-mmdevapi_support_VT_CLSID_for_containerId_property_in_MMDevice_SetPropValue.patch
+    echo "WINE: -CUSTOM- DualSense_2-mmdevapi_decode_ContainerId_property_to_CLSID_in_MMDevice_GetPropValue"
+    patch -Np1 < ../patches/proton/DualSense_2-mmdevapi_decode_ContainerId_property_to_CLSID_in_MMDevice_GetPropValue.patch
+    echo "WINE: -CUSTOM- DualSense_3-mmdevapi_copy_ContainerID_from_audio_driver_if_available"
+    patch -Np1 < ../patches/proton/DualSense_3-mmdevapi_copy_ContainerID_from_audio_driver_if_available.patch
+    echo "WINE: -CUSTOM- DualSense_4-mmdevapi_Invalidate_ContainerID_of_unavailable_audio_devices"
+    patch -Np1 < ../patches/proton/DualSense_4-mmdevapi_Invalidate_ContainerID_of_unavailable_audio_devices.patch
+    echo "WINE: -CUSTOM- DualSense_5-winepulse_Store_PulseAudio_devices_sysfs_path_when_available"
+    patch -Np1 < ../patches/proton/DualSense_5-winepulse_Store_PulseAudio_devices_sysfs_path_when_available.patch
+    echo "WINE: -CUSTOM- DualSense_6-winepulse_Add_support_for_containerId_property_from_sysfs_path"
+    patch -Np1 < ../patches/proton/DualSense_6-winepulse_Add_support_for_containerId_property_from_sysfs_path.patch
+    echo "WINE: -CUSTOM- DualSense_7-winebus_store_container_sysfs_path_from_udev_backend"
+    patch -Np1 < ../patches/proton/DualSense_7-winebus_store_container_sysfs_path_from_udev_backend.patch
+    echo "WINE: -CUSTOM- DualSense_8-winebus_implement_BusQueryContainerID_based_on_container_sysfs_path"
+    patch -Np1 < ../patches/proton/DualSense_8-winebus_implement_BusQueryContainerID_based_on_container_sysfs_path.patch
+    echo "WINE: -CUSTOM- DualSense_9-Implement_SetupDiGetDeviceInterfacePropertyW_for_DEVPKEY_Device_InstanceId"
+    patch -Np1 < ../patches/proton/DualSense_9-Implement_SetupDiGetDeviceInterfacePropertyW_for_DEVPKEY_Device_InstanceId.patch
+
     echo "WINE: -CUSTOM- Add PROTON_PREFER_SDL option to make it not prefer hidraw and instead expose both sdl and hidraw"
     patch -Np1 < ../patches/proton/PREFER_SDL.patch
 
