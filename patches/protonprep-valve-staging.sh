@@ -463,6 +463,8 @@
     patch -Np1 < ../patches/wine-hotfixes/pending/wine-wayland/0157-fixup-win32u-Don-t-move-windows-when-it-s-impossible.patch
     patch -Np1 < ../patches/wine-hotfixes/pending/wine-wayland/0158-winewayland-Switch-client-surfaces-when-presenting.patch
 
+    patch -Np1 < ../patches/wine-hotfixes/pending/wine-wayland/add-PROTON_WAYLAND_DISPLAY_INDEX.patch
+
     # https://gitlab.winehq.org/wine/wine/-/merge_requests/7238
     echo "WINE: -CUSTOM- Add enhanced dualsense patches"
     echo "WINE: -CUSTOM- DualSense_1-mmdevapi_support_VT_CLSID_for_containerId_property_in_MMDevice_SetPropValue"
