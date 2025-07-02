@@ -1,0 +1,28 @@
+diff --git a/Makefile.am b/Makefile.am
+index 6e4d73b6..21000ab1 100644
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -593,8 +593,8 @@ dummy-vkd3d-version:
+ 
+ ## Cross-compile tests
+ cross_implibs = crosslibs/d3d12
+-CROSS_CPPFLAGS = -I$(srcdir)/include -I$(srcdir)/include/private -I$(builddir)/include -I$(builddir)/tests
+-CROSS_CFLAGS = -g -O2 -Wall -municode ${CROSS_CPPFLAGS} -Wa,-I$(srcdir)/demos \
++CROSS_CPPFLAGS = -O3 -march=native-I$(srcdir)/include -I$(srcdir)/include/private -I$(builddir)/include -I$(builddir)/tests
++CROSS_CFLAGS = -g -O3 -march=native -Wall -municode ${CROSS_CPPFLAGS} -Wa,-I$(srcdir)/demos \
+ 	-D_WIN32_WINNT=0x0600 -D__USE_MINGW_ANSI_STDIO=0 -DVKD3D_CROSSTEST=1
+ EXTRA_DIST += $(cross_implibs:=.cross32.def) $(cross_implibs:=.cross64.def)
+ EXTRA_DIST += tests/driver.c tests/shader_runner_d3d11.c tests/shader_runner_d3d9.c
+diff --git a/configure.ac b/configure.ac
+index fb57e1a4..936525a2 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -56,7 +56,7 @@ gl_LD_VERSION_SCRIPT
+ dnl Check compiler specific flags
+ AC_SUBST([VKD3D_CFLAGS])
+ AS_IF([test "x${GCC}" = "xyes"],
+-      [VKD3D_CFLAGS="-Wall -pipe -D_WIN32_WINNT=0x0600"
++      [VKD3D_CFLAGS="-O3 -march=native -Wall -pipe -D_WIN32_WINNT=0x0600"
+       VKD3D_CHECK_CFLAGS([-std=c99])
+       VKD3D_CHECK_CFLAGS([-flto=auto])
+       VKD3D_CHECK_CFLAGS([-fvisibility=hidden])

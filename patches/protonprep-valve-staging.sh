@@ -5,17 +5,30 @@
     pushd dxvk
     git reset --hard HEAD
     git clean -xdf
+    echo "DXVK: compile with O3"
+    patch -Np1 < ../patches/perfshit/dxvk_O3_native.patch
+    popd
+
+    pushd vkd3d
+    git reset --hard HEAD
+    git clean -xdf
+    echo "VKD3D: compile with O3"
+    patch -Np1 < ../patches/perfshit/vkd3d_O3_native.patch
     popd
 
     pushd vkd3d-proton
     git reset --hard HEAD
     git clean -xdf
     patch -Np1 < ../patches/vkd3d/vkd3d-proton-0001-vkd3d-Load-amdxc64-when-using-AMD.patch
+    echo "VKD3D-PROTON: compile with O3"
+    patch -Np1 < ../patches/perfshit/vkd3d_proton_O3_native.patch
     popd
 
     pushd dxvk-nvapi
     git reset --hard HEAD
     git clean -xdf
+    echo "DXVK-nvapi: compile with O3"
+    patch -Np1 < ../patches/perfshit/dxvk_nvapi_O3_native.patch
     popd
 
     pushd gstreamer
@@ -286,6 +299,27 @@
 
     echo "WINE: -CUSTOM- Add WINE_NO_WM_DECORATION option to disable window decorations so that borders behave properly"
     patch -Np1 < ../patches/proton/0001-win32u-add-env-switch-to-disable-wm-decorations.patch
+
+    # https://gitlab.winehq.org/wine/wine/-/merge_requests/7238
+   #echo "WINE: -CUSTOM- Add enhanced dualsense patches"
+   #echo "WINE: -CUSTOM- DualSense_1-mmdevapi_support_VT_CLSID_for_containerId_property_in_MMDevice_SetPropValue"
+   #patch -Np1 < ../patches/proton/DualSense_1-mmdevapi_support_VT_CLSID_for_containerId_property_in_MMDevice_SetPropValue.patch
+   #echo "WINE: -CUSTOM- DualSense_2-mmdevapi_decode_ContainerId_property_to_CLSID_in_MMDevice_GetPropValue"
+   #patch -Np1 < ../patches/proton/DualSense_2-mmdevapi_decode_ContainerId_property_to_CLSID_in_MMDevice_GetPropValue.patch
+   #echo "WINE: -CUSTOM- DualSense_3-mmdevapi_copy_ContainerID_from_audio_driver_if_available"
+   #patch -Np1 < ../patches/proton/DualSense_3-mmdevapi_copy_ContainerID_from_audio_driver_if_available.patch
+   #echo "WINE: -CUSTOM- DualSense_4-mmdevapi_Invalidate_ContainerID_of_unavailable_audio_devices"
+   #patch -Np1 < ../patches/proton/DualSense_4-mmdevapi_Invalidate_ContainerID_of_unavailable_audio_devices.patch
+   #echo "WINE: -CUSTOM- DualSense_5-winepulse_Store_PulseAudio_devices_sysfs_path_when_available"
+   #patch -Np1 < ../patches/proton/DualSense_5-winepulse_Store_PulseAudio_devices_sysfs_path_when_available.patch
+   #echo "WINE: -CUSTOM- DualSense_6-winepulse_Add_support_for_containerId_property_from_sysfs_path"
+   #patch -Np1 < ../patches/proton/DualSense_6-winepulse_Add_support_for_containerId_property_from_sysfs_path.patch
+   #echo "WINE: -CUSTOM- DualSense_7-winebus_store_container_sysfs_path_from_udev_backend"
+   #patch -Np1 < ../patches/proton/DualSense_7-winebus_store_container_sysfs_path_from_udev_backend.patch
+   #echo "WINE: -CUSTOM- DualSense_8-winebus_implement_BusQueryContainerID_based_on_container_sysfs_path"
+   #patch -Np1 < ../patches/proton/DualSense_8-winebus_implement_BusQueryContainerID_based_on_container_sysfs_path.patch
+   #echo "WINE: -CUSTOM- DualSense_9-Implement_SetupDiGetDeviceInterfacePropertyW_for_DEVPKEY_Device_InstanceId"
+   #patch -Np1 < ../patches/proton/DualSense_9-Implement_SetupDiGetDeviceInterfacePropertyW_for_DEVPKEY_Device_InstanceId.patch
 
     echo "WINE: -CUSTOM- Fix a crash in ID2D1DeviceContext if no target is set"
     patch -Np1 < ../patches/proton/fix-a-crash-in-ID2D1DeviceContext-if-no-target-is-set.patch

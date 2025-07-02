@@ -1,0 +1,20 @@
+diff --git a/meson.build b/meson.build
+index 6792271..4e7af34 100644
+--- a/meson.build
++++ b/meson.build
+@@ -35,6 +35,15 @@ if get_option('build_id')
+   ]
+ endif
+ 
++compiler_args += [
++  '-O3',
++  '-march=native',
++]
++link_args += [
++  '-O3',
++  '-march=native',
++]
++
+ dxvk_include_dirs = ['./include']
+ if fs.is_dir('./include/vulkan/include')
+   dxvk_include_dirs += ['./include/vulkan/include']

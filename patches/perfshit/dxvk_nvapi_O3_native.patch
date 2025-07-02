@@ -1,0 +1,19 @@
+diff --git a/meson.build b/meson.build
+index aee915f..5f0e931 100644
+--- a/meson.build
++++ b/meson.build
+@@ -33,6 +33,14 @@ else
+   link_args += ['/FILEALIGN:4096']
+ endif
+ 
++compiler_args += [
++  '-O3',
++  '-march=native',
++]
++link_args += [
++  '-O3',
++  '-march=native',
++]
+ 
+ add_project_arguments(cpp.get_supported_arguments(compiler_args), language: 'cpp')
+ add_project_link_arguments(cpp.get_supported_link_arguments(link_args), language: 'cpp')
