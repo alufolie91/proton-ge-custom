@@ -307,6 +307,9 @@ apply_all_in_dir() {
     echo "WINE: -CUSTOM- ETASSH WINE-WAYLAND+ PATCHES"
     apply_all_in_dir "../patches/wine-hotfixes/wine-wayland/"
 
+    echo "WINE: -CUSTOM- Add enhanced dualsense patches"
+    apply_all_in_dir "../patches/proton/Dualsense/"
+
     echo "WINE: RUN AUTOCONF TOOLS/MAKE_REQUESTS"
     autoreconf -f
     ./tools/make_requests
