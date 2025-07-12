@@ -283,6 +283,12 @@ apply_all_in_dir() {
 
 ### (2-6) PROTON-GE ADDITIONAL CUSTOM PATCHES ###
 
+    echo "WINE: Add Wine-to-Unix PID mapping"
+    apply_patch "../patches/custom/proton10-unix-pid-maps.patch"
+
+    echo "WINE: Add winedbg patch to fix a Dalamud crash"
+    apply_patch "../patches/custom/portable-pdb.patch"
+
     echo "WINE: -FSR- fullscreen hack fsr patch"
     apply_patch "../patches/proton/0001-fshack-Implement-AMD-FSR-upscaler-for-fullscreen-hac.patch"
 
