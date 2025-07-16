@@ -307,8 +307,8 @@ apply_all_in_dir() {
     echo "WINE: -CUSTOM- ETASSH WINE-WAYLAND+ PATCHES"
     apply_all_in_dir "../patches/wine-hotfixes/wine-wayland/"
 
-    echo "WINE: -CUSTOM- Add enhanced dualsense patches"
-    apply_all_in_dir "../patches/proton/Dualsense/"
+    #echo "WINE: -CUSTOM- Add enhanced dualsense patches"
+    #apply_all_in_dir "../patches/proton/Dualsense/"
 
     echo "WINE: Add Wine-to-Unix PID mapping"
     apply_patch "../patches/custom/proton10-unix-pid-maps.patch"
