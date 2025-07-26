@@ -1,31 +1,14 @@
-From d54b3e31ced670a115f005e9faebc954689478f2 Mon Sep 17 00:00:00 2001
+From 273209db956a2571702daa24bd6bd6bb3e82652b Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Sat, 24 May 2025 13:26:50 -0400
-Subject: [PATCH 063/177] winedmo: Fix double free
+Subject: [PATCH] winedmo: Fix double free
 
 ---
  dlls/winedmo/unix_demuxer.c           | 4 ++--
  dlls/winedmo/unix_demuxer_mediaconv.c | 3 +++
  2 files changed, 5 insertions(+), 2 deletions(-)
 
-diff --git a/dlls/winedmo/unix_demuxer.c b/dlls/winedmo/unix_demuxer.c
-index 24681e2d5df..cceda4d7112 100644
---- a/dlls/winedmo/unix_demuxer.c
-+++ b/dlls/winedmo/unix_demuxer.c
-@@ -248,10 +248,10 @@ NTSTATUS demuxer_create( void *arg )
-     if (!(demuxer->ctx->pb = avio_alloc_context( NULL, 0, 0, params->context, unix_read_callback, NULL, unix_seek_callback ))) goto failed;
- 
-     if ((ret = avformat_open_input( &demuxer->ctx, NULL, NULL, NULL )) < 0)
--        WARN( "Failed to open input, error %s.\n", debugstr_averr(ret) );
-+        ERR( "Failed to open input using avformat, error %s.\n", debugstr_averr(ret) );
-     if ((ret = mediaconv_demuxer_open( &demuxer->ctx, params->context ) < 0))
-     {
--        ERR( "Failed to open input, error %s.\n", debugstr_averr(ret) );
-+        ERR( "Failed to open input using mediaconv, error %s.\n", debugstr_averr(ret) );
-         goto failed;
-     }
-     format = demuxer->ctx->iformat;
 diff --git a/dlls/winedmo/unix_demuxer_mediaconv.c b/dlls/winedmo/unix_demuxer_mediaconv.c
 index 478df6f2a34..90a629402c4 100644
 --- a/dlls/winedmo/unix_demuxer_mediaconv.c
@@ -54,6 +37,3 @@ index 478df6f2a34..90a629402c4 100644
              return ret;
          }
      }
--- 
-2.50.0
-
