@@ -242,6 +242,7 @@ GST_GOOD_MESON_ARGS := \
 	-Davi=enabled \
 	-Ddebugutils=enabled \
 	-Ddeinterlace=enabled \
+	-Dicydemux=enabled \
 	-Disomp4=enabled \
 	-Dmatroska=enabled \
 	-Dmpg123=enabled \
@@ -1117,8 +1118,8 @@ georgia_NAMES := "Georgia" "Georgia" "Georgia"
 georgia_ORIG := LiberationSerif-Regular
 #The use of "Courier New" here is for compatibility with programs that require that exact string. This font is not Courier New.
 cour_NAMES := "CourierNew" "Courier New" "Courier New"
-cour_PATCH := $(FONTS)/patches/LiberationMono-Regular.patch
 cour_ORIG := LiberationMono-Regular
+LiberationMono-Regular_PATCH := $(FONTS)/patches/LiberationMono-Regular.patch
 #The use of "Courier New" here is for compatibility with programs that require that exact string. This font is not Courier New.
 courbd_NAMES := "CourierNewPS-BoldMT" "Courier New" "Courier New Bold"
 courbd_ORIG := LiberationMono-Bold
