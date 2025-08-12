@@ -40,10 +40,12 @@ from filelock import FileLock
 from random import randrange
 from pathlib import Path
 
+import protonfixes
+
 #To enable debug logging, copy "user_settings.sample.py" to "user_settings.py"
 #and edit it if needed.
 
-CURRENT_PREFIX_VERSION="GE-Proton10-10"
+CURRENT_PREFIX_VERSION="GE-Proton10-11"
 
 PFX="Proton: "
 ld_path_var = "LD_LIBRARY_PATH"
@@ -1317,8 +1319,10 @@ def default_compat_config():
                 #affected by CW bug 20240
                 "1331440", #FUSER
 
-                #CW bug 24913
-                "2620730",
+                #affected by Unity race
+                "2620730", #DEVIATOR - CW bug 24913
+                "2882920", #SSR Wives: The Murder Of My Winter Crush Demo - CW bug 25730
+                "2712910", #Spark & Kling - CW bug 25778
                 ]:
             ret.add("nomfdxgiman")
 
@@ -1413,6 +1417,8 @@ def default_compat_config():
                 "2531310", #The Last of Us Part II Remastered
                 "2564460", #Banter
                 "2680010", #The First Berserker: Khazan
+                "3438330", #Firefly Village Demo
+                "3393740", #Firefly Village
                 ]:
             ret.add("gamedrive")
 
@@ -1479,6 +1485,11 @@ def default_compat_config():
                 "368500", #Assassin's Creed Syndicate
                 ]:
             ret.add("disablenvapi")
+
+        if appid in [
+                "2698940", #The Crew Motorfest
+                ]:
+            ret.add("hidenvgpu")
 
         if appid in [
                 "2395210" #Tony Hawk's Pro Skater 1 + 2
@@ -1577,6 +1588,11 @@ class Session:
             self.env["WINE_CPU_TOPOLOGY"] = self.env["PROTON_CPU_TOPOLOGY"]
         elif appid in default_cpu_limit:
             self.env["WINE_CPU_TOPOLOGY"] = str(default_cpu_limit[appid])
+
+        if "WINE_HIDE_AMD_GPU" not in self.env and appid in [
+                    "1282690",
+                ]:
+            self.env["WINE_HIDE_AMD_GPU"] = "1"
 
     def init_wine(self):
         if "HOST_LC_ALL" in self.env and len(self.env["HOST_LC_ALL"]) > 0:
@@ -2159,7 +2175,6 @@ if __name__ == "__main__":
 
     g_session.init_session(sys.argv[1] != "runinprefix")
 
-    import protonfixes
     protonfixes.setup(g_session.env, "PATH", ld_path_var, prepend_to_env_str)
     protonfixes.setup_mount_drives(setup_dir_drive)
     protonfixes.winetricks(g_session.env, g_proton.wine_bin, g_proton.wineserver_bin)
