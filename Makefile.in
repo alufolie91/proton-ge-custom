@@ -401,7 +401,7 @@ FFMPEG_CONFIGURE_ARGS := \
 	--enable-zlib \
 	--enable-libvpx \
 	--enable-libvorbis \
-	--enable-protocol='file,rtmp' \
+	--enable-protocol='file,rtmp,rtp,rtsp' \
 	--enable-filter='scale,scale_cuda' \
 	--enable-decoder=indeo5 \
 	--enable-decoder=adpcm_ms \
@@ -456,13 +456,19 @@ FFMPEG_CONFIGURE_ARGS := \
 	--enable-demuxer=wav \
 	--enable-demuxer=flv \
 	--enable-demuxer=apng \
+	--enable-demuxer=asf \
+	--enable-demuxer=rtsp \
 	--enable-muxer=aac \
+	--enable-muxer=asf \
+	--enable-muxer=asf_stream \
 	--enable-muxer=flv \
 	--enable-muxer=mp4 \
 	--enable-muxer=dash \
 	--enable-muxer=webm \
 	--enable-parser=h264 \
-	--enable-parser=hevc
+	--enable-parser=hevc \
+	--enable-parser=vc1 \
+	--enable-parser=mpegaudio
 
 FFMPEG_i386-unix_CONFIGURE_ARGS := \
 	--cross-prefix=i686-linux-gnu- \
