@@ -308,6 +308,9 @@ apply_all_in_dir() {
     echo "WINE: -CUSTOM- Fix a crash in ID2D1DeviceContext if no target is set"
     apply_patch "../patches/proton/fix-a-crash-in-ID2D1DeviceContext-if-no-target-is-set.patch"
 
+    echo "WINE: -CUSTOM- Add envvar to allow method=automatic to be set for video orientation in gstreamer"
+    apply_patch "../patches/proton/proton-use_winegstreamer_and_set_orientation-PROTON_MEDIA_USE_GST-PROTON_GST_VIDEO_ORIENTATION.patch"
+
     echo "WINE: -CUSTOM- ETASSH WINE-WAYLAND+ PATCHES"
     apply_all_in_dir "../patches/wine-hotfixes/wine-wayland/"
 
