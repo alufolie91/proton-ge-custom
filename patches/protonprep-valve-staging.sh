@@ -50,20 +50,6 @@ apply_all_in_dir() {
     apply_all_in_dir "../patches/gstreamer/"
     popd
 
-    pushd glslang
-    git reset --hard HEAD
-    git clean -xdf
-    echo "glslang gcc15 compile fixes"
-    apply_patch "../patches/glslang-renderdoc-1.36-gcc15-fix.patch"
-    popd
-
-    pushd openfst
-    git reset --hard HEAD
-    git clean -xdf
-    echo "OpenFst compile fixes"
-    apply_all_in_dir "../patches/openfst/"
-    popd
-
     pushd protonfixes
     git reset --hard HEAD
     git clean -xdf
