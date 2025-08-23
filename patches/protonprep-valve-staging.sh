@@ -66,6 +66,8 @@ apply_all_in_dir() {
     pushd protonfixes
     git reset --hard HEAD
     git clean -xdf
+    echo "PROTONFIXES: compile with O3"
+    apply_patch "../patches/perfshit/dxvk_O3_native.patch"
     pushd subprojects
     pushd libmspack
     git reset --hard HEAD

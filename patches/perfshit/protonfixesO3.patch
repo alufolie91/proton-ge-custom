@@ -1,0 +1,13 @@
+diff --git a/Makefile b/Makefile
+index c93f1c7..232aae4 100644
+--- a/Makefile
++++ b/Makefile
+@@ -95,7 +95,7 @@ libmspack-install: libmspack-dist
+ #
+ 
+ # Flags are from Proton
+-CFLAGS ?= -O2 -march=nocona -mtune=core-avx2
++CFLAGS ?= -O3 -march=nocona -mtune=core-avx2
+ LDFLAGS ?= -Wl,-O1,--sort-common,--as-needed
+ DEFINES = -DACORN_FTYPE_NFS -DWILD_STOP_AT_DIR -DLARGE_FILE_SUPPORT \
+  -DUNICODE_SUPPORT -DUNICODE_WCHAR -DUTF8_MAYBE_NATIVE -DNO_LCHMOD \
