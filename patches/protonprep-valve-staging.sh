@@ -21,7 +21,8 @@ apply_all_in_dir() {
     echo "DXVK: compile with O3"
     apply_patch "../patches/perfshit/dxvk_O3_native.patch"
     echo "DXVK: add low-latency patchset"
-    apply_patch "../patches/perfshit/dxvk-gplasync-lowlatency_GPLALL-master-2.7.patch"
+    apply_patch "../patches/perfshit/500-dxvk-gplasync-lowlatency_GPLALL-master-2.7.patch"
+    apply_patch "../patches/perfshit/501-fixup_dxvk-gplasync-lowlatency_GPLALL-master-2.7.patch.patch"
     popd
 
     pushd vkd3d
