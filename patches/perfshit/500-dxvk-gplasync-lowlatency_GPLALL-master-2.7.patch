@@ -476,17 +476,16 @@ index 28d1f1d..b0221ee 100644
  
  # Controls descriptor model
 diff --git a/meson.build b/meson.build
-index 20b8695..3a705a6 100644
+index 20b8695..10a87cd 100644
 --- a/meson.build
 +++ b/meson.build
-@@ -10,10 +10,16 @@ cc = meson.get_compiler('c')
+@@ -10,10 +10,15 @@ cc = meson.get_compiler('c')
  dxvk_is_msvc = cpp.get_argument_syntax() == 'msvc'
  
  compiler_args = [
 +  '-O3',
 +  '-pipe',
-+  '-march=x86-64',
-+  '-mtune=x86-64',
++  '-march=native',
    '-msse',
    '-msse2',
 -  '-msse3',
@@ -497,7 +496,7 @@ index 20b8695..3a705a6 100644
    '-Wimplicit-fallthrough',
    # gcc
    '-Wno-missing-field-initializers',
-@@ -28,7 +34,9 @@ compiler_args = [
+@@ -28,7 +33,9 @@ compiler_args = [
    '-Wno-missing-braces',
  ]
  
@@ -508,7 +507,7 @@ index 20b8695..3a705a6 100644
  
  if get_option('build_id')
    link_args += [
-@@ -92,14 +100,24 @@ if platform == 'windows'
+@@ -92,14 +99,24 @@ if platform == 'windows'
        ]
      endif
    else
@@ -537,7 +536,16 @@ index 20b8695..3a705a6 100644
      ]
    endif
  
-@@ -199,7 +217,7 @@ glsl_generator = generator(
+@@ -162,7 +179,7 @@ else
+   if (not lib_sdl3.found() and not lib_sdl2.found() and not lib_glfw.found())
+     error('SDL3, SDL2, or GLFW are required to build dxvk-native')
+   endif
+-  
++
+   dxvk_name_prefix = 'dxvk_'
+   dxvk_pkg_prefix = 'dxvk-'
+ 
+@@ -199,7 +216,7 @@ glsl_generator = generator(
  )
  
  dxvk_version = vcs_tag(
