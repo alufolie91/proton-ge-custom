@@ -1,0 +1,51 @@
+From 01a94804fdf62892f8ec9df0be637a539c0b8124 Mon Sep 17 00:00:00 2001
+From: Jinoh Kang <jinoh.kang.kr@gmail.com>
+Date: Tue, 18 Feb 2025 00:12:09 +0900
+Subject: [PATCH 294/365] ntdll: Skip DLL initialization and ldr notification
+ entirely if DONT_RESOLVE_DLL_REFERENCES is set.
+
+---
+ dlls/kernel32/tests/loader.c | 3 ---
+ dlls/ntdll/loader.c          | 4 ++++
+ 2 files changed, 4 insertions(+), 3 deletions(-)
+
+diff --git a/dlls/kernel32/tests/loader.c b/dlls/kernel32/tests/loader.c
+index 832e8f82a3e..09c3390a5ad 100644
+--- a/dlls/kernel32/tests/loader.c
++++ b/dlls/kernel32/tests/loader.c
+@@ -2824,7 +2824,6 @@ static void subtest_export_forwarder_dep_chain( size_t num_chained_export_module
+ 
+         status = LdrFindEntryForAddress( modules[0], &mod );
+         ok( !status, "LdrFindEntryForAddress returned %#lx", status );
+-        todo_wine_if(importer_index == 1)
+         ok( !(mod->Flags & LDR_PROCESS_ATTACHED), "expected LDR_PROCESS_ATTACHED to be unset (Flags=%#lx)\n", mod->Flags );
+     }
+ 
+@@ -2884,9 +2883,7 @@ static void subtest_export_forwarder_dep_chain( size_t num_chained_export_module
+         status = pLdrUnregisterDllNotification( cookie );
+         ok( !status, "LdrUnregisterDllNotification returned %#lx.\n", status );
+ 
+-        todo_wine_if(importer_index == 1)
+         ok( !lnc.load_count, "got %u for load count of first module\n", lnc.load_count );
+-        todo_wine_if(importer_index == 1)
+         ok( !lnc.unload_count, "got %u for unload count of first module\n", lnc.unload_count );
+     }
+ 
+diff --git a/dlls/ntdll/loader.c b/dlls/ntdll/loader.c
+index bb7d1fb718e..521927152cc 100644
+--- a/dlls/ntdll/loader.c
++++ b/dlls/ntdll/loader.c
+@@ -1812,6 +1812,10 @@ static NTSTATUS process_attach( LDR_DDAG_NODE *node, LPVOID lpReserved )
+     mod = CONTAINING_RECORD( node->Modules.Flink, LDR_DATA_TABLE_ENTRY, NodeModuleLink );
+     wm = CONTAINING_RECORD( mod, WINE_MODREF, ldr );
+ 
++    /* Skip initialization entirely if requested */
++    if (wm->ldr.Flags & LDR_DONT_RESOLVE_REFS)
++        return status;
++
+     /* prevent infinite recursion in case of cyclical dependencies */
+     if (    ( wm->ldr.Flags & LDR_LOAD_IN_PROGRESS )
+          || ( wm->ldr.Flags & LDR_PROCESS_ATTACHED ) )
+-- 
+2.50.1
+

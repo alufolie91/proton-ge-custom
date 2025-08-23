@@ -1,0 +1,27 @@
+From 98c80d5f14f70c3efff67e7006e2e5d13c3cfb41 Mon Sep 17 00:00:00 2001
+From: Alexandre Julliard <julliard@winehq.org>
+Date: Mon, 31 Mar 2025 12:22:48 +0200
+Subject: [PATCH 251/365] gdiplus: Delay import mlang.
+
+To avoid creating an extra known dll section.
+---
+ dlls/gdiplus/Makefile.in | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/dlls/gdiplus/Makefile.in b/dlls/gdiplus/Makefile.in
+index 76474f2e086..21efd747e8d 100644
+--- a/dlls/gdiplus/Makefile.in
++++ b/dlls/gdiplus/Makefile.in
+@@ -1,7 +1,7 @@
+ MODULE    = gdiplus.dll
+ IMPORTLIB = gdiplus
+-IMPORTS   = uuid shlwapi ole32 oleaut32 user32 gdi32 mlang
+-DELAYIMPORTS = windowscodecs
++IMPORTS   = uuid shlwapi ole32 oleaut32 user32 gdi32
++DELAYIMPORTS = mlang windowscodecs
+ 
+ SOURCES = \
+ 	brush.c \
+-- 
+2.50.1
+
