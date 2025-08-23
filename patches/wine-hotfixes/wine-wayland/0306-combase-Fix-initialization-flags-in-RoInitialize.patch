@@ -1,0 +1,97 @@
+From 2bfe2e8052f585ed4feb4a28022722c827faf411 Mon Sep 17 00:00:00 2001
+From: Piotr Caban <piotr@codeweavers.com>
+Date: Wed, 6 Aug 2025 17:07:42 +0200
+Subject: [PATCH 306/365] combase: Fix initialization flags in RoInitialize.
+
+---
+ dlls/combase/roapi.c              |  2 +-
+ dlls/combase/tests/roapi.c        | 30 ++++++++++++++++++++++++++++++
+ dlls/vccorlib140/tests/vccorlib.c |  3 +--
+ 3 files changed, 32 insertions(+), 3 deletions(-)
+
+diff --git a/dlls/combase/roapi.c b/dlls/combase/roapi.c
+index 8118758d338..b87f09a432c 100644
+--- a/dlls/combase/roapi.c
++++ b/dlls/combase/roapi.c
+@@ -124,7 +124,7 @@ HRESULT WINAPI RoInitialize(RO_INIT_TYPE type)
+ {
+     switch (type) {
+     case RO_INIT_SINGLETHREADED:
+-        return CoInitializeEx(NULL, COINIT_APARTMENTTHREADED);
++        return CoInitializeEx(NULL, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
+     default:
+         FIXME("type %d\n", type);
+     case RO_INIT_MULTITHREADED:
+diff --git a/dlls/combase/tests/roapi.c b/dlls/combase/tests/roapi.c
+index 7606c61c165..8a545002e51 100644
+--- a/dlls/combase/tests/roapi.c
++++ b/dlls/combase/tests/roapi.c
+@@ -22,6 +22,7 @@
+ #include "winbase.h"
+ #include "winerror.h"
+ #include "winstring.h"
++#include "winternl.h"
+ 
+ #include "initguid.h"
+ #include "roapi.h"
+@@ -211,6 +212,28 @@ static DWORD WINAPI mta_init_implicit_thread(void *dummy)
+     return 0;
+ }
+ 
++enum oletlsflags
++{
++    OLETLS_UUIDINITIALIZED = 0x2,
++    OLETLS_DISABLE_OLE1DDE = 0x40,
++    OLETLS_APARTMENTTHREADED = 0x80,
++    OLETLS_MULTITHREADED = 0x100,
++};
++
++struct oletlsdata
++{
++    void *threadbase;
++    void *smallocator;
++    DWORD id;
++    DWORD flags;
++};
++
++static DWORD get_oletlsflags(void)
++{
++    struct oletlsdata *data = NtCurrentTeb()->ReservedForOle;
++    return data ? data->flags : 0;
++}
++
+ static void test_implicit_mta(void)
+ {
+     static const struct
+@@ -246,7 +269,14 @@ static void test_implicit_mta(void)
+     {
+         winetest_push_context("test %u", i);
+         if (tests[i].ro_init)
++        {
++            DWORD flags = tests[i].mta ? OLETLS_MULTITHREADED : OLETLS_APARTMENTTHREADED;
++
+             hr = RoInitialize(tests[i].mta ? RO_INIT_MULTITHREADED : RO_INIT_SINGLETHREADED);
++
++            flags |= OLETLS_DISABLE_OLE1DDE;
++            ok((get_oletlsflags() & flags) == flags, "get_oletlsflags() = %lx\n", get_oletlsflags());
++        }
+         else
+             hr = CoInitializeEx(NULL, tests[i].mta ? COINIT_MULTITHREADED : COINIT_APARTMENTTHREADED);
+         ok(hr == S_OK, "got %#lx.\n", hr);
+diff --git a/dlls/vccorlib140/tests/vccorlib.c b/dlls/vccorlib140/tests/vccorlib.c
+index 581bca3c838..035cfdb880f 100644
+--- a/dlls/vccorlib140/tests/vccorlib.c
++++ b/dlls/vccorlib140/tests/vccorlib.c
+@@ -103,8 +103,7 @@ static DWORD exp_coinit;
+ static HRESULT WINAPI InitializeSpy_PreInitialize(IInitializeSpy *iface, DWORD coinit, DWORD aptrefs)
+ {
+     CHECK_EXPECT(PreInitialize);
+-    todo_wine_if(coinit == COINIT_APARTMENTTHREADED)
+-        ok(coinit == exp_coinit, "coinit = %lx\n", coinit);
++    ok(coinit == exp_coinit, "coinit = %lx\n", coinit);
+     return S_OK;
+ }
+ 
+-- 
+2.50.1
+
