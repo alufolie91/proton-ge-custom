@@ -1,7 +1,7 @@
 From 8cd284f58f17443c59ef5bc6ba5f78b0fc73ded8 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?R=C3=A9mi=20Bernon?= <rbernon@codeweavers.com>
 Date: Fri, 30 May 2025 10:24:20 +0200
-Subject: [PATCH 167/365] winewayland: Switch client surfaces when presenting.
+Subject: [PATCH 167/339] winewayland: Switch client surfaces when presenting.
 
 ---
  dlls/winewayland.drv/opengl.c     |  5 +++-

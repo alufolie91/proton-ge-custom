@@ -2,7 +2,7 @@ From 60cf70e11c8724fcbfe6e25cc8701b608ee88e6e Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Wed, 23 Jul 2025 01:06:02 -0400
-Subject: [PATCH 211/365] ntoskrnl: Implement PsGetContextThread.
+Subject: [PATCH 211/339] ntoskrnl: Implement PsGetContextThread.
 
 ---
  dlls/ntoskrnl.exe/ntoskrnl.c        | 17 +++++++++++++++++

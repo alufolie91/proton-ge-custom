@@ -1,7 +1,7 @@
 From 69b2a917b5857b6eb98c2564a4b3a144f57c94a6 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty <etaash.mathamsetty@gmail.com>
 Date: Tue, 5 Aug 2025 13:42:45 -0400
-Subject: [PATCH 241/365] winewayland: Add support for display make.
+Subject: [PATCH 241/339] winewayland: Add support for display make.
 
 ---
  dlls/winewayland.drv/display.c        | 12 ++++++++++++

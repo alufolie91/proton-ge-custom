@@ -2,7 +2,7 @@ From f7c3deea69a35a50365bdfe4fc6c9e89bb1f793f Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Sat, 14 Jun 2025 20:46:22 -0400
-Subject: [PATCH 116/365] atiadlxx: Remove outdated comment
+Subject: [PATCH 116/339] atiadlxx: Remove outdated comment
 
 ---
  dlls/atiadlxx/atiadlxx_main.c | 1 -

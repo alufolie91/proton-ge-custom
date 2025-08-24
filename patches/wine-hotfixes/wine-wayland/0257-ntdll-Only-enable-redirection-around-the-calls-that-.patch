@@ -1,7 +1,7 @@
 From c7583577b7fee9297b61eeb1bff590c6815b1f69 Mon Sep 17 00:00:00 2001
 From: Alexandre Julliard <julliard@winehq.org>
 Date: Mon, 31 Mar 2025 13:02:32 +0200
-Subject: [PATCH 257/365] ntdll: Only enable redirection around the calls that
+Subject: [PATCH 257/339] ntdll: Only enable redirection around the calls that
  access the file system.
 
 ---

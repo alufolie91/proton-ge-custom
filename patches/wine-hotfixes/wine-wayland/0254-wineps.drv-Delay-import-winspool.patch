@@ -1,7 +1,7 @@
 From 999294207ed150881b10f162540dc880c24f4b31 Mon Sep 17 00:00:00 2001
 From: Alexandre Julliard <julliard@winehq.org>
 Date: Wed, 2 Apr 2025 17:07:36 +0200
-Subject: [PATCH 254/365] wineps.drv: Delay import winspool.
+Subject: [PATCH 254/339] wineps.drv: Delay import winspool.
 
 To avoid recursive initialization, since winspool.drv calls wineps.drv
 from its DllMain, and after 55d2e55499fecbe57736eab80a5fc4a001e24040

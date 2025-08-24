@@ -2,7 +2,7 @@ From 98aa117786aa5c5e038a2541f97c27eaaa2b1981 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Sun, 22 Jun 2025 12:35:14 -0400
-Subject: [PATCH 151/365] setupapi: Implement DEVPKEY_Device_InstanceId in
+Subject: [PATCH 151/339] setupapi: Implement DEVPKEY_Device_InstanceId in
  SetupDiGetDeviceInterfacePropertyW.
 
 Based on patch by ClearlyClaire

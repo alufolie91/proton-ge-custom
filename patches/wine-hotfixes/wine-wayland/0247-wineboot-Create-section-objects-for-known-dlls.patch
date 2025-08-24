@@ -1,7 +1,7 @@
 From c8c675b2549df8cacb3ce71f1b4f04dcd28242f5 Mon Sep 17 00:00:00 2001
 From: Alexandre Julliard <julliard@winehq.org>
 Date: Mon, 31 Mar 2025 12:01:09 +0200
-Subject: [PATCH 247/365] wineboot: Create section objects for known dlls.
+Subject: [PATCH 247/339] wineboot: Create section objects for known dlls.
 
 Signed-off-by: Alexandre Julliard <julliard@winehq.org>
 ---

@@ -2,7 +2,7 @@ From 246456c5bef39d7b95ae3081568b7fcc2fc9432c Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Thu, 24 Jul 2025 01:10:41 -0400
-Subject: [PATCH 222/365] HACK: ntoskrnl: Add hidusb driver stub.
+Subject: [PATCH 222/339] HACK: ntoskrnl: Add hidusb driver stub.
 
 ---
  dlls/ntoskrnl.exe/ntoskrnl.c | 6 ++++--

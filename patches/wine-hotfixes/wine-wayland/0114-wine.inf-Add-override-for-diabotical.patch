@@ -1,7 +1,7 @@
 From 549b67df0225451a5623e87e15b7c8b7968f6b41 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty <etaash.mathamsetty@gmail.com>
 Date: Sat, 14 Jun 2025 11:22:44 -0400
-Subject: [PATCH 114/365] wine.inf: Add override for diabotical
+Subject: [PATCH 114/339] wine.inf: Add override for diabotical
 
 ---
  loader/wine.inf.in | 1 +

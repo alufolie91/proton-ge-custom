@@ -1,7 +1,7 @@
 From 98c80d5f14f70c3efff67e7006e2e5d13c3cfb41 Mon Sep 17 00:00:00 2001
 From: Alexandre Julliard <julliard@winehq.org>
 Date: Mon, 31 Mar 2025 12:22:48 +0200
-Subject: [PATCH 251/365] gdiplus: Delay import mlang.
+Subject: [PATCH 251/339] gdiplus: Delay import mlang.
 
 To avoid creating an extra known dll section.
 ---

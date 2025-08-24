@@ -1,7 +1,7 @@
 From c4ce0587b64117cabc714c9480b98a93fb956a10 Mon Sep 17 00:00:00 2001
 From: Paul Gofman <pgofman@codeweavers.com>
 Date: Mon, 26 May 2025 13:05:53 -0600
-Subject: [PATCH 245/365] ntdll: Avoid excessive committed range scan in
+Subject: [PATCH 245/339] ntdll: Avoid excessive committed range scan in
  NtProtectVirtualMemory().
 
 ---

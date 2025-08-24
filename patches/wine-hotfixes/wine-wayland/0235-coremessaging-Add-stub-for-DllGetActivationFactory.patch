@@ -2,7 +2,7 @@ From 521ec0eb0d93245ccfdfab22a02a0cff38d164b4 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Sat, 2 Aug 2025 13:18:46 -0400
-Subject: [PATCH 235/365] coremessaging: Add stub for DllGetActivationFactory.
+Subject: [PATCH 235/339] coremessaging: Add stub for DllGetActivationFactory.
 
 ---
  dlls/coremessaging/Makefile.in        |  3 ++-

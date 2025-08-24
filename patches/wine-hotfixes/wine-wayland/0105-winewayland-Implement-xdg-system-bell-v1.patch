@@ -2,7 +2,7 @@ From 4a355315558013c5601f942ecaeb23dbfbe45cc4 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Fri, 23 May 2025 22:09:55 -0400
-Subject: [PATCH 105/365] winewayland: Implement xdg-system-bell-v1
+Subject: [PATCH 105/339] winewayland: Implement xdg-system-bell-v1
 
 some troll shit bro
 ---

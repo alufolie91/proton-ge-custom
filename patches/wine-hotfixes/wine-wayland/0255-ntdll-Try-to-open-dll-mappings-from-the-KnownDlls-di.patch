@@ -1,7 +1,7 @@
 From b28b845b964e7d8dfa781b9a25aaee71b75ce414 Mon Sep 17 00:00:00 2001
 From: Alexandre Julliard <julliard@winehq.org>
 Date: Mon, 31 Mar 2025 13:03:23 +0200
-Subject: [PATCH 255/365] ntdll: Try to open dll mappings from the KnownDlls
+Subject: [PATCH 255/339] ntdll: Try to open dll mappings from the KnownDlls
  directory first.
 
 ---

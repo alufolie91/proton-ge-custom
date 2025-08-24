@@ -2,7 +2,7 @@ From fd459ae74d172aa6329829a249fb4204025dd266 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Wed, 23 Jul 2025 20:20:15 -0400
-Subject: [PATCH 220/365] ntdll: Update version resource.
+Subject: [PATCH 220/339] ntdll: Update version resource.
 
 ---
  dlls/ntdll/version.rc           | 11 ++++++-----

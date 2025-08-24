@@ -1,7 +1,7 @@
 From 172bb2f3f85907d05ad46ba603df467e15d2a34e Mon Sep 17 00:00:00 2001
 From: Alexandre Julliard <julliard@winehq.org>
 Date: Mon, 31 Mar 2025 12:19:30 +0200
-Subject: [PATCH 252/365] imagehlp: Delay import dbghelp.
+Subject: [PATCH 252/339] imagehlp: Delay import dbghelp.
 
 To avoid creating an extra known dll section.
 ---

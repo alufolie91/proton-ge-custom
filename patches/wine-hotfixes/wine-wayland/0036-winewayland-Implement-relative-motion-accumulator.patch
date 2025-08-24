@@ -1,7 +1,7 @@
 From 96f5fafd8bbf15c2df07ceee0b34ca5d21c86d97 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty <etaash.mathamsetty@gmail.com>
 Date: Sun, 13 Apr 2025 21:21:17 -0400
-Subject: [PATCH 036/365] winewayland: Implement relative motion accumulator.
+Subject: [PATCH 036/339] winewayland: Implement relative motion accumulator.
 
 ---
  dlls/winewayland.drv/wayland_pointer.c | 43 ++++++++++++++++++++------

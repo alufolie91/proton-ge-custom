@@ -1,7 +1,7 @@
 From 0e16f0f0f6f625c9e31f82c9325e5b11d213db97 Mon Sep 17 00:00:00 2001
 From: Byeongsik Jeon <bsjeon@hanmail.net>
 Date: Sun, 6 Apr 2025 10:14:41 +0900
-Subject: [PATCH 131/365] win32u: Add more CompAttr, CompClause implementation
+Subject: [PATCH 131/339] win32u: Add more CompAttr, CompClause implementation
  using cursor_begin, cursor_end concept.
 
 If CompAttr and CompClause are properly configured, Japanese input

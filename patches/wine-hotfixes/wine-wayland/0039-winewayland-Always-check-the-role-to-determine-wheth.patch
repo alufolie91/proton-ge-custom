@@ -1,7 +1,7 @@
 From 7b093b2292e23cd8e7d1e43b79536f30984a36b4 Mon Sep 17 00:00:00 2001
 From: Alexandros Frantzis <alexandros.frantzis@collabora.com>
 Date: Thu, 24 Apr 2025 15:28:18 +0300
-Subject: [PATCH 039/365] winewayland: Always check the role to determine
+Subject: [PATCH 039/339] winewayland: Always check the role to determine
  whether a surface is a toplevel.
 
 Since the role objects in the wayland_surface struct are part of a union, we

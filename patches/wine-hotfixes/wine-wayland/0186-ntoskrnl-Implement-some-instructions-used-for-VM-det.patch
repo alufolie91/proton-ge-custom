@@ -2,7 +2,7 @@ From b96f68ca39d0a3781650ef4a0a07075228c22ce2 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Mon, 23 Jun 2025 15:55:50 -0400
-Subject: [PATCH 186/365] ntoskrnl: Implement some instructions used for VM
+Subject: [PATCH 186/339] ntoskrnl: Implement some instructions used for VM
  detection.
 
 ---

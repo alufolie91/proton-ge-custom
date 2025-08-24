@@ -2,7 +2,7 @@ From f4f514f602aa837093d4336c3f2126608a7066ae Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Fri, 11 Jul 2025 22:25:34 -0400
-Subject: [PATCH 181/365] winewayland: Tiebreak displays based on x position.
+Subject: [PATCH 181/339] winewayland: Tiebreak displays based on x position.
 
 ---
  dlls/winewayland.drv/display.c | 3 ++-

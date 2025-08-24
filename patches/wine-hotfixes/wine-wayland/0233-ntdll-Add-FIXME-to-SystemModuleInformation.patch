@@ -1,7 +1,7 @@
 From 400aa182fc29e999b155331ae1d87ef169619aa5 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty <etaash.mathamsetty@gmail.com>
 Date: Wed, 30 Jul 2025 18:17:41 -0400
-Subject: [PATCH 233/365] ntdll: Add FIXME to SystemModuleInformation.
+Subject: [PATCH 233/339] ntdll: Add FIXME to SystemModuleInformation.
 
 ---
  dlls/ntdll/unix/system.c | 4 ++++

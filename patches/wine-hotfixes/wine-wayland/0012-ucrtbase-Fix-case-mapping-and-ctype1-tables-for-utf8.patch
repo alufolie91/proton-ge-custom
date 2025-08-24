@@ -1,7 +1,7 @@
 From 9e3a58c2334e81f964f1da402b6b8519fbd66fc4 Mon Sep 17 00:00:00 2001
 From: Paul Gofman <pgofman@codeweavers.com>
 Date: Tue, 3 Jun 2025 16:09:08 -0600
-Subject: [PATCH 012/365] ucrtbase: Fix case mapping and ctype1 tables for utf8
+Subject: [PATCH 012/339] ucrtbase: Fix case mapping and ctype1 tables for utf8
  locale.
 
 CW-Bug-Id: #25473

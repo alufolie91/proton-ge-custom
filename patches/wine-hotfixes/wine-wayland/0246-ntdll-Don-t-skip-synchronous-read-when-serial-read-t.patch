@@ -1,7 +1,7 @@
 From 88ccb1dbc221b0393a3a294100974fdf1dc1d521 Mon Sep 17 00:00:00 2001
 From: Alex Henrie <alexhenrie24@gmail.com>
 Date: Fri, 27 Jun 2025 22:11:08 -0600
-Subject: [PATCH 246/365] ntdll: Don't skip synchronous read when serial read
+Subject: [PATCH 246/339] ntdll: Don't skip synchronous read when serial read
  timeout is infinite.
 
 If get_io_timeouts sets the interval timeout to 0, it means that the

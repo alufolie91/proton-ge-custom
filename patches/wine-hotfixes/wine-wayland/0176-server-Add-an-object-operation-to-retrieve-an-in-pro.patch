@@ -1,7 +1,7 @@
 From 06716dbcfa7ebd0bff184cc2012e6edfe8a0ffae Mon Sep 17 00:00:00 2001
 From: Elizabeth Figura <zfigura@codeweavers.com>
 Date: Thu, 3 Jul 2025 16:28:01 -0400
-Subject: [PATCH 176/365] server: Add an object operation to retrieve an
+Subject: [PATCH 176/339] server: Add an object operation to retrieve an
  in-process synchronization object.
 
 ---

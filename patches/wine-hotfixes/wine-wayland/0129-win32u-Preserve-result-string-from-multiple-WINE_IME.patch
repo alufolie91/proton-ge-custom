@@ -1,7 +1,7 @@
 From 26b8c6f15c7dcb8c7471743a6cf4f4062f5d9d79 Mon Sep 17 00:00:00 2001
 From: Byeongsik Jeon <bsjeon@hanmail.net>
 Date: Mon, 21 Oct 2024 08:19:49 +0900
-Subject: [PATCH 129/365] win32u: Preserve result string from multiple
+Subject: [PATCH 129/339] win32u: Preserve result string from multiple
  WINE_IME_POST_UPDATE calls during ImeProcessKey.
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8

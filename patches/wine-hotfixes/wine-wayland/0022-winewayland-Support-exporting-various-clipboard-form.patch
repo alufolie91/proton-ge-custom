@@ -1,7 +1,7 @@
 From bcab99239b7009880539203ce4a478414b8f404e Mon Sep 17 00:00:00 2001
 From: Alexandros Frantzis <alexandros.frantzis@collabora.com>
 Date: Tue, 28 Jan 2025 11:31:48 +0200
-Subject: [PATCH 022/365] winewayland: Support exporting various clipboard
+Subject: [PATCH 022/339] winewayland: Support exporting various clipboard
  formats.
 
 Add support for some formats commonly used in applications and which

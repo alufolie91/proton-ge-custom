@@ -2,7 +2,7 @@ From 8968e5a308a6185de543d632608d95f6959f4c94 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Wed, 25 Jun 2025 12:17:22 -0400
-Subject: [PATCH 162/365] amdxc: Add support for anti lag 2
+Subject: [PATCH 162/339] amdxc: Add support for anti lag 2
 
 ---
  dlls/amdxc64/main.c | 65 +--------------------------------------------

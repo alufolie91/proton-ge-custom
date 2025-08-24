@@ -2,7 +2,7 @@ From 8f36ee9b58bf557b576e8442b296775d12546f70 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Tue, 3 Jun 2025 18:53:52 -0400
-Subject: [PATCH 094/365] winebus: Allow disabling steam input seperately
+Subject: [PATCH 094/339] winebus: Allow disabling steam input seperately
 
 ---
  dlls/winebus.sys/bus_udev.c | 2 +-
@@ -16,7 +16,7 @@ index 0f900ab095c..482a446d299 100644
  
      if (desc.vid == 0x28de && desc.pid == 0x11ff && !strcmp(subsystem, "input"))
      {
--        char *env = getenv("PROTON_USE_SDL");
+-        char *env = getenv("PROTON_PREFER_SDL");
 +        char *env = getenv("PROTON_NO_STEAMINPUT");
          if (env && !strcmp(env, "1"))
          {

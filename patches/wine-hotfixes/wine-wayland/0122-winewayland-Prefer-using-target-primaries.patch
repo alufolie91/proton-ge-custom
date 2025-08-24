@@ -2,7 +2,7 @@ From 158951f7ba5a35bc565ace558cd0bb310dd47122 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Wed, 18 Jun 2025 22:09:44 -0400
-Subject: [PATCH 122/365] winewayland: Prefer using target primaries.
+Subject: [PATCH 122/339] winewayland: Prefer using target primaries.
 
 ---
  dlls/winewayland.drv/wayland_output.c | 74 +++++++++++++++++----------

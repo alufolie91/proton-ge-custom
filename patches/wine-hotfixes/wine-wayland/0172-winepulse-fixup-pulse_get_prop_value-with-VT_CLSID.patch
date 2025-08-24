@@ -2,7 +2,7 @@ From 39958667797513d5731e183e241d1c5e282bd0e9 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Tue, 8 Jul 2025 23:59:30 -0400
-Subject: [PATCH 172/365] winepulse: fixup pulse_get_prop_value with VT_CLSID.
+Subject: [PATCH 172/339] winepulse: fixup pulse_get_prop_value with VT_CLSID.
 
 ---
  dlls/winepulse.drv/pulse.c | 12 +++++++++---

@@ -2,7 +2,7 @@ From 7e8f991b47bede9f40defc7ed01c3913286dd071 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Tue, 22 Jul 2025 22:11:36 -0400
-Subject: [PATCH 207/365] ntoskrnl: Implement PsGetProcessImageFileName.
+Subject: [PATCH 207/339] ntoskrnl: Implement PsGetProcessImageFileName.
 
 ---
  dlls/ntoskrnl.exe/ntoskrnl.c         | 19 +++++++++++++++++++

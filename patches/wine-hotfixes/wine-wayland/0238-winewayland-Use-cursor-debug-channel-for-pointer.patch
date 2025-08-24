@@ -1,7 +1,7 @@
 From 5a5b7c70951f04d146afe34621c8df3e9a196b08 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty <etaash.mathamsetty@gmail.com>
 Date: Mon, 4 Aug 2025 21:34:15 -0400
-Subject: [PATCH 238/365] winewayland: Use cursor debug channel for pointer.
+Subject: [PATCH 238/339] winewayland: Use cursor debug channel for pointer.
 
 ---
  dlls/winewayland.drv/wayland_pointer.c | 2 +-

@@ -2,7 +2,7 @@ From 610d007e64fe6234f445fef1f51ed51d1d0cc617 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Wed, 23 Jul 2025 00:45:06 -0400
-Subject: [PATCH 210/365] ntoskrnl: Implement SeQueryInformationToken.
+Subject: [PATCH 210/339] ntoskrnl: Implement SeQueryInformationToken.
 
 ---
  dlls/ntoskrnl.exe/ntoskrnl.c        | 18 ++++++++++++++++++

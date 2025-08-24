@@ -2,7 +2,7 @@ From a7799ab6c16481f9605b30cbfdec97a10ee906c5 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Mon, 2 Jun 2025 17:45:59 -0400
-Subject: [PATCH 091/365] HACK: winewayland: add support for picking primary
+Subject: [PATCH 091/339] HACK: winewayland: add support for picking primary
  monitor name.
 
 ---

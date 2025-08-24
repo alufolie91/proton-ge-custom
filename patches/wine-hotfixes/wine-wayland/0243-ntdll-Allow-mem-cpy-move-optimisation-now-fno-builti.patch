@@ -1,7 +1,7 @@
 From 57574f3d25a97d96158ffc8eeee181db824f8ab4 Mon Sep 17 00:00:00 2001
 From: Billy Laws <blaws05@gmail.com>
 Date: Fri, 7 Feb 2025 19:35:46 +0000
-Subject: [PATCH 243/365] ntdll: Allow mem{cpy,move} optimisation now
+Subject: [PATCH 243/339] ntdll: Allow mem{cpy,move} optimisation now
  -fno-builtins is used.
 
 ---

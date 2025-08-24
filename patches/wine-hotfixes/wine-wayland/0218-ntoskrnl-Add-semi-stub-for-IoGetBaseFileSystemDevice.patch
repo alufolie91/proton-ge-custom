@@ -2,7 +2,7 @@ From f42c3e88009896f74381336d9919008bc481200c Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Wed, 23 Jul 2025 15:36:53 -0400
-Subject: [PATCH 218/365] ntoskrnl: Add semi-stub for
+Subject: [PATCH 218/339] ntoskrnl: Add semi-stub for
  IoGetBaseFileSystemDeviceObject.
 
 ---

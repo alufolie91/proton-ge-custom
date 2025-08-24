@@ -2,7 +2,7 @@ From a9ba0b6a6fb96ebb55b3971b6106d27e01241514 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Sun, 8 Jun 2025 13:14:24 -0400
-Subject: [PATCH 102/365] winewayland: Rewrite wayland pointer implementation.
+Subject: [PATCH 102/339] winewayland: Rewrite wayland pointer implementation.
 
 ---
  dlls/winewayland.drv/wayland_pointer.c | 287 +++++++++++++++----------

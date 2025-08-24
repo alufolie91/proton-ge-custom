@@ -1,0 +1,25 @@
+From 2082ce5d09e5a3f8bed1fdb66d9e36cd1bc23013 Mon Sep 17 00:00:00 2001
+From: Etaash Mathamsetty
+ <45927311+Etaash-mathamsetty@users.noreply.github.com>
+Date: Thu, 7 Aug 2025 14:27:09 -0400
+Subject: [PATCH 291/339] HACK: wine.inf: Add workaround for WRC9
+
+---
+ loader/wine.inf.in | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/loader/wine.inf.in b/loader/wine.inf.in
+index 47557aabb21..594de8acd87 100644
+--- a/loader/wine.inf.in
++++ b/loader/wine.inf.in
+@@ -3020,6 +3020,7 @@ HKCU,Software\Wine\AppDefaults\ffxvi_demo.exe\DllOverrides,"atiadlxx",,"builtin"
+ HKCU,Software\Wine\AppDefaults\rayne1.exe\DllOverrides,"d3d8",,"native"
+ HKCU,Software\Wine\AppDefaults\rayne2.exe\DllOverrides,"d3d8",,"native"
+ HKCU,Software\Wine\AppDefaults\RDR2.exe\DllOverrides,"vulkan-1",,"native"
++HKCU,Software\Wine\AppDefaults\WRC9.exe\DllOverrides,"xinput1_3",,"native"
+ HKLM,Software\Khronos\OpenXR\1,"ActiveRuntime",,"C:\openxr\wineopenxr64.json"
+ HKLM,Software\Wow6432Node\lucasarts entertainment company llc\Star Wars: Episode I Racer\v1.0,"Display Height",0x10001,480
+ HKLM,Software\Wow6432Node\lucasarts entertainment company llc\Star Wars: Episode I Racer\v1.0,"Display Width",0x10001,640
+-- 
+2.50.1
+
