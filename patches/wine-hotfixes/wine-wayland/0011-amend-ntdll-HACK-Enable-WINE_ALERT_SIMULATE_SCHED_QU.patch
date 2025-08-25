@@ -1,7 +1,7 @@
-From 84cfa97fce5e9561625a39df97185d69b3b875a4 Mon Sep 17 00:00:00 2001
+From f728ad34513d465b54d950d1952123bfc224292c Mon Sep 17 00:00:00 2001
 From: Arkadiusz Hiler <ahiler@codeweavers.com>
 Date: Tue, 3 Jun 2025 20:34:58 +0300
-Subject: [PATCH 011/339] amend! ntdll: HACK: Enable
+Subject: [PATCH 011/341] amend! ntdll: HACK: Enable
  WINE_ALERT_SIMULATE_SCHED_QUANTUM option for other IdeaFactory games using
  Orochi 4
 

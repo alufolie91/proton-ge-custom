@@ -1,0 +1,26 @@
+From 8c13e83d75104b3cbd32981aa7660868f3edb6bd Mon Sep 17 00:00:00 2001
+From: Etaash Mathamsetty
+ <45927311+Etaash-mathamsetty@users.noreply.github.com>
+Date: Thu, 7 Aug 2025 14:23:47 -0400
+Subject: [PATCH 288/341] HACK: proton: wine.inf: Add native,builtin overrides
+ for vccorlib140
+
+---
+ loader/wine.inf.in | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/loader/wine.inf.in b/loader/wine.inf.in
+index a1aec991435..47557aabb21 100644
+--- a/loader/wine.inf.in
++++ b/loader/wine.inf.in
+@@ -2987,6 +2987,7 @@ HKCU,Software\Wine\DllOverrides,"msvcr140",0x2,"native,builtin"
+ HKCU,Software\Wine\DllOverrides,"ucrtbase",0x2,"native,builtin"
+ HKCU,Software\Wine\DllOverrides,"vcomp140",0x2,"native,builtin"
+ HKCU,Software\Wine\DllOverrides,"vcruntime140",0x2,"native,builtin"
++HKCU,Software\Wine\DllOverrides,"vccorlib140",0x2,"native,builtin"
+ HKCU,Software\Wine\DllOverrides,"atiadlxx",,"disabled"
+ HKCU,Software\Wine\DllOverrides,"atidxx64",,"disabled"
+ HKCU,Software\Wine\DllOverrides,"nvcuda",0x2,"disabled"
+-- 
+2.50.1
+

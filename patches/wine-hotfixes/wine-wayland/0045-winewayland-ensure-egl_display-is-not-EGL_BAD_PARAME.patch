@@ -1,8 +1,8 @@
-From 7cee9022ad81deead946f6f2b659b5599f36959e Mon Sep 17 00:00:00 2001
+From eb84c140be496d9113b639b4f1d2bacbf1b12615 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Fri, 9 May 2025 08:32:12 -0400
-Subject: [PATCH 045/339] winewayland: ensure egl_display is not
+Subject: [PATCH 045/341] winewayland: ensure egl_display is not
  EGL_BAD_PARAMETER
 
 ---

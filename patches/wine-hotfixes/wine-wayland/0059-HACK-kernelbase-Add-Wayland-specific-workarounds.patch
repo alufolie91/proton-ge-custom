@@ -1,8 +1,8 @@
-From b572569e408d90ba80882c2ecd40e6ef30b981d4 Mon Sep 17 00:00:00 2001
+From 0ae0ee2c55526660e3a560a6d287837d8afcbbb6 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Thu, 15 May 2025 10:12:42 -0400
-Subject: [PATCH 059/339] HACK: kernelbase: Add Wayland specific workarounds.
+Subject: [PATCH 059/341] HACK: kernelbase: Add Wayland specific workarounds.
 
 ---
  dlls/kernelbase/process.c | 38 ++++++++++++++++++++++++++++++++------

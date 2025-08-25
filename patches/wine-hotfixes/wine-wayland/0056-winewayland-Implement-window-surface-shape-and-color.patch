@@ -1,7 +1,7 @@
-From c93821448eeec44824fcae86afe9b89ff17a81e5 Mon Sep 17 00:00:00 2001
+From 49c3b9f011d9243af1eb94dcb4835a39a4c8637b Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?R=C3=A9mi=20Bernon?= <rbernon@codeweavers.com>
 Date: Fri, 28 Jun 2024 20:23:44 +0200
-Subject: [PATCH 056/339] winewayland: Implement window surface shape and color
+Subject: [PATCH 056/341] winewayland: Implement window surface shape and color
  keying.
 
 ---

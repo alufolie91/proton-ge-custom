@@ -1,7 +1,7 @@
-From 8961a150207f108f702dcfb7126f2bc1ecce7a0a Mon Sep 17 00:00:00 2001
+From 6de493c4eb6b43cdbc569f6bf014ff3e1e06ceb7 Mon Sep 17 00:00:00 2001
 From: Brendan McGrath <bmcgrath@codeweavers.com>
 Date: Thu, 17 Apr 2025 08:55:26 +1000
-Subject: [PATCH 004/339] amend! winegstreamer: Push flush event when flushing.
+Subject: [PATCH 004/341] amend! winegstreamer: Push flush event when flushing.
 
 winegstreamer: Push flush event when flushing.
 
