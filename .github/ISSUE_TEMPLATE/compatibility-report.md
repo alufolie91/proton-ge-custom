@@ -1,7 +1,6 @@
 ---
 name: Compatibility Report
 about: Game compatibility issues.
-
 ---
 
 BEFORE FILING AN ISSUE PLEASE CHECK IF THE ISSUE OCCURS ON UPSTREAM PROTON-EXPERIMENTAL FIRST.
