@@ -1,3 +1,9 @@
+---
+name: Compatibility Report
+about: Game compatibility issues.
+
+---
+
 BEFORE FILING AN ISSUE PLEASE CHECK IF THE ISSUE OCCURS ON UPSTREAM PROTON-EXPERIMENTAL FIRST.
 IF IT HAPPENS ON PROTON-EXPERIMENTAL, YOU NEED TO FILE THE ISSUE UPSTREAM, NOT HERE.
 
@@ -5,12 +11,6 @@ UPSTREAM BUG TRACKER:
 https://github.com/ValveSoftware/Proton/issues
 
 THE GE-PROTON ISSUE TRACKER IS FOR ISSUES THAT ONLY OCCUR ON GE-PROTON BUT WORK PROPERLY UPSTREAM, OR FOR FEATURES THAT ARE ONLY SPECIFIC TO GE-PROTON SUCH AS WINE-WAYLAND.
-
----
-name: Compatibility Report
-about: Game compatibility issues.
-
----
 
 # Compatibility Report
 - Name of the game with compatibility issues:
