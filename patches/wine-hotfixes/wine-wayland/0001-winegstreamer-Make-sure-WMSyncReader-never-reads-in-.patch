@@ -1,7 +1,7 @@
-From 733038b7d6deed60a33500b6cbf30879100f739a Mon Sep 17 00:00:00 2001
+From 94b04d526b00fd6c58baf84de66c803ec0527f70 Mon Sep 17 00:00:00 2001
 From: Yuxuan Shui <yshui@codeweavers.com>
 Date: Tue, 25 Mar 2025 10:34:56 +0000
-Subject: [PATCH 001/365] winegstreamer: Make sure WMSyncReader never reads in
+Subject: [PATCH 001/341] winegstreamer: Make sure WMSyncReader never reads in
  the background.
 
 WMSyncReader starts a background read thread that reads from the IStream

@@ -1,0 +1,27 @@
+From ceac044725fb176692717dfe7a9c829d12c1a4a4 Mon Sep 17 00:00:00 2001
+From: Jacek Caban <jacek@codeweavers.com>
+Date: Thu, 13 Feb 2025 14:34:25 +0100
+Subject: [PATCH 272/341] ntdll: Use signed type for IAT offset in
+ LdrResolveDelayLoadedAPI.
+
+Allows negative IAT offsets.
+---
+ dlls/ntdll/loader.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/dlls/ntdll/loader.c b/dlls/ntdll/loader.c
+index cd11dfbc4ee..a1995823384 100644
+--- a/dlls/ntdll/loader.c
++++ b/dlls/ntdll/loader.c
+@@ -4005,7 +4005,7 @@ void* WINAPI LdrResolveDelayLoadedAPI( void* base, const IMAGE_DELAYLOAD_DESCRIP
+     HMODULE *phmod;
+     NTSTATUS nts;
+     FARPROC fp;
+-    DWORD id;
++    INT_PTR id;
+ 
+     TRACE( "(%p, %p, %p, %p, %p, 0x%08lx)\n", base, desc, dllhook, syshook, addr, flags );
+ 
+-- 
+2.50.1
+

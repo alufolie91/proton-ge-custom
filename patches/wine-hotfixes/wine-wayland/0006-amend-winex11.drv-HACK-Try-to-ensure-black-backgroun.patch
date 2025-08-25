@@ -1,0 +1,13 @@
+From 6fb6b5e025f4efe2a27a04e9d77cbefb9c01549d Mon Sep 17 00:00:00 2001
+From: Paul Gofman <pgofman@codeweavers.com>
+Date: Wed, 14 May 2025 18:12:10 -0600
+Subject: [PATCH 006/341] amend! winex11.drv: HACK: Try to ensure black
+ background window is behind for Forza Horizon 4/5.
+
+winex11.drv: HACK: Try to ensure black bacjground window is behind for Forza Horizon 4/5.
+
+CW-Bug-Id: #19335
+CW-Bug-Id: #25372
+-- 
+2.50.1
+

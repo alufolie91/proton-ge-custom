@@ -1,0 +1,40 @@
+From 4a2a4a19aa7c884b7e7582d1b6644a9456edd9fe Mon Sep 17 00:00:00 2001
+From: Alexandre Julliard <julliard@winehq.org>
+Date: Mon, 31 Mar 2025 12:19:30 +0200
+Subject: [PATCH 250/341] imagehlp: Delay import dbghelp.
+
+To avoid creating an extra known dll section.
+---
+ dlls/imagehlp/Makefile.in   | 2 +-
+ dlls/imagehlp/imagehlp.spec | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/dlls/imagehlp/Makefile.in b/dlls/imagehlp/Makefile.in
+index 0d1de9e4fb2..0518bbf1059 100644
+--- a/dlls/imagehlp/Makefile.in
++++ b/dlls/imagehlp/Makefile.in
+@@ -1,7 +1,7 @@
+ EXTRADEFS = -D_IMAGEHLP_SOURCE_
+ MODULE    = imagehlp.dll
+ IMPORTLIB = imagehlp
+-IMPORTS   = dbghelp
++DELAYIMPORTS = dbghelp
+ 
+ SOURCES = \
+ 	access.c \
+diff --git a/dlls/imagehlp/imagehlp.spec b/dlls/imagehlp/imagehlp.spec
+index 4e784f8bf22..788691c2cd1 100644
+--- a/dlls/imagehlp/imagehlp.spec
++++ b/dlls/imagehlp/imagehlp.spec
+@@ -44,7 +44,7 @@
+ @ stdcall -import StackWalk64(long long long ptr ptr ptr ptr ptr ptr)
+ @ stdcall -import StackWalk(long long long ptr ptr ptr ptr ptr ptr)
+ @ stdcall -import SymCleanup(long)
+-@ stdcall SymEnumSourceFiles(ptr int64 str ptr ptr) SymEnumSourceFiles
++@ stdcall -import SymEnumSourceFiles(ptr int64 str ptr ptr)
+ @ stub SymEnumSym
+ @ stdcall -import SymEnumSymbols(ptr int64 str ptr ptr)
+ @ stdcall -import SymEnumTypes(ptr int64 ptr ptr)
+-- 
+2.50.1
+

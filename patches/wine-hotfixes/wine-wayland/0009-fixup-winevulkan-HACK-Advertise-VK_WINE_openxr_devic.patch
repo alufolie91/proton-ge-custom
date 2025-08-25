@@ -1,7 +1,7 @@
-From 28cbb92ba2117f718cd2aabe3319210cc392f318 Mon Sep 17 00:00:00 2001
+From 2ef49f93c1688b0b94d9d4f819e39dbd11b9e40e Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty <etaash.mathamsetty@gmail.com>
 Date: Sat, 19 Jul 2025 11:53:39 -0400
-Subject: [PATCH 009/365] fixup! winevulkan: HACK: Advertise
+Subject: [PATCH 009/341] fixup! winevulkan: HACK: Advertise
  VK_WINE_openxr_device_extensions.
 
 CW-Bug-Id: #25451

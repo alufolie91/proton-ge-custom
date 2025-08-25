@@ -1,8 +1,8 @@
-From 867c029dda142e75b7180204a320deafc14f8fa7 Mon Sep 17 00:00:00 2001
+From a42fa816f836235a0bf255c2dc1df46d26f9fd97 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Mon, 26 May 2025 23:39:19 -0400
-Subject: [PATCH 080/365] amdxc: Only load amdxcffx when FSR4 upgrade is
+Subject: [PATCH 080/341] amdxc: Only load amdxcffx when FSR4 upgrade is
  enabled.
 
 ---

@@ -1,7 +1,7 @@
-From 1af9b166db9b539318802d75dae36809bf318e12 Mon Sep 17 00:00:00 2001
+From 4d5a30eadcc38384cafb8c21a02e8fbb6f403972 Mon Sep 17 00:00:00 2001
 From: Paul Gofman <pgofman@codeweavers.com>
 Date: Wed, 28 May 2025 13:48:14 -0600
-Subject: [PATCH 008/365] fixup! winevulkan: HACK: Advertise
+Subject: [PATCH 008/341] fixup! winevulkan: HACK: Advertise
  VK_WINE_openxr_device_extensions.
 
 CW-Bug-Id: #25451

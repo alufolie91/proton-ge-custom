@@ -1,8 +1,8 @@
-From fa047ab64c3f1993a8f8e7cec9be1c6571ce2e4b Mon Sep 17 00:00:00 2001
+From 282ef74bd6a2bb1a43c99d7415bfb6e3ba1f359a Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Wed, 28 May 2025 16:04:21 -0400
-Subject: [PATCH 082/365] winewayland: Refactor output selection
+Subject: [PATCH 082/341] winewayland: Refactor output selection
 
 ---
  dlls/winewayland.drv/display.c         | 64 +++++++++++++++++++++++---

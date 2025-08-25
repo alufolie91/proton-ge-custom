@@ -1,7 +1,7 @@
-From 9d7ad289e46c47f12b5a35fac528df40e08140d2 Mon Sep 17 00:00:00 2001
+From b8891c8d3f1b1e374c2ca4c0677980d416c4bdc6 Mon Sep 17 00:00:00 2001
 From: Paul Gofman <pgofman@codeweavers.com>
 Date: Mon, 21 Apr 2025 19:15:34 -0600
-Subject: [PATCH 005/365] shell32: Avoid writing past end of xlpFile or
+Subject: [PATCH 005/341] shell32: Avoid writing past end of xlpFile or
  lpResult in SHELL_FindExecutable().
 
 CW-Bug-Id: #25263

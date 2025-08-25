@@ -1,7 +1,7 @@
-From 1676af450488090c9cf2e97671d512bc976d3585 Mon Sep 17 00:00:00 2001
+From bf014da77f1be25e182d4dc4a0664276e02d403e Mon Sep 17 00:00:00 2001
 From: Arkadiusz Hiler <ahiler@codeweavers.com>
 Date: Thu, 27 Mar 2025 20:01:04 +0200
-Subject: [PATCH 002/365] Revert "winegstreamer: Make sure WMSyncReader never
+Subject: [PATCH 002/341] Revert "winegstreamer: Make sure WMSyncReader never
  reads in the background."
 
 This reverts commit c0ea7faa5a984b1a4a5332357fbd4e3252117432.

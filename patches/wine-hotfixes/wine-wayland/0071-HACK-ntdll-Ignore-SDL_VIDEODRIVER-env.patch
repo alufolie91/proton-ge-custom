@@ -1,8 +1,8 @@
-From a3b0fe3f228723a571a784624a8046fe3a69e4bf Mon Sep 17 00:00:00 2001
+From b5f90b2fd0085990ee6d0e4abb1250ddea7508c4 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Fri, 23 May 2025 14:02:30 -0400
-Subject: [PATCH 071/365] HACK: ntdll: Ignore SDL_VIDEODRIVER env
+Subject: [PATCH 071/341] HACK: ntdll: Ignore SDL_VIDEODRIVER env
 
 ---
  dlls/ntdll/unix/env.c | 1 +
