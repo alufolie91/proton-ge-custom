@@ -1,0 +1,27 @@
+From 63fbde5fcaec18ef0aac8bb16406605c8855a555 Mon Sep 17 00:00:00 2001
+From: Etaash Mathamsetty
+ <45927311+Etaash-mathamsetty@users.noreply.github.com>
+Date: Mon, 25 Aug 2025 12:54:57 -0500
+Subject: [PATCH] winewayland: revert back to old rawinput hardware inputs.
+
+---
+ dlls/winewayland.drv/wayland_pointer.c | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
+
+diff --git a/dlls/winewayland.drv/wayland_pointer.c b/dlls/winewayland.drv/wayland_pointer.c
+index be329f09917..78e05589f29 100644
+--- a/dlls/winewayland.drv/wayland_pointer.c
++++ b/dlls/winewayland.drv/wayland_pointer.c
+@@ -385,10 +385,8 @@ static void pointer_handle_frame(void *data, struct wl_pointer *wl_pointer)
+         input.mi.dwFlags = MOUSEEVENTF_MOVE;
+         if (input.mi.dx != 0 || input.mi.dy != 0)
+         {
+-            if (pointer->relative_only)
+-                NtUserSendHardwareInput(hwnd, SEND_HWMSG_NO_RAW, &input, 0);
+-
+-            NtUserSendHardwareInput(0, SEND_HWMSG_NO_MSG, &input, 0);
++            NtUserSendHardwareInput(hwnd, pointer->relative_only ? 0 : SEND_HWMSG_NO_MSG,
++                                    &input, 0);
+         }
+     }
+ 
