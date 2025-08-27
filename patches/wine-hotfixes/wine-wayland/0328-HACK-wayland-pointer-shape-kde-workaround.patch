@@ -6,9 +6,9 @@ index 27b05a1eb09..c8bae1b3402 100644
          if (!pointer->wp_cursor_shape_device_v1) return FALSE;
      }
  
-+    /* HACK: KDE uses the same icon for move and all_scroll, and doesn't pass 36
-+     * to it's compositor. Use move (13) instead. */
-+    if (shape == 36) shape = 34;
++    /* HACK: Some compositors do not support cursor shape v2, use v1 substitutes. */
++    if (shape == 35) shape = 13;
++    if (shape == 36) shape = 32;
 +
      wp_cursor_shape_device_v1_set_shape(pointer->wp_cursor_shape_device_v1,
                                          pointer->enter_serial, shape);
