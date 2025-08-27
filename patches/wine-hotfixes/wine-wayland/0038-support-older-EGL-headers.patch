@@ -1,8 +1,8 @@
-From 5d887667008f6af17a6d268de065e3bfd671d960 Mon Sep 17 00:00:00 2001
+From 9c25d22e2d41de60bf03f35a091d8d196d979571 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Mon, 5 May 2025 22:08:25 -0400
-Subject: [PATCH 038/341] support older EGL headers
+Subject: [PATCH 038/327] support older EGL headers
 
 ---
  dlls/winewayland.drv/opengl.c | 6 ++++++
@@ -26,5 +26,5 @@ index d9a83d49b3e..36989b9c745 100644
  static struct opengl_funcs opengl_funcs;
  static EGLDisplay egl_display;
 -- 
-2.50.1
+2.51.0
 

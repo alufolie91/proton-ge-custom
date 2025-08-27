@@ -1,7 +1,7 @@
-From 2ef49f93c1688b0b94d9d4f819e39dbd11b9e40e Mon Sep 17 00:00:00 2001
+From 58e28786602006893ce75410c876b6c84a72b5fa Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty <etaash.mathamsetty@gmail.com>
 Date: Sat, 19 Jul 2025 11:53:39 -0400
-Subject: [PATCH 009/341] fixup! winevulkan: HACK: Advertise
+Subject: [PATCH 009/327] fixup! winevulkan: HACK: Advertise
  VK_WINE_openxr_device_extensions.
 
 CW-Bug-Id: #25451
@@ -38,5 +38,5 @@ index 6e5865b6b7c..51b59bfabb7 100644
      object->extension_count = num_properties;
      TRACE("Host supported extensions %u, Wine supported extensions %u\n", num_host_properties, num_properties);
 -- 
-2.50.1
+2.51.0
 

@@ -1,7 +1,7 @@
-From f45f48c4510cb9f00fe8d10fde247b3a9c23d95a Mon Sep 17 00:00:00 2001
+From 02e27d77b0ae771edb929441bd61ddff4a2afc09 Mon Sep 17 00:00:00 2001
 From: Attila Fidan <dev@print0.net>
 Date: Sun, 2 Feb 2025 07:53:36 +0000
-Subject: [PATCH 014/341] winewayland: Enable/disable the zwp_text_input_v3
+Subject: [PATCH 014/327] winewayland: Enable/disable the zwp_text_input_v3
  object.
 
 ---
@@ -715,5 +715,5 @@ index 72a37cb3ffb..c5dec335485 100644
   *          OpenGL
   */
 -- 
-2.50.1
+2.51.0
 

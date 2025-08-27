@@ -1,7 +1,7 @@
-From 17d0bec39bf16f50f2574454a65238bac9d1c6ad Mon Sep 17 00:00:00 2001
+From dad1891240c07f336fc7489e6ad09e0f7301f787 Mon Sep 17 00:00:00 2001
 From: Attila Fidan <dev@print0.net>
 Date: Sun, 2 Feb 2025 08:26:56 +0000
-Subject: [PATCH 016/341] winewayland: Implement SetIMECompositionRect.
+Subject: [PATCH 016/327] winewayland: Implement SetIMECompositionRect.
 
 ---
  dlls/winewayland.drv/wayland_text_input.c | 47 +++++++++++++++++++++++
@@ -89,5 +89,5 @@ index 47c1299dd01..633b2f4a043 100644
      .pReleaseKbdTables = WAYLAND_ReleaseKbdTables,
      .pSetCursor = WAYLAND_SetCursor,
 -- 
-2.50.1
+2.51.0
 
