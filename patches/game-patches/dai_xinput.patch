@@ -56,8 +56,8 @@ index 97e651a7ce5..9b7796645b7 100644
  #include "ntstatus.h"
  #define WIN32_NO_STATUS
  #include "win32u_private.h"
-@@ -585,8 +587,27 @@ HWND get_capture(void)
- HWND get_focus(void)
+@@ -569,8 +571,27 @@ HWND WINAPI NtUserGetForegroundWindow(void)
+ HWND get_active_window(void)
  {
      GUITHREADINFO info;
 +    HWND retValueWindow;
@@ -66,8 +66,8 @@ index 97e651a7ce5..9b7796645b7 100644
 +    static int is_DragonAgeInquis = -1;
 +
      info.cbSize = sizeof(info);
--    return NtUserGetGUIThreadInfo( GetCurrentThreadId(), &info ) ? info.hwndFocus : 0;
-+    retValueWindow = NtUserGetGUIThreadInfo( GetCurrentThreadId(), &info ) ? info.hwndFocus : 0;
+-    return NtUserGetGUIThreadInfo( GetCurrentThreadId(), &info ) ? info.hwndActive : 0;
++    retValueWindow =  NtUserGetGUIThreadInfo( GetCurrentThreadId(), &info ) ? info.hwndActive : 0;
 +
 +    if (is_DragonAgeInquis)
 +    {
@@ -84,7 +84,7 @@ index 97e651a7ce5..9b7796645b7 100644
 +    return retValueWindow;
  }
  
- /**********************************************************************
+ /* see GetCapture */
 @@ -595,6 +616,41 @@ HWND get_focus(void)
  BOOL WINAPI NtUserAttachThreadInput( DWORD from, DWORD to, BOOL attach )
  {

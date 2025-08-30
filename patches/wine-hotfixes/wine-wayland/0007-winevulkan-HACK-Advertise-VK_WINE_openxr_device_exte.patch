@@ -1,7 +1,7 @@
-From bd49e63c18ad0ad387e0b49ff16f1aaf78b49c95 Mon Sep 17 00:00:00 2001
+From 5caf5f1d31bc71b21a6b957560b5987ebca1d217 Mon Sep 17 00:00:00 2001
 From: Paul Gofman <pgofman@codeweavers.com>
 Date: Tue, 27 May 2025 12:46:02 -0600
-Subject: [PATCH 007/341] winevulkan: HACK: Advertise
+Subject: [PATCH 007/327] winevulkan: HACK: Advertise
  VK_WINE_openxr_device_extensions.
 
 CW-Bug-Id: #25451
@@ -72,5 +72,5 @@ index 51b59bfabb7..973c6f7ba94 100644
       * TODO: perform translation for platform specific extensions.
       */
 -- 
-2.50.1
+2.51.0
 

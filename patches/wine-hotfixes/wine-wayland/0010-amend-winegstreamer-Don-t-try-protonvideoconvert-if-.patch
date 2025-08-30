@@ -1,12 +1,12 @@
-From ddb76eb55240a3af55ea745859e09144e6e79a14 Mon Sep 17 00:00:00 2001
+From b4c0ea966cab4765a1e28098486d56a126d1b24d Mon Sep 17 00:00:00 2001
 From: Brendan McGrath <bmcgrath@codeweavers.com>
 Date: Tue, 3 Jun 2025 07:08:35 +1000
-Subject: [PATCH 010/341] amend! winegstreamer: Don't try protonvideoconvert if
+Subject: [PATCH 010/327] amend! winegstreamer: Don't try protonvideoconvert if
  URI has a web scheme.
 
 winegstreamer: Don't try protonvideoconvert if URI has a web scheme.
 
 CW-Bug-Id: #25385
 -- 
-2.50.1
+2.51.0
 

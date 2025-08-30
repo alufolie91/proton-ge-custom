@@ -1,7 +1,7 @@
-From 64064a79575ee2638d6191c52315dea3fcb38f7d Mon Sep 17 00:00:00 2001
+From 4efb1bd6a4617fc7c575f3fdd5d661ff7ffd5ffe Mon Sep 17 00:00:00 2001
 From: Alexandros Frantzis <alexandros.frantzis@collabora.com>
 Date: Thu, 6 Mar 2025 17:09:58 +0200
-Subject: [PATCH 029/341] winewayland: Treat fully transparent cursors as
+Subject: [PATCH 029/327] winewayland: Treat fully transparent cursors as
  hidden.
 
 SDL 2.0.18 and newer (including SDL 3) set a fully transparent cursor
@@ -45,5 +45,5 @@ index e2b31e02011..17139c47b13 100644
      if (cursor->hotspot_x >= cursor->shm_buffer->width ||
          cursor->hotspot_y >= cursor->shm_buffer->height)
 -- 
-2.50.1
+2.51.0
 
