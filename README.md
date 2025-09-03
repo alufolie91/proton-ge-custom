@@ -270,6 +270,11 @@ Once NTSYNC is enabled on the system, if you launch a game with GE-Proton10-10 o
 
 Proton GE includes support for Wine’s **Wayland driver** (`winewayland.drv`). By default Proton uses X11/XWayland.
 
+###### Minimum Versions
+
+* **AMD / Intel:** Mesa **≥ 25.x**
+* **NVIDIA (proprietary):** **≥ 575.x**
+
 ###### How to Enable
 
 Add to a game’s Launch Options:
@@ -290,10 +295,23 @@ Check `steam-XXXX.log` for:
 Loaded L"C:\windows\system32\winewayland.drv"
 ```
 
-###### Minimum Versions
+###### Optional: Enable HDR
 
-* **AMD / Intel:** Mesa **≥ 25.x**
-* **NVIDIA (proprietary):** **≥ 575.x**
+You can enable it if you have:
+
+- HDR-capable monitor.
+- Compositor/Gamescope with HDR support.
+- Game supports HDR.
+
+```bash
+PROTON_ENABLE_HDR=1 %command%
+```
+
+To enable both Wayland and HDR together:
+
+```bash
+PROTON_ENABLE_WAYLAND=1 PROTON_ENABLE_HDR=1 %command%
+```
 
 
 ## Building
