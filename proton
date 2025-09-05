@@ -1870,6 +1870,7 @@ class Session:
         self.check_environment("PROTON_FSR3_UPGRADE", "fsr3")
         self.check_environment("PROTON_FSR4_UPGRADE", "fsr4")
         self.check_environment("PROTON_FSR4_RDNA3_UPGRADE", "fsr4rdna3")
+        self.check_environment("PROTON_FSR4_INDICATOR", "fsr4hud")
         self.check_environment("PROTON_DLSS_UPGRADE", "dlss")
         self.check_environment("PROTON_DLSS_INDICATOR", "dlsshud")
         self.check_environment("PROTON_XESS_UPGRADE", "xess")
@@ -2165,6 +2166,9 @@ class Session:
 
         if update_prefix_files:
             g_compatdata.setup_prefix()
+
+        if "fsr4hud" in self.compat_config:
+            self.env["FSR4_WATERMARK"] = "1"
 
         if "dlsshud" in self.compat_config:
             self.env["DXVK_NVAPI_SET_NGX_DEBUG_OPTIONS"] = "DLSSIndicator=1024,DLSSGIndicator=2,"
