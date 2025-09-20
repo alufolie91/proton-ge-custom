@@ -239,6 +239,9 @@ apply_all_in_dir() {
     echo "WINE: -GAME FIXES- add xinput support to Dragon Age Inquisition"
     apply_patch "../patches/game-patches/dai_xinput.patch"
 
+    echo "WINE: -GAME FIXES- add unsupported os popup fix for star citizen"
+    apply_patch "../patches/game-patches/silence-starcitizen-unsupported-os.patch"
+
     # https://github.com/JacKeTUs/wine/commits/lmu-d2d1-tinkering
     echo "WINE: -GAME FIXES- add le mans ultimate patches"
     apply_patch "../patches/game-patches/lemansultimate-gameinput.patch"
