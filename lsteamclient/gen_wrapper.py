@@ -315,7 +315,6 @@ MANUAL_METHODS = {
     "ISteamRemoteStorage_UpdatePublishedFile": lambda ver, abi: abi == 'u' and ver >= 5,
 }
 
-
 DEFINE_INTERFACE_VERSION = re.compile(r'^#define\s*(?P<name>STEAM(?:\w*)_VERSION(?:\w*))\s*"(?P<version>.*)"')
 
 
@@ -840,9 +839,9 @@ class Class:
             # CGameID -> CGameID &
             # Windows side follows the prototype in the header while Linux
             # steamclient treats gameID parameter as pointer
-            if self.full_name == 'ISteamUser_SteamUser008' \
-               and method.name == 'InitiateGameConnection':
-                types[3] = 'CGameID *'
+            for i, t in enumerate(types):
+                if t == 'CGameID':
+                    types[i] = 'CGameID &'
 
             if type(method) is Destructor:
                 out(f'    virtual ~{prefix}{self.full_name}( {", ".join(types)} ) = 0;\n')
@@ -1123,13 +1122,6 @@ def handle_method_cpp(method, classname, out, wow64):
         return f'params->{name}'
 
     params = [param_call(n, p) for n, p in zip(names[1:], method.get_arguments())]
-
-    # CGameID -> CGameID &
-    # Windows side follows the prototype in the header while Linux
-    # steamclient treats gameID parameter as pointer
-    if klass.full_name == 'ISteamUser_SteamUser008' \
-       and method.name == 'InitiateGameConnection':
-        params[3] = f'&{params[3]}'
 
     out(f'iface->{method.spelling}( {", ".join(params)} );\n')
 
