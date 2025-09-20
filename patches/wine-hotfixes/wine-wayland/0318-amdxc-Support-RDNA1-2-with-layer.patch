@@ -1,0 +1,119 @@
+From 50276bdab2d9d83bce7d0618dea687133470b015 Mon Sep 17 00:00:00 2001
+From: Etaash Mathamsetty
+ <45927311+Etaash-mathamsetty@users.noreply.github.com>
+Date: Sat, 30 Aug 2025 21:17:19 -0500
+Subject: [PATCH 318/336] amdxc: Support RDNA1/2 with layer.
+
+---
+ dlls/amdxc64/main.c | 75 ++++++++++++++++++++++++++++++++-------------
+ 1 file changed, 53 insertions(+), 22 deletions(-)
+
+diff --git a/dlls/amdxc64/main.c b/dlls/amdxc64/main.c
+index 16452d66ccc..6baf498267c 100644
+--- a/dlls/amdxc64/main.c
++++ b/dlls/amdxc64/main.c
+@@ -49,7 +49,9 @@ static BOOL check_fsr4_supported(ID3D12Device *device)
+     const char **extensions;
+     UINT extension_count = 0;
+     UINT major, minor;
+-    BOOL has_float8 = FALSE, has_coopmat2 = FALSE;
++    BOOL has_float8 = FALSE, has_coopmat2 = FALSE, has_coopmat = FALSE;
++    BOOL rdna3_workaround = FALSE;
++    const char *env = getenv("DXIL_SPIRV_CONFIG");
+ 
+     if (FAILED(ID3D12Device_QueryInterface(device, &IID_ID3D12DXVKInteropDevice, (void **)&interop)))
+         return FALSE;
+@@ -70,40 +72,69 @@ static BOOL check_fsr4_supported(ID3D12Device *device)
+     major = VK_API_VERSION_MAJOR(prop.properties.driverVersion);
+     minor = VK_API_VERSION_MINOR(prop.properties.driverVersion);
+ 
+-    if (major > 25 || (major == 25 && minor >= 2))
+-    {
++    if (FAILED(ID3D12DXVKInteropDevice_GetDeviceExtensions(interop, &extension_count, NULL)))
++        return FALSE;
+ 
+-        if (FAILED(ID3D12DXVKInteropDevice_GetDeviceExtensions(interop, &extension_count, NULL)))
+-            return FALSE;
++    extensions = malloc(sizeof(*extensions) * extension_count);
+ 
+-        extensions = malloc(sizeof(*extensions) * extension_count);
++    if (FAILED(ID3D12DXVKInteropDevice_GetDeviceExtensions(interop, &extension_count, extensions)))
++        return FALSE;
+ 
+-        if (FAILED(ID3D12DXVKInteropDevice_GetDeviceExtensions(interop, &extension_count, extensions)))
+-            return FALSE;
++    for (UINT i = 0; i < extension_count; i++)
++    {
++        if (!strcmp("VK_NV_cooperative_matrix2", extensions[i]))
++            has_coopmat2 = TRUE;
++        if (!strcmp("VK_KHR_cooperative_matrix", extensions[i]))
++            has_coopmat = TRUE;
++        if (!strcmp("VK_EXT_shader_float8", extensions[i]))
++            has_float8 = TRUE;
++    }
+ 
+-        for (UINT i = 0; i < extension_count; i++)
+-        {
+-            if (!strcmp("VK_NV_cooperative_matrix2", extensions[i]))
+-                has_coopmat2 = TRUE;
+-            if (!strcmp("VK_EXT_shader_float8", extensions[i]))
+-                has_float8 = TRUE;
+-        }
++    if (env && strstr(env, "wmma_rdna3_workaround"))
++        rdna3_workaround = TRUE;
+ 
+-        free(extensions);
++    free(extensions);
+ 
++    if (major > 25 || (major == 25 && minor >= 2))
++    {
+         /* trivial cases */
+-        if (!has_coopmat2) return FALSE;
++        if (!has_coopmat2 && !has_coopmat) return FALSE;
++        /* RDNA 4+ */
+         if (has_coopmat2 && has_float8) return TRUE;
++        /* RDNA3, ensure the user is doing stuff correctly */
++        if (has_coopmat2 && rdna3_workaround) return TRUE;
++    }
++
++    /* RDNA2/1 with layer */
++    if (has_coopmat)
++    {
++        static int once;
++        UINT count = 0;
++        BOOL has_layer = FALSE;
++        VkLayerProperties *properties = NULL;
++
++        vkEnumerateDeviceLayerProperties(phys_device, &count, properties);
++
++        properties = calloc(count, sizeof(*properties));
+ 
+-        /* probably RDNA3, ensure the user is doing stuff correctly */
++        vkEnumerateDeviceLayerProperties(phys_device, &count, properties);
++
++        for (int i = 0; i < count; i++)
+         {
+-            const char *env = getenv("DXIL_SPIRV_CONFIG");
++            if (!strcmp("VK_LAYER_FROG_cooperative_matrix", properties[i].layerName))
++                has_layer = TRUE;
++        }
+ 
+-            if (env && strstr(env, "wmma_rdna3_workaround"))
+-                return TRUE;
++        free(properties);
+ 
+-            return FALSE;
++        if (has_layer && rdna3_workaround)
++        {
++            if (!once++) ERR("Emulated WMMA: Expect FSR4 performance issues!\n");
+         }
++        /* ensure people do not use mesa 25.1 and older */
++        else return FALSE;
++
++        return TRUE;
+     }
+ 
+     return FALSE;
+-- 
+2.51.0
+
