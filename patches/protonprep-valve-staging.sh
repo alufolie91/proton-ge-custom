@@ -37,19 +37,6 @@ apply_all_in_dir() {
     apply_all_in_dir "../patches/gstreamer/"
     popd
 
-    pushd openfst
-    git reset --hard HEAD
-    git clean -xdf
-    echo "OPENFST: fix compile errors for updated MinGW and GCC"
-    apply_all_in_dir "../patches/openfst/"
-    popd
-
-    pushd glslang
-    git checkout SPIRV/SpvBuilder.h
-    echo "GLSLANG: fix compile errors for updated MinGW and GCC"
-    apply_all_in_dir "../patches/glslang/"
-    popd
-
     pushd protonfixes
     git reset --hard HEAD
     git clean -xdf
