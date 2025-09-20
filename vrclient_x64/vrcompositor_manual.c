@@ -476,6 +476,166 @@ static void wait_get_poses_done( struct u_iface u_iface )
         compositor_data.d3d12_device->lpVtbl->UnlockCommandQueue( compositor_data.d3d12_device, compositor_data.d3d12_queue );
 }
 
+void __thiscall winIVRCompositor_IVRCompositor_005_WaitGetPoses( struct w_iface *_this,
+                                                                     TrackedDevicePose_t *pPoseArray, uint32_t unPoseArrayCount )
+{
+    struct IVRCompositor_IVRCompositor_005_WaitGetPoses_params params =
+    {
+        .u_iface = _this->u_iface,
+        .pPoseArray = pPoseArray,
+        .unPoseArrayCount = unPoseArrayCount,
+    };
+    TRACE( "%p\n", _this );
+    wait_get_poses_init( _this->u_iface );
+    VRCLIENT_CALL( IVRCompositor_IVRCompositor_005_WaitGetPoses, &params );
+    wait_get_poses_done( _this->u_iface );
+}
+
+uint32_t __thiscall winIVRCompositor_IVRCompositor_006_WaitGetPoses( struct w_iface *_this,
+                                                                     TrackedDevicePose_t *pRenderPoseArray, uint32_t unRenderPoseArrayCount,
+                                                                     TrackedDevicePose_t *pGamePoseArray, uint32_t unGamePoseArrayCount )
+{
+    struct IVRCompositor_IVRCompositor_006_WaitGetPoses_params params =
+    {
+        .u_iface = _this->u_iface,
+        .pRenderPoseArray = pRenderPoseArray,
+        .unRenderPoseArrayCount = unRenderPoseArrayCount,
+        .pGamePoseArray = pGamePoseArray,
+        .unGamePoseArrayCount = unGamePoseArrayCount,
+    };
+    TRACE( "%p\n", _this );
+    wait_get_poses_init( _this->u_iface );
+    VRCLIENT_CALL( IVRCompositor_IVRCompositor_006_WaitGetPoses, &params );
+    wait_get_poses_done( _this->u_iface );
+    return params._ret;
+}
+
+uint32_t __thiscall winIVRCompositor_IVRCompositor_007_WaitGetPoses( struct w_iface *_this,
+                                                                     TrackedDevicePose_t *pRenderPoseArray, uint32_t unRenderPoseArrayCount,
+                                                                     TrackedDevicePose_t *pGamePoseArray, uint32_t unGamePoseArrayCount )
+{
+    struct IVRCompositor_IVRCompositor_007_WaitGetPoses_params params =
+    {
+        .u_iface = _this->u_iface,
+        .pRenderPoseArray = pRenderPoseArray,
+        .unRenderPoseArrayCount = unRenderPoseArrayCount,
+        .pGamePoseArray = pGamePoseArray,
+        .unGamePoseArrayCount = unGamePoseArrayCount,
+    };
+    TRACE( "%p\n", _this );
+    wait_get_poses_init( _this->u_iface );
+    VRCLIENT_CALL( IVRCompositor_IVRCompositor_007_WaitGetPoses, &params );
+    wait_get_poses_done( _this->u_iface );
+    return params._ret;
+}
+
+uint32_t __thiscall winIVRCompositor_IVRCompositor_008_WaitGetPoses( struct w_iface *_this,
+                                                                     TrackedDevicePose_t *pRenderPoseArray, uint32_t unRenderPoseArrayCount,
+                                                                     TrackedDevicePose_t *pGamePoseArray, uint32_t unGamePoseArrayCount )
+{
+    struct IVRCompositor_IVRCompositor_008_WaitGetPoses_params params =
+    {
+        .u_iface = _this->u_iface,
+        .pRenderPoseArray = pRenderPoseArray,
+        .unRenderPoseArrayCount = unRenderPoseArrayCount,
+        .pGamePoseArray = pGamePoseArray,
+        .unGamePoseArrayCount = unGamePoseArrayCount,
+    };
+    TRACE( "%p\n", _this );
+    wait_get_poses_init( _this->u_iface );
+    VRCLIENT_CALL( IVRCompositor_IVRCompositor_008_WaitGetPoses, &params );
+    wait_get_poses_done( _this->u_iface );
+    return params._ret;
+}
+
+uint32_t __thiscall winIVRCompositor_IVRCompositor_008_Submit( struct w_iface *_this,
+                                                               uint32_t eEye, int32_t eTextureType, void *pTexture,
+                                                               const VRTextureBounds_t *pBounds, uint32_t nSubmitFlags )
+{
+    struct submit_state state = {0};
+    struct IVRCompositor_IVRCompositor_008_Submit_params params =
+    {
+        .u_iface = _this->u_iface,
+        .eEye = eEye,
+        .pBounds = pBounds,
+        .nSubmitFlags = nSubmitFlags,
+    };
+    w_Texture_t texture =
+    {
+        .handle = pTexture,
+        .eType = eTextureType,
+    };
+    const w_Texture_t *conv_texture;
+    TRACE( "_this %p, eEye %u, eTextureType %d, pTexture %p, pBounds %p, nSubmitFlags %#x\n", _this, eEye, eTextureType, pTexture, pBounds, nSubmitFlags );
+
+    compositor_data.handoff_called = FALSE;
+    conv_texture = load_compositor_texture( eEye, &texture, &params.nSubmitFlags, &state, ~0u );
+    params.eTextureType = conv_texture->eType;
+    params.pTexture = conv_texture->handle;
+    VRCLIENT_CALL( IVRCompositor_IVRCompositor_008_Submit, &params );
+    free_compositor_texture( texture.eType, &state );
+    return params._ret;
+}
+
+void __thiscall winIVRCompositor_IVRCompositor_008_PostPresentHandoff( struct w_iface *_this )
+{
+    struct IVRCompositor_IVRCompositor_008_PostPresentHandoff_params params = {.u_iface = _this->u_iface};
+    TRACE( "%p\n", _this );
+    post_present_handoff_init( _this->u_iface, 8 );
+    VRCLIENT_CALL( IVRCompositor_IVRCompositor_008_PostPresentHandoff, &params );
+    post_present_handoff_done();
+}
+
+void __thiscall winIVRCompositor_IVRCompositor_008_SetSkyboxOverride( struct w_iface *_this, int32_t eTextureType,
+        void *pFront, void *pBack, void *pLeft, void *pRight, void *pTop, void *pBottom )
+{
+    struct set_skybox_override_state state = {0};
+    w_Texture_t textures[6] =
+    {
+        { .handle = pFront, .eType = eTextureType, },
+        { .handle = pBack, .eType = eTextureType, },
+        { .handle = pLeft, .eType = eTextureType, },
+        { .handle = pRight, .eType = eTextureType, },
+        { .handle = pTop, .eType = eTextureType, },
+        { .handle = pBottom, .eType = eTextureType, },
+    };
+    const w_Texture_t *conv_textures = set_skybox_override_init( textures, 6, &state );
+    struct IVRCompositor_IVRCompositor_008_SetSkyboxOverride_params params =
+    {
+        .u_iface = _this->u_iface,
+        .eTextureType = conv_textures[0].eType,
+        .pFront = conv_textures[0].handle,
+        .pBack = conv_textures[1].handle,
+        .pLeft = conv_textures[2].handle,
+        .pRight = conv_textures[3].handle,
+        .pTop = conv_textures[4].handle,
+        .pBottom = conv_textures[5].handle,
+    };
+
+    TRACE( "%p\n", _this );
+    VRCLIENT_CALL( IVRCompositor_IVRCompositor_008_SetSkyboxOverride, &params );
+    set_skybox_override_done( textures, 6 );
+}
+
+uint32_t __thiscall winIVRCompositor_IVRCompositor_009_WaitGetPoses( struct w_iface *_this,
+                                                                     TrackedDevicePose_t *pRenderPoseArray, uint32_t unRenderPoseArrayCount,
+                                                                     TrackedDevicePose_t *pGamePoseArray, uint32_t unGamePoseArrayCount )
+{
+    struct IVRCompositor_IVRCompositor_009_WaitGetPoses_params params =
+    {
+        .u_iface = _this->u_iface,
+        .pRenderPoseArray = pRenderPoseArray,
+        .unRenderPoseArrayCount = unRenderPoseArrayCount,
+        .pGamePoseArray = pGamePoseArray,
+        .unGamePoseArrayCount = unGamePoseArrayCount,
+    };
+    TRACE( "%p\n", _this );
+    wait_get_poses_init( _this->u_iface );
+    VRCLIENT_CALL( IVRCompositor_IVRCompositor_009_WaitGetPoses, &params );
+    wait_get_poses_done( _this->u_iface );
+    return params._ret;
+}
+
 uint32_t __thiscall winIVRCompositor_IVRCompositor_009_Submit( struct w_iface *_this,
                                                                uint32_t eEye, const w_Texture_t *pTexture,
                                                                const VRTextureBounds_t *pBounds, uint32_t nSubmitFlags )
@@ -520,6 +680,25 @@ uint32_t __thiscall winIVRCompositor_IVRCompositor_009_SetSkyboxOverride( struct
     TRACE( "%p\n", _this );
     VRCLIENT_CALL( IVRCompositor_IVRCompositor_009_SetSkyboxOverride, &params );
     set_skybox_override_done( pTextures, unTextureCount );
+    return params._ret;
+}
+
+uint32_t __thiscall winIVRCompositor_IVRCompositor_010_WaitGetPoses( struct w_iface *_this,
+                                                                     TrackedDevicePose_t *pRenderPoseArray, uint32_t unRenderPoseArrayCount,
+                                                                     TrackedDevicePose_t *pGamePoseArray, uint32_t unGamePoseArrayCount )
+{
+    struct IVRCompositor_IVRCompositor_010_WaitGetPoses_params params =
+    {
+        .u_iface = _this->u_iface,
+        .pRenderPoseArray = pRenderPoseArray,
+        .unRenderPoseArrayCount = unRenderPoseArrayCount,
+        .pGamePoseArray = pGamePoseArray,
+        .unGamePoseArrayCount = unGamePoseArrayCount,
+    };
+    TRACE( "%p\n", _this );
+    wait_get_poses_init( _this->u_iface );
+    VRCLIENT_CALL( IVRCompositor_IVRCompositor_010_WaitGetPoses, &params );
+    wait_get_poses_done( _this->u_iface );
     return params._ret;
 }
 
@@ -570,6 +749,25 @@ uint32_t __thiscall winIVRCompositor_IVRCompositor_010_SetSkyboxOverride( struct
     return params._ret;
 }
 
+uint32_t __thiscall winIVRCompositor_IVRCompositor_011_WaitGetPoses( struct w_iface *_this,
+                                                                     TrackedDevicePose_t *pRenderPoseArray, uint32_t unRenderPoseArrayCount,
+                                                                     TrackedDevicePose_t *pGamePoseArray, uint32_t unGamePoseArrayCount )
+{
+    struct IVRCompositor_IVRCompositor_011_WaitGetPoses_params params =
+    {
+        .u_iface = _this->u_iface,
+        .pRenderPoseArray = pRenderPoseArray,
+        .unRenderPoseArrayCount = unRenderPoseArrayCount,
+        .pGamePoseArray = pGamePoseArray,
+        .unGamePoseArrayCount = unGamePoseArrayCount,
+    };
+    TRACE( "%p\n", _this );
+    wait_get_poses_init( _this->u_iface );
+    VRCLIENT_CALL( IVRCompositor_IVRCompositor_011_WaitGetPoses, &params );
+    wait_get_poses_done( _this->u_iface );
+    return params._ret;
+}
+
 uint32_t __thiscall winIVRCompositor_IVRCompositor_011_Submit( struct w_iface *_this,
                                                                uint32_t eEye, const w_Texture_t *pTexture,
                                                                const VRTextureBounds_t *pBounds, uint32_t nSubmitFlags )
@@ -614,6 +812,25 @@ uint32_t __thiscall winIVRCompositor_IVRCompositor_011_SetSkyboxOverride( struct
     TRACE( "%p\n", _this );
     VRCLIENT_CALL( IVRCompositor_IVRCompositor_011_SetSkyboxOverride, &params );
     set_skybox_override_done( pTextures, unTextureCount );
+    return params._ret;
+}
+
+uint32_t __thiscall winIVRCompositor_IVRCompositor_012_WaitGetPoses( struct w_iface *_this,
+                                                                     TrackedDevicePose_t *pRenderPoseArray, uint32_t unRenderPoseArrayCount,
+                                                                     TrackedDevicePose_t *pGamePoseArray, uint32_t unGamePoseArrayCount )
+{
+    struct IVRCompositor_IVRCompositor_012_WaitGetPoses_params params =
+    {
+        .u_iface = _this->u_iface,
+        .pRenderPoseArray = pRenderPoseArray,
+        .unRenderPoseArrayCount = unRenderPoseArrayCount,
+        .pGamePoseArray = pGamePoseArray,
+        .unGamePoseArrayCount = unGamePoseArrayCount,
+    };
+    TRACE( "%p\n", _this );
+    wait_get_poses_init( _this->u_iface );
+    VRCLIENT_CALL( IVRCompositor_IVRCompositor_012_WaitGetPoses, &params );
+    wait_get_poses_done( _this->u_iface );
     return params._ret;
 }
 
@@ -664,6 +881,25 @@ uint32_t __thiscall winIVRCompositor_IVRCompositor_012_SetSkyboxOverride( struct
     return params._ret;
 }
 
+uint32_t __thiscall winIVRCompositor_IVRCompositor_013_WaitGetPoses( struct w_iface *_this,
+                                                                     TrackedDevicePose_t *pRenderPoseArray, uint32_t unRenderPoseArrayCount,
+                                                                     TrackedDevicePose_t *pGamePoseArray, uint32_t unGamePoseArrayCount )
+{
+    struct IVRCompositor_IVRCompositor_013_WaitGetPoses_params params =
+    {
+        .u_iface = _this->u_iface,
+        .pRenderPoseArray = pRenderPoseArray,
+        .unRenderPoseArrayCount = unRenderPoseArrayCount,
+        .pGamePoseArray = pGamePoseArray,
+        .unGamePoseArrayCount = unGamePoseArrayCount,
+    };
+    TRACE( "%p\n", _this );
+    wait_get_poses_init( _this->u_iface );
+    VRCLIENT_CALL( IVRCompositor_IVRCompositor_013_WaitGetPoses, &params );
+    wait_get_poses_done( _this->u_iface );
+    return params._ret;
+}
+
 uint32_t __thiscall winIVRCompositor_IVRCompositor_013_Submit( struct w_iface *_this,
                                                                uint32_t eEye, const w_Texture_t *pTexture,
                                                                const VRTextureBounds_t *pBounds, uint32_t nSubmitFlags )
@@ -711,6 +947,25 @@ uint32_t __thiscall winIVRCompositor_IVRCompositor_013_SetSkyboxOverride( struct
     return params._ret;
 }
 
+uint32_t __thiscall winIVRCompositor_IVRCompositor_014_WaitGetPoses( struct w_iface *_this,
+                                                                     TrackedDevicePose_t *pRenderPoseArray, uint32_t unRenderPoseArrayCount,
+                                                                     TrackedDevicePose_t *pGamePoseArray, uint32_t unGamePoseArrayCount )
+{
+    struct IVRCompositor_IVRCompositor_014_WaitGetPoses_params params =
+    {
+        .u_iface = _this->u_iface,
+        .pRenderPoseArray = pRenderPoseArray,
+        .unRenderPoseArrayCount = unRenderPoseArrayCount,
+        .pGamePoseArray = pGamePoseArray,
+        .unGamePoseArrayCount = unGamePoseArrayCount,
+    };
+    TRACE( "%p\n", _this );
+    wait_get_poses_init( _this->u_iface );
+    VRCLIENT_CALL( IVRCompositor_IVRCompositor_014_WaitGetPoses, &params );
+    wait_get_poses_done( _this->u_iface );
+    return params._ret;
+}
+
 uint32_t __thiscall winIVRCompositor_IVRCompositor_014_Submit( struct w_iface *_this,
                                                                uint32_t eEye, const w_Texture_t *pTexture,
                                                                const VRTextureBounds_t *pBounds, uint32_t nSubmitFlags )
@@ -755,6 +1010,25 @@ uint32_t __thiscall winIVRCompositor_IVRCompositor_014_SetSkyboxOverride( struct
     TRACE( "%p\n", _this );
     VRCLIENT_CALL( IVRCompositor_IVRCompositor_014_SetSkyboxOverride, &params );
     set_skybox_override_done( pTextures, unTextureCount );
+    return params._ret;
+}
+
+uint32_t __thiscall winIVRCompositor_IVRCompositor_015_WaitGetPoses( struct w_iface *_this,
+                                                                     TrackedDevicePose_t *pRenderPoseArray, uint32_t unRenderPoseArrayCount,
+                                                                     TrackedDevicePose_t *pGamePoseArray, uint32_t unGamePoseArrayCount )
+{
+    struct IVRCompositor_IVRCompositor_015_WaitGetPoses_params params =
+    {
+        .u_iface = _this->u_iface,
+        .pRenderPoseArray = pRenderPoseArray,
+        .unRenderPoseArrayCount = unRenderPoseArrayCount,
+        .pGamePoseArray = pGamePoseArray,
+        .unGamePoseArrayCount = unGamePoseArrayCount,
+    };
+    TRACE( "%p\n", _this );
+    wait_get_poses_init( _this->u_iface );
+    VRCLIENT_CALL( IVRCompositor_IVRCompositor_015_WaitGetPoses, &params );
+    wait_get_poses_done( _this->u_iface );
     return params._ret;
 }
 
@@ -1779,6 +2053,165 @@ uint32_t __thiscall winIVRCompositor_IVRCompositor_028_SetSkyboxOverride( struct
     };
     TRACE( "%p\n", _this );
     VRCLIENT_CALL( IVRCompositor_IVRCompositor_028_SetSkyboxOverride, &params );
+    set_skybox_override_done( pTextures, unTextureCount );
+    return params._ret;
+}
+
+
+uint32_t __thiscall winIVRCompositor_IVRCompositor_029_WaitGetPoses( struct w_iface *_this,
+                                                                     TrackedDevicePose_t *pRenderPoseArray, uint32_t unRenderPoseArrayCount,
+                                                                     TrackedDevicePose_t *pGamePoseArray, uint32_t unGamePoseArrayCount )
+{
+    struct IVRCompositor_IVRCompositor_029_WaitGetPoses_params params =
+    {
+        .u_iface = _this->u_iface,
+        .pRenderPoseArray = pRenderPoseArray,
+        .unRenderPoseArrayCount = unRenderPoseArrayCount,
+        .pGamePoseArray = pGamePoseArray,
+        .unGamePoseArrayCount = unGamePoseArrayCount,
+    };
+    TRACE( "%p\n", _this );
+    wait_get_poses_init( _this->u_iface );
+
+    if (compositor_data.dxvk_device && compositor_data.d3d11_explicit_handoff && !compositor_data.handoff_called)
+    {
+        struct IVRCompositor_IVRCompositor_029_PostPresentHandoff_params params = {.u_iface = _this->u_iface};
+        /* Calling handoff after submit is optional for d3d11 but mandatory for Vulkan
+         * if explicit timing mode is set. */
+        VRCLIENT_CALL( IVRCompositor_IVRCompositor_029_PostPresentHandoff, &params );
+    }
+
+    VRCLIENT_CALL( IVRCompositor_IVRCompositor_029_WaitGetPoses, &params );
+
+    if (compositor_data.dxvk_device && compositor_data.d3d11_explicit_handoff)
+    {
+        struct IVRCompositor_IVRCompositor_029_SubmitExplicitTimingData_params params = {.u_iface = _this->u_iface};
+        VRCLIENT_CALL( IVRCompositor_IVRCompositor_029_SubmitExplicitTimingData, &params );
+    }
+
+    wait_get_poses_done( _this->u_iface );
+    return params._ret;
+}
+
+uint32_t __thiscall winIVRCompositor_IVRCompositor_029_Submit( struct w_iface *_this,
+                                                               uint32_t eEye, const w_Texture_t *pTexture,
+                                                               const VRTextureBounds_t *pBounds, uint32_t nSubmitFlags )
+{
+    struct submit_state state = {0};
+    struct IVRCompositor_IVRCompositor_029_Submit_params params =
+    {
+        .u_iface = _this->u_iface,
+        .eEye = eEye,
+        .pTexture = pTexture,
+        .pBounds = pBounds,
+        .nSubmitFlags = nSubmitFlags,
+    };
+    TRACE( "_this %p, eEye %u, pTexture %p (eType %u), pBounds %p, nSubmitFlags %#x\n", _this, eEye, pTexture, pTexture->eType, pBounds, nSubmitFlags );
+
+    compositor_data.handoff_called = FALSE;
+    params.pTexture = load_compositor_texture( eEye, pTexture, &params.nSubmitFlags, &state, ~0u );
+    VRCLIENT_CALL( IVRCompositor_IVRCompositor_029_Submit, &params );
+    free_compositor_texture( pTexture->eType, &state );
+    return params._ret;
+}
+
+uint32_t __thiscall winIVRCompositor_IVRCompositor_029_SubmitWithArrayIndex( struct w_iface *_this,
+                                                               uint32_t eEye, const w_Texture_t *pTexture, uint32_t unTextureArrayIndex,
+                                                               const VRTextureBounds_t *pBounds, uint32_t nSubmitFlags )
+{
+    struct submit_state state = {0};
+    uint32_t ret;
+
+    TRACE( "_this %p, eEye %u, pTexture %p (eType %u), unTextureArrayIndex %u, pBounds %p, nSubmitFlags %#x\n",
+            _this, eEye, pTexture, pTexture->eType, unTextureArrayIndex, pBounds, nSubmitFlags );
+
+    compositor_data.handoff_called = FALSE;
+    if (pTexture->eType == TextureType_DirectX)
+    {
+        struct IVRCompositor_IVRCompositor_029_Submit_params params =
+        {
+            .u_iface = _this->u_iface,
+            .eEye = eEye,
+            .pTexture = pTexture,
+            .pBounds = pBounds,
+            .nSubmitFlags = nSubmitFlags,
+        };
+
+        params.pTexture = load_compositor_texture_dxvk( eEye, pTexture, &params.nSubmitFlags, &state, unTextureArrayIndex );
+        VRCLIENT_CALL( IVRCompositor_IVRCompositor_029_Submit, &params );
+        ret = params._ret;
+    }
+    else if (pTexture->eType == TextureType_DirectX12)
+    {
+        struct IVRCompositor_IVRCompositor_029_Submit_params params =
+        {
+            .u_iface = _this->u_iface,
+            .eEye = eEye,
+            .pTexture = pTexture,
+            .pBounds = pBounds,
+            .nSubmitFlags = nSubmitFlags,
+        };
+
+        params.pTexture = load_compositor_texture_d3d12( eEye, pTexture, &params.nSubmitFlags, &state, unTextureArrayIndex );
+        VRCLIENT_CALL( IVRCompositor_IVRCompositor_029_Submit, &params );
+        ret = params._ret;
+    }
+    else
+    {
+        struct IVRCompositor_IVRCompositor_029_SubmitWithArrayIndex_params params =
+        {
+            .u_iface = _this->u_iface,
+            .eEye = eEye,
+            .pTexture = pTexture,
+            .unTextureArrayIndex = unTextureArrayIndex,
+            .pBounds = pBounds,
+            .nSubmitFlags = nSubmitFlags,
+        };
+
+        VRCLIENT_CALL( IVRCompositor_IVRCompositor_029_SubmitWithArrayIndex, &params );
+        ret = params._ret;
+    }
+    free_compositor_texture( pTexture->eType, &state );
+    return ret;
+}
+
+void __thiscall winIVRCompositor_IVRCompositor_029_PostPresentHandoff( struct w_iface *_this )
+{
+    struct IVRCompositor_IVRCompositor_029_PostPresentHandoff_params params = {.u_iface = _this->u_iface};
+    TRACE( "%p\n", _this );
+    post_present_handoff_init( _this->u_iface, 28 );
+
+    if (compositor_data.dxvk_device && !compositor_data.d3d11_explicit_handoff)
+    {
+        struct IVRCompositor_IVRCompositor_029_SetExplicitTimingMode_params params =
+        {
+            .u_iface = _this->u_iface,
+            .eTimingMode = VRCompositorTimingMode_Explicit_ApplicationPerformsPostPresentHandoff,
+        };
+
+        /* PostPresentHandoff can be used with d3d11 without SetExplicitTimingMode
+         * (which is Vulkan / d3d12 only), but doing the same with Vulkan results
+         * in lockups and crashes. */
+        VRCLIENT_CALL( IVRCompositor_IVRCompositor_029_SetExplicitTimingMode, &params );
+        compositor_data.d3d11_explicit_handoff = TRUE;
+    }
+
+    VRCLIENT_CALL( IVRCompositor_IVRCompositor_029_PostPresentHandoff, &params );
+    post_present_handoff_done();
+}
+
+uint32_t __thiscall winIVRCompositor_IVRCompositor_029_SetSkyboxOverride( struct w_iface *_this,
+                                                                          const w_Texture_t *pTextures, uint32_t unTextureCount )
+{
+    struct set_skybox_override_state state = {0};
+    struct IVRCompositor_IVRCompositor_029_SetSkyboxOverride_params params =
+    {
+        .u_iface = _this->u_iface,
+        .pTextures = set_skybox_override_init( pTextures, unTextureCount, &state ),
+        .unTextureCount = unTextureCount,
+    };
+    TRACE( "%p\n", _this );
+    VRCLIENT_CALL( IVRCompositor_IVRCompositor_029_SetSkyboxOverride, &params );
     set_skybox_override_done( pTextures, unTextureCount );
     return params._ret;
 }
