@@ -1,5 +1,29 @@
+diff --git a/.github/workflows/artifacts.yml b/.github/workflows/artifacts.yml
+index f61cecf..6ec8252 100644
+--- a/.github/workflows/artifacts.yml
++++ b/.github/workflows/artifacts.yml
+@@ -1,6 +1,6 @@
+ name: Artifacts (Package)
+ 
+-on: [push, pull_request, workflow_dispatch]
++on: [pull_request, workflow_dispatch]
+ 
+ jobs:
+   artifacts-mingw-w64:
+diff --git a/.github/workflows/test-build-windows.yml b/.github/workflows/test-build-windows.yml
+index eb8a451..80feca3 100644
+--- a/.github/workflows/test-build-windows.yml
++++ b/.github/workflows/test-build-windows.yml
+@@ -1,6 +1,6 @@
+ name: Test Builds on Windows
+ 
+-on: [push, pull_request, workflow_dispatch]
++on: [pull_request, workflow_dispatch]
+ 
+ jobs:
+   build-set-windows:
 diff --git a/README.md b/README.md
-index 2f8edf4..757fa48 100644
+index 6d44092..c250a43 100644
 --- a/README.md
 +++ b/README.md
 @@ -1,15 +1,58 @@
@@ -118,13 +142,12 @@ index 2f8edf4..757fa48 100644
  - `fps`: Shows the current frame rate.
  - `frametimes`: Shows a frame time graph.
  - `submissions`: Shows the number of command buffers submitted per frame.
-@@ -67,45 +130,117 @@ The `DXVK_HUD` environment variable controls a HUD which can display the framera
+@@ -67,25 +130,37 @@ The `DXVK_HUD` environment variable controls a HUD which can display the framera
  - `swvp`: Shows whether or not the device is running in software vertex processing mode *[D3D9 Only]*
  - `scale=x`: Scales the HUD by a factor of `x` (e.g. `1.5`)
  - `opacity=y`: Adjusts the HUD opacity by a factor of `y` (e.g. `0.5`, `1.0` being fully opaque).
 +- `renderlatency`: Start of frame (usually when the game starts processing input) until the GPU did finish rendering this frame. Note that this will not work when a game's fps limiter is enabled, as there is no way to detect when a game will stall processing before reading input. Average over 100 frames.
-+- `presentlatency`: Time it takes to present the finished image to the screen. Relies on the driver implementation of `vkWaitForPresentKHR`, which may or may not be accurate. `VK_PRESENT_MODE_MAILBOX_KHR` is currently not supported, because it needs special treatment. Average over 100 frames.
-+- `latencydetails`: Enables the user to fine tune his system, settings, etc. according to the values presented in the HUD for a specific game.
++- `latencydetails`: provides insights about GPU buffer and v-sync buffer statistics. Helpful for fine-tuning the `dxvk.lowLatencyOffset` variable to competely eliminate GPU buffering and for fine-tuning the VRR refresh rate to minimize v-sync buffering in the VRR mode.
  
  Additionally, `DXVK_HUD=1` has the same effect as `DXVK_HUD=devinfo,fps`, and `DXVK_HUD=full` enables all available HUD elements.
  
@@ -163,10 +186,9 @@ index 2f8edf4..757fa48 100644
  The following environment variables can be used for **debugging** purposes.
  - `VK_INSTANCE_LAYERS=VK_LAYER_KHRONOS_validation` Enables Vulkan debug layers. Highly recommended for troubleshooting rendering issues and driver crashes. Requires the Vulkan SDK to be installed on the host system.
  - `DXVK_LOG_LEVEL=none|error|warn|info|debug` Controls message logging.
- - `DXVK_LOG_PATH=/some/directory` Changes path where log files are stored. Set to `none` to disable log file creation entirely, without disabling logging.
- - `DXVK_DEBUG=markers|validation` Enables use of the `VK_EXT_debug_utils` extension for translating performance event markers, or to enable Vulkan validation, respecticely.
--- `DXVK_CONFIG_FILE=/xxx/dxvk.conf` Sets path to the configuration file.
--- `DXVK_CONFIG="dxgi.hideAmdGpu = True; dxgi.syncInterval = 0"` Can be used to set config variables through the environment instead of a configuration file using the same syntax. `;` is used as a seperator.
+@@ -97,18 +172,79 @@ The following environment variables can be used for **debugging** purposes.
+ - `DXVK_SHADER_CACHE_PATH=/some/directory`: Path to internal shader cache files. By default, this will use `%LOCALAPPDATA%/dxvk` in a Windows
+   or Wine environment, and `$HOME/.cache` or `$XDG_CACHE_HOME` in a native Linux environment.
  
 -### Graphics Pipeline Library
 +## Graphics Pipeline Library (GPL)
@@ -246,7 +268,7 @@ index 2f8edf4..757fa48 100644
  ```
  
  ### Requirements:
-@@ -161,13 +296,13 @@ does have `--enable-threads=posix` enabled during configure. If your distro does
+@@ -164,13 +300,13 @@ does have `--enable-threads=posix` enabled during configure. If your distro does
  ship its mingw-w64-gcc binary with `--enable-threads=win32` you might have to
  recompile locally or open a bug at your distro's bugtracker to ask for it. 
  
@@ -263,30 +285,31 @@ index 2f8edf4..757fa48 100644
  ### How does it work?
  
 diff --git a/RELEASE b/RELEASE
-index 1effb00..e22b857 100644
+index 860487c..10b8ff6 100644
 --- a/RELEASE
 +++ b/RELEASE
 @@ -1 +1 @@
--2.7
-+2.7-3
+-2.7.1
++2.7.1-1
 diff --git a/VP_DXVK_requirements.json b/VP_DXVK_requirements.json
-index ccca758..ec53f91 100644
+index 833bdcd..e7aaf4c 100644
 --- a/VP_DXVK_requirements.json
 +++ b/VP_DXVK_requirements.json
-@@ -100,7 +100,7 @@
+@@ -108,7 +108,8 @@
          },
          "dxvk_common_optional": {
              "extensions": {
 -                "VK_KHR_load_store_op_none": 1,
 +                "VK_EXT_load_store_op_none": 1,
-                 "VK_KHR_maintenance6": 1,
++                "VK_KHR_maintenance6": 1,
                  "VK_KHR_maintenance7": 1,
                  "VK_KHR_present_id": 1,
+                 "VK_KHR_present_wait": 1,
 diff --git a/dxvk.conf b/dxvk.conf
-index 28d1f1d..b0221ee 100644
+index 3b29a04..d95a137 100644
 --- a/dxvk.conf
 +++ b/dxvk.conf
-@@ -1,3 +1,23 @@
+@@ -1,3 +1,22 @@
 +# dxvk.conf Config File Location
 +
 +# By default, DXVK has built-in configs 
@@ -306,11 +329,10 @@ index 28d1f1d..b0221ee 100644
 +# Example (Linux): DXVK_CONFIG_FILE=$XDG_DATA_HOME/dxvk.conf
 +# Example (MacOS): DXVK_CONFIG_FILE=$HOME/Library/dxvk.conf
 +
-+
  # Device filter. Only exposes devices whose Vulkan device name contains
  # the given string. May be useful to force an application to run on a
  # specific GPU, but not applications launched by that application.
-@@ -17,6 +37,120 @@
+@@ -17,6 +36,121 @@
  
  # dxgi.enableHDR = True
  
@@ -381,12 +403,12 @@ index 28d1f1d..b0221ee 100644
 +# For example, if user has 360 Hz VRR display, then option must be "low-latency-vrr-360". 
 +# Important: Care has to be taken that the system is configured such 
 +# that the display is indeed using a variable refresh rate, otherwise this mode won't work properly.
-+# "low-latency-vrr-x" enhances the  "low-latency"  mode by taking v-blank information into account, 
++# "low-latency-vrr-x" enhances the "low-latency"  mode by taking v-blank information into account, 
 +# which prevents additional v-sync buffering latency. 
 +# This mode automatically enables v-sync to get informed when v-blanks are happening. 
 +# It will make the pacer predict future v-blanks based on the given refresh rate of "x" Hz. 
 +# Replace "x" with the refresh rate of your monitor. 
-+# This mode works with x11-flip and native Wayland (can be enabled in Wine via DISPLAY= ), 
++# This mode works with x11-flip and native Wayland (can be enabled in Wine via DISPLAY= and via PROTON_ENABLE_WAYLAND=1 in Proton), 
 +# but cannot work on Xwayland because v-blank information is not available there (tested on Nvidia).
 +#
 +# Supported values: "max-frame-latency", "min-latency", "low-latency" and "low-latency-vrr-x", where "x" is VRR display refresh rate.
@@ -407,6 +429,7 @@ index 28d1f1d..b0221ee 100644
 +# For 360 fps gameplay, you may want to experiment with values in the range of -100 to 100. 
 +# For less fps, you may want to use larger values respectively.
 +# The offset is applied after predictions have been made to align the frame, but doesn't affect fps limiting.
++# It's recommended to check the GPU buffer display (`dxvk.hud = "latencydetails"`) to fine-tune this setting.
 +#
 +# Supported values: -10000 to 10000
 +
@@ -446,7 +469,16 @@ index 28d1f1d..b0221ee 100644
  
  
  # Tolerance for the latency sleep heuristic, in microseconds. Higher values
-@@ -427,7 +566,7 @@
+@@ -278,7 +417,7 @@
+ # Overrides anisotropic filtering for all samplers. Set this to a positive
+ # value to enable AF for all samplers in the game, or to 0 in order to
+ # disable AF entirely. Negative values will have no effect.
+-#
++# 
+ # Forcing anisotropy is known to break passes that rely on
+ # bilinear filtering, or in other situations when an application
+ # relies on fine grained control over samplers. Please do not report
+@@ -432,7 +571,7 @@
  # these threads will be reserved for high-priority work.
  #
  # Supported values:
@@ -455,7 +487,7 @@ index 28d1f1d..b0221ee 100644
  # - any positive number to enforce the thread count
  
  # dxvk.numCompilerThreads = 0
-@@ -451,15 +590,16 @@
+@@ -456,15 +595,16 @@
  # Controls graphics pipeline library behaviour
  #
  # Can be used to change VK_EXT_graphics_pipeline_library usage for
@@ -476,16 +508,17 @@ index 28d1f1d..b0221ee 100644
  
  # Controls descriptor model
 diff --git a/meson.build b/meson.build
-index 20b8695..10a87cd 100644
+index 64b6803..514c957 100644
 --- a/meson.build
 +++ b/meson.build
-@@ -10,10 +10,15 @@ cc = meson.get_compiler('c')
+@@ -10,10 +10,16 @@ cc = meson.get_compiler('c')
  dxvk_is_msvc = cpp.get_argument_syntax() == 'msvc'
  
  compiler_args = [
 +  '-O3',
 +  '-pipe',
-+  '-march=native',
++  '-march=x86-64',
++  '-mtune=x86-64',
    '-msse',
    '-msse2',
 -  '-msse3',
@@ -496,7 +529,7 @@ index 20b8695..10a87cd 100644
    '-Wimplicit-fallthrough',
    # gcc
    '-Wno-missing-field-initializers',
-@@ -28,7 +33,9 @@ compiler_args = [
+@@ -28,7 +34,9 @@ compiler_args = [
    '-Wno-missing-braces',
  ]
  
@@ -507,7 +540,7 @@ index 20b8695..10a87cd 100644
  
  if get_option('build_id')
    link_args += [
-@@ -92,14 +99,24 @@ if platform == 'windows'
+@@ -92,14 +100,24 @@ if platform == 'windows'
        ]
      endif
    else
@@ -536,16 +569,7 @@ index 20b8695..10a87cd 100644
      ]
    endif
  
-@@ -162,7 +179,7 @@ else
-   if (not lib_sdl3.found() and not lib_sdl2.found() and not lib_glfw.found())
-     error('SDL3, SDL2, or GLFW are required to build dxvk-native')
-   endif
--  
-+
-   dxvk_name_prefix = 'dxvk_'
-   dxvk_pkg_prefix = 'dxvk-'
- 
-@@ -199,7 +216,7 @@ glsl_generator = generator(
+@@ -202,7 +220,7 @@ glsl_generator = generator(
  )
  
  dxvk_version = vcs_tag(
@@ -555,7 +579,7 @@ index 20b8695..10a87cd 100644
    output: 'version.h',
  )
 diff --git a/src/d3d11/d3d11_context.h b/src/d3d11/d3d11_context.h
-index c659337..6d6e355 100644
+index 1457745..d0f6c34 100644
 --- a/src/d3d11/d3d11_context.h
 +++ b/src/d3d11/d3d11_context.h
 @@ -1179,7 +1179,7 @@ namespace dxvk {
@@ -578,7 +602,7 @@ index c659337..6d6e355 100644
          m_csChunk->push(command);
        }
 diff --git a/src/d3d11/d3d11_swapchain.cpp b/src/d3d11/d3d11_swapchain.cpp
-index 0b963ae..eb0fef0 100644
+index 0b963ae..67cad75 100644
 --- a/src/d3d11/d3d11_swapchain.cpp
 +++ b/src/d3d11/d3d11_swapchain.cpp
 @@ -3,6 +3,7 @@
@@ -589,15 +613,12 @@ index 0b963ae..eb0fef0 100644
  
  #include "../util/util_win32_compat.h"
  
-@@ -294,6 +295,15 @@ namespace dxvk {
+@@ -294,6 +295,12 @@ namespace dxvk {
      if (m_latencyHud)
        m_latencyHud->accumulateStats(latencyStats);
  
 +    if (m_renderLatencyHud)
 +      m_renderLatencyHud->updateLatencyTracker(m_latency);
-+
-+    if (m_presentLatencyHud)
-+      m_presentLatencyHud->updateLatencyTracker(m_latency);
 +
 +    if (m_latencyDetailsHud)
 +      m_latencyDetailsHud->updateLatencyTracker(m_latency);
@@ -605,7 +626,7 @@ index 0b963ae..eb0fef0 100644
      return hr;
    }
  
-@@ -354,6 +364,10 @@ namespace dxvk {
+@@ -354,6 +361,10 @@ namespace dxvk {
  
      if (m_presenter != nullptr)
        m_presenter->setFrameRateLimit(m_targetFrameRate, GetActualFrameLatency());
@@ -616,7 +637,7 @@ index 0b963ae..eb0fef0 100644
    }
  
  
-@@ -464,7 +478,7 @@ namespace dxvk {
+@@ -464,7 +475,7 @@ namespace dxvk {
            cFrameId = m_frameId
          ] (DxvkContext* ctx) {
            ctx->beginLatencyTracking(cLatency, cFrameId + 1u);
@@ -625,7 +646,7 @@ index 0b963ae..eb0fef0 100644
        }
      }
  
-@@ -517,6 +531,7 @@ namespace dxvk {
+@@ -517,6 +528,7 @@ namespace dxvk {
      m_presenter->setFrameRateLimit(m_targetFrameRate, GetActualFrameLatency());
  
      m_latency = m_device->createLatencyTracker(m_presenter);
@@ -633,7 +654,7 @@ index 0b963ae..eb0fef0 100644
  
      Com<D3D11ReflexDevice> reflex = GetReflexDevice();
      reflex->RegisterLatencyTracker(m_latency);
-@@ -596,8 +611,16 @@ namespace dxvk {
+@@ -596,8 +608,15 @@ namespace dxvk {
      if (hud) {
        hud->addItem<hud::HudClientApiItem>("api", 1, GetApiName());
  
@@ -644,34 +665,32 @@ index 0b963ae..eb0fef0 100644
 +        if (framePacer) {
 +          int32_t fpsItemPos = hud->getItemPos<hud::HudFpsItem>();
 +          m_renderLatencyHud = hud->addItem<hud::HudRenderLatencyItem>("renderlatency", fpsItemPos+1);
-+          m_presentLatencyHud = hud->addItem<hud::HudPresentLatencyItem>("presentlatency", fpsItemPos+2);
-+          m_latencyDetailsHud = hud->addItem<hud::HudLatencyDetailsItem>("latencydetails", fpsItemPos+3);
++          m_latencyDetailsHud = hud->addItem<hud::HudLatencyDetailsItem>("latencydetails", fpsItemPos+2);
 +        }
 +      }
      }
  
      m_blitter = new DxvkSwapchainBlitter(m_device, std::move(hud));
 diff --git a/src/d3d11/d3d11_swapchain.h b/src/d3d11/d3d11_swapchain.h
-index 99f0945..ed90f28 100644
+index 99f0945..ae46b58 100644
 --- a/src/d3d11/d3d11_swapchain.h
 +++ b/src/d3d11/d3d11_swapchain.h
-@@ -125,7 +125,10 @@ namespace dxvk {
+@@ -125,7 +125,9 @@ namespace dxvk {
      dxvk::mutex               m_frameStatisticsLock;
      DXGI_VK_FRAME_STATISTICS  m_frameStatistics = { };
  
 -    Rc<hud::HudLatencyItem>   m_latencyHud;
 +    Rc<hud::HudLatencyItem>         m_latencyHud;
 +    Rc<hud::HudRenderLatencyItem>   m_renderLatencyHud;
-+    Rc<hud::HudPresentLatencyItem>  m_presentLatencyHud;
 +    Rc<hud::HudLatencyDetailsItem>  m_latencyDetailsHud;
  
      Rc<DxvkImageView> GetBackBufferView();
  
 diff --git a/src/d3d9/d3d9_device.cpp b/src/d3d9/d3d9_device.cpp
-index 50de649..120da5e 100644
+index c44533a..8061a15 100644
 --- a/src/d3d9/d3d9_device.cpp
 +++ b/src/d3d9/d3d9_device.cpp
-@@ -6232,7 +6232,7 @@ namespace dxvk {
+@@ -6306,7 +6306,7 @@ namespace dxvk {
      ] (DxvkContext* ctx) {
        if (cTracker && cTracker->needsAutoMarkers())
          ctx->beginLatencyTracking(cTracker, cFrameId);
@@ -681,10 +700,10 @@ index 50de649..120da5e 100644
  
  
 diff --git a/src/d3d9/d3d9_device.h b/src/d3d9/d3d9_device.h
-index 0e0eb03..23c56f6 100644
+index bf97206..4dfb1dd 100644
 --- a/src/d3d9/d3d9_device.h
 +++ b/src/d3d9/d3d9_device.h
-@@ -1275,13 +1275,14 @@ namespace dxvk {
+@@ -1277,13 +1277,14 @@ namespace dxvk {
    private:
  
      template<bool AllowFlush = true, typename Cmd>
@@ -702,7 +721,7 @@ index 0e0eb03..23c56f6 100644
          m_csChunk->push(command);
        }
 diff --git a/src/d3d9/d3d9_swapchain.cpp b/src/d3d9/d3d9_swapchain.cpp
-index 1daaaa6..ceb8623 100644
+index 1daaaa6..dfd29f0 100644
 --- a/src/d3d9/d3d9_swapchain.cpp
 +++ b/src/d3d9/d3d9_swapchain.cpp
 @@ -5,6 +5,8 @@
@@ -714,15 +733,12 @@ index 1daaaa6..ceb8623 100644
  namespace dxvk {
  
    static uint16_t MapGammaControlPoint(float x) {
-@@ -935,6 +937,15 @@ namespace dxvk {
+@@ -935,6 +937,12 @@ namespace dxvk {
      if (m_latencyHud)
        m_latencyHud->accumulateStats(latencyStats);
  
 +    if (m_renderLatencyHud)
 +      m_renderLatencyHud->updateLatencyTracker(m_latencyTracker);
-+
-+    if (m_presentLatencyHud)
-+      m_presentLatencyHud->updateLatencyTracker(m_latencyTracker);
 +
 +    if (m_latencyDetailsHud)
 +      m_latencyDetailsHud->updateLatencyTracker(m_latencyTracker);
@@ -730,7 +746,7 @@ index 1daaaa6..ceb8623 100644
      // Rotate swap chain buffers so that the back
      // buffer at index 0 becomes the front buffer.
      uint32_t rotatingBufferCount = m_backBuffers.size();
-@@ -1004,7 +1015,7 @@ namespace dxvk {
+@@ -1004,7 +1012,7 @@ namespace dxvk {
        entry->second.presenter = CreatePresenter(m_window, entry->second.frameLatencySignal);
  
        if (m_presentParams.hDeviceWindow == m_window && m_latencyTracking)
@@ -739,7 +755,7 @@ index 1daaaa6..ceb8623 100644
      }
  
      m_wctx = &entry->second;
-@@ -1081,8 +1092,16 @@ namespace dxvk {
+@@ -1081,8 +1089,15 @@ namespace dxvk {
      if (hud) {
        m_apiHud = hud->addItem<hud::HudClientApiItem>("api", 1, GetApiName());
  
@@ -750,14 +766,13 @@ index 1daaaa6..ceb8623 100644
 +        if (framePacer) {
 +          int32_t fpsItemPos = hud->getItemPos<hud::HudFpsItem>();
 +          m_renderLatencyHud = hud->addItem<hud::HudRenderLatencyItem>("renderlatency", fpsItemPos+1);
-+          m_presentLatencyHud = hud->addItem<hud::HudPresentLatencyItem>("presentlatency", fpsItemPos+2);
-+          m_latencyDetailsHud = hud->addItem<hud::HudLatencyDetailsItem>("latencydetails", fpsItemPos+3);
++          m_latencyDetailsHud = hud->addItem<hud::HudLatencyDetailsItem>("latencydetails", fpsItemPos+2);
 +        }
 +      }
  
        hud->addItem<hud::HudFixedFunctionShaders>("ffshaders", -1, m_parent);
        hud->addItem<hud::HudSWVPState>("swvp", -1, m_parent);
-@@ -1132,6 +1151,9 @@ namespace dxvk {
+@@ -1132,6 +1147,9 @@ namespace dxvk {
      }
  
      m_wctx->presenter->setFrameRateLimit(frameRate, GetActualFrameLatency());
@@ -768,10 +783,10 @@ index 1daaaa6..ceb8623 100644
    }
  
 diff --git a/src/d3d9/d3d9_swapchain.h b/src/d3d9/d3d9_swapchain.h
-index c2248da..6f13bb8 100644
+index c2248da..8cc54eb 100644
 --- a/src/d3d9/d3d9_swapchain.h
 +++ b/src/d3d9/d3d9_swapchain.h
-@@ -183,8 +183,11 @@ namespace dxvk {
+@@ -183,8 +183,10 @@ namespace dxvk {
      bool                      m_latencyTracking = false;
      Rc<DxvkLatencyTracker>    m_latencyTracker = nullptr;
  
@@ -780,13 +795,12 @@ index c2248da..6f13bb8 100644
 +    Rc<hud::HudClientApiItem>       m_apiHud;
 +    Rc<hud::HudLatencyItem>         m_latencyHud;
 +    Rc<hud::HudRenderLatencyItem>   m_renderLatencyHud;
-+    Rc<hud::HudPresentLatencyItem>  m_presentLatencyHud;
 +    Rc<hud::HudLatencyDetailsItem>  m_latencyDetailsHud;
  
      std::optional<VkHdrMetadataEXT> m_hdrMetadata;
      bool m_unlockAdditionalFormats = false;
 diff --git a/src/dxvk/dxvk_compute.cpp b/src/dxvk/dxvk_compute.cpp
-index 60465c5..cc12d41 100644
+index 48b794f..fccea37 100644
 --- a/src/dxvk/dxvk_compute.cpp
 +++ b/src/dxvk/dxvk_compute.cpp
 @@ -8,6 +8,7 @@
@@ -804,32 +818,141 @@ index 60465c5..cc12d41 100644
 +    m_stateCache    (&pipeMgr->m_stateCache),
      m_stats         (&pipeMgr->m_stats),
      m_library       (library),
-     m_libraryHandle (VK_NULL_HANDLE),
+     m_shaders       (std::move(shaders)),
 diff --git a/src/dxvk/dxvk_compute.h b/src/dxvk/dxvk_compute.h
-index 6252ef0..7ac0af1 100644
+index 38fb044..d580867 100644
 --- a/src/dxvk/dxvk_compute.h
 +++ b/src/dxvk/dxvk_compute.h
-@@ -13,6 +13,7 @@
+@@ -12,8 +12,9 @@
+ #include "dxvk_stats.h"
+ 
  namespace dxvk {
-   
+-  
++
    class DxvkDevice;
 +  class DxvkStateCache;
    class DxvkPipelineManager;
    struct DxvkPipelineStats;
  
-@@ -127,6 +128,7 @@ namespace dxvk {
-   private:
-     
-     DxvkDevice*                 m_device;    
-+    DxvkStateCache*             m_stateCache;
-     DxvkPipelineStats*          m_stats;
+@@ -47,20 +48,20 @@ namespace dxvk {
+     DxvkComputePipelineStateInfo state;
+     VkPipeline                   handle = VK_NULL_HANDLE;
+   };
+-  
+-  
++
++
+   /**
+    * \brief Compute pipeline
+-   * 
++   *
+    * Stores a compute pipeline object and the corresponding
+    * pipeline layout. Unlike graphics pipelines, compute
+    * pipelines do not need to be recompiled against any sort
+    * of pipeline state.
+    */
+   class DxvkComputePipeline {
+-    
++
+   public:
+-    
++
+     DxvkComputePipeline(
+             DxvkDevice*                 device,
+             DxvkPipelineManager*        pipeMgr,
+@@ -68,7 +69,7 @@ namespace dxvk {
+             DxvkShaderPipelineLibrary*  library);
  
-     DxvkShaderPipelineLibrary*  m_library;
+     ~DxvkComputePipeline();
+-    
++
+     /**
+      * \brief Shaders used by the pipeline
+      * \returns Shaders used by the pipeline
+@@ -76,7 +77,7 @@ namespace dxvk {
+     const DxvkComputePipelineShaders& shaders() const {
+       return m_shaders;
+     }
+-    
++
+     /**
+      * \brief Queries pipeline layout
+      * \returns Pipeline layout
+@@ -95,19 +96,19 @@ namespace dxvk {
+       constexpr uint32_t globalMask = (1u << MaxNumSpecConstants) - 1;
+       return m_shaders.cs->metadata().specConstantMask & globalMask;
+     }
+-    
++
+     /**
+      * \brief Retrieves pipeline handle
+-     * 
++     *
+      * \param [in] state Pipeline state
+      * \returns Pipeline handle
+      */
+     VkPipeline getPipelineHandle(
+       const DxvkComputePipelineStateInfo& state);
+-    
++
+     /**
+      * \brief Compiles a pipeline
+-     * 
++     *
+      * Asynchronously compiles the given pipeline
+      * and stores the result for future use.
+      * \param [in] state Pipeline state
+@@ -126,8 +127,9 @@ namespace dxvk {
+     }
+ 
+   private:
+-    
++
+     DxvkDevice*                 m_device = nullptr;
++    DxvkStateCache*             m_stateCache = nullptr;
+     DxvkPipelineStats*          m_stats = nullptr;
+ 
+     DxvkShaderPipelineLibrary*  m_library = nullptr;
+@@ -135,22 +137,22 @@ namespace dxvk {
+ 
+     DxvkComputePipelineShaders  m_shaders;
+     DxvkPipelineBindings        m_layout;
+-    
++
+     std::string                 m_debugName;
+ 
+     alignas(CACHE_LINE_SIZE)
+     dxvk::mutex                             m_mutex;
+     sync::List<DxvkComputePipelineInstance> m_pipelines;
+-    
++
+     DxvkComputePipelineInstance* createInstance(
+       const DxvkComputePipelineStateInfo& state);
+-    
++
+     DxvkComputePipelineInstance* findInstance(
+       const DxvkComputePipelineStateInfo& state);
+-    
++
+     VkPipeline createPipeline(
+       const DxvkComputePipelineStateInfo& state) const;
+-    
++
+     void destroyPipeline(
+             VkPipeline                    pipeline);
+ 
+@@ -161,5 +163,5 @@ namespace dxvk {
+     std::string createDebugName() const;
+ 
+   };
+-  
++
+ }
 diff --git a/src/dxvk/dxvk_context.cpp b/src/dxvk/dxvk_context.cpp
-index 7a2c19c..48cfcf6 100644
+index ead2408..3880967 100644
 --- a/src/dxvk/dxvk_context.cpp
 +++ b/src/dxvk/dxvk_context.cpp
-@@ -113,7 +113,7 @@ namespace dxvk {
+@@ -109,7 +109,7 @@ namespace dxvk {
    void DxvkContext::beginLatencyTracking(
      const Rc<DxvkLatencyTracker>&     tracker,
            uint64_t                    frameId) {
@@ -838,7 +961,7 @@ index 7a2c19c..48cfcf6 100644
        tracker->notifyCsRenderBegin(frameId);
  
        m_latencyTracker = tracker;
-@@ -2655,7 +2655,7 @@ namespace dxvk {
+@@ -2653,7 +2653,7 @@ namespace dxvk {
      if (access == DxvkAccess::None) {
        // If the attachment is not accessed at all, we can set both the
        // load and store op to NONE if supported by the implementation.
@@ -847,7 +970,7 @@ index 7a2c19c..48cfcf6 100644
  
        attachment.loadOp = hasLoadOpNone
          ? VK_ATTACHMENT_LOAD_OP_NONE
-@@ -6094,7 +6094,8 @@ namespace dxvk {
+@@ -6085,7 +6085,8 @@ namespace dxvk {
                           DxvkContextFlag::GpDirtyDepthBias));
  
      // Retrieve and bind actual Vulkan pipeline handle
@@ -857,7 +980,7 @@ index 7a2c19c..48cfcf6 100644
  
      if (unlikely(!pipelineInfo.handle))
        return false;
-@@ -6733,7 +6734,7 @@ namespace dxvk {
+@@ -6724,7 +6725,7 @@ namespace dxvk {
    }
  
  
@@ -866,7 +989,7 @@ index 7a2c19c..48cfcf6 100644
      if (m_flags.test(DxvkContextFlag::GpDirtyRenderTargets)) {
        m_flags.clr(DxvkContextFlag::GpDirtyRenderTargets);
  
-@@ -6774,6 +6775,11 @@ namespace dxvk {
+@@ -6765,6 +6766,11 @@ namespace dxvk {
  
        m_state.om.framebufferInfo = std::move(fbInfo);
  
@@ -878,7 +1001,7 @@ index 7a2c19c..48cfcf6 100644
        m_flags.set(DxvkContextFlag::GpDirtyPipelineState);
      } else if (m_flags.test(DxvkContextFlag::GpRenderPassNeedsFlush)) {
        // End render pass to flush pending resolves
-@@ -6781,6 +6787,14 @@ namespace dxvk {
+@@ -6772,6 +6778,14 @@ namespace dxvk {
      }
    }
  
@@ -893,7 +1016,7 @@ index 7a2c19c..48cfcf6 100644
  
    void DxvkContext::applyRenderTargetLoadLayouts() {
      for (uint32_t i = 0; i < MaxNumRenderTargets; i++)
-@@ -7447,7 +7461,7 @@ namespace dxvk {
+@@ -7432,7 +7446,7 @@ namespace dxvk {
      // End render pass if there are pending resolves
      if (m_flags.any(DxvkContextFlag::GpDirtyRenderTargets,
                      DxvkContextFlag::GpRenderPassNeedsFlush))
@@ -903,10 +1026,10 @@ index 7a2c19c..48cfcf6 100644
      if (m_flags.test(DxvkContextFlag::GpXfbActive)) {
        // If transform feedback is active and there is a chance that we might
 diff --git a/src/dxvk/dxvk_context.h b/src/dxvk/dxvk_context.h
-index 2389c0c..ee0e294 100644
+index b365a2d..53ac424 100644
 --- a/src/dxvk/dxvk_context.h
 +++ b/src/dxvk/dxvk_context.h
-@@ -1723,7 +1723,7 @@ namespace dxvk {
+@@ -1722,7 +1722,7 @@ namespace dxvk {
      DxvkFramebufferInfo makeFramebufferInfo(
        const DxvkRenderTargets&      renderTargets);
  
@@ -915,7 +1038,7 @@ index 2389c0c..ee0e294 100644
      
      void applyRenderTargetLoadLayouts();
  
-@@ -1856,6 +1856,8 @@ namespace dxvk {
+@@ -1855,6 +1855,8 @@ namespace dxvk {
      Rc<DxvkSampler> createBlitSampler(
              VkFilter                  filter);
  
@@ -925,18 +1048,20 @@ index 2389c0c..ee0e294 100644
        const DxvkGraphicsPipelineShaders&  shaders);
  
 diff --git a/src/dxvk/dxvk_device.cpp b/src/dxvk/dxvk_device.cpp
-index a35626f..8cc298d 100644
+index 35df5ee..2e7b301 100644
 --- a/src/dxvk/dxvk_device.cpp
 +++ b/src/dxvk/dxvk_device.cpp
-@@ -2,6 +2,7 @@
+@@ -2,8 +2,7 @@
  #include "dxvk_instance.h"
  #include "dxvk_latency_builtin.h"
  #include "dxvk_latency_reflex.h"
+-#include "dxvk_shader_cache.h"
+-#include "dxvk_shader_ir.h"
 +#include "framepacer/dxvk_framepacer.h"
  
  namespace dxvk {
    
-@@ -513,15 +514,16 @@ namespace dxvk {
+@@ -544,15 +543,16 @@ namespace dxvk {
  
  
    Rc<DxvkLatencyTracker> DxvkDevice::createLatencyTracker(
@@ -957,10 +1082,10 @@ index a35626f..8cc298d 100644
  
      return new DxvkBuiltInLatencyTracker(presenter,
 diff --git a/src/dxvk/dxvk_device.h b/src/dxvk/dxvk_device.h
-index d77a888..0a47e34 100644
+index 9c4cfba..5cd60f6 100644
 --- a/src/dxvk/dxvk_device.h
 +++ b/src/dxvk/dxvk_device.h
-@@ -558,7 +558,8 @@ namespace dxvk {
+@@ -590,7 +590,8 @@ namespace dxvk {
       * \param [in] presenter Presenter instance
       */
      Rc<DxvkLatencyTracker> createLatencyTracker(
@@ -971,7 +1096,7 @@ index d77a888..0a47e34 100644
      /**
       * \brief Presents a swap chain image
 diff --git a/src/dxvk/dxvk_device_info.cpp b/src/dxvk/dxvk_device_info.cpp
-index 9a45f10..ec45aa3 100644
+index 0eadba5..af793bf 100644
 --- a/src/dxvk/dxvk_device_info.cpp
 +++ b/src/dxvk/dxvk_device_info.cpp
 @@ -42,7 +42,7 @@ namespace dxvk {
@@ -983,7 +1108,7 @@ index 9a45f10..ec45aa3 100644
      HANDLE_EXT(khrMaintenance5);                   \
      HANDLE_EXT(khrMaintenance6);                   \
      HANDLE_EXT(khrMaintenance7);                   \
-@@ -867,7 +867,7 @@ namespace dxvk {
+@@ -862,7 +862,7 @@ namespace dxvk {
        ENABLE_EXT(khrExternalSemaphoreWin32, false),
  
        /* LOAD_OP_NONE for certain tiler optimizations */
@@ -993,7 +1118,7 @@ index 9a45f10..ec45aa3 100644
        /* Maintenance features, relied on in various parts of the code */
        ENABLE_EXT_FEATURE(khrMaintenance5, maintenance5, true),
 diff --git a/src/dxvk/dxvk_device_info.h b/src/dxvk/dxvk_device_info.h
-index 1fb8374..3311313 100644
+index 30c0fd6..95d4030 100644
 --- a/src/dxvk/dxvk_device_info.h
 +++ b/src/dxvk/dxvk_device_info.h
 @@ -80,7 +80,7 @@ namespace dxvk {
@@ -1015,7 +1140,7 @@ index 1fb8374..3311313 100644
      VkExtensionProperties khrMaintenance6                   = vk::makeExtension(VK_KHR_MAINTENANCE_6_EXTENSION_NAME);
      VkExtensionProperties khrMaintenance7                   = vk::makeExtension(VK_KHR_MAINTENANCE_7_EXTENSION_NAME);
 diff --git a/src/dxvk/dxvk_graphics.cpp b/src/dxvk/dxvk_graphics.cpp
-index b9fbaad..a0428df 100644
+index dec4ef4..ae9d131 100644
 --- a/src/dxvk/dxvk_graphics.cpp
 +++ b/src/dxvk/dxvk_graphics.cpp
 @@ -5,6 +5,7 @@
@@ -1026,7 +1151,7 @@ index b9fbaad..a0428df 100644
  
  namespace dxvk {
  
-@@ -1000,6 +1001,7 @@ namespace dxvk {
+@@ -995,6 +996,7 @@ namespace dxvk {
    : m_device        (device),
      m_manager       (pipeMgr),
      m_workers       (&pipeMgr->m_workers),
@@ -1034,15 +1159,15 @@ index b9fbaad..a0428df 100644
      m_stats         (&pipeMgr->m_stats),
      m_shaders       (std::move(shaders)),
      m_layout        (device, pipeMgr, buildPipelineLayout()),
-@@ -1010,6 +1012,7 @@ namespace dxvk {
-     m_vsIn  = m_shaders.vs != nullptr ? m_shaders.vs->info().inputMask  : 0;
-     m_fsOut = m_shaders.fs != nullptr ? m_shaders.fs->info().outputMask : 0;
+@@ -1005,6 +1007,7 @@ namespace dxvk {
+     m_vsIn  = m_shaders.vs != nullptr ? m_shaders.vs->metadata().inputs.computeMask() : 0u;
+     m_fsOut = m_shaders.fs != nullptr ? m_shaders.fs->metadata().outputs.computeMask() : 0u;
      m_specConstantMask = this->computeSpecConstantMask();
 +    gplAsyncCache = m_device->config().gplAsyncCache && env::getEnvVar("DXVK_GPLASYNCCACHE") != "0";
  
      if (m_shaders.gs != nullptr) {
-       if (m_shaders.gs->flags().test(DxvkShaderFlag::HasTransformFeedback)) {
-@@ -1061,7 +1064,8 @@ namespace dxvk {
+       if (m_shaders.gs->metadata().flags.test(DxvkShaderFlag::HasTransformFeedback)) {
+@@ -1056,7 +1059,8 @@ namespace dxvk {
  
  
    DxvkGraphicsPipelineHandle DxvkGraphicsPipeline::getPipelineHandle(
@@ -1052,7 +1177,7 @@ index b9fbaad..a0428df 100644
      DxvkGraphicsPipelineInstance* instance = this->findInstance(state);
  
      if (unlikely(!instance)) {
-@@ -1069,11 +1073,22 @@ namespace dxvk {
+@@ -1064,11 +1068,22 @@ namespace dxvk {
        if (!this->validatePipelineState(state, true))
          return DxvkGraphicsPipelineHandle();
  
@@ -1076,7 +1201,7 @@ index b9fbaad..a0428df 100644
          // Keep pipeline object locked, at worst we're going to stall
          // a state cache worker and the current thread needs priority.
          bool canCreateBasePipeline = this->canCreateBasePipeline(state);
-@@ -1086,6 +1101,11 @@ namespace dxvk {
+@@ -1081,6 +1096,11 @@ namespace dxvk {
          // If necessary, compile an optimized pipeline variant
          if (!instance->fastHandle.load())
            m_workers->compileGraphicsPipeline(this, state, DxvkPipelinePriority::Low);
@@ -1088,7 +1213,7 @@ index b9fbaad..a0428df 100644
        }
      }
  
-@@ -1108,7 +1128,7 @@ namespace dxvk {
+@@ -1103,7 +1123,7 @@ namespace dxvk {
  
        // Do not compile if this pipeline can be fast linked. This essentially
        // disables the state cache for pipelines that do not benefit from it.
@@ -1097,7 +1222,7 @@ index b9fbaad..a0428df 100644
          return;
  
        // Prevent other threads from adding new instances and check again
-@@ -1129,8 +1149,14 @@ namespace dxvk {
+@@ -1124,8 +1144,14 @@ namespace dxvk {
      instance->fastHandle.store(pipeline, std::memory_order_release);
  
      // Log pipeline state on error
@@ -1113,7 +1238,7 @@ index b9fbaad..a0428df 100644
    }
  
  
-@@ -1384,6 +1410,8 @@ namespace dxvk {
+@@ -1385,6 +1411,8 @@ namespace dxvk {
      if (handle)
        m_fastPipelines.insert({ key, handle });
  
@@ -1122,7 +1247,7 @@ index b9fbaad..a0428df 100644
      return handle;
    }
  
-@@ -1626,6 +1654,19 @@ namespace dxvk {
+@@ -1628,6 +1656,19 @@ namespace dxvk {
    }
  
    
@@ -1143,7 +1268,7 @@ index b9fbaad..a0428df 100644
            LogLevel                       level,
      const DxvkGraphicsPipelineStateInfo& state) const {
 diff --git a/src/dxvk/dxvk_graphics.h b/src/dxvk/dxvk_graphics.h
-index 3f0bcff..dfbfbba 100644
+index 9a6a892..657d580 100644
 --- a/src/dxvk/dxvk_graphics.h
 +++ b/src/dxvk/dxvk_graphics.h
 @@ -15,6 +15,7 @@
@@ -1392,7 +1517,7 @@ index 63cba28..3901bf0 100644
  
      void updateViews();
 diff --git a/src/dxvk/dxvk_instance.cpp b/src/dxvk/dxvk_instance.cpp
-index 4756df1..78dc7d4 100644
+index cec9e35..589075f 100644
 --- a/src/dxvk/dxvk_instance.cpp
 +++ b/src/dxvk/dxvk_instance.cpp
 @@ -24,7 +24,7 @@ namespace dxvk {
@@ -1400,7 +1525,7 @@ index 4756df1..78dc7d4 100644
    DxvkInstance::DxvkInstance(const DxvkInstanceImportInfo& args, DxvkInstanceFlags flags) {
      Logger::info(str::format("Game: ", env::getExeName()));
 -    Logger::info(str::format("DXVK: ", DXVK_VERSION));
-+    Logger::info(str::format("DXVK-LOW-LATENCY: ", DXVK_VERSION));
++    Logger::info(str::format("DXVK-GPLALL: ", DXVK_VERSION));
      Logger::info(str::format("Build: ", DXVK_TARGET, " ", DXVK_COMPILER, " ", DXVK_COMPILER_VERSION));
  
      wsi::init();
@@ -1431,7 +1556,7 @@ index c9ac93c..f886e06 100644
       * \brief Called when presentation of a given frame finishes on the GPU
       *
 diff --git a/src/dxvk/dxvk_options.cpp b/src/dxvk/dxvk_options.cpp
-index 76eb57f..74cd620 100644
+index 8c18f3b..3a6dd64 100644
 --- a/src/dxvk/dxvk_options.cpp
 +++ b/src/dxvk/dxvk_options.cpp
 @@ -3,21 +3,28 @@
@@ -1463,10 +1588,10 @@ index 76eb57f..74cd620 100644
 +    lowLatencyAllowCpuFramesOverlap
 +                          = config.getOption<bool>    ("dxvk.lowLatencyAllowCpuFramesOverlap", true);
      deviceFilter          = config.getOption<std::string>("dxvk.deviceFilter",        "");
+     lowerSinCos           = config.getOption<Tristate>("dxvk.lowerSinCos",            Tristate::Auto);
      tilerMode             = config.getOption<Tristate>("dxvk.tilerMode",              Tristate::Auto);
- 
 diff --git a/src/dxvk/dxvk_options.h b/src/dxvk/dxvk_options.h
-index a0d07d3..df34897 100644
+index 380f5ec..a629693 100644
 --- a/src/dxvk/dxvk_options.h
 +++ b/src/dxvk/dxvk_options.h
 @@ -13,6 +13,9 @@ namespace dxvk {
@@ -1532,17 +1657,21 @@ index a0d07d3..df34897 100644
      Tristate tilerMode = Tristate::Auto;
  
 diff --git a/src/dxvk/dxvk_pipemanager.cpp b/src/dxvk/dxvk_pipemanager.cpp
-index b0b03f9..1a6c231 100644
+index 4083fbc..f4f11a2 100644
 --- a/src/dxvk/dxvk_pipemanager.cpp
 +++ b/src/dxvk/dxvk_pipemanager.cpp
-@@ -2,6 +2,7 @@
+@@ -2,9 +2,10 @@
  
  #include "dxvk_device.h"
  #include "dxvk_pipemanager.h"
 +#include "dxvk_state_cache.h"
  
  namespace dxvk {
-   
+-  
++
+   DxvkPipelineWorkers::DxvkPipelineWorkers(
+           DxvkDevice*                     device)
+   : m_device(device) {
 @@ -81,10 +82,17 @@ namespace dxvk {
  
    void DxvkPipelineWorkers::startWorkers() {
@@ -1562,7 +1691,16 @@ index b0b03f9..1a6c231 100644
        if (workerCount > 64) workerCount = 64;
  
        // Reduce worker count on 32-bit to save adderss space
-@@ -173,7 +181,8 @@ namespace dxvk {
+@@ -112,7 +120,7 @@ namespace dxvk {
+         auto& worker = m_workers.emplace_back([this, priority] {
+           runWorker(priority);
+         });
+-        
++
+         worker.set_priority(ThreadPriority::Lowest);
+       }
+ 
+@@ -171,26 +179,27 @@ namespace dxvk {
    DxvkPipelineManager::DxvkPipelineManager(
            DxvkDevice*         device)
    : m_device    (device),
@@ -1572,34 +1710,98 @@ index b0b03f9..1a6c231 100644
      Logger::info(str::format("DXVK: Graphics pipeline libraries ",
        (m_device->canUseGraphicsPipelineLibrary() ? "supported" : "not supported")));
  
-@@ -244,6 +253,17 @@ namespace dxvk {
-           // Don't dispatch the pipeline library to a worker thread
-           // since it should be compiled on demand anyway.
-           vsLibrary = createPipelineLibraryLocked(vsKey);
+     createNullFsPipelineLibrary()->compilePipeline();
+   }
+-  
+-  
 +
-+          // Register the pipeline library with the state cache
-+          // so that subsequent runs can still compile it early
-+          DxvkStateCacheKey shaderKeys;
-+          shaderKeys.vs = shaders.vs->getShaderKey();
 +
-+          if (shaders.tcs != nullptr) shaderKeys.tcs = shaders.tcs->getShaderKey();
-+          if (shaders.tes != nullptr) shaderKeys.tes = shaders.tes->getShaderKey();
-+          if (shaders.gs  != nullptr) shaderKeys.gs  = shaders.gs->getShaderKey();
+   DxvkPipelineManager::~DxvkPipelineManager() {
+-    
 +
-+          m_stateCache.addPipelineLibrary(shaderKeys);
-         }
-       }
+   }
+-  
+-  
++
++
+   DxvkComputePipeline* DxvkPipelineManager::createComputePipeline(
+     const DxvkComputePipelineShaders& shaders) {
+     if (shaders.cs == nullptr)
+       return nullptr;
+-    
++
+     std::lock_guard<dxvk::mutex> lock(m_pipelineMutex);
+-    
++
+     auto pair = m_computePipelines.find(shaders);
+     if (pair != m_computePipelines.end())
+       return &pair->second;
+@@ -206,13 +215,13 @@ namespace dxvk {
+       std::tuple(m_device, this, shaders, library));
+     return &iter.first->second;
+   }
+-  
+-  
++
++
+   DxvkGraphicsPipeline* DxvkPipelineManager::createGraphicsPipeline(
+     const DxvkGraphicsPipelineShaders& shaders) {
+     if (shaders.vs == nullptr)
+       return nullptr;
+-    
++
+     std::lock_guard<dxvk::mutex> lock(m_pipelineMutex);
  
-@@ -313,6 +333,8 @@ namespace dxvk {
-       auto library = createShaderPipelineLibrary(key);
-       m_workers.compilePipelineLibrary(library, DxvkPipelinePriority::Normal);
-     }
+     auto pair = m_graphicsPipelines.find(shaders);
+@@ -234,6 +243,16 @@ namespace dxvk {
+       // Don't dispatch the pipeline library to a worker thread
+       // since it should be compiled on demand anyway.
+       vsLibrary = createPipelineLibraryLocked(vsKey);
 +
++      // Register the pipeline library with the state cache
++      // so that subsequent runs can still compile it early
++      DxvkStateCacheKey shaderKeys;
++
++      shaderKeys.vs = shaders.vs->getShaderKey();
++      if (shaders.tcs != nullptr) shaderKeys.tcs = shaders.tcs->getShaderKey();
++      if (shaders.tes != nullptr) shaderKeys.tes = shaders.tes->getShaderKey();
++      if (shaders.gs  != nullptr) shaderKeys.gs  = shaders.gs->getShaderKey();
++      m_stateCache.addPipelineLibrary(shaderKeys);
+     }
+ 
+     DxvkShaderPipelineLibraryKey fsKey;
+@@ -250,7 +269,7 @@ namespace dxvk {
+     return &iter.first->second;
+   }
+ 
+-  
++
+   DxvkShaderPipelineLibrary* DxvkPipelineManager::createShaderPipelineLibrary(
+     const DxvkShaderPipelineLibraryKey& key) {
+     std::lock_guard<dxvk::mutex> lock(m_pipelineMutex);
+@@ -288,8 +307,8 @@ namespace dxvk {
+       std::tuple(m_device, state));
+     return &iter.first->second;
+   }
+-  
+-  
++
++
+   void DxvkPipelineManager::registerShader(
+     const Rc<DxvkShader>&         shader) {
+     DxvkShaderPipelineLibraryKey key;
+@@ -297,9 +316,9 @@ namespace dxvk {
+ 
+     auto library = createShaderPipelineLibrary(key);
+     m_workers.compilePipelineLibrary(library, DxvkPipelinePriority::Normal);
 +    m_stateCache.registerShader(shader);
    }
  
- 
-@@ -347,6 +369,7 @@ namespace dxvk {
+-
+   void DxvkPipelineManager::requestCompileShader(
+     const Rc<DxvkShader>&         shader) {
+     // Notify immediately so that this only gets called
+@@ -329,6 +348,7 @@ namespace dxvk {
  
    void DxvkPipelineManager::stopWorkerThreads() {
      m_workers.stopWorkers();
@@ -1608,7 +1810,7 @@ index b0b03f9..1a6c231 100644
  
  
 diff --git a/src/dxvk/dxvk_pipemanager.h b/src/dxvk/dxvk_pipemanager.h
-index 494ac9e..780fe70 100644
+index f98d484..e8fbc46 100644
 --- a/src/dxvk/dxvk_pipemanager.h
 +++ b/src/dxvk/dxvk_pipemanager.h
 @@ -7,6 +7,7 @@
@@ -1626,9 +1828,9 @@ index 494ac9e..780fe70 100644
 +    DxvkStateCache            m_stateCache;
      DxvkPipelineStats         m_stats;
      
-     dxvk::mutex m_mutex;
+     dxvk::mutex m_layoutMutex;
 diff --git a/src/dxvk/dxvk_presenter.cpp b/src/dxvk/dxvk_presenter.cpp
-index 76de00f..89ea8c4 100644
+index 76de00f..7314f2c 100644
 --- a/src/dxvk/dxvk_presenter.cpp
 +++ b/src/dxvk/dxvk_presenter.cpp
 @@ -3,6 +3,7 @@
@@ -1699,7 +1901,7 @@ index 76de00f..89ea8c4 100644
      // Guaranteed to be available
      return VK_PRESENT_MODE_FIFO_KHR;
    }
-@@ -1235,30 +1239,32 @@ namespace dxvk {
+@@ -1235,26 +1239,25 @@ namespace dxvk {
    void Presenter::runFrameThread() {
      env::setThreadName("dxvk-frame");
  
@@ -1735,18 +1937,10 @@ index 76de00f..89ea8c4 100644
  
 +      lock.unlock();
 +
-+      FramePacer* pacer = dynamic_cast<FramePacer*>(frame.tracker.ptr());
-+
        // If the present operation has succeeded, actually wait for it to complete.
        // Don't bother with it on MAILBOX / IMMEDIATE modes since doing so would
        // restrict us to the display refresh rate on some platforms (XWayland).
--      if (frame.result >= 0 && (frame.mode == VK_PRESENT_MODE_FIFO_KHR || frame.mode == VK_PRESENT_MODE_FIFO_RELAXED_KHR)) {
-+      if (frame.result >= 0 && (frame.mode == VK_PRESENT_MODE_FIFO_KHR || frame.mode == VK_PRESENT_MODE_FIFO_RELAXED_KHR
-+        || (pacer && pacer->getMode() && frame.mode != VK_PRESENT_MODE_MAILBOX_KHR))) {
-         VkResult vr = m_vkd->vkWaitForPresentKHR(m_vkd->device(),
-           m_swapchain, frame.frameId, std::numeric_limits<uint64_t>::max());
- 
-@@ -1268,32 +1274,24 @@ namespace dxvk {
+@@ -1268,32 +1271,24 @@ namespace dxvk {
  
        // Signal latency tracker right away to get more accurate
        // measurements if the frame rate limiter is enabled.
@@ -3117,10 +3311,10 @@ index 0000000..e7ee3e5
 +}
 diff --git a/src/dxvk/framepacer/dxvk_framepacer.cpp b/src/dxvk/framepacer/dxvk_framepacer.cpp
 new file mode 100644
-index 0000000..4554a23
+index 0000000..9bb52ca
 --- /dev/null
 +++ b/src/dxvk/framepacer/dxvk_framepacer.cpp
-@@ -0,0 +1,104 @@
+@@ -0,0 +1,108 @@
 +#include "dxvk_framepacer.h"
 +#include "dxvk_framepacer_mode_low_latency.h"
 +#include "dxvk_framepacer_mode_min_latency.h"
@@ -3136,7 +3330,8 @@ index 0000000..4554a23
 +  }
 +
 +
-+  FramePacer::FramePacer( const DxvkOptions& options, uint64_t firstFrameId ) {
++  FramePacer::FramePacer( const DxvkOptions& options, uint64_t firstFrameId )
++  : m_latencyMarkersStorage(firstFrameId) {
 +    // We'll default to LOW_LATENCY in the draft-PR for now, for demonstration purposes,
 +    // highlighting the generally much better input lag and time consistency.
 +    // MAX_FRAME_LATENCY has advantages in some games that provide inconsistent
@@ -3173,28 +3368,28 @@ index 0000000..4554a23
 +    switch (mode) {
 +      case FramePacerMode::MAX_FRAME_LATENCY:
 +        Logger::info( "Frame pace: max-frame-latency" );
-+        m_mode = std::make_unique<FramePacerMode>(FramePacerMode::MAX_FRAME_LATENCY, &m_latencyMarkersStorage);
++        m_mode = std::make_unique<FramePacerMode>(FramePacerMode::MAX_FRAME_LATENCY, &m_latencyMarkersStorage, firstFrameId);
 +        break;
 +
 +      case FramePacerMode::LOW_LATENCY:
 +        Logger::info( "Frame pace: low-latency" );
 +        GpuFlushTracker::m_minPendingSubmissions = 1;
 +        GpuFlushTracker::m_minChunkCount = 1;
-+        m_mode = std::make_unique<LowLatencyMode>(mode, &m_latencyMarkersStorage, options);
++        m_mode = std::make_unique<LowLatencyMode>(mode, &m_latencyMarkersStorage, options, firstFrameId);
 +        break;
 +
 +      case FramePacerMode::LOW_LATENCY_VRR:
 +        Logger::info( "Frame pace: low-latency-vrr" );
 +        GpuFlushTracker::m_minPendingSubmissions = 1;
 +        GpuFlushTracker::m_minChunkCount = 1;
-+        m_mode = std::make_unique<LowLatencyMode>(mode, &m_latencyMarkersStorage, options, refreshRate);
++        m_mode = std::make_unique<LowLatencyMode>(mode, &m_latencyMarkersStorage, options, firstFrameId, refreshRate);
 +        break;
 +
 +      case FramePacerMode::MIN_LATENCY:
 +        Logger::info( "Frame pace: min-latency" );
 +        GpuFlushTracker::m_minPendingSubmissions = 1;
 +        GpuFlushTracker::m_minChunkCount = 1;
-+        m_mode = std::make_unique<MinLatencyMode>(mode, &m_latencyMarkersStorage);
++        m_mode = std::make_unique<MinLatencyMode>(mode, &m_latencyMarkersStorage, firstFrameId);
 +        break;
 +    }
 +
@@ -3204,7 +3399,9 @@ index 0000000..4554a23
 +
 +    // be consistent that every frame has a gpuReady event from finishing the previous frame
 +    LatencyMarkers* m = m_latencyMarkersStorage.getMarkers( firstFrameId );
-+    m->gpuReady.push_back( high_resolution_clock::now() );
++    auto now = high_resolution_clock::now();
++    m->gpuReady.push_back( now );
++    m_mode->notifyGpuReady( firstFrameId, now );
 +    m_gpuStarts[ firstFrameId % m_gpuStarts.size() ] = gpuReadyBit;
 +
 +    LatencyMarkersTimeline& timeline = m_latencyMarkersStorage.m_timeline;
@@ -3215,6 +3412,7 @@ index 0000000..4554a23
 +
 +    m_mode->signalGpuStart       ( firstFrameId-1 );
 +    m_mode->signalRenderFinished ( firstFrameId-1 );
++    m_mode->signalFrameFinished  ( firstFrameId-1 );
 +    m_mode->signalCsFinished     ( firstFrameId );
 +  }
 +
@@ -3227,10 +3425,10 @@ index 0000000..4554a23
 +}
 diff --git a/src/dxvk/framepacer/dxvk_framepacer.h b/src/dxvk/framepacer/dxvk_framepacer.h
 new file mode 100644
-index 0000000..15583e9
+index 0000000..34f5461
 --- /dev/null
 +++ b/src/dxvk/framepacer/dxvk_framepacer.h
-@@ -0,0 +1,228 @@
+@@ -0,0 +1,233 @@
 +#pragma once
 +
 +#include "dxvk_framepacer_mode.h"
@@ -3238,7 +3436,6 @@ index 0000000..15583e9
 +#include "dxvk_latency_stats.h"
 +#include "../dxvk_latency.h"
 +#include "../../util/util_time.h"
-+#include <dxgi.h>
 +
 +
 +namespace dxvk {
@@ -3274,6 +3471,7 @@ index 0000000..15583e9
 +      // the frame has been displayed to the screen
 +      m_latencyMarkersStorage.registerFrameEnd(frameId);
 +      m_mode->endFrame(frameId);
++      m_mode->signalFrameFinished(frameId);
 +      m_gpuStarts[ (frameId-1) % m_gpuStarts.size() ].store(0);
 +      trackStats(frameId);
 +    }
@@ -3315,6 +3513,7 @@ index 0000000..15583e9
 +      LatencyMarkers* m = m_latencyMarkersStorage.getMarkers(frameId);
 +      m->gpuQueueSubmit.push_back(now);
 +      queueSubmitCheckGpuStart(frameId, m, now);
++      m_mode->notifyQueueSubmit(frameId, now);
 +    }
 +
 +    void notifyQueuePresentBegin( uint64_t frameId ) override {
@@ -3323,6 +3522,7 @@ index 0000000..15583e9
 +        LatencyMarkers* m = m_latencyMarkersStorage.getMarkers(frameId);
 +        LatencyMarkers* next = m_latencyMarkersStorage.getMarkers(frameId+1);
 +        m->gpuQueueSubmit.push_back(now);
++        m_mode->notifyQueueSubmit(frameId, now);
 +        next->gpuQueueSubmit.clear();
 +        queueSubmitCheckGpuStart(frameId, m, now);
 +      }
@@ -3332,6 +3532,7 @@ index 0000000..15583e9
 +      auto now = high_resolution_clock::now();
 +      LatencyMarkers* m = m_latencyMarkersStorage.getMarkers(frameId);
 +      m->gpuReady.push_back(now);
++      m_mode->notifyGpuReady(frameId, now);
 +    }
 +
 +    virtual void notifyGpuPresentBegin( uint64_t frameId ) override {
@@ -3342,9 +3543,11 @@ index 0000000..15583e9
 +        LatencyMarkers* m = m_latencyMarkersStorage.getMarkers(frameId);
 +        LatencyMarkers* next = m_latencyMarkersStorage.getMarkers(frameId+1);
 +        m->gpuReady.push_back(now);
++        m_mode->notifyGpuReady(frameId, now);
 +        m->gpuFinished = std::chrono::duration_cast<microseconds>(now - m->start).count();
 +        next->gpuReady.clear();
 +        next->gpuReady.push_back(now);
++        m_mode->notifyGpuReady(frameId+1, now);
 +
 +        gpuExecutionCheckGpuStart(frameId+1, next, now);
 +
@@ -3461,16 +3664,16 @@ index 0000000..15583e9
 +}
 diff --git a/src/dxvk/framepacer/dxvk_framepacer_mode.h b/src/dxvk/framepacer/dxvk_framepacer_mode.h
 new file mode 100644
-index 0000000..abe626c
+index 0000000..768d745
 --- /dev/null
 +++ b/src/dxvk/framepacer/dxvk_framepacer_mode.h
-@@ -0,0 +1,127 @@
+@@ -0,0 +1,138 @@
 +#pragma once
 +
 +#include "dxvk_latency_markers.h"
 +#include "../../util/sync/sync_signal.h"
 +#include "../../util/util_env.h"
-+#include <dxgi.h>
++#include "../../util/util_time.h"
 +
 +namespace dxvk {
 +
@@ -3479,6 +3682,8 @@ index 0000000..abe626c
 +   */
 +
 +  class FramePacerMode {
++
++    using time_point = high_resolution_clock::time_point;
 +
 +  public:
 +
@@ -3489,9 +3694,10 @@ index 0000000..abe626c
 +      MIN_LATENCY
 +    };
 +
-+    FramePacerMode( Mode mode, LatencyMarkersStorage* markerStorage, uint32_t maxFrameLatency=1 )
++    FramePacerMode( Mode mode, LatencyMarkersStorage* markerStorage, uint64_t firstFrameId, uint32_t maxFrameLatency=1 )
 +    : m_mode( mode ),
 +      m_waitLatency( maxFrameLatency+1 ),
++      m_firstFrameId( firstFrameId ),
 +      m_latencyMarkersStorage( markerStorage ) {
 +      setFpsLimitFrametimeFromEnv();
 +    }
@@ -3502,6 +3708,9 @@ index 0000000..abe626c
 +    virtual void endFrame( uint64_t frameId ) { }
 +
 +    virtual void finishRender( uint64_t frameId ) { }
++
++    virtual void notifyQueueSubmit( uint64_t frameId, time_point t ) { }
++    virtual void notifyGpuReady( uint64_t frameId, time_point t ) { }
 +
 +    virtual bool getDesiredPresentMode( uint32_t& presentMode ) const {
 +      return false; }
@@ -3516,6 +3725,9 @@ index 0000000..abe626c
 +
 +    void signalRenderFinished( uint64_t frameId ) {
 +      if (m_mode) m_fenceGpuFinished.signal(frameId); }
++
++    void signalFrameFinished( uint64_t frameId ) {
++      if (m_mode) m_fenceFrameFinished.signal(frameId); }
 +
 +    void signalGpuStart( uint64_t frameId ) {
 +      if (m_mode) m_fenceGpuStart.signal(frameId); }
@@ -3538,14 +3750,16 @@ index 0000000..abe626c
 +    void setFpsLimitFrametimeFromEnv();
 +
 +    const uint32_t m_waitLatency;
++    const uint64_t m_firstFrameId;
 +    LatencyMarkersStorage* m_latencyMarkersStorage;
 +    std::atomic<uint32_t> m_presentMode;
 +    std::atomic<int32_t> m_fpsLimitFrametime = { 0 };
 +    bool m_fpsLimitEnvOverride = { false };
 +
-+    sync::Fence m_fenceGpuStart    = { sync::Fence(DXGI_MAX_SWAP_CHAIN_BUFFERS) };
-+    sync::Fence m_fenceGpuFinished = { sync::Fence(DXGI_MAX_SWAP_CHAIN_BUFFERS) };
-+    sync::Fence m_fenceCsFinished  = { sync::Fence(DXGI_MAX_SWAP_CHAIN_BUFFERS) };
++    sync::Fence m_fenceGpuStart;
++    sync::Fence m_fenceGpuFinished;
++    sync::Fence m_fenceFrameFinished;
++    sync::Fence m_fenceCsFinished;
 +
 +  };
 +
@@ -3622,18 +3836,18 @@ index 0000000..8463621
 +}
 diff --git a/src/dxvk/framepacer/dxvk_framepacer_mode_low_latency.h b/src/dxvk/framepacer/dxvk_framepacer_mode_low_latency.h
 new file mode 100644
-index 0000000..4d6ba32
+index 0000000..41bf729
 --- /dev/null
 +++ b/src/dxvk/framepacer/dxvk_framepacer_mode_low_latency.h
-@@ -0,0 +1,361 @@
+@@ -0,0 +1,393 @@
 +#pragma once
 +
 +#include "dxvk_framepacer_mode.h"
 +#include "dxvk_latency_stats.h"
++#include "dxvk_gpu_progress.h"
 +#include "../dxvk_options.h"
 +#include "../../util/log/log.h"
 +#include "../../util/util_string.h"
-+#include <assert.h>
 +
 +namespace dxvk {
 +
@@ -3647,22 +3861,32 @@ index 0000000..4d6ba32
 +   *
 +   * The current implementation rather generates fluctuations alternating frame-by-frame
 +   * depending on the game's and dxvk's CPU-time variations. This might be visible as a loss
-+   * in smoothness, which is an area this implementation can be further improved. Unsuitable
-+   * smoothing however might degrade input-lag feel, so it's not implemented for now, but
-+   * more advanced smoothing techniques will be investigated in the future.
-+   * In some situations however, this low-latency pacing actually improves smoothing though,
-+   * it will depend on the game.
++   * in smoothness in games which provide strongly varying frame times. Most games should be fine,
++   * but for example in 'God of War', we measured a prediction error of +/- 3 ms for the
++   * 99% percentiles and up to +/- 2 ms for the 95% percentiles, which is a bit too much.
++   * Smoothing may be a consideration in such a case, but unsuitable smoothing will degrade input feel,
++   * so it's not implemented for now, but more advanced smoothing techniques will be investigated
++   * in the future.
 +   *
-+   * An interesting observation while playtesting was that not only the input lag was affected,
-+   * but the video generated did progress more cleanly in time as well with regards to
-+   * medium-term time consistency, in other words, the video playback speed remained more steady.
++   * In some situations however, this low-latency pacing actually presents smoother visuals
++   * than max-frame-latency, because when the prediction error is small, this jitter effect
++   * gets negligible, and it becomes apparent that the generated video progresses more cleanly
++   * in time with regards to medium-term time consistency. In other words, the video playback speed
++   * is more accurate and steady - for the same reasons why input lag consistency is improved.
 +   *
-+   * Optimized for VRR and VK_PRESENT_MODE_IMMEDIATE_KHR. It also comes with its own fps-limiter
-+   * which is typically used to prevent the game's fps exceeding the monitor's refresh rate,
-+   * and which is tightly integrated into the pacing logic.
++   * Fps limiting is tightly integrated into the frame pacing logic and is highly recommended
++   * to be used in place of most ingame limiters.
 +   *
-+   * Can be fine-tuned via the dxvk.lowLatencyOffset and dxvk.lowLatencyAllowCpuFramesOverlap
-+   * variables (or their respective environment variables)
++   * A VRR mode that activates V-Sync is also provided to combine low latency with image clarity.
++   * It's achieved by predictively limiting at the present timeline, respecting v-blanks to
++   * avoid going into V-Sync buffering. This can further be tuned by using the fps limiter at the
++   * same time, which means there are basically two limiters active. The advantage of doing so
++   * is that the "normal" fps limiter isn't affected by prediction errors. Selecting a VRR refresh
++   * rate smaller than the monitor's refresh rate will lower the chance and/or lower the duration
++   * frames will go into V-Sync buffering.
++   *
++   * It further can be fine-tuned via the dxvk.lowLatencyOffset and
++   * dxvk.lowLatencyAllowCpuFramesOverlap config variables.
 +   * Compared to maxFrameLatency = 3, render-latency reductions of up to 67% are achieved.
 +   */
 +
@@ -3671,17 +3895,18 @@ index 0000000..4d6ba32
 +    using time_point = high_resolution_clock::time_point;
 +  public:
 +
-+    LowLatencyMode(Mode mode, LatencyMarkersStorage* storage, const DxvkOptions& options, int refreshRate = 0)
-+    : FramePacerMode(mode, storage),
++    LowLatencyMode(Mode mode, LatencyMarkersStorage* storage, const DxvkOptions& options, uint64_t firstFrameId, int refreshRate = 0)
++    : FramePacerMode(mode, storage, firstFrameId),
 +      m_lowLatencyOffset(getLowLatencyOffset(options)),
 +      m_allowCpuFramesOverlap(options.lowLatencyAllowCpuFramesOverlap),
-+      m_presentationStats(5000) {
-+      Logger::info( str::format("Using lowLatencyOffset: ", m_lowLatencyOffset) );
-+      Logger::info( str::format("Using lowLatencyAllowCpuFramesOverlap: ", m_allowCpuFramesOverlap) );
++      m_presentationStats(5000),
++      m_gpuProgress(storage) {
++      Logger::info( str::format("  lowLatencyOffset: ", m_lowLatencyOffset) );
++      Logger::info( str::format("  lowLatencyAllowCpuFramesOverlap: ", m_allowCpuFramesOverlap) );
 +
 +      if (refreshRate > 0) {
 +        m_vrrRefreshInterval = 1'000'000 / refreshRate;
-+        Logger::info( str::format("Using vrr refresh rate: ", refreshRate) );
++        Logger::info( str::format("  vrr refresh rate: ", refreshRate) );
 +      }
 +
 +    }
@@ -3699,79 +3924,81 @@ index 0000000..4d6ba32
 +
 +      m_fenceGpuStart.wait( frameId-1 );
 +
++      if (m_mode == LOW_LATENCY_VRR)
++        m_fenceFrameFinished.wait( frameId-2 );
++
 +      time_point now = high_resolution_clock::now();
-+      time_point nextStart { };
++      const LatencyMarkers* m = m_latencyMarkersStorage->getConstMarkers(frameId-1);
++      uint64_t finishedId = m_latencyMarkersStorage->getTimeline()->gpuFinished.load();
++      if (finishedId <= m_firstFrameId+1)
++        return;
 +
-+      for (int i=0; i<2; ++i) {
-+        // We run this loop twice since there may be new information available
-+        // after the first sleep that lead to a second sleep.
-+        // While this may not happen that often, this is very relevant in certain situations
-+        // in which this can lead to up to 20% latency reduction. This may not only happen
-+        // for single frames, but the time span of this situation can be a second or more.
-+
-+        // Note: This works as is, because Sleep::sleepUntil doesn't work how it's advertised. It reads:
-+        // "Convenience function that sleeps for the time difference between t1 and t0.",
-+        // but it seems to just sleep until t1, regardless of t0, which is exactly what we need.
-+
-+        uint64_t finishedId = m_latencyMarkersStorage->getTimeline()->gpuFinished.load();
-+        if (finishedId <= DXGI_MAX_SWAP_CHAIN_BUFFERS+1ull)
-+          return;
-+
-+        if (finishedId == frameId-1) {
-+          // we are the only in-flight frame, nothing to do other then
-+          // to sync to v-blank and apply fps-limiter if needed
-+          int32_t delay = 0;
-+          if (m_mode == LOW_LATENCY_VRR) {
-+            const SyncProps props = getSyncPrediction();
-+            delay = std::max(delay, getVrrDelay(frameId, props, now));
-+            delay += m_lowLatencyOffset;
-+          }
-+
-+          nextStart = sleepFor( now, delay );
-+          continue;
-+        }
-+
-+        if (unlikely(finishedId != frameId-2)) {
-+          Logger::err( str::format("internal error during low-latency frame pacing: expected finished frameId=",
-+            frameId-2, ", got: ", finishedId) );
-+        }
-+
-+        const LatencyMarkers* m = m_latencyMarkersStorage->getConstMarkers(frameId-1);
-+
-+        // estimate the target gpu sync point for this frame
-+        // and calculate backwards when we want to start this frame
-+
-+        const SyncProps props = getSyncPrediction();
-+        int32_t lastFrameStart = duration_cast<microseconds>( m->start - now ).count();
-+        int32_t gpuReadyPrediction = lastFrameStart
-+          + std::max( props.cpuUntilGpuStart, m->gpuStart )
-+          + props.optimizedGpuTime;
-+
-+        int32_t targetGpuSync = gpuReadyPrediction + props.gpuSync;
-+        int32_t gpuDelay = targetGpuSync - props.cpuUntilGpuSync;
-+
-+        int32_t cpuReadyPrediction = duration_cast<microseconds>(
-+          m->start + microseconds(props.csFinished) - now).count();
-+        int32_t cpuDelay = cpuReadyPrediction - props.csStart;
-+
-+        int32_t delay = std::max(gpuDelay, cpuDelay);
-+
-+        if (m_mode == LOW_LATENCY_VRR) {
-+          delay = std::max(delay, getVrrDelay(frameId, props, now, gpuReadyPrediction));
-+        }
-+
-+        delay += m_lowLatencyOffset;
-+        nextStart = sleepFor( now, delay );
++      if (finishedId == frameId-1) {
++        // we are the only in-flight frame
++        int32_t delay = getFpsLimiterDelay( m, now );
++        sleepFor( now, delay );
++        return;
 +      }
 +
-+      m_lastStart = nextStart;
++      SyncProps props = getSyncPrediction();
++      int32_t targetGpuTime = props.optimizedGpuTime - props.cpuUntilGpuStart + m_lowLatencyOffset;
++
++      if (m_mode == LOW_LATENCY_VRR) {
++        int32_t vrrDelay = getVrrDelay( frameId, props, now );
++        int32_t vrrGpuTime = vrrDelay - std::max( m->gpuStart, props.cpuUntilGpuStart );
++        targetGpuTime = std::max( targetGpuTime, vrrGpuTime );
++      }
++
++      if (targetGpuTime <= 0) {
++        // we don't track gpu progress, because we start earlier than
++        // when the first submission might be processed by the gpu.
++        // this means, this path is mostly taken when being cpu limited.
++        int32_t gpuDelay = getGpuDelay( props, m, now );
++        int32_t delay = std::max( gpuDelay, getCpuDelay( props, m, now ) );
++        delay = std::max( delay, getFpsLimiterDelay( m, now ) );
++        delay = std::max( delay, getVrrDelay( frameId, props, now ) );
++
++        sleepFor( now, delay );
++        return;
++      }
++
++      time_point lastFrameFinish;
++
++      if (targetGpuTime < props.optimizedGpuTime) {
++        m_gpuProgress.waitUntil( frameId-1, targetGpuTime, props.cpuUntilGpuStart );
++        lastFrameFinish = high_resolution_clock::now()
++          + microseconds(props.optimizedGpuTime - targetGpuTime);
++      }
++      else {
++        if (m_mode == LOW_LATENCY_VRR) {
++          m_fenceFrameFinished.wait( frameId-1 );
++        } else {
++          m_fenceGpuFinished.wait( frameId-1 );
++          lastFrameFinish = high_resolution_clock::now();
++        }
++      }
++
++      props = getSyncPrediction();
++      now = high_resolution_clock::now();
++      int32_t cpuDelay = getCpuDelay( props, m, now );
++      int32_t delay = std::max( cpuDelay, getFpsLimiterDelay( m, now ) );
++      delay = std::max( delay, getVrrDelay( frameId, props, now, lastFrameFinish ) );
++      sleepFor( now, delay );
 +
 +    }
++
++
++    void notifyGpuReady( uint64_t frameId, time_point t ) override
++      { m_gpuProgress.notifyGpuReady( frameId, t ); }
++
++    void notifyQueueSubmit( uint64_t frameId, time_point t ) override
++      { m_gpuProgress.notifyQueueSubmit( frameId, t ); }
 +
 +
 +    void finishRender( uint64_t frameId ) override {
 +
 +      using std::chrono::duration_cast;
++      m_gpuProgress.finishRender( frameId );
 +      const LatencyMarkers* m = m_latencyMarkersStorage->getConstMarkers(frameId);
 +
 +      int32_t numLoop = (int32_t)(m->gpuReady.size())-1;
@@ -3827,15 +4054,15 @@ index 0000000..4d6ba32
 +
 +    void endFrame( uint64_t frameId ) override {
 +
-+      if (m_mode == LOW_LATENCY_VRR && frameId > 100) {
++      if (m_mode == LOW_LATENCY_VRR && frameId > m_firstFrameId+1) {
 +        const LatencyMarkers* m1 = m_latencyMarkersStorage->getConstMarkers(frameId-1);
 +        const LatencyMarkers* m2 = m_latencyMarkersStorage->getConstMarkers(frameId);
 +
 +        int32_t gpuFinishedInterval = std::chrono::duration_cast<microseconds>(
 +          (m2->start + microseconds(m2->gpuFinished)) - (m1->start + microseconds(m1->gpuFinished))).count();
 +
-+        // Only push values where we probably weren't running into v-sync buffering.
-+        // Otherwise we can get a presentation stats median drift due to feedback loop.
++        // only push values where we probably weren't running into v-sync buffering.
++        // otherwise we can get a presentation stats median drift due to feedback loop.
 +        if (gpuFinishedInterval >= 0.99 * m_vrrRefreshInterval)
 +          m_presentationStats.push( m2->end, m2->presentFinished - m2->gpuFinished );
 +      }
@@ -3857,18 +4084,18 @@ index 0000000..4d6ba32
 +    };
 +
 +
-+    SyncProps getSyncPrediction() {
++    SyncProps getSyncPrediction() const {
 +      // In the future we might use more samples to get a prediction.
 +      // Possibly this will be optional, as until now, basing it on
 +      // just the previous frame gave us the best mouse input feel.
 +      // Simple averaging or median filtering is surely not the way
 +      // to go, but more advanced methods will be investigated.
-+      // The best place to filter should be on the Present() timeline,
-+      // so not sure if we really will do any filtering here other
-+      // than outlier removal, which will dampen stuttering effects.
++      // Outlier removal has worked out really well though, so that's
++      // what we are using here.
++
 +      SyncProps res = {};
 +      uint64_t id = m_propsFinished;
-+      if (id < DXGI_MAX_SWAP_CHAIN_BUFFERS+7)
++      if (id < m_firstFrameId+7)
 +        return res;
 +
 +      for (size_t i=0; i<7; ++i) {
@@ -3880,31 +4107,69 @@ index 0000000..4d6ba32
 +      }
 +
 +      return m_props[ id % m_props.size() ];
++
 +    };
 +
 +
-+    bool isOutlier( uint64_t frameId ) {
-+      constexpr size_t numLoop = 7;
++    bool isOutlier( uint64_t frameId ) const {
++
++      constexpr int32_t numLoop = 7;
 +      int32_t totalCpuTime = 0;
-+      for (size_t i=1; i<numLoop; ++i) {
-+        const LatencyMarkers* m = m_latencyMarkersStorage->getConstMarkers(frameId-i);
-+        totalCpuTime += m->cpuFinished;
++      for (int32_t i=1; i<numLoop; ++i) {
++        const SyncProps& props = m_props[ (frameId-i) % m_props.size() ];
++        totalCpuTime += props.cpuUntilGpuStart;
 +      }
 +
 +      int32_t avgCpuTime = totalCpuTime / (numLoop-1);
-+      const LatencyMarkers* m = m_latencyMarkersStorage->getConstMarkers(frameId);
-+      if (m->cpuFinished > 1.3*avgCpuTime || m->gpuSubmit.empty() || m->gpuReady.size() != (m->gpuSubmit.size()+1) )
++      const SyncProps& props = m_props[ frameId % m_props.size() ];
++      if (props.cpuUntilGpuStart > 1.3*avgCpuTime)
 +        return true;
 +
 +      return false;
++
 +    }
 +
 +
-+    int32_t getVrrDelay( uint64_t frameId, const SyncProps& props, const time_point& t, int32_t gpuReadyPrediction = 0 ) {
++    int32_t getGpuDelay( const SyncProps& props, const LatencyMarkers* m, time_point now ) const {
 +
-+      uint64_t frameFinishedId = m_latencyMarkersStorage->getTimeline()->frameFinished.load();
-+      int32_t lastVBlank = std::chrono::duration_cast<microseconds> (
-+        m_latencyMarkersStorage->getConstMarkers(frameFinishedId)->end - t ).count();
++      int32_t lastFrameStart = std::chrono::duration_cast<microseconds>( m->start - now ).count();
++      int32_t gpuReadyPrediction = lastFrameStart
++        + std::max( props.cpuUntilGpuStart, m->gpuStart )
++        + props.optimizedGpuTime;
++
++      int32_t gpuDelay = gpuReadyPrediction - props.cpuUntilGpuStart;
++      return gpuDelay + m_lowLatencyOffset;
++
++    }
++
++
++    int32_t getCpuDelay( const SyncProps& props, const LatencyMarkers* m, time_point now ) const {
++
++      if (!m_allowCpuFramesOverlap)
++        return 0;
++
++      // prevents the cs thread from creating additional latency.
++      // in the future, we should handle this a bit more sophisticatedly, allowing more overlap.
++      int32_t cpuReadyPrediction = std::chrono::duration_cast<microseconds>(
++          m->start + microseconds(props.csFinished) - now).count();
++      int32_t cpuDelay = cpuReadyPrediction - props.csStart;
++      return cpuDelay + m_lowLatencyOffset;
++
++    }
++
++
++    int32_t getFpsLimiterDelay( const LatencyMarkers* m, time_point now ) const {
++
++      int32_t frametime = std::chrono::duration_cast<microseconds>( now - m->start ).count();
++      return std::max( 0, m_fpsLimitFrametime.load() - frametime );
++
++    }
++
++
++    int32_t getVrrDelay( uint64_t frameId, const SyncProps& props, const time_point& now, const time_point& lastFrameFinish = time_point{} ) {
++
++      if (m_mode != LOW_LATENCY_VRR)
++        return 0;
 +
 +      // Presentation latency should be fairly stable, but drivers may report back
 +      // different levels of latency (Nvidia reports very low latencies on x11 flip compared
@@ -3914,57 +4179,37 @@ index 0000000..4d6ba32
 +      // on all cpu cores, we will get thread starvation and higher latency.
 +
 +      int32_t presentLatency = m_presentationStats.getMedian( frameId );
-+      lastVBlank -= presentLatency;
++      uint64_t frameFinishedId = m_latencyMarkersStorage->getTimeline()->frameFinished.load();
++      int32_t lastVBlank = std::chrono::duration_cast<microseconds> (
++        m_latencyMarkersStorage->getConstMarkers(frameFinishedId)->end - now).count()
++        - presentLatency;
++      int32_t targetVBlank = lastVBlank + (frameId-frameFinishedId) * m_vrrRefreshInterval;
 +
-+      // the previous frame got presented already, so we know pretty much when the next v-blank will be
-+      if (frameId - frameFinishedId == 1) {
-+        int32_t targetVBlank = lastVBlank + m_vrrRefreshInterval;
-+        return targetVBlank - props.optimizedGpuTime - props.cpuUntilGpuStart;
++      // set last v-blank if we have more information about the last frame
++      if (frameFinishedId != frameId-1 && lastFrameFinish != time_point{} ) {
++        assert( frameFinishedId == frameId-2 );
++        int32_t vBlank = std::chrono::duration_cast<microseconds> (lastFrameFinish - now).count();
++        lastVBlank += m_vrrRefreshInterval;
++        lastVBlank = std::max( lastVBlank, vBlank );
++        targetVBlank = lastVBlank + m_vrrRefreshInterval;
 +      }
 +
-+      int32_t previousVBlank = lastVBlank
-+        + (frameId - frameFinishedId - 1) * m_vrrRefreshInterval;
-+
-+      // we still haven't hardcoded frame progression based on v-blanks
-+      // so this case might still happen for dxgi.maxFrameLatency != 1
-+      if (unlikely(frameId - frameFinishedId != 2)) {
-+        return previousVBlank + m_vrrRefreshInterval - props.optimizedGpuTime - props.cpuUntilGpuStart;
-+      }
-+
-+      // override the prediction if we know when the gpu has completed the previous frame
-+      if (m_latencyMarkersStorage->getTimeline()->gpuFinished.load() == frameId-1) {
-+        const LatencyMarkers* mPrev = m_latencyMarkersStorage->getConstMarkers(frameId-1);
-+        gpuReadyPrediction = std::chrono::duration_cast<microseconds>(
-+          mPrev->start - t + microseconds(mPrev->gpuFinished) ).count();
-+      } else {
-+        // the previous frame might take longer than expected and isn't finished yet.
-+        // relevant especially in fps-limited scenario
-+        int32_t now = std::chrono::duration_cast<microseconds> (high_resolution_clock::now() - t).count();
-+        previousVBlank = std::max( previousVBlank, now );
-+      }
-+
-+      // the previous frame should be scheduled to finish after v-blank, but there is no guarantee
-+      previousVBlank = std::max( previousVBlank, gpuReadyPrediction );
-+
-+      // finally return the prediction for the best frame start regarding v-blanks
-+      int32_t targetVBlank = previousVBlank + m_vrrRefreshInterval;
-+      return targetVBlank - props.optimizedGpuTime - props.cpuUntilGpuStart;
++      int32_t expectedFrameLatency = props.cpuUntilGpuStart + props.optimizedGpuTime;
++      return targetVBlank - expectedFrameLatency;
 +
 +    }
 +
 +
-+    Sleep::TimePoint sleepFor( const Sleep::TimePoint t, int32_t delay ) {
++    void sleepFor( const Sleep::TimePoint t, int32_t delay ) {
 +
-+      // account for the fps limit and ensure we won't sleep too long, just in case
-+      int32_t frametime = std::chrono::duration_cast<microseconds>( t - m_lastStart ).count();
-+      int32_t frametimeDiff = std::max( 0, m_fpsLimitFrametime.load() - frametime );
-+      delay = std::max( delay, frametimeDiff );
++      if (delay <= 0)
++        return;
++
 +      int32_t maxDelay = std::max( m_fpsLimitFrametime.load(), 20000 );
-+      delay = std::max( 0, std::min( delay, maxDelay ) );
++      delay = std::min( delay, maxDelay );
 +
-+      Sleep::TimePoint nextStart = t + microseconds(delay);
-+      Sleep::sleepUntil( t, nextStart );
-+      return nextStart;
++      Sleep::TimePoint t2 = t + microseconds(delay);
++      Sleep::sleepUntil( t, t2 );
 +
 +    }
 +
@@ -3975,21 +4220,22 @@ index 0000000..4d6ba32
 +    const int32_t m_lowLatencyOffset;
 +    const bool    m_allowCpuFramesOverlap;
 +
-+    Sleep::TimePoint m_lastStart = { high_resolution_clock::now() };
 +    int32_t m_vrrRefreshInterval = { 0 };
 +    LatencyStats m_presentationStats;
 +
-+    std::array<SyncProps, 16> m_props;
++    std::array<SyncProps, 16> m_props = { };
 +    std::atomic<uint64_t> m_propsFinished = { 0 };
 +
 +    std::vector<int32_t>  m_tempGpuRun;
++
++    GpuProgress m_gpuProgress;
 +
 +  };
 +
 +}
 diff --git a/src/dxvk/framepacer/dxvk_framepacer_mode_min_latency.h b/src/dxvk/framepacer/dxvk_framepacer_mode_min_latency.h
 new file mode 100644
-index 0000000..03e94d0
+index 0000000..7fc50fb
 --- /dev/null
 +++ b/src/dxvk/framepacer/dxvk_framepacer_mode_min_latency.h
 @@ -0,0 +1,46 @@
@@ -4011,8 +4257,8 @@ index 0000000..03e94d0
 +
 +  public:
 +
-+    MinLatencyMode(Mode mode, LatencyMarkersStorage* storage)
-+    : FramePacerMode(mode, storage, 0) {}
++    MinLatencyMode(Mode mode, LatencyMarkersStorage* storage, uint64_t firstFrameId)
++    : FramePacerMode(mode, storage, firstFrameId, 0) {}
 +
 +    ~MinLatencyMode() {}
 +
@@ -4039,16 +4285,253 @@ index 0000000..03e94d0
 +  };
 +
 +}
-diff --git a/src/dxvk/framepacer/dxvk_latency_markers.h b/src/dxvk/framepacer/dxvk_latency_markers.h
+diff --git a/src/dxvk/framepacer/dxvk_gpu_progress.h b/src/dxvk/framepacer/dxvk_gpu_progress.h
 new file mode 100644
-index 0000000..7658f07
+index 0000000..c23bd3a
 --- /dev/null
-+++ b/src/dxvk/framepacer/dxvk_latency_markers.h
-@@ -0,0 +1,148 @@
++++ b/src/dxvk/framepacer/dxvk_gpu_progress.h
+@@ -0,0 +1,232 @@
 +#pragma once
 +
 +#include <atomic>
-+#include <dxgi.h>
++#include <stdint.h>
++#include "dxvk_latency_markers.h"
++#include "../../util/log/log.h"
++#include "../../util/util_string.h"
++
++
++namespace dxvk {
++
++  /*
++   * Keeps track of GPU submit processing in realtime to improve frame pacing.
++   * This has been shown in testing to reduce the variance for the prediction error
++   * (prediction vs. actual) with respect to when a frame will finish, as more
++   * recent information is available, compared to doing the prediction when the
++   * frame starts or when the GPU starts processing the first submit.
++   */
++
++  class GpuProgress {
++
++    using microseconds = std::chrono::microseconds;
++    using time_point = high_resolution_clock::time_point;
++
++  public:
++
++    GpuProgress( const LatencyMarkersStorage* storage )
++    : m_markerStorage(storage) { }
++
++
++    void notifyGpuReady( uint64_t frameId, time_point t ) {
++
++      Data* data = getData(frameId);
++      Submits expected = data->submits.load();
++      Submits desired;
++
++      if (expected.numSubmitsFinished != 0)
++        endSubmit( frameId, t );
++
++      do {
++        desired = expected;
++        desired.numSubmitsFinished++;
++      } while (!data->submits.compare_exchange_strong( expected, desired ));
++
++      if (desired.numSubmitsFinished <= desired.numSubmitsQueued)
++        startSubmit( frameId, desired.numSubmitsFinished, t );
++
++    }
++
++
++    void notifyQueueSubmit( uint64_t frameId, time_point t ) {
++
++      Data* data = getData(frameId);
++      Submits expected = data->submits.load();
++      Submits desired;
++
++      do {
++        desired = expected;
++        desired.numSubmitsQueued++;
++      } while (!data->submits.compare_exchange_strong( expected, desired ));
++
++      if (desired.numSubmitsFinished == desired.numSubmitsQueued)
++        startSubmit( frameId, desired.numSubmitsQueued, t );
++
++    }
++
++
++    void finishRender( uint64_t frameId ) {
++
++      Data* data = getData(frameId);
++      data->isFinished = true;
++
++      // frameId+1 should already have received a gpuReady notification
++      // so clear the frame after that within the ring buffer
++      Data* dataNext = getData(frameId+2);
++      dataNext->isFinished.store( false );
++      dataNext->gpuRuntime.store( GpuRuntime{} );
++      dataNext->submits.store( Submits{} );
++
++    }
++
++
++    void waitUntil( uint64_t frameId, int32_t targetGpuRuntime, int32_t cpuUntilGpuStart ) const {
++      // GPU progress is measured as if the submits would be processed as late as possible
++      // on the GPU while assuming the frame to be minimum latency since gpuStart.
++      // This is necessary for this to work reliably accross games.
++
++      using std::chrono::duration_cast;
++      const Data* data = getConstData(frameId);
++      const LatencyMarkers* m = m_markerStorage->getConstMarkers(frameId);
++
++      // Sleep until the earlierst possible time stamp
++
++      auto now = high_resolution_clock::now();
++      int32_t totalTime = duration_cast<microseconds>(now - m->start).count();
++      cpuUntilGpuStart = std::max( cpuUntilGpuStart, m->gpuStart );
++      int32_t sleepUntil = cpuUntilGpuStart + targetGpuRuntime;
++      int32_t sleepDelay = std::max( 0, sleepUntil - totalTime );
++
++      Sleep::TimePoint t = now + microseconds(sleepDelay);
++      Sleep::sleepUntil( now, t );
++
++      // For the remainder of the frame we check the progress by polling.
++      // Usually this will take far less than a millisecond, with the exception
++      // of very slow frames where GPU progress is stalled.
++
++      while (true) {
++
++        int32_t gpuRuntime = getGpuRuntime( frameId, cpuUntilGpuStart );
++        if (gpuRuntime >= targetGpuRuntime)
++          break;
++        if (data->isFinished)
++          break;
++        pause();
++
++      }
++
++    }
++
++
++    int32_t getGpuRuntime( uint64_t frameId, int32_t cpuUntilGpuStart ) const {
++
++      using std::chrono::duration_cast;
++      const Data* data = getConstData(frameId);
++      GpuRuntime gpuTime = data->gpuRuntime.load();
++      const LatencyMarkers* m = m_markerStorage->getConstMarkers(frameId);
++
++      auto now = high_resolution_clock::now();
++      int32_t curTime = duration_cast<microseconds>(now - m->start).count();
++
++      int32_t gpuRuntime = gpuTime.runtime;
++      if (gpuTime.curSubmitStart != 0)
++        gpuRuntime += curTime - gpuTime.curSubmitStart;
++
++      int32_t gpuIdle = curTime - gpuRuntime;
++      gpuRuntime -= std::max( 0, cpuUntilGpuStart - gpuIdle );
++      return gpuRuntime;
++
++    }
++
++
++  private:
++
++
++    void startSubmit( uint64_t frameId, uint16_t numSubmits, time_point t ) {
++      // This is analog to start = std::max( m->gpuReady[i], m->gpuQueueSubmit[i] )
++      // Testing has shown that the way we do it here might sometimes diverge from this - very slightly,
++      // depending on in which order the messages arrive here, but we cannot access
++      // the above variables safely here in real-time.
++
++      using std::chrono::duration_cast;
++      Data* data = getData(frameId);
++      const LatencyMarkers* m = m_markerStorage->getConstMarkers(frameId);
++      GpuRuntime gpuRuntime = data->gpuRuntime.load();
++
++      // this shouldn't happen, but if it does, we will get informed
++      if (unlikely(gpuRuntime.curSubmitStart != 0)) {
++        Logger::err( "internal error: GpuProgress startSubmit() before endSubmit()" );
++      }
++
++      // store the starting timestamp this way so we can use an atomic
++      int32_t submitStart = duration_cast<microseconds>(t - m->start).count();
++      gpuRuntime.curSubmitStart = submitStart;
++      data->gpuRuntime.store( gpuRuntime );
++
++    }
++
++
++    void endSubmit( uint64_t frameId, time_point t) {
++
++      using std::chrono::duration_cast;
++      const LatencyMarkers* m = m_markerStorage->getConstMarkers(frameId);
++      Data* data = getData(frameId);
++      GpuRuntime gpuRuntime = data->gpuRuntime.load();
++
++      int32_t submitEnd = duration_cast<microseconds>(t - m->start).count();
++      int32_t diff = submitEnd - gpuRuntime.curSubmitStart;
++      gpuRuntime.runtime += diff;
++      gpuRuntime.curSubmitStart = 0;
++
++      data->gpuRuntime.store(gpuRuntime);
++
++    }
++
++
++    static void pause() {
++
++      #if defined(DXVK_ARCH_X86)
++      _mm_pause();
++      #elif defined(DXVK_ARCH_ARM64)
++      __asm__ __volatile__ ("yield");
++      #else
++      /* Do nothing (busy-loop). Please add more #elif above here if
++       * your CPU architecture has a suitable pause/yield instruction */
++      #endif
++
++    }
++
++
++    struct Submits {
++      uint32_t numSubmitsQueued       = { 0 };
++      uint32_t numSubmitsFinished     = { 0 };
++    };
++
++    struct GpuRuntime {
++      int32_t curSubmitStart          = { 0 };
++      int32_t runtime                 = { 0 };
++    };
++
++    struct Data {
++      std::atomic<Submits> submits         = { };
++      std::atomic<GpuRuntime> gpuRuntime   = { };
++      std::atomic<bool> isFinished         = { false };
++    };
++
++    Data* getData( uint32_t frameId ) {
++      return &m_data[ frameId % NUM_DATA ];
++    }
++
++    const Data* getConstData( uint32_t frameId ) const {
++      return &m_data[ frameId % NUM_DATA ];
++    }
++
++    constexpr static int32_t NUM_DATA = 4;
++    std::array< Data, NUM_DATA > m_data = { };
++
++    const LatencyMarkersStorage* m_markerStorage;
++
++  };
++
++}
++
+diff --git a/src/dxvk/framepacer/dxvk_latency_markers.h b/src/dxvk/framepacer/dxvk_latency_markers.h
+new file mode 100644
+index 0000000..35ee6db
+--- /dev/null
++++ b/src/dxvk/framepacer/dxvk_latency_markers.h
+@@ -0,0 +1,149 @@
++#pragma once
++
++#include <atomic>
 +#include <vector>
 +#include <array>
 +#include <assert.h>
@@ -4089,10 +4572,10 @@ index 0000000..7658f07
 +   */
 +  struct LatencyMarkersTimeline {
 +
-+    std::atomic<uint64_t> cpuFinished   = { DXGI_MAX_SWAP_CHAIN_BUFFERS };
-+    std::atomic<uint64_t> gpuStart      = { DXGI_MAX_SWAP_CHAIN_BUFFERS };
-+    std::atomic<uint64_t> gpuFinished   = { DXGI_MAX_SWAP_CHAIN_BUFFERS };
-+    std::atomic<uint64_t> frameFinished = { DXGI_MAX_SWAP_CHAIN_BUFFERS };
++    std::atomic<uint64_t> cpuFinished   = { 0 };
++    std::atomic<uint64_t> gpuStart      = { 0 };
++    std::atomic<uint64_t> gpuFinished   = { 0 };
++    std::atomic<uint64_t> frameFinished = { 0 };
 +
 +  };
 +
@@ -4117,7 +4600,8 @@ index 0000000..7658f07
 +    friend class FramePacer;
 +  public:
 +
-+    LatencyMarkersStorage() { }
++    LatencyMarkersStorage( uint64_t firstFrameId )
++    : m_firstFrameId(firstFrameId) { }
 +    ~LatencyMarkersStorage() { }
 +
 +    LatencyMarkersReader getReader( uint32_t numEntries ) const {
@@ -4125,7 +4609,7 @@ index 0000000..7658f07
 +    }
 +
 +    void registerFrameStart( uint64_t frameId ) {
-+      if (frameId <= m_timeline.frameFinished.load()) {
++      if (unlikely(frameId <= m_timeline.frameFinished.load())) {
 +        Logger::warn( str::format("internal error during registerFrameStart: expected frameId=",
 +          m_timeline.frameFinished.load()+1, ", got: ", frameId) );
 +      }
@@ -4136,7 +4620,7 @@ index 0000000..7658f07
 +    }
 +
 +    void registerFrameEnd( uint64_t frameId ) {
-+      if (frameId <= m_timeline.frameFinished.load()) {
++      if (unlikely(frameId <= m_timeline.frameFinished.load())) {
 +        Logger::warn( str::format("internal error during registerFrameEnd: expected frameId=",
 +          m_timeline.frameFinished.load()+1, ", got: ", frameId) );
 +      }
@@ -4168,6 +4652,7 @@ index 0000000..7658f07
 +    // simple modulo hash mapping is used for frameIds. They are expected to monotonically increase by one.
 +    // select the size large enough, so we never come into a situation where the reader cannot keep up with the producer
 +    static constexpr uint16_t m_numMarkers = 128;
++    const uint64_t m_firstFrameId;
 +    std::array<LatencyMarkers, m_numMarkers> m_markers = { };
 +    LatencyMarkersTimeline m_timeline;
 +
@@ -4178,7 +4663,7 @@ index 0000000..7658f07
 +  inline LatencyMarkersReader::LatencyMarkersReader( const LatencyMarkersStorage* storage, uint32_t numEntries )
 +  : m_storage(storage) {
 +    m_index = 0;
-+    if (m_storage->m_timeline.frameFinished.load() > numEntries + DXGI_MAX_SWAP_CHAIN_BUFFERS + 2)
++    if (m_storage->m_timeline.frameFinished.load() > numEntries + storage->m_firstFrameId + 2)
 +      m_index = m_storage->m_timeline.frameFinished.load() - numEntries;
 +  }
 +
@@ -4328,7 +4813,7 @@ index 1b8f947..4e00ead 100644
      /**
       * \brief Creates the HUD
 diff --git a/src/dxvk/hud/dxvk_hud_item.cpp b/src/dxvk/hud/dxvk_hud_item.cpp
-index e6995a0..53e295d 100644
+index 0c1f431..5f63d8a 100644
 --- a/src/dxvk/hud/dxvk_hud_item.cpp
 +++ b/src/dxvk/hud/dxvk_hud_item.cpp
 @@ -104,7 +104,7 @@ namespace dxvk::hud {
@@ -4352,7 +4837,7 @@ index e6995a0..53e295d 100644
  
  
 diff --git a/src/dxvk/hud/dxvk_hud_item.h b/src/dxvk/hud/dxvk_hud_item.h
-index ec9d46d..db987cd 100644
+index e75c460..83ad3ea 100644
 --- a/src/dxvk/hud/dxvk_hud_item.h
 +++ b/src/dxvk/hud/dxvk_hud_item.h
 @@ -131,6 +131,15 @@ namespace dxvk::hud {
@@ -4371,7 +4856,7 @@ index ec9d46d..db987cd 100644
    private:
  
      bool                                          m_enableFull = false;
-@@ -244,6 +253,122 @@ namespace dxvk::hud {
+@@ -244,6 +253,86 @@ namespace dxvk::hud {
    };
  
  
@@ -4385,42 +4870,6 @@ index ec9d46d..db987cd 100644
 +    HudRenderLatencyItem();
 +
 +    ~HudRenderLatencyItem();
-+
-+    void updateLatencyTracker( const Rc<DxvkLatencyTracker>& tracker ) {
-+      m_tracker = tracker;
-+    }
-+
-+    void update(dxvk::high_resolution_clock::time_point time);
-+
-+    HudPos render(
-+      const Rc<DxvkCommandList>&ctx,
-+      const HudPipelineKey&     key,
-+      const HudOptions&         options,
-+            HudRenderer&        renderer,
-+            HudPos              position);
-+
-+  private:
-+
-+    Rc<DxvkLatencyTracker> m_tracker;
-+
-+    dxvk::high_resolution_clock::time_point m_lastUpdate
-+      = dxvk::high_resolution_clock::now();
-+
-+    std::string m_latency;
-+
-+  };
-+
-+
-+  /**
-+   * \brief HUD item to display present latency
-+   */
-+  class HudPresentLatencyItem : public HudItem {
-+    constexpr static int64_t UpdateInterval = 500'000;
-+  public:
-+
-+    HudPresentLatencyItem();
-+
-+    ~HudPresentLatencyItem();
 +
 +    void updateLatencyTracker( const Rc<DxvkLatencyTracker>& tracker ) {
 +      m_tracker = tracker;
@@ -4496,10 +4945,10 @@ index ec9d46d..db987cd 100644
     */
 diff --git a/src/dxvk/hud/dxvk_hud_item_latency.cpp b/src/dxvk/hud/dxvk_hud_item_latency.cpp
 new file mode 100644
-index 0000000..fdc742c
+index 0000000..8b3eb2b
 --- /dev/null
 +++ b/src/dxvk/hud/dxvk_hud_item_latency.cpp
-@@ -0,0 +1,218 @@
+@@ -0,0 +1,153 @@
 +#include "dxvk_hud_item.h"
 +#include "../framepacer/dxvk_framepacer.h"
 +
@@ -4547,71 +4996,6 @@ index 0000000..fdc742c
 +    position.y += 12;
 +    renderer.drawText(16, position, 0xff4040ffu, "Render latency:");
 +    renderer.drawText(16, { position.x + 195, position.y },
-+      0xffffffffu, m_latency);
-+
-+    position.y += 8;
-+    return position;
-+  }
-+
-+
-+  HudPresentLatencyItem::HudPresentLatencyItem() { }
-+  HudPresentLatencyItem::~HudPresentLatencyItem() { }
-+
-+  void HudPresentLatencyItem::update(dxvk::high_resolution_clock::time_point time) {
-+    // we cannot measure latency when fps-limiting is performed in Presenter::runFrameThread()
-+    // because it's interfering with getting the right timestamp from vkWaitForPresent()
-+    // if we truely wanted to measure it, we would need one additional thread
-+    if (FpsLimiter::m_isActive) {
-+      m_latency = "N/A";
-+      return;
-+    }
-+
-+    const Rc<DxvkLatencyTracker> tracker = m_tracker;
-+    FramePacer* framePacer = dynamic_cast<FramePacer*>( tracker.ptr() );
-+    if (!framePacer)
-+      return;
-+
-+    if (framePacer->getFramePacerMode()->getPresentMode() == VK_PRESENT_MODE_MAILBOX_KHR) {
-+      m_latency = "N/A";
-+      return;
-+    }
-+
-+    auto elapsed = std::chrono::duration_cast<std::chrono::microseconds>(time - m_lastUpdate);
-+
-+    if (elapsed.count() >= UpdateInterval) {
-+      m_lastUpdate = time;
-+
-+      LatencyMarkersReader reader = framePacer->m_latencyMarkersStorage.getReader(100);
-+      const LatencyMarkers* markers;
-+      uint32_t count = 0;
-+      uint64_t totalLatency = 0;
-+      while (reader.getNext(markers)) {
-+        totalLatency += markers->presentFinished - markers->gpuFinished;
-+        ++count;
-+      }
-+
-+      if (!count)
-+        return;
-+
-+      uint64_t latency = totalLatency / count;
-+      uint32_t decimalPlaces = (latency/10) % 100;
-+      std::string decimalPlacesStr = decimalPlaces < 10 ? "0" : "";
-+      decimalPlacesStr.append( std::to_string(decimalPlaces) );
-+      m_latency = str::format(latency / 1000, ".", decimalPlacesStr, " ms");
-+    }
-+  }
-+
-+
-+  HudPos HudPresentLatencyItem::render(
-+    const Rc<DxvkCommandList>&ctx,
-+    const HudPipelineKey&     key,
-+    const HudOptions&         options,
-+          HudRenderer&        renderer,
-+          HudPos              position) {
-+
-+    position.y += 12;
-+    renderer.drawText(16, position, 0xff4040ffu, "Present latency:");
-+    renderer.drawText(16, { position.x + 206, position.y },
 +      0xffffffffu, m_latency);
 +
 +    position.y += 8;
@@ -4719,10 +5103,10 @@ index 0000000..fdc742c
 +
 +}
 diff --git a/src/dxvk/meson.build b/src/dxvk/meson.build
-index f58db33..bf9c8f3 100644
+index 5812c1b..9b5e0b8 100644
 --- a/src/dxvk/meson.build
 +++ b/src/dxvk/meson.build
-@@ -114,6 +114,7 @@ dxvk_src = [
+@@ -118,6 +118,7 @@ dxvk_src = [
    'dxvk_signal.cpp',
    'dxvk_sparse.cpp',
    'dxvk_staging.cpp',
@@ -4730,7 +5114,7 @@ index f58db33..bf9c8f3 100644
    'dxvk_stats.cpp',
    'dxvk_swapchain_blitter.cpp',
    'dxvk_unbound.cpp',
-@@ -122,7 +123,11 @@ dxvk_src = [
+@@ -126,7 +127,11 @@ dxvk_src = [
    'hud/dxvk_hud.cpp',
    'hud/dxvk_hud_font.cpp',
    'hud/dxvk_hud_item.cpp',
@@ -4743,10 +5127,10 @@ index f58db33..bf9c8f3 100644
  
  if platform == 'windows'
 diff --git a/src/util/config/config.cpp b/src/util/config/config.cpp
-index 8c779e1..daa16d2 100644
+index d6c379b..5106a17 100644
 --- a/src/util/config/config.cpp
 +++ b/src/util/config/config.cpp
-@@ -113,6 +113,10 @@ namespace dxvk {
+@@ -117,6 +117,10 @@ namespace dxvk {
      { R"(\\nioh\.exe$)", {{
        { "d3d9.deferSurfaceCreation",        "True" },
      }} },
@@ -4757,7 +5141,7 @@ index 8c779e1..daa16d2 100644
      /* Anno 1800: Poor performance without this   */
      { R"(\\Anno1800\.exe$)", {{
        { "d3d11.cachedDynamicResources",        "c" },
-@@ -1650,8 +1654,19 @@ namespace dxvk {
+@@ -1672,8 +1676,19 @@ namespace dxvk {
      // Open the file if it exists
      std::ifstream stream(str::topath(filePath.c_str()).c_str());
  
