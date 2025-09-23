@@ -1,0 +1,35 @@
+From f432d8b47c21c77a07275d2cef95a4141481f389 Mon Sep 17 00:00:00 2001
+From: Etaash Mathamsetty
+ <45927311+Etaash-mathamsetty@users.noreply.github.com>
+Date: Tue, 13 May 2025 16:29:55 -0400
+Subject: [PATCH 042/336] ntdll: remove outdated workaround for rainbow six
+ extraction
+
+---
+ dlls/ntdll/unix/loader.c | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
+
+diff --git a/dlls/ntdll/unix/loader.c b/dlls/ntdll/unix/loader.c
+index fe6e59057fc..4c2bcf85fb2 100644
+--- a/dlls/ntdll/unix/loader.c
++++ b/dlls/ntdll/unix/loader.c
+@@ -2256,11 +2256,12 @@ static void hacks_init(void)
+         setenv("WINE_ENABLE_GST_LIVE_LATENCY", "1", 0);
+     }
+ 
+-    if (sgi && !strcmp(sgi, "2379390"))
++   if (main_argc > 1 && (strstr(main_argv[1], "\\EADesktop.exe") || strstr(main_argv[1], "\\Link2EA.exe")
++        || strstr(main_argv[1], "EA Desktop\\ErrorReporter.exe") || strstr(main_argv[1], "\\EAConnect_microsoft.exe")
++        || strstr(main_argv[1], "\\EALaunchHelper.exe") || strstr(main_argv[1], "\\EACrashReporter.exe")))
+     {
+-        ERR("HACK: setting vk_x11_override_min_image_count, vk_x11_strict_image_count.\n");
+-        setenv("vk_x11_override_min_image_count", "2", 0);
+-        setenv("vk_x11_strict_image_count", "true", 0);
++        ERR("HACK: setting LIBGL_ALWAYS_SOFTWARE.\n");
++        setenv("LIBGL_ALWAYS_SOFTWARE", "1", 0);
+     }
+ }
+ 
+-- 
+2.51.0
+
