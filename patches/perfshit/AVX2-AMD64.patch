@@ -1,0 +1,102 @@
+From ed4310d62722fbde8beb81ebe033a923811d5f54 Mon Sep 17 00:00:00 2001
+From: Digger1955 <205152346+Digger1955@users.noreply.github.com>
+Date: Thu, 11 Sep 2025 14:44:22 +0200
+Subject: [PATCH 1/4] [build] Adapt for DXVK-GPLALL 2.7.1-AVX2-AMD64
+
+---
+ meson.build | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
+
+diff --git a/meson.build b/meson.build
+index 0b356ac2cb7..e7dbf802325 100644
+--- a/meson.build
++++ b/meson.build
+@@ -12,8 +12,8 @@ dxvk_is_msvc = cpp.get_argument_syntax() == 'msvc'
+ compiler_args = [
+   '-O3',
+   '-pipe',
+-  '-march=x86-64',
+-  '-mtune=x86-64',
++  '-march=x86-64-v2',
++  '-mtune=generic',
+   '-msse',
+   '-msse2',
+   '-mfpmath=sse',
+@@ -102,7 +102,9 @@ if platform == 'windows'
+   else
+     # Windows (MSVC) Compiler Options
+     compiler_args += [
+-      '/arch:SSE2',
++      '/arch:AVX2',
++      '/favor:AMD64',
++      '/d2vzeroupper',
+       '/O2',
+       '/Ob3',
+       '/GL',
+
+From 8790945ce2aa6bf19fc0b91792e2dd6a4853e90a Mon Sep 17 00:00:00 2001
+From: Digger1955 <205152346+Digger1955@users.noreply.github.com>
+Date: Thu, 11 Sep 2025 14:48:40 +0200
+Subject: [PATCH 2/4] [hud] Adapt for DXVK-GPLALL-AVX2-AMD64
+
+---
+ src/dxvk/hud/dxvk_hud_item.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/dxvk/hud/dxvk_hud_item.cpp b/src/dxvk/hud/dxvk_hud_item.cpp
+index 53e295d705e..6c67b29e0aa 100644
+--- a/src/dxvk/hud/dxvk_hud_item.cpp
++++ b/src/dxvk/hud/dxvk_hud_item.cpp
+@@ -104,7 +104,7 @@ namespace dxvk::hud {
+           HudRenderer&        renderer,
+           HudPos              position) {
+     position.y += 16;
+-    renderer.drawText(16, position, 0xffffffffu, "DXVK-GPLALL " DXVK_VERSION);
++    renderer.drawText(16, position, 0xffffffffu, "DXVK-GPLALL-AMD " DXVK_VERSION);
+ 
+     position.y += 8;
+     return position;
+
+From 8fb1988f23a86fbe603a632dfdbb112fc609071e Mon Sep 17 00:00:00 2001
+From: Digger1955 <205152346+Digger1955@users.noreply.github.com>
+Date: Thu, 11 Sep 2025 14:50:00 +0200
+Subject: [PATCH 3/4] [log] Adapt for DXVK-GPLALL-AVX2-AMD64
+
+---
+ src/dxvk/dxvk_instance.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/dxvk/dxvk_instance.cpp b/src/dxvk/dxvk_instance.cpp
+index 6fdddca46ba..0d1c8d9d518 100644
+--- a/src/dxvk/dxvk_instance.cpp
++++ b/src/dxvk/dxvk_instance.cpp
+@@ -24,7 +24,7 @@ namespace dxvk {
+ 
+   DxvkInstance::DxvkInstance(const DxvkInstanceImportInfo& args, DxvkInstanceFlags flags) {
+     Logger::info(str::format("Game: ", env::getExeName()));
+-    Logger::info(str::format("DXVK-GPLALL: ", DXVK_VERSION));
++    Logger::info(str::format("DXVK-GPLALL-AMD: ", DXVK_VERSION));
+     Logger::info(str::format("Build: ", DXVK_TARGET, " ", DXVK_COMPILER, " ", DXVK_COMPILER_VERSION));
+ 
+     wsi::init();
+
+From b585ce44183bef31a05eea81a8b530144a5f2cda Mon Sep 17 00:00:00 2001
+From: Digger1955 <205152346+Digger1955@users.noreply.github.com>
+Date: Thu, 11 Sep 2025 15:17:01 +0200
+Subject: [PATCH 4/4] [release] DXVK-GPLAsync-LowLatency 2.7.1-1 (DXVK-GPLALL
+ 2.7.1-1)
+
+DXVK-GPLAsync-LowLatency 2.7.1-1 (DXVK-GPLALL 2.7.1-1)
+
+Detailed Changelog provided in [Wiki](https://github.com/Digger1955/dxvk-gplasync-lowlatency/wiki/Detailed-Changelog#dxvk-gplasync-lowlatency-271-1-dxvk-gplall-271-1).
+---
+ RELEASE | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/RELEASE b/RELEASE
+index 860487ca19c..10b8ff6d11a 100644
+--- a/RELEASE
++++ b/RELEASE
+@@ -1 +1 @@
+-2.7.1
++2.7.1-1
