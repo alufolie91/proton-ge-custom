@@ -1,8 +1,8 @@
-From 91bc18c16cee62afa5063c058c1126b04f166329 Mon Sep 17 00:00:00 2001
+From d38e7983520f5f31fb5c5fa53c869459258e2495 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Wed, 23 Jul 2025 01:06:02 -0400
-Subject: [PATCH 190/336] ntoskrnl: Implement PsGetContextThread.
+Subject: [PATCH 190/335] ntoskrnl: Implement PsGetContextThread.
 
 ---
  dlls/ntoskrnl.exe/ntoskrnl.c        | 17 +++++++++++++++++

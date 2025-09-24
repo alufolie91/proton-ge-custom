@@ -1,8 +1,8 @@
-From b362e6c53a03da42fb309c4cc7632c97743ed8cd Mon Sep 17 00:00:00 2001
+From 6ad9f147bc09e66f71ab043a5b2773d45cb5620c Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Sat, 12 Jul 2025 10:57:23 -0400
-Subject: [PATCH 161/336] winewayland: Also tiebreak by peak brightness.
+Subject: [PATCH 161/335] winewayland: Also tiebreak by peak brightness.
 
 ---
  dlls/winewayland.drv/display.c | 3 ++-

@@ -1,7 +1,7 @@
-From 186dcd464a4660d62b910f55d151f0913dc5d03d Mon Sep 17 00:00:00 2001
+From a3f28f5c978ba5c58f638bebbcaf8e911af0e632 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty <etaash.mathamsetty@gmail.com>
 Date: Wed, 30 Jul 2025 17:12:16 -0400
-Subject: [PATCH 211/336] kernelbase: Add TRACE to HeapSummary.
+Subject: [PATCH 211/335] kernelbase: Add TRACE to HeapSummary.
 
 ---
  dlls/kernelbase/memory.c | 2 ++

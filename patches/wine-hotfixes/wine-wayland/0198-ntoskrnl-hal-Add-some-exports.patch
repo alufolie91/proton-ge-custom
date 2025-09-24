@@ -1,8 +1,8 @@
-From 13ecb3873bef691f0501d38d7f685ae3d11f9a1f Mon Sep 17 00:00:00 2001
+From d5d1d5d13ca7db52209f777939b1efdac36e43c4 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Wed, 23 Jul 2025 17:11:49 -0400
-Subject: [PATCH 198/336] ntoskrnl,hal: Add some exports
+Subject: [PATCH 198/335] ntoskrnl,hal: Add some exports
 
 ---
  dlls/hal/hal.spec                   | 1 +

@@ -1,8 +1,8 @@
-From 1281fbdda1fcbc2ee8e91c1ee7e976c7575efda2 Mon Sep 17 00:00:00 2001
+From 85c6bca8c9fadb6287c0533e0d28ec925eae1910 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Thu, 24 Jul 2025 13:51:47 -0400
-Subject: [PATCH 202/336] ntoskrnl: Make OBJECT_TYPE more windows compliant
+Subject: [PATCH 202/335] ntoskrnl: Make OBJECT_TYPE more windows compliant
 
 ---
  dlls/ntoskrnl.exe/ntoskrnl.c         | 65 +++++++++++++---------------

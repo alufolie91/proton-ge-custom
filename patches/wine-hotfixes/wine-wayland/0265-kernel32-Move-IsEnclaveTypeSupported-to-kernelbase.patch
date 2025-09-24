@@ -1,8 +1,8 @@
-From eeceac21acc262bfd7abcc58b9dc42fef31afebb Mon Sep 17 00:00:00 2001
+From 63b3c0fe84498c9c19a7060898157517d1abcf77 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Tue, 12 Aug 2025 00:40:26 -0400
-Subject: [PATCH 265/336] kernel32: Move IsEnclaveTypeSupported to kernelbase
+Subject: [PATCH 265/335] kernel32: Move IsEnclaveTypeSupported to kernelbase
 
 ---
  dlls/kernel32/kernel32.spec     |  2 +-

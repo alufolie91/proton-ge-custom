@@ -1,7 +1,7 @@
-From a91164141e052e0933ca06ed64986cdc3e0340fc Mon Sep 17 00:00:00 2001
+From 7fe26125282528894bb6b2cd516d0c9a78d87ac3 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty <etaash.mathamsetty@gmail.com>
 Date: Sun, 20 Jul 2025 16:45:14 -0400
-Subject: [PATCH 169/336] Revert "winewayland: systray skeleton"
+Subject: [PATCH 169/335] Revert "winewayland: systray skeleton"
 
 This reverts commit f41dd732dd6d038e90c6d0d1ac4d718395e5836f.
 ---

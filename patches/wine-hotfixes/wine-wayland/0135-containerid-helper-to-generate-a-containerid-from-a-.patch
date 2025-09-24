@@ -1,7 +1,7 @@
-From 94ad9cbc56f88aaf3e33297d16f0260b64063b2f Mon Sep 17 00:00:00 2001
+From faaba1e33abefee8ffd5770f5e7c6711cbc4d5cb Mon Sep 17 00:00:00 2001
 From: Harald Sitter <sitter@kde.org>
 Date: Sun, 22 Jun 2025 14:44:12 -0400
-Subject: [PATCH 135/336] containerid: helper to generate a containerid from a 
+Subject: [PATCH 135/335] containerid: helper to generate a containerid from a 
  sysfs path
 
 ---
@@ -298,7 +298,7 @@ index fcdac56a0ed..67301036500 100644
      get_device_subsystem_info(dev, "input", NULL, &desc, &bus);
      get_device_subsystem_info(dev, "usb", "usb_device", &desc, &bus);
 diff --git a/dlls/winebus.sys/main.c b/dlls/winebus.sys/main.c
-index ce1edcd4d3e..2c33dc87553 100644
+index c79635397ce..2f72508ef54 100644
 --- a/dlls/winebus.sys/main.c
 +++ b/dlls/winebus.sys/main.c
 @@ -200,6 +200,22 @@ static WCHAR *get_instance_id(DEVICE_OBJECT *device)
@@ -324,7 +324,7 @@ index ce1edcd4d3e..2c33dc87553 100644
  static WCHAR *get_device_id(DEVICE_OBJECT *device)
  {
      static const WCHAR input_format[] = L"&MI_%02u";
-@@ -735,6 +751,10 @@ static NTSTATUS handle_IRP_MN_QUERY_ID(DEVICE_OBJECT *device, IRP *irp)
+@@ -766,6 +782,10 @@ static NTSTATUS handle_IRP_MN_QUERY_ID(DEVICE_OBJECT *device, IRP *irp)
              TRACE("BusQueryInstanceID\n");
              irp->IoStatus.Information = (ULONG_PTR)get_instance_id(device);
              break;
@@ -336,7 +336,7 @@ index ce1edcd4d3e..2c33dc87553 100644
              WARN("Unhandled type %08x\n", type);
              return status;
 diff --git a/dlls/winebus.sys/unixlib.h b/dlls/winebus.sys/unixlib.h
-index db1b584e007..237bc710502 100644
+index 8dab8af0d57..ad292a66ba2 100644
 --- a/dlls/winebus.sys/unixlib.h
 +++ b/dlls/winebus.sys/unixlib.h
 @@ -45,6 +45,7 @@ struct device_desc

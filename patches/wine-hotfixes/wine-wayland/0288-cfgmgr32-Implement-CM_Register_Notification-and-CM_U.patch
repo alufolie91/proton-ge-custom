@@ -1,7 +1,7 @@
-From 9362fd650b6a0ecb7f70e56763d826e5f494b195 Mon Sep 17 00:00:00 2001
+From 1168dd1f03b5ad55e3452c1ca80afc643efd8e8a Mon Sep 17 00:00:00 2001
 From: Vibhav Pant <vibhavp@gmail.com>
 Date: Wed, 19 Mar 2025 12:40:45 +0100
-Subject: [PATCH 288/336] cfgmgr32: Implement CM_Register_Notification and
+Subject: [PATCH 288/335] cfgmgr32: Implement CM_Register_Notification and
  CM_Unregister_Notification.
 
 ---

@@ -1,8 +1,8 @@
-From 045b6e32bf39616bb94027178e7fc316e287bc5b Mon Sep 17 00:00:00 2001
+From 1045017525fc94b59da7603c719ef7be736ba403 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Sun, 29 Jun 2025 10:28:03 -0400
-Subject: [PATCH 144/336] fixup! win32u: Don't move windows when it's
+Subject: [PATCH 144/335] fixup! win32u: Don't move windows when it's
  impossible.
 
 ---
@@ -10,7 +10,7 @@ Subject: [PATCH 144/336] fixup! win32u: Don't move windows when it's
  1 file changed, 18 insertions(+), 9 deletions(-)
 
 diff --git a/dlls/win32u/window.c b/dlls/win32u/window.c
-index 54a5a1894da..baa18b68ffb 100644
+index 199160c9866..e95e739bad8 100644
 --- a/dlls/win32u/window.c
 +++ b/dlls/win32u/window.c
 @@ -2117,15 +2117,24 @@ static BOOL apply_window_pos( HWND hwnd, HWND insert_after, UINT swp_flags, stru

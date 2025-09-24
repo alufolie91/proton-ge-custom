@@ -1,7 +1,7 @@
-From da92b81b97e08a292cd917f450b48f969b76be0b Mon Sep 17 00:00:00 2001
+From 62fdbd534a64b3ddb2fdf3786bf2b676703d9e3b Mon Sep 17 00:00:00 2001
 From: Louis Lenders <xerox.xerox2000x@gmail.com>
 Date: Wed, 28 May 2025 13:24:50 +0200
-Subject: [PATCH 149/336] pdh: Add stub for PdhGetRawCounterArrayW{A,W}.
+Subject: [PATCH 149/335] pdh: Add stub for PdhGetRawCounterArrayW{A,W}.
 
 Wine-Bug: https://bugs.winehq.org/show_bug.cgi?id=58285
 ---

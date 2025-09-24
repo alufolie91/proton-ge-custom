@@ -1,7 +1,7 @@
-From 1be51aae7b7ea6ab93d334dd7c5f33094f672248 Mon Sep 17 00:00:00 2001
+From ffd203fca111a34cd4707ad58f659e7bb66925fa Mon Sep 17 00:00:00 2001
 From: Alexandre Julliard <julliard@winehq.org>
 Date: Tue, 25 Feb 2025 22:39:50 +0100
-Subject: [PATCH 284/336] apisetschema: Add some new apisets, and old ones for
+Subject: [PATCH 284/335] apisetschema: Add some new apisets, and old ones for
  recently added dlls.
 
 ---

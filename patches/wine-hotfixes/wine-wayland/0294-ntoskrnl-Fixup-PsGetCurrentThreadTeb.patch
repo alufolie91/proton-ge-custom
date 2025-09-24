@@ -1,8 +1,8 @@
-From 1a8612230466b501a38d8f09cde1b62537d180e2 Mon Sep 17 00:00:00 2001
+From ffcdbbd026dfd82820c4c531f743dc3853e10c8b Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Thu, 14 Aug 2025 14:17:41 -0400
-Subject: [PATCH 294/336] ntoskrnl: Fixup PsGetCurrentThreadTeb.
+Subject: [PATCH 294/335] ntoskrnl: Fixup PsGetCurrentThreadTeb.
 
 ---
  dlls/ntoskrnl.exe/ntoskrnl.c         | 3 ++-

@@ -1,8 +1,8 @@
-From 0dcd4af46db78e246800fcf11d8deb7b95d79cdf Mon Sep 17 00:00:00 2001
+From 6131b8ef8434e7edb2b6743ee501d327950fdcdb Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Thu, 7 Aug 2025 14:23:47 -0400
-Subject: [PATCH 259/336] HACK: proton: wine.inf: Add native,builtin overrides
+Subject: [PATCH 259/335] HACK: proton: wine.inf: Add native,builtin overrides
  for vccorlib140
 
 ---

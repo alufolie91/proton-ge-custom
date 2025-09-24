@@ -1,7 +1,7 @@
-From f6b49b95dc91394699b74610439fbbf4df258638 Mon Sep 17 00:00:00 2001
+From 53b2c133dfe9eea37b1ef220744019ea652c2c53 Mon Sep 17 00:00:00 2001
 From: Piotr Caban <piotr@codeweavers.com>
 Date: Wed, 6 Aug 2025 17:07:42 +0200
-Subject: [PATCH 258/336] combase: Fix initialization flags in RoInitialize.
+Subject: [PATCH 258/335] combase: Fix initialization flags in RoInitialize.
 
 ---
  dlls/combase/roapi.c              |  2 +-

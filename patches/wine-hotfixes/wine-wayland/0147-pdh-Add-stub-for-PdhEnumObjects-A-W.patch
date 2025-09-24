@@ -1,7 +1,7 @@
-From e09d1702c0c75e0e5862c2dd10d22b48e1d004b9 Mon Sep 17 00:00:00 2001
+From 9f5965b58325117e9d6d627c3555a3491fc7dcca Mon Sep 17 00:00:00 2001
 From: Louis Lenders <xerox.xerox2000x@gmail.com>
 Date: Sun, 25 May 2025 13:34:13 +0200
-Subject: [PATCH 147/336] pdh: Add stub for PdhEnumObjects{A,W}.
+Subject: [PATCH 147/335] pdh: Add stub for PdhEnumObjects{A,W}.
 
 Wine-Bug: https://bugs.winehq.org/show_bug.cgi?id=58255
 ---

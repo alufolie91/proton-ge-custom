@@ -1,7 +1,7 @@
-From 388a82dafe3a6bf37d75fcfdd4f199700da40058 Mon Sep 17 00:00:00 2001
+From a81ea5843166e098aa2550b02e82de145a7d47ab Mon Sep 17 00:00:00 2001
 From: William Horvath <william@horvath.blog>
 Date: Thu, 20 Feb 2025 11:34:34 -0800
-Subject: [PATCH 278/336] server: Use a high precision timespec directly for
+Subject: [PATCH 278/335] server: Use a high precision timespec directly for
  poll timeouts on supported platforms.
 
 Instead of first converting to milliseconds, then back to a nanosecond-precision

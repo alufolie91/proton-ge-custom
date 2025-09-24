@@ -1,7 +1,7 @@
-From 5327085d14796a20fa3347491212b94db9edaa75 Mon Sep 17 00:00:00 2001
+From 71ab6107e9ba66a79fe030033d99867bbc804c1a Mon Sep 17 00:00:00 2001
 From: Alex Henrie <alexhenrie24@gmail.com>
 Date: Tue, 7 Jan 2025 00:20:45 -0700
-Subject: [PATCH 249/336] ntdll: Return an error if count is zero in
+Subject: [PATCH 249/335] ntdll: Return an error if count is zero in
  NtRemoveIoCompletionEx.
 
 Without this check, the return value is undefined.
