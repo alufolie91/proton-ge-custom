@@ -1,7 +1,7 @@
-From ab86415b7919de5bd0e299505f1624744c44b038 Mon Sep 17 00:00:00 2001
+From bb8679a21fcdeb4cd0205d02f17fad222f4a2773 Mon Sep 17 00:00:00 2001
 From: Torge Matthies <tmatthies@codeweavers.com>
 Date: Tue, 20 Feb 2024 16:45:49 +0100
-Subject: [PATCH 238/336] ntdll: Add sys_membarrier-based implementation of
+Subject: [PATCH 238/335] ntdll: Add sys_membarrier-based implementation of
  NtFlushProcessWriteBuffers.
 
 Uses the MEMBARRIER_CMD_PRIVATE_EXPEDITED membarrier command introduced in Linux 4.14.
@@ -10,7 +10,7 @@ Uses the MEMBARRIER_CMD_PRIVATE_EXPEDITED membarrier command introduced in Linux
  1 file changed, 34 insertions(+)
 
 diff --git a/dlls/ntdll/unix/virtual.c b/dlls/ntdll/unix/virtual.c
-index 64f783c2191..e073660ea0e 100644
+index 5d8e4bd81ef..c0ac9862261 100644
 --- a/dlls/ntdll/unix/virtual.c
 +++ b/dlls/ntdll/unix/virtual.c
 @@ -39,6 +39,9 @@
@@ -23,7 +23,7 @@ index 64f783c2191..e073660ea0e 100644
  #ifdef HAVE_SYS_SYSCTL_H
  # include <sys/sysctl.h>
  #endif
-@@ -7210,6 +7213,36 @@ NTSTATUS WINAPI NtFlushInstructionCache( HANDLE handle, const void *addr, SIZE_T
+@@ -7213,6 +7216,36 @@ NTSTATUS WINAPI NtFlushInstructionCache( HANDLE handle, const void *addr, SIZE_T
  }
  
  
@@ -60,7 +60,7 @@ index 64f783c2191..e073660ea0e 100644
  /**********************************************************************
   *           NtFlushProcessWriteBuffers  (NTDLL.@)
   */
-@@ -7220,6 +7253,7 @@ NTSTATUS WINAPI NtFlushProcessWriteBuffers(void)
+@@ -7223,6 +7256,7 @@ NTSTATUS WINAPI NtFlushProcessWriteBuffers(void)
      return STATUS_SUCCESS;
  }
  

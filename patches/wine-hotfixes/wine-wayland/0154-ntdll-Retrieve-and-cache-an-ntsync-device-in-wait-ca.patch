@@ -1,7 +1,7 @@
-From 4e4889c762c45acb93d42dada19f41709f4b6a3b Mon Sep 17 00:00:00 2001
+From 9fa6d963f984c86a127102d80c78a12353d243e1 Mon Sep 17 00:00:00 2001
 From: Elizabeth Figura <zfigura@codeweavers.com>
 Date: Wed, 2 Jul 2025 22:35:32 -0400
-Subject: [PATCH 154/336] ntdll: Retrieve and cache an ntsync device in wait
+Subject: [PATCH 154/335] ntdll: Retrieve and cache an ntsync device in wait
  calls.
 
 ---
@@ -191,10 +191,10 @@ index 37c1279c6a2..5becd7005c7 100644
  /******************************************************************************
   *              NtCreateSemaphore (NTDLL.@)
 diff --git a/dlls/ntdll/unix/unix_private.h b/dlls/ntdll/unix/unix_private.h
-index a2163d4e19f..6b79e76bedb 100644
+index dc8c23a5aa9..1c3304fd548 100644
 --- a/dlls/ntdll/unix/unix_private.h
 +++ b/dlls/ntdll/unix/unix_private.h
-@@ -220,6 +220,8 @@ extern NTSTATUS load_start_exe( WCHAR **image, void **module );
+@@ -221,6 +221,8 @@ extern NTSTATUS load_start_exe( WCHAR **image, void **module );
  extern ULONG_PTR redirect_arm64ec_rva( void *module, ULONG_PTR rva, const IMAGE_ARM64EC_METADATA *metadata );
  extern void start_server( BOOL debug );
  

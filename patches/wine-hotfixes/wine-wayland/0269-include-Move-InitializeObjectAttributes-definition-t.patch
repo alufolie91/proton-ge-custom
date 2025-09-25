@@ -1,7 +1,7 @@
-From ca92538579c03ac849ff8df8e9250fbbf4028032 Mon Sep 17 00:00:00 2001
+From 24f25432d8193323e3b4e0d2281397d1ab654aa9 Mon Sep 17 00:00:00 2001
 From: Alexandre Julliard <julliard@winehq.org>
 Date: Fri, 28 Mar 2025 17:54:15 +0100
-Subject: [PATCH 269/336] include: Move InitializeObjectAttributes definition
+Subject: [PATCH 269/335] include: Move InitializeObjectAttributes definition
  to ntdef.h.
 
 ---

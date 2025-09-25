@@ -1,7 +1,7 @@
-From e093f84974546fcd15355697d49f641628dd98ed Mon Sep 17 00:00:00 2001
+From fb8320ed3d31c88af4b442dbefa5148416f90b5e Mon Sep 17 00:00:00 2001
 From: Piotr Caban <piotr@codeweavers.com>
 Date: Mon, 28 Jul 2025 13:45:36 +0200
-Subject: [PATCH 256/336] vccorlib140: Add stub dll.
+Subject: [PATCH 256/335] vccorlib140: Add stub dll.
 
 ---
  configure.ac                      |   1 +

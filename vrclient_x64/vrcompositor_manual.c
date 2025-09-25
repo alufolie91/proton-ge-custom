@@ -25,6 +25,7 @@ struct submit_state
     IDXGIVkInteropSurface *dxvk_surface;
     IDXGIVkInteropDevice *dxvk_device;
     ID3D12DXVKInteropDevice *d3d12_device;
+    ID3D12DXVKInteropDevice2 *d3d12_device2;
     ID3D12CommandQueue *d3d12_queue;
 };
 
@@ -127,9 +128,11 @@ void free_compositor_data_d3d12_device(void)
     compositor_data.p_vkFreeCommandBuffers(compositor_data.vk_device, compositor_data.vk_command_pool, 3, compositor_data.vk_command_buffers);
     compositor_data.p_vkDestroyCommandPool(compositor_data.vk_device, compositor_data.vk_command_pool, NULL);
 
+    assert( !compositor_data.d3d12_device2 || (void *)compositor_data.d3d12_device2 == (void *)compositor_data.d3d12_device );
     IUnknown_Release(compositor_data.d3d12_device);
     IUnknown_Release(compositor_data.d3d12_queue);
     compositor_data.d3d12_device = NULL;
+    compositor_data.d3d12_device2 = NULL;
     compositor_data.d3d12_queue = NULL;
     compositor_data.vk_device = VK_NULL_HANDLE;
     compositor_data.vk_queue = VK_NULL_HANDLE;
@@ -138,7 +141,8 @@ void free_compositor_data_d3d12_device(void)
     memset(compositor_data.vk_command_buffers, 0, sizeof(compositor_data.vk_command_buffers));
 }
 
-static void compositor_data_set_d3d12_device(ID3D12DXVKInteropDevice *d3d12_device, ID3D12CommandQueue *d3d12_queue, const w_VRVulkanTextureData_t *vkdata)
+static void compositor_data_set_d3d12_device( ID3D12DXVKInteropDevice *d3d12_device, ID3D12DXVKInteropDevice2 *d3d12_device2,
+                                              ID3D12CommandQueue *d3d12_queue, const w_VRVulkanTextureData_t *vkdata)
 {
         const WCHAR winevulkan_dll[] = L"winevulkan.dll";
         HMODULE winevulkan = NULL;
@@ -157,6 +161,7 @@ static void compositor_data_set_d3d12_device(ID3D12DXVKInteropDevice *d3d12_devi
 
         if (compositor_data.d3d12_device == d3d12_device)
         {
+            assert( compositor_data.d3d12_device2 == d3d12_device2 );
             if (compositor_data.d3d12_queue != d3d12_queue)
             {
                 IUnknown_Release(compositor_data.d3d12_queue);
@@ -169,6 +174,7 @@ static void compositor_data_set_d3d12_device(ID3D12DXVKInteropDevice *d3d12_devi
 
         free_compositor_data_d3d12_device();
         compositor_data.d3d12_device = d3d12_device;
+        compositor_data.d3d12_device2 = d3d12_device2;
         compositor_data.d3d12_queue = d3d12_queue;
         IUnknown_AddRef(compositor_data.d3d12_device);
         IUnknown_AddRef(compositor_data.d3d12_queue);
@@ -263,7 +269,12 @@ static const w_Texture_t *load_compositor_texture_d3d12( uint32_t eye, const w_T
         return texture;
     }
 
-    hr = queue_iface->lpVtbl->GetDevice( queue_iface, &IID_ID3D12DXVKInteropDevice, (void **)&state->d3d12_device );
+    state->d3d12_device2 = NULL;
+    hr = queue_iface->lpVtbl->GetDevice( queue_iface, &IID_ID3D12DXVKInteropDevice2, (void **)&state->d3d12_device2 );
+    if (SUCCEEDED(hr))
+        state->d3d12_device = (ID3D12DXVKInteropDevice *)state->d3d12_device2;
+    else
+        hr = queue_iface->lpVtbl->GetDevice( queue_iface, &IID_ID3D12DXVKInteropDevice, (void **)&state->d3d12_device );
     if (FAILED(hr))
     {
         WARN( "Failed to get vkd3d-proton device.\n" );
@@ -298,7 +309,7 @@ static const w_Texture_t *load_compositor_texture_d3d12( uint32_t eye, const w_T
     if (*flags & ~supported_flags) FIXME( "Unhandled flags %#x.\n", *flags );
 
     state->d3d12_queue = queue_iface;
-    compositor_data_set_d3d12_device(state->d3d12_device, state->d3d12_queue, &vkdata);
+    compositor_data_set_d3d12_device(state->d3d12_device, state->d3d12_device2, state->d3d12_queue, &vkdata);
     IUnknown_Release(state->d3d12_device);
 
     if (image_info.arrayLayers > 1 || array_index != ~0u)
@@ -442,38 +453,56 @@ static void set_skybox_override_done( const w_Texture_t *textures, uint32_t coun
     compositor_data.dxvk_device->lpVtbl->ReleaseSubmissionQueue( compositor_data.dxvk_device );
 }
 
-static void post_present_handoff_init( struct u_iface u_iface, unsigned int version )
+static void lock_queue(void)
 {
-    /* I sure hope no application will submit both D3D11 and D3D12 textures... */
     if (compositor_data.dxvk_device)
         compositor_data.dxvk_device->lpVtbl->LockSubmissionQueue( compositor_data.dxvk_device );
-    if (compositor_data.d3d12_device)
+
+    if (compositor_data.d3d12_device2)
+        compositor_data.d3d12_device2->lpVtbl->LockVulkanQueue( compositor_data.d3d12_device2, compositor_data.d3d12_queue );
+    else if (compositor_data.d3d12_device)
         compositor_data.d3d12_device->lpVtbl->LockCommandQueue( compositor_data.d3d12_device, compositor_data.d3d12_queue );
+}
+
+static void unlock_queue(void)
+{
+    if (compositor_data.dxvk_device)
+        compositor_data.dxvk_device->lpVtbl->ReleaseSubmissionQueue( compositor_data.dxvk_device );
+
+    if (compositor_data.d3d12_device2)
+        compositor_data.d3d12_device2->lpVtbl->UnlockVulkanQueue( compositor_data.d3d12_device2, compositor_data.d3d12_queue );
+    else if (compositor_data.d3d12_device)
+        compositor_data.d3d12_device->lpVtbl->UnlockCommandQueue( compositor_data.d3d12_device, compositor_data.d3d12_queue );
+}
+
+static void post_present_handoff_init( struct u_iface u_iface, unsigned int version )
+{
+    lock_queue();
 }
 
 static void post_present_handoff_done(void)
 {
     compositor_data.handoff_called = TRUE;
-    if (compositor_data.dxvk_device)
-        compositor_data.dxvk_device->lpVtbl->ReleaseSubmissionQueue( compositor_data.dxvk_device );
-    if (compositor_data.d3d12_device)
-        compositor_data.d3d12_device->lpVtbl->UnlockCommandQueue( compositor_data.d3d12_device, compositor_data.d3d12_queue );
+    unlock_queue();
 }
+
+static BOOL need_lock_for_wait_get_poses(void)
+{
+    if (compositor_data.dxvk_device && compositor_data.d3d11_explicit_handoff) return TRUE;
+    if (compositor_data.explicit_timing_mode == 2 && compositor_data.handoff_called) return FALSE;
+    return TRUE;
+}
+
+static BOOL wait_get_poses_locked_queue;
 
 static void wait_get_poses_init( struct u_iface u_iface )
 {
-    if (compositor_data.dxvk_device)
-        compositor_data.dxvk_device->lpVtbl->LockSubmissionQueue( compositor_data.dxvk_device );
-    if (compositor_data.d3d12_device)
-        compositor_data.d3d12_device->lpVtbl->LockCommandQueue( compositor_data.d3d12_device, compositor_data.d3d12_queue );
+    if ((wait_get_poses_locked_queue = need_lock_for_wait_get_poses())) lock_queue();
 }
 
 static void wait_get_poses_done( struct u_iface u_iface )
 {
-    if (compositor_data.dxvk_device)
-        compositor_data.dxvk_device->lpVtbl->ReleaseSubmissionQueue( compositor_data.dxvk_device );
-    if (compositor_data.d3d12_device)
-        compositor_data.d3d12_device->lpVtbl->UnlockCommandQueue( compositor_data.d3d12_device, compositor_data.d3d12_queue );
+    if (wait_get_poses_locked_queue) unlock_queue();
 }
 
 void __thiscall winIVRCompositor_IVRCompositor_005_WaitGetPoses( struct w_iface *_this,
@@ -1485,10 +1514,36 @@ void __thiscall winIVRCompositor_IVRCompositor_021_PostPresentHandoff( struct w_
          * in lockups and crashes. */
         VRCLIENT_CALL( IVRCompositor_IVRCompositor_021_SetExplicitTimingMode, &params );
         compositor_data.d3d11_explicit_handoff = TRUE;
+        compositor_data.explicit_timing_mode = TRUE;
     }
 
     VRCLIENT_CALL( IVRCompositor_IVRCompositor_021_PostPresentHandoff, &params );
     post_present_handoff_done();
+}
+
+void __thiscall winIVRCompositor_IVRCompositor_021_SetExplicitTimingMode(struct w_iface *_this, int8_t bExplicitTimingMode)
+{
+    struct IVRCompositor_IVRCompositor_021_SetExplicitTimingMode_params params =
+    {
+        .u_iface = _this->u_iface,
+        .bExplicitTimingMode = bExplicitTimingMode,
+    };
+    TRACE("%p\n", _this);
+    VRCLIENT_CALL( IVRCompositor_IVRCompositor_021_SetExplicitTimingMode, &params );
+    compositor_data.explicit_timing_mode = bExplicitTimingMode;
+}
+
+uint32_t __thiscall winIVRCompositor_IVRCompositor_021_SubmitExplicitTimingData(struct w_iface *_this)
+{
+    struct IVRCompositor_IVRCompositor_021_SubmitExplicitTimingData_params params =
+    {
+        .u_iface = _this->u_iface,
+    };
+    TRACE("%p\n", _this);
+    lock_queue();
+    VRCLIENT_CALL( IVRCompositor_IVRCompositor_021_SubmitExplicitTimingData, &params );
+    unlock_queue();
+    return params._ret;
 }
 
 uint32_t __thiscall winIVRCompositor_IVRCompositor_021_SetSkyboxOverride( struct w_iface *_this,
@@ -1583,10 +1638,36 @@ void __thiscall winIVRCompositor_IVRCompositor_022_PostPresentHandoff( struct w_
          * in lockups and crashes. */
         VRCLIENT_CALL( IVRCompositor_IVRCompositor_022_SetExplicitTimingMode, &params );
         compositor_data.d3d11_explicit_handoff = TRUE;
+        compositor_data.explicit_timing_mode = VRCompositorTimingMode_Explicit_ApplicationPerformsPostPresentHandoff;
     }
 
     VRCLIENT_CALL( IVRCompositor_IVRCompositor_022_PostPresentHandoff, &params );
     post_present_handoff_done();
+}
+
+void __thiscall winIVRCompositor_IVRCompositor_022_SetExplicitTimingMode(struct w_iface *_this, uint32_t eTimingMode)
+{
+    struct IVRCompositor_IVRCompositor_022_SetExplicitTimingMode_params params =
+    {
+        .u_iface = _this->u_iface,
+        .eTimingMode = eTimingMode,
+    };
+    TRACE("%p\n", _this);
+    VRCLIENT_CALL( IVRCompositor_IVRCompositor_022_SetExplicitTimingMode, &params );
+    compositor_data.explicit_timing_mode = eTimingMode;
+}
+
+uint32_t __thiscall winIVRCompositor_IVRCompositor_022_SubmitExplicitTimingData(struct w_iface *_this)
+{
+    struct IVRCompositor_IVRCompositor_022_SubmitExplicitTimingData_params params =
+    {
+        .u_iface = _this->u_iface,
+    };
+    TRACE("%p\n", _this);
+    lock_queue();
+    VRCLIENT_CALL( IVRCompositor_IVRCompositor_022_SubmitExplicitTimingData, &params );
+    unlock_queue();
+    return params._ret;
 }
 
 uint32_t __thiscall winIVRCompositor_IVRCompositor_022_SetSkyboxOverride( struct w_iface *_this,
@@ -1681,10 +1762,36 @@ void __thiscall winIVRCompositor_IVRCompositor_024_PostPresentHandoff( struct w_
          * in lockups and crashes. */
         VRCLIENT_CALL( IVRCompositor_IVRCompositor_024_SetExplicitTimingMode, &params );
         compositor_data.d3d11_explicit_handoff = TRUE;
+        compositor_data.explicit_timing_mode = VRCompositorTimingMode_Explicit_ApplicationPerformsPostPresentHandoff;
     }
 
     VRCLIENT_CALL( IVRCompositor_IVRCompositor_024_PostPresentHandoff, &params );
     post_present_handoff_done();
+}
+
+void __thiscall winIVRCompositor_IVRCompositor_024_SetExplicitTimingMode(struct w_iface *_this, uint32_t eTimingMode)
+{
+    struct IVRCompositor_IVRCompositor_024_SetExplicitTimingMode_params params =
+    {
+        .u_iface = _this->u_iface,
+        .eTimingMode = eTimingMode,
+    };
+    TRACE("%p\n", _this);
+    VRCLIENT_CALL( IVRCompositor_IVRCompositor_024_SetExplicitTimingMode, &params );
+    compositor_data.explicit_timing_mode = eTimingMode;
+}
+
+uint32_t __thiscall winIVRCompositor_IVRCompositor_024_SubmitExplicitTimingData(struct w_iface *_this)
+{
+    struct IVRCompositor_IVRCompositor_024_SubmitExplicitTimingData_params params =
+    {
+        .u_iface = _this->u_iface,
+    };
+    TRACE("%p\n", _this);
+    lock_queue();
+    VRCLIENT_CALL( IVRCompositor_IVRCompositor_024_SubmitExplicitTimingData, &params );
+    unlock_queue();
+    return params._ret;
 }
 
 uint32_t __thiscall winIVRCompositor_IVRCompositor_024_SetSkyboxOverride( struct w_iface *_this,
@@ -1779,10 +1886,36 @@ void __thiscall winIVRCompositor_IVRCompositor_026_PostPresentHandoff( struct w_
          * in lockups and crashes. */
         VRCLIENT_CALL( IVRCompositor_IVRCompositor_026_SetExplicitTimingMode, &params );
         compositor_data.d3d11_explicit_handoff = TRUE;
+        compositor_data.explicit_timing_mode = VRCompositorTimingMode_Explicit_ApplicationPerformsPostPresentHandoff;
     }
 
     VRCLIENT_CALL( IVRCompositor_IVRCompositor_026_PostPresentHandoff, &params );
     post_present_handoff_done();
+}
+
+void __thiscall winIVRCompositor_IVRCompositor_026_SetExplicitTimingMode(struct w_iface *_this, uint32_t eTimingMode)
+{
+    struct IVRCompositor_IVRCompositor_026_SetExplicitTimingMode_params params =
+    {
+        .u_iface = _this->u_iface,
+        .eTimingMode = eTimingMode,
+    };
+    TRACE("%p\n", _this);
+    VRCLIENT_CALL( IVRCompositor_IVRCompositor_026_SetExplicitTimingMode, &params );
+    compositor_data.explicit_timing_mode = eTimingMode;
+}
+
+uint32_t __thiscall winIVRCompositor_IVRCompositor_026_SubmitExplicitTimingData(struct w_iface *_this)
+{
+    struct IVRCompositor_IVRCompositor_026_SubmitExplicitTimingData_params params =
+    {
+        .u_iface = _this->u_iface,
+    };
+    TRACE("%p\n", _this);
+    lock_queue();
+    VRCLIENT_CALL( IVRCompositor_IVRCompositor_026_SubmitExplicitTimingData, &params );
+    unlock_queue();
+    return params._ret;
 }
 
 uint32_t __thiscall winIVRCompositor_IVRCompositor_026_SetSkyboxOverride( struct w_iface *_this,
@@ -1877,10 +2010,36 @@ void __thiscall winIVRCompositor_IVRCompositor_027_PostPresentHandoff( struct w_
          * in lockups and crashes. */
         VRCLIENT_CALL( IVRCompositor_IVRCompositor_027_SetExplicitTimingMode, &params );
         compositor_data.d3d11_explicit_handoff = TRUE;
+        compositor_data.explicit_timing_mode = VRCompositorTimingMode_Explicit_ApplicationPerformsPostPresentHandoff;
     }
 
     VRCLIENT_CALL( IVRCompositor_IVRCompositor_027_PostPresentHandoff, &params );
     post_present_handoff_done();
+}
+
+void __thiscall winIVRCompositor_IVRCompositor_027_SetExplicitTimingMode(struct w_iface *_this, uint32_t eTimingMode)
+{
+    struct IVRCompositor_IVRCompositor_027_SetExplicitTimingMode_params params =
+    {
+        .u_iface = _this->u_iface,
+        .eTimingMode = eTimingMode,
+    };
+    TRACE("%p\n", _this);
+    VRCLIENT_CALL( IVRCompositor_IVRCompositor_027_SetExplicitTimingMode, &params );
+    compositor_data.explicit_timing_mode = eTimingMode;
+}
+
+uint32_t __thiscall winIVRCompositor_IVRCompositor_027_SubmitExplicitTimingData(struct w_iface *_this)
+{
+    struct IVRCompositor_IVRCompositor_027_SubmitExplicitTimingData_params params =
+    {
+        .u_iface = _this->u_iface,
+    };
+    TRACE("%p\n", _this);
+    lock_queue();
+    VRCLIENT_CALL( IVRCompositor_IVRCompositor_027_SubmitExplicitTimingData, &params );
+    unlock_queue();
+    return params._ret;
 }
 
 uint32_t __thiscall winIVRCompositor_IVRCompositor_027_SetSkyboxOverride( struct w_iface *_this,
@@ -2035,10 +2194,36 @@ void __thiscall winIVRCompositor_IVRCompositor_028_PostPresentHandoff( struct w_
          * in lockups and crashes. */
         VRCLIENT_CALL( IVRCompositor_IVRCompositor_028_SetExplicitTimingMode, &params );
         compositor_data.d3d11_explicit_handoff = TRUE;
+        compositor_data.explicit_timing_mode = VRCompositorTimingMode_Explicit_ApplicationPerformsPostPresentHandoff;
     }
 
     VRCLIENT_CALL( IVRCompositor_IVRCompositor_028_PostPresentHandoff, &params );
     post_present_handoff_done();
+}
+
+void __thiscall winIVRCompositor_IVRCompositor_028_SetExplicitTimingMode(struct w_iface *_this, uint32_t eTimingMode)
+{
+    struct IVRCompositor_IVRCompositor_028_SetExplicitTimingMode_params params =
+    {
+        .u_iface = _this->u_iface,
+        .eTimingMode = eTimingMode,
+    };
+    TRACE("%p\n", _this);
+    VRCLIENT_CALL( IVRCompositor_IVRCompositor_028_SetExplicitTimingMode, &params );
+    compositor_data.explicit_timing_mode = eTimingMode;
+}
+
+uint32_t __thiscall winIVRCompositor_IVRCompositor_028_SubmitExplicitTimingData(struct w_iface *_this)
+{
+    struct IVRCompositor_IVRCompositor_028_SubmitExplicitTimingData_params params =
+    {
+        .u_iface = _this->u_iface,
+    };
+    TRACE("%p\n", _this);
+    lock_queue();
+    VRCLIENT_CALL( IVRCompositor_IVRCompositor_028_SubmitExplicitTimingData, &params );
+    unlock_queue();
+    return params._ret;
 }
 
 uint32_t __thiscall winIVRCompositor_IVRCompositor_028_SetSkyboxOverride( struct w_iface *_this,
@@ -2194,10 +2379,36 @@ void __thiscall winIVRCompositor_IVRCompositor_029_PostPresentHandoff( struct w_
          * in lockups and crashes. */
         VRCLIENT_CALL( IVRCompositor_IVRCompositor_029_SetExplicitTimingMode, &params );
         compositor_data.d3d11_explicit_handoff = TRUE;
+        compositor_data.explicit_timing_mode = VRCompositorTimingMode_Explicit_ApplicationPerformsPostPresentHandoff;
     }
 
     VRCLIENT_CALL( IVRCompositor_IVRCompositor_029_PostPresentHandoff, &params );
     post_present_handoff_done();
+}
+
+void __thiscall winIVRCompositor_IVRCompositor_029_SetExplicitTimingMode(struct w_iface *_this, uint32_t eTimingMode)
+{
+    struct IVRCompositor_IVRCompositor_029_SetExplicitTimingMode_params params =
+    {
+        .u_iface = _this->u_iface,
+        .eTimingMode = eTimingMode,
+    };
+    TRACE("%p\n", _this);
+    VRCLIENT_CALL( IVRCompositor_IVRCompositor_029_SetExplicitTimingMode, &params );
+    compositor_data.explicit_timing_mode = eTimingMode;
+}
+
+uint32_t __thiscall winIVRCompositor_IVRCompositor_029_SubmitExplicitTimingData(struct w_iface *_this)
+{
+    struct IVRCompositor_IVRCompositor_029_SubmitExplicitTimingData_params params =
+    {
+        .u_iface = _this->u_iface,
+    };
+    TRACE("%p\n", _this);
+    lock_queue();
+    VRCLIENT_CALL( IVRCompositor_IVRCompositor_029_SubmitExplicitTimingData, &params );
+    unlock_queue();
+    return params._ret;
 }
 
 uint32_t __thiscall winIVRCompositor_IVRCompositor_029_SetSkyboxOverride( struct w_iface *_this,

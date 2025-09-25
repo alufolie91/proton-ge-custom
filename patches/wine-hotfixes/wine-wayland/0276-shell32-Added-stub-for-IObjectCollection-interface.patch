@@ -1,7 +1,7 @@
-From 78b769c468e1c42a22aa316d11cb91e577412e87 Mon Sep 17 00:00:00 2001
+From 329a71b88a1e60c60be771702b1a061ebef68e97 Mon Sep 17 00:00:00 2001
 From: Kevin Martinez <kevinrmartinezj@gmail.com>
 Date: Wed, 24 Jul 2024 17:22:57 -0400
-Subject: [PATCH 276/336] shell32: Added stub for IObjectCollection interface.
+Subject: [PATCH 276/335] shell32: Added stub for IObjectCollection interface.
 
 ---
  dlls/shell32/enumobjects.c | 96 ++++++++++++++++++++++++++++++++++++++

@@ -1,15 +1,15 @@
-From bda27789ddf7b0c0d948a6f79996912cfd031673 Mon Sep 17 00:00:00 2001
+From 46b491def1d864b51c682e8aa41c00ad02ed4c99 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Sat, 28 Jun 2025 20:25:21 -0400
-Subject: [PATCH 143/336] HACK: win32u: Place windows on the vscreen.
+Subject: [PATCH 143/335] HACK: win32u: Place windows on the vscreen.
 
 ---
  dlls/win32u/window.c | 38 +++++++++++++++++++++++++++++++++++++-
  1 file changed, 37 insertions(+), 1 deletion(-)
 
 diff --git a/dlls/win32u/window.c b/dlls/win32u/window.c
-index 42e24cdbaa7..54a5a1894da 100644
+index 68fd577a390..199160c9866 100644
 --- a/dlls/win32u/window.c
 +++ b/dlls/win32u/window.c
 @@ -2097,11 +2097,47 @@ static BOOL apply_window_pos( HWND hwnd, HWND insert_after, UINT swp_flags, stru

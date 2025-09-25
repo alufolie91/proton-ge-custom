@@ -1,8 +1,8 @@
-From de8a93075b1a3a629af0583a32713b64485f6668 Mon Sep 17 00:00:00 2001
+From 88daf892d4b3f23a33fca8695c60a699ab498f24 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Tue, 12 Aug 2025 14:27:59 -0400
-Subject: [PATCH 267/336] winewayland: Add dmabuf xml
+Subject: [PATCH 267/335] winewayland: Add dmabuf xml
 
 ---
  dlls/winewayland.drv/Makefile.in         |   1 +

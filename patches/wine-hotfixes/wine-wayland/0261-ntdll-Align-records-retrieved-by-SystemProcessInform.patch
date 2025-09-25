@@ -1,7 +1,7 @@
-From d96c81b10565f1d9029cfaad407a8a8096a75bcb Mon Sep 17 00:00:00 2001
+From e3ef3201c72ad13125e7e66e22b8f3c5e1bcf0ab Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Bernhard=20=C3=9Cbelacker?= <bernhardu@mailbox.org>
 Date: Wed, 14 May 2025 00:12:42 +0200
-Subject: [PATCH 261/336] ntdll: Align records retrieved by
+Subject: [PATCH 261/335] ntdll: Align records retrieved by
  SystemProcessInformation.
 
 Wine-Bug: https://bugs.winehq.org/show_bug.cgi?id=55928

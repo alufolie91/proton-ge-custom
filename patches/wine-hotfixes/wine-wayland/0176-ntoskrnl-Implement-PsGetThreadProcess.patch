@@ -1,8 +1,8 @@
-From 83289f832efa95ad0c2559bced74a5f6662b8f3b Mon Sep 17 00:00:00 2001
+From 6ad53ec93e2c72baa554bd77d021bc8933c0ffb0 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Tue, 22 Jul 2025 16:06:22 -0400
-Subject: [PATCH 176/336] ntoskrnl: Implement PsGetThreadProcess.
+Subject: [PATCH 176/335] ntoskrnl: Implement PsGetThreadProcess.
 
 ---
  dlls/ntoskrnl.exe/ntoskrnl.c        | 9 +++++++++

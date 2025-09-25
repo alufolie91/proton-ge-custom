@@ -1,7 +1,7 @@
-From cad2e6d22fb2b5549c344d475b1ff1be17b77ee8 Mon Sep 17 00:00:00 2001
+From 37596a4f39b3f24cb7c5dcf4f07a94d8e50f0493 Mon Sep 17 00:00:00 2001
 From: Kun Yang <yangkun@uniontech.com>
 Date: Mon, 17 Mar 2025 10:58:30 +0800
-Subject: [PATCH 291/336] msvcrt: Add MSVCRT__NOBUF flag check in _filbuf to
+Subject: [PATCH 291/335] msvcrt: Add MSVCRT__NOBUF flag check in _filbuf to
  avoid dead loop in application which sets the flag.
 
 Signed-off-by: Kun Yang <yangkun@uniontech.com>

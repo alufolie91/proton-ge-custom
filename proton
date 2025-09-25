@@ -45,7 +45,7 @@ import protonfixes
 #To enable debug logging, copy "user_settings.sample.py" to "user_settings.py"
 #and edit it if needed.
 
-CURRENT_PREFIX_VERSION="GE-Proton10-16"
+CURRENT_PREFIX_VERSION="GE-Proton10-17"
 
 PFX="Proton: "
 ld_path_var = "LD_LIBRARY_PATH"
@@ -1497,7 +1497,8 @@ def default_compat_config():
             ret.add("hidenvgpu")
 
         if appid in [
-                "2395210" #Tony Hawk's Pro Skater 1 + 2
+                "2395210", #Tony Hawk's Pro Skater 1 + 2
+                "1577120", #The Quarry
                 ]:
             ret.add("forcenvapi")
 
@@ -1956,6 +1957,11 @@ class Session:
 
         if "fnad3d11" in self.compat_config and "FNA3D_FORCE_DRIVER" not in self.env:
             self.env["FNA3D_FORCE_DRIVER"] = "D3D11"
+
+        if (os.environ.get("SteamGameId", 0) == "2322010" and    # God of War: Ragnarok
+            os.environ.get("SteamDeck", 0) == "1"):
+            # Disable hidraw for Sony DualShock and DualSense controllers.
+            self.env["PROTON_DISABLE_HIDRAW"] = "0x054C/0x05C4,0x054C/0x09CC,0x054C/0x0BA0,0x054C/0x0CE6,0x054C/0x0DF2"
 
         if "sdlinput" in self.compat_config:
             self.env["PROTON_DISABLE_HIDRAW"] = "1"

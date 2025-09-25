@@ -1,8 +1,8 @@
-From c5b781f556db79e0480f36567661bc4dc1154b7b Mon Sep 17 00:00:00 2001
+From 34fb8575624a86b05fc9ed48afe1281122e25685 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Tue, 1 Jul 2025 22:13:04 -0400
-Subject: [PATCH 150/336] atidxx: Return error with anti-lag 2 usage.
+Subject: [PATCH 150/335] atidxx: Return error with anti-lag 2 usage.
 
 ---
  dlls/atidxx64/main.c | 16 +++++++++++++---

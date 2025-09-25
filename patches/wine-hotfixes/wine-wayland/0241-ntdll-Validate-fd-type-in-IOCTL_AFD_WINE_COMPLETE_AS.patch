@@ -1,7 +1,7 @@
-From e18891565eb4911c779076ed228f983d5f70ada3 Mon Sep 17 00:00:00 2001
+From 7c6d4dd0a1ed52af5552d1cbe97344c5bf239ad8 Mon Sep 17 00:00:00 2001
 From: Elizabeth Figura <zfigura@codeweavers.com>
 Date: Fri, 18 Apr 2025 14:23:35 -0500
-Subject: [PATCH 241/336] ntdll: Validate fd type in
+Subject: [PATCH 241/335] ntdll: Validate fd type in
  IOCTL_AFD_WINE_COMPLETE_ASYNC.
 
 ---

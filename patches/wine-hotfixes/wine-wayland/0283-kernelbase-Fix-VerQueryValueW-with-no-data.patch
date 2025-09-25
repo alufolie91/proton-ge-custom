@@ -1,7 +1,7 @@
-From 73942e0577e5e9dc6a6704404ed7fb805ecd0eca Mon Sep 17 00:00:00 2001
+From 59fbabe068d5d1a053da0e3ddf2c2bfff5e495bf Mon Sep 17 00:00:00 2001
 From: Mark Jansen <mark.jansen@reactos.org>
 Date: Fri, 4 Nov 2022 19:17:37 +0100
-Subject: [PATCH 283/336] kernelbase: Fix VerQueryValueW with no data.
+Subject: [PATCH 283/335] kernelbase: Fix VerQueryValueW with no data.
 
 ---
  dlls/kernelbase/version.c | 7 ++++++-

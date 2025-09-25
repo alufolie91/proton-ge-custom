@@ -1,7 +1,7 @@
-From 7015add0c43c67945a3d4ebab8b6d8f1badfb72a Mon Sep 17 00:00:00 2001
+From 491e9b5aed1b32672fc1b7bcfa505e988c07874c Mon Sep 17 00:00:00 2001
 From: Torge Matthies <tmatthies@codeweavers.com>
 Date: Tue, 20 Feb 2024 16:45:49 +0100
-Subject: [PATCH 239/336] ntdll: Add thread_get_register_pointer_values-based
+Subject: [PATCH 239/335] ntdll: Add thread_get_register_pointer_values-based
  implementation of NtFlushProcessWriteBuffers.
 
 ---
@@ -9,7 +9,7 @@ Subject: [PATCH 239/336] ntdll: Add thread_get_register_pointer_values-based
  1 file changed, 45 insertions(+), 1 deletion(-)
 
 diff --git a/dlls/ntdll/unix/virtual.c b/dlls/ntdll/unix/virtual.c
-index e073660ea0e..b9a883b6b5d 100644
+index c0ac9862261..8ba61b7b35b 100644
 --- a/dlls/ntdll/unix/virtual.c
 +++ b/dlls/ntdll/unix/virtual.c
 @@ -71,6 +71,9 @@
@@ -22,7 +22,7 @@ index e073660ea0e..b9a883b6b5d 100644
  #endif
  
  #include <sys/uio.h>
-@@ -7213,7 +7216,48 @@ NTSTATUS WINAPI NtFlushInstructionCache( HANDLE handle, const void *addr, SIZE_T
+@@ -7216,7 +7219,48 @@ NTSTATUS WINAPI NtFlushInstructionCache( HANDLE handle, const void *addr, SIZE_T
  }
  
  

@@ -1,7 +1,7 @@
-From bc5ca2e46b318bfc27708309405c09c3ac195f8a Mon Sep 17 00:00:00 2001
+From 14cfdc502ad6d96e0070843754794b332c6033a7 Mon Sep 17 00:00:00 2001
 From: Piotr Caban <piotr@codeweavers.com>
 Date: Wed, 6 Aug 2025 16:47:12 +0200
-Subject: [PATCH 257/336] vccorlib140: Add Platform::Details::InitializeData
+Subject: [PATCH 257/335] vccorlib140: Add Platform::Details::InitializeData
  semi-stub.
 
 ---

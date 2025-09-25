@@ -1,7 +1,7 @@
-From 252370fdbe75f47fbf28490195b87a5255c4e9c3 Mon Sep 17 00:00:00 2001
+From 9f0c5bb43404042e6b13ffbb60bfa4fb1b777eac Mon Sep 17 00:00:00 2001
 From: Mark Jansen <mark.jansen@reactos.org>
 Date: Fri, 4 Nov 2022 19:13:24 +0100
-Subject: [PATCH 282/336] version/tests: Add a test for an empty value in
+Subject: [PATCH 282/335] version/tests: Add a test for an empty value in
  VerQueryValueW.
 
 ---
