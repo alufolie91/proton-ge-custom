@@ -11,7 +11,7 @@ index 64b6803..55b38d9 100644
 -  '-msse3',
 -  '-mfpmath=sse',
 +  '-O3',
-+  '-march=native',
++  '-march=tigerlake',
    '-Wimplicit-fallthrough',
    # gcc
    '-Wno-missing-field-initializers',
