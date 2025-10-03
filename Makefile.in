@@ -53,8 +53,8 @@ endif
 
 OBJCOPY_FLAGS  := -p
 
-i386_CFLAGS    := -mstackrealign -march=nocona -mtune=native -mfpmath=sse
-x86_64_CFLAGS  := -mcmodel=small -march=nocona -mtune=native -mfpmath=sse
+i386_CFLAGS    := -mstackrealign -march=nocona -mtune=znver2 -mfpmath=sse
+x86_64_CFLAGS  := -mcmodel=small -march=nocona -mtune=znver2 -mfpmath=sse
 
 CFLAGS  = -O3 -fwrapv -fno-strict-aliasing
 CFLAGS += -ggdb -ffunction-sections -fdata-sections -fno-omit-frame-pointer
