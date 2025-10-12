@@ -58,6 +58,8 @@ apply_all_in_dir() {
     git clean -xdf
     echo "WINETRICKS: fix broken gnutls when fetching https"
     apply_patch "../../../patches/winetricks/winetrick_gnutls_fix.patch"
+    echo "WINETRICKS: fix broken mono/dotnet removal"
+    apply_patch "../../../patches/winetricks/winetricks_dotnet_remove_fix.patch
     popd
     popd
     popd
