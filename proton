@@ -750,8 +750,10 @@ class Proton:
         self.wineserver_bin = self.bin_dir + "wineserver"
         self.dist_lock = FileLock(self.path("dist.lock"), timeout=-1)
 
-        if os.environ.get("PROTON_USE_WOW64", None) == "1" or not file_exists(
-            self.wine_bin, follow_symlinks=True
+        if (
+            os.environ.get("PROTON_USE_WOW64", None) == "1"
+            or "wow64" in proton_config
+            or not file_exists(self.wine_bin, follow_symlinks=True)
         ):
             self.bin_dir = self.path("files/bin-wow64/")
             self.wine_bin = self.bin_dir + "wine"
@@ -868,6 +870,9 @@ class CompatData:
                 "Prefix has an invalid version?! You may want to back up user files and delete this prefix."
             )
             # If it does, just let the Wine upgrade happen and hope it works...
+            with open(self.creation_sync_guard, "w"):
+                pass
+            os.sync()
             return
 
         try:
@@ -1242,7 +1247,8 @@ class CompatData:
             dst = "drive_c/windows/system32/" + f + ".dll"
             if not file_exists(self.prefix_dir + dst, follow_symlinks=False):
                 try:
-                    tracked_files.write(dst + "\n")
+                    with open(self.tracked_files_file, "a") as tracked_files:
+                        tracked_files.write(dst + "\n")
                 except Exception:
                     pass
             if file_exists(
@@ -1790,6 +1796,7 @@ def default_compat_config():
                 "2840770",  # Avatar: Frontiers of Pandora
                 "429660",  # Tales of Berseria
                 "1286220",  # Sea Power
+                "2507950",  # Delta Force
             ]
         ):
             ret.add("gamedrive")
@@ -2038,7 +2045,6 @@ class Session:
             + "i386-linux-gnu/gstreamer-1.0"
         )
         self.env["WINE_GST_REGISTRY_DIR"] = g_compatdata.path("gstreamer-1.0/")
-        self.env["GST_GL_WINDOW"] = "x11"
 
         if "STEAM_COMPAT_MEDIA_PATH" in os.environ:
             old_audiofoz_path = os.environ["STEAM_COMPAT_MEDIA_PATH"] + "/audio.foz"
@@ -2189,17 +2195,14 @@ class Session:
         self.check_environment("PROTON_PREFER_SDL", "sdlinput")
         self.check_environment("PROTON_USE_SDL", "sdlinput")
         self.check_environment("PROTON_FSR4_UPGRADE", "fsr4")
+        self.check_environment("PROTON_FSR4_RDNA3_UPGRADE", "fsr4rdna3")
         self.check_environment("PROTON_NATIVE_AGS", "nativeags")
         self.check_environment("PROTON_ENABLE_HDR", "hdr")
         self.check_environment("PROTON_NO_NTSYNC", "nontsync")
 
         if "PROTON_ADD_CONFIG" in self.env:
-            try:
-                configs = self.env["PROTON_ADD_CONFIG"].split(",")
-                for c in configs:
-                    self.compat_config.add(c)
-            except:
-                pass
+            for c in proton_config:
+                self.compat_config.add(c)
 
         if "nontsync" in self.compat_config:
             self.env.pop("WINENTSYNC", "")
@@ -2404,11 +2407,24 @@ class Session:
         if "hdr" in self.compat_config:
             self.env["DXVK_HDR"] = "1"
 
+        if "fnad3d11" in self.compat_config and "FNA3D_FORCE_DRIVER" not in self.env:
+            self.env["FNA3D_FORCE_DRIVER"] = "D3D11"
+
         # igdext is loaded either using the LoadLibraryExW hack on 1.3 or lower
         # or using the INTC_ALT_DRIVER_EXTENSIONS_PATH on 2.0 or newer
         # TODO: Load it through driver store data like it is on windows
         # TODO: D3D11 has a different loading mechanism because why not
         self.env["INTC_ALT_DRIVER_EXTENSIONS_PATH"] = "C:\\Windows\\System32"
+
+        # PROTON_DISABLE_HIDRAW workarounds
+        if (
+            os.environ.get("SteamGameId", 0) == "2322010"  # God of War: Ragnarok
+            and os.environ.get("SteamDeck", 0) == "1"
+        ):
+            # Disable hidraw for Sony DualShock and DualSense controllers.
+            self.env["PROTON_DISABLE_HIDRAW"] = (
+                "0x054C/0x05C4,0x054C/0x09CC,0x054C/0x0BA0,0x054C/0x0CE6,0x054C/0x0DF2"
+            )
 
         # NVIDIA software may check for the "DriverStore" by querying the
         # NGXCore\NGXPath registry key via `D3DDDI_QUERYREGISTRY_SERVICEKEY` for
@@ -2474,7 +2490,7 @@ class Session:
                             "Effective " + var + ": " + self.env[var] + "\n"
                         )
 
-                if "fsr4" in self.compat_config:
+                if "fsr4" in self.compat_config or "fsr4rdna3" in self.compat_config:
                     if file_exists(
                         g_proton.lib_dir + "wine/amdprop/amdxcffx64.dll",
                         follow_symlinks=False,
@@ -2513,54 +2529,46 @@ class Session:
         if update_prefix_files:
             g_compatdata.setup_prefix()
 
-        if "fsr4" in self.compat_config:
+        if "fsr4" in self.compat_config or "fsr4rdna3" in self.compat_config:
             self.env["FSR4_UPGRADE"] = "1"
-            versions = ["67D435F7d97000", "67A4D2BC10ad000"]
-            version_match = True
+
+            versions = {
+                "4.0.0": "67A4D2BC10ad000",
+                "4.0.1": "67D435F7d97000",
+                "4.0.2": "68840348eb8000",
+            }
+            version = versions["4.0.0"]
+
+            if "fsr4rdna3" in self.compat_config:
+                self.env["DXIL_SPIRV_CONFIG"] = "wmma_rdna3_workaround"
 
             # TODO: make the following code more efficent
 
             # 0. Check downloaded version
-            if file_exists(
-                g_proton.lib_dir + "wine/amdprop/amdxcffx64_version",
-                follow_symlinks=False,
-            ):
-                with open(
-                    g_proton.lib_dir + "wine/amdprop/amdxcffx64_version", "r"
-                ) as file:
+            version_match = False
+            version_file = g_proton.lib_dir + "wine/amdprop/amdxcffx64_version"
+            if file_exists(version_file, follow_symlinks=False):
+                with open(version_file, "r") as file:
                     first_line = file.readline()
-                    version_match = False
-                    for version in versions:
-                        if first_line in version:
-                            version_match = True
-            else:
-                version_match = False
+                    if first_line == version:
+                        version_match = True
 
             # 1. Download amdxcffx64 library
-            if (
-                not file_exists(
-                    g_proton.lib_dir + "wine/amdprop/amdxcffx64.dll",
-                    follow_symlinks=False,
-                )
-                or not version_match
-            ):
-                self.download_file(
-                    "https://download.amd.com/dir/bin/amdxcffx64.dll/"
-                    + versions[1]
-                    + "/amdxcffx64.dll",
-                    g_proton.lib_dir + "wine/amdprop/amdxcffx64.dll",
-                )
+            fsr_dll_url = (
+                "https://download.amd.com/dir/bin/amdxcffx64.dll/"
+                + version
+                + "/amdxcffx64.dll"
+            )
+            fsr_dll = g_proton.lib_dir + "wine/amdprop/amdxcffx64.dll"
+            if not file_exists(fsr_dll, follow_symlinks=False) or not version_match:
+                self.download_file(fsr_dll_url, fsr_dll)
 
             # 2. Update stored version
-            if file_exists(
-                g_proton.lib_dir + "wine/amdprop/amdxcffx64.dll", follow_symlinks=False
-            ):
+            if file_exists(fsr_dll, follow_symlinks=False):
                 g_compatdata.setup_fsr4()
                 if not version_match:
-                    with open(
-                        g_proton.lib_dir + "wine/amdprop/amdxcffx64_version", "w"
-                    ) as file:
-                        file.write(versions[1] + "\n")
+                    with open(version_file, "w") as file:
+                        file.write(version + "\n")
 
         if "nod3d11" in self.compat_config:
             self.dlloverrides["d3d11"] = ""
@@ -2592,12 +2600,20 @@ class Session:
                 """
                 self.env["PROTON_USE_XALIA"] = "0"
                 # Steam input does not work on wayland
-                self.env["PROTON_NO_STEAMINPUT"] = "1"
+                if "PROTON_NO_STEAMINPUT" not in self.env:
+                    self.env["PROTON_NO_STEAMINPUT"] = "1"
+                # IME implementation on some compositors is broken
+                if "WAYLANDDRV_NO_IME" not in self.env:
+                    self.env["WAYLANDDRV_NO_IME"] = "1"
+                # FIXME: temporary workaround to libxkbcommon's current integration
+                if "XLOCALEDIR" not in self.env:
+                    self.env["XLOCALEDIR"] = g_proton.dist_dir + "share/X11/locale"
                 # Make sure SDL will still work with the controllers, steam sets this for some dumb reason
                 if "SDL_GAMECONTROLLER_IGNORE_DEVICES" in self.env:
                     del self.env["SDL_GAMECONTROLLER_IGNORE_DEVICES"]
-                # Always prefer SDL when no steaminput is available, better for non-xbox controllers
-                self.env["PROTON_PREFER_SDL"] = "1"
+        else:  # X11 specific changes to increase compat
+            # Surfaceless supports less formats than x11
+            self.env["GST_GL_WINDOW"] = "x11"
 
         if "forcenvapi" in self.compat_config:
             self.env["DXVK_NVAPI_ALLOW_OTHER_DRIVERS"] = "1"
