@@ -1,8 +1,8 @@
-From 5891492cd9f1ed94d20991a70ec3d99075222093 Mon Sep 17 00:00:00 2001
+From 96842708d6c802a51aae0e90bb9da7de0d5294f3 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Wed, 21 May 2025 19:43:39 -0400
-Subject: [PATCH 053/335] fixup! winewayland: Handle rotated screens.
+Subject: [PATCH 053/346] fixup! winewayland: Handle rotated screens.
 
 ---
  dlls/winewayland.drv/wayland_output.c | 3 +--

@@ -1,7 +1,7 @@
-From 201035def0fb136083eca27f1244642123914cad Mon Sep 17 00:00:00 2001
+From 08acc50688a747c176b8ffd1c3d8ba38c2597bbb Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty <etaash.mathamsetty@gmail.com>
 Date: Tue, 10 Jun 2025 22:19:55 -0400
-Subject: [PATCH 091/335] HACK: winewayland: confine to parent surface on kwin.
+Subject: [PATCH 091/346] HACK: winewayland: confine to parent surface on kwin.
 
 ---
  dlls/winewayland.drv/wayland_pointer.c | 9 +++++++++

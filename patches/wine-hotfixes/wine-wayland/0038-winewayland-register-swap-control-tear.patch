@@ -1,8 +1,8 @@
-From 1b6ba2ca686a090cb7c97b2aa46a50718cd78c32 Mon Sep 17 00:00:00 2001
+From d53b633a233572bfb52678346366595134eae543 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Sat, 10 May 2025 18:11:35 -0400
-Subject: [PATCH 038/335] winewayland: register swap control tear
+Subject: [PATCH 038/346] winewayland: register swap control tear
 
 its up to compositor anyway, just no-op.
 ---

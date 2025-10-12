@@ -1,8 +1,8 @@
-From 836647238f4e8138c1c82ba3a69d9c2689fc31cb Mon Sep 17 00:00:00 2001
+From 196d44280b9627c9565d588b4aac6610507ef9a1 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Sun, 1 Jun 2025 09:45:29 -0400
-Subject: [PATCH 069/335] winewayland: add opcode 3 of
+Subject: [PATCH 069/346] winewayland: add opcode 3 of
  zwlr_data_control_device_v1_listener.
 
 ---

@@ -1,8 +1,8 @@
-From 018590e79471662cced6be5c3254bdc91c8e5e54 Mon Sep 17 00:00:00 2001
+From 9566e4b7b6c716c1014d97f3b4be56607415342e Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Tue, 6 May 2025 09:06:03 -0400
-Subject: [PATCH 029/335] hack: winewayland: handle fractional scaling
+Subject: [PATCH 029/346] hack: winewayland: handle fractional scaling
 
 ---
  dlls/winewayland.drv/Makefile.in             |   1 +

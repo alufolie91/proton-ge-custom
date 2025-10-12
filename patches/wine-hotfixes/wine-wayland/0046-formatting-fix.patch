@@ -1,18 +1,18 @@
-From 921878c9ba7b32a3da9c0f6b4a775a658f6c46ff Mon Sep 17 00:00:00 2001
+From 5271a3e26c8aac8302683f149f5ecab1d5f07514 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Thu, 15 May 2025 11:19:18 -0400
-Subject: [PATCH 046/335] formatting fix
+Subject: [PATCH 046/346] formatting fix
 
 ---
  dlls/kernelbase/process.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/dlls/kernelbase/process.c b/dlls/kernelbase/process.c
-index cf630902bb8..dd6dea3a4a7 100644
+index fc38aabb7ae..5a0ceb13bbe 100644
 --- a/dlls/kernelbase/process.c
 +++ b/dlls/kernelbase/process.c
-@@ -628,7 +628,7 @@ static const WCHAR *hack_append_command_line( const WCHAR *cmd )
+@@ -624,7 +624,7 @@ static const WCHAR *hack_append_command_line( const WCHAR *cmd )
  
      /* Generally just workarounds for winewayland not supporting cross process rendering (yet) */
      static const struct option wayland_options[] = {
