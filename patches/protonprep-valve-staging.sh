@@ -278,6 +278,8 @@ apply_all_in_dir() {
     echo "WINE: -PENDING- add webview2 patches for GIRLS' FRONTLINE 2: EXILIUM"
     apply_patch "../patches/wine-hotfixes/pending/webview2.patch"
 
+    #https://github.com/GloriousEggroll/proton-ge-custom/issues/283
+    apply_patch "../patches/wine-hotfixes/pending/8848.patch"
 
 ### END WINE PENDING UPSTREAM SECTION ###
 
