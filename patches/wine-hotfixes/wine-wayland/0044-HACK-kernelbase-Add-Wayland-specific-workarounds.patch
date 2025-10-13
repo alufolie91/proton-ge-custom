@@ -1,18 +1,18 @@
-From 7cc7110003c15a73bf8a11dedf876f924c0605ab Mon Sep 17 00:00:00 2001
+From d3338b2ddf13cd4d3724866ba7aa11ff1a12107f Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Thu, 15 May 2025 10:12:42 -0400
-Subject: [PATCH 044/335] HACK: kernelbase: Add Wayland specific workarounds.
+Subject: [PATCH 044/347] HACK: kernelbase: Add Wayland specific workarounds.
 
 ---
  dlls/kernelbase/process.c | 38 ++++++++++++++++++++++++++++++++------
  1 file changed, 32 insertions(+), 6 deletions(-)
 
 diff --git a/dlls/kernelbase/process.c b/dlls/kernelbase/process.c
-index 09e373f45f9..06bad31676e 100644
+index 62737ae32ba..16168c97436 100644
 --- a/dlls/kernelbase/process.c
 +++ b/dlls/kernelbase/process.c
-@@ -590,13 +590,14 @@ static int battleye_launcher_redirect_hack( const WCHAR *app_name, WCHAR *new_na
+@@ -586,13 +586,14 @@ static int battleye_launcher_redirect_hack( const WCHAR *app_name, WCHAR *new_na
  
  static const WCHAR *hack_append_command_line( const WCHAR *cmd )
  {
@@ -30,7 +30,7 @@ index 09e373f45f9..06bad31676e 100644
      {
          {L"Click&Fight.exe", L" --disable_direct_composition=1"},
          {L"Willful.exe", L" --disable_direct_composition=1"},
-@@ -624,8 +625,17 @@ static const WCHAR *hack_append_command_line( const WCHAR *cmd )
+@@ -620,8 +621,17 @@ static const WCHAR *hack_append_command_line( const WCHAR *cmd )
          {L"UnrealCEFSubProcess.exe", L" --use-gl=swiftshader", "2316580"},
          {L"UnrealCEFSubProcess.exe", L" --use-angle=d3d9", "2684500"},
      };
@@ -49,7 +49,7 @@ index 09e373f45f9..06bad31676e 100644
  
      if (!cmd) return NULL;
  
-@@ -633,13 +643,29 @@ static const WCHAR *hack_append_command_line( const WCHAR *cmd )
+@@ -629,13 +639,29 @@ static const WCHAR *hack_append_command_line( const WCHAR *cmd )
      {
          if (wcsstr( cmd, options[i].exe_name ))
          {
