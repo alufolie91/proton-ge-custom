@@ -2,9 +2,9 @@
 >  **Myself (GloriousEggroll) and this project (GE-Proton) are not affiliated with any other websites related to GE-Proton. There is no existing website for GE-Proton other than this GitHub repository.**
 
 > [!Important]
-> **If you have an issue that happens with my proton-GE build, provided FROM this repository, that does -not- happen on Valve's proton, please DO NOT open a bug report on Valve's bug tracker.**
+> **If you have an issue that happens with my GE-Proton build, provided from this repository, that does bot happen on Valve's Proton, please do not open a bug report on Valve's bug tracker.**
 >
-> Instead, open an issue: https://github.com/GloriousEggroll/proton-ge-custom/issues
+> Instead, open an issue on this repository's issue tracker: https://github.com/GloriousEggroll/proton-ge-custom/issues
 >
 > or contact me on Discord about the issue: https://discord.gg/6y3BdzC
 
@@ -369,7 +369,7 @@ Environment variable options:
 | <tt>nod3d9</tt>      | <tt>PROTON_NO_D3D9</tt>        | Disables DX9.  |
 | <tt>noesync</tt>      | <tt>PROTON_NO_ESYNC</tt>       | Do not use eventfd-based in-process synchronization primitives. |
 | <tt>nofsync</tt>      | <tt>PROTON_NO_FSYNC</tt>       | Do not use futex-based in-process synchronization primitives. (Automatically disabled on systems with no `FUTEX_WAIT_MULTIPLE` support.) |
-| <tt>nontsync</tt>      | <tt>PROTON_NO_NTSYNC</tt>       | Do not use ntsync kernel module for in-process synchronization primitives. |
+| <tt>nontsync</tt>      | <tt>PROTON_NO_NTSYNC</tt>       | Do not use the ntsync kernel module for in-process synchronization primitives. |
 | <tt>forcelgadd</tt>   | <tt>PROTON_FORCE_LARGE_ADDRESS_AWARE</tt> | Force Wine to enable the LARGE_ADDRESS_AWARE flag for all executables. |
 | <tt>heapdelayfree</tt>| <tt>PROTON_HEAP_DELAY_FREE</tt>| Delay freeing some memory, to work around application use-after-free bugs. |
 | <tt>noxim</tt>        | <tt>PROTON_NO_XIM</tt>         | Enabled by default. Do not attempt to use XIM (X Input Methods) support. XIM support is known to cause crashes with libx11 older than version 1.7. |
@@ -399,13 +399,13 @@ In future builds, I plan to make clearer and more informative Git commits, as we
 - https://www.patreon.com/tkglitch
 - https://github.com/Frogging-Family/wine-tkg-git
 
-I and many others owe TKG. In regards to both WINE and Proton. He has dedicated a lot of time (2+ years at least) to rebasing WINE and Proton patches, as well as making his own contributions. Before he came along, I did some rebasing work, and mainly only released things for Arch. These days he almost always beats me to rebasing, and it saves myself and others a **lot** of work.
+I and many others owe TKG. In regards to both Wind and Proton. He has dedicated a lot of time (2+ years at least) to rebasing Wine and Proton patches, as well as making his own contributions. Before he came along, I did some rebasing work, and mainly only released things for Arch. These days he almost always beats me to rebasing, and it saves myself and others a **lot** of work.
 
 ### Guy1524 (Derek Lesho)
 
 - https://github.com/Guy1524
 
-Derek was responsible for the original rawinput patches, as well as several various game fixes in the past, just to name a few: MK11, FFXV, MHW, Steep, AC Odyssey FS fix. He has also done a massive amount of work on media foundation/mfplat, which should be hopefully working very soon.
+Derek was responsible for the original raw input patches, as well as several various game fixes in the past, just to name a few: MK11, FFXV, MHW, Steep, AC Odyssey FS fix. He has also done a massive amount of work on Media Foundation/MFPlat, which should be hopefully working very soon.
 
 ### Joshie (Joshua Ashton)
 
@@ -436,7 +436,7 @@ Ethan is the creator of FAudio, and he also listened to my Warframe bug reports 
 
 - https://github.com/simons-public
 
-protonfixeChris is the creator of the original 'protonfixes' project. The portions of 'protonfixes' I've imported are what allow customizations to be made to prefixes for various Proton games. Without 'protonfixes' many games would still be broken and/or require manual prefix modification.
+Chris is the creator of the original 'protonfixes' project. The portions of 'protonfixes' I've imported are what allow customizations to be made to prefixes for various Proton games. Without 'protonfixes' many games would still be broken and/or require manual prefix modification.
 
 ### Sporif (Amine Hassane)
 
@@ -448,7 +448,7 @@ Amine is the current maintainer of dxvk-async. This is a feature that was origin
 
 I also of course need to thank the wine-staging maintainers: Alistair Leslie-Hughes, Zebediah Figura and Paul Gofman
 
-They have contributed MANY patches to staging, far beyond what I have done, as well as kept up with regular rebasing. A lot of times when bug reports come to me, if it has to do with staging I end up testing and relaying information to these guys in order to get issues resolved.
+They have contributed many patches to staging, far beyond what I have done, as well as kept up with regular rebasing. A lot of times when bug reports come to me, if it has to do with staging I end up testing and relaying information to these guys in order to get issues resolved.
 
 ### Reporters
 
@@ -456,7 +456,7 @@ Additionally, a thank you is owed to Andrew Aeikum (aeikum), and kisak (kisak-va
 
 ### Patrons
 
-And finally - To all of my patrons that have supported me, thank you so much. It's because of you that I've been able to keep this project going, getting bug fixes reported, getting Proton/Wine issues fixed, getting various hardware and/or game fixes handled, and so on. Thanks to you, I have been able to use the spare budget in order to both help support the other people that make my project possible, as well as get things necessary for testing such as new game releases or specific hardware that hits odd issues. It's had a huge effect not just for this project, but a large trickle down effect.
+And finally - to all of my patrons that have supported me, thank you so much. It's because of you that I've been able to keep this project going, getting bug fixes reported, getting Proton/Wine issues fixed, getting various hardware and/or game fixes handled, and so on. Thanks to you, I have been able to use the spare budget in order to both help support the other people that make my project possible, as well as get things necessary for testing such as new game releases or specific hardware that hits odd issues. It's had a huge effect not just for this project, but a large trickle down effect.
 
 My wine-staging co-maintainers are often able to ask me for testing games, or testing on different hardware if they don't have access to it. This also trickles into both Proton bug reporting and Lutris bug reporting, as I'm able to provide bug testing and feedback and custom builds and upgrades to them as well. I'm also able to test driver related issues for things such as mesa and getting things reported + patched. This in turn leads to early patches for Mesa, the kernel, VKD3D, and other packages on my copr repositories as well. The trickle down effect is just one gigantic awesome rabbit hole for getting things fixed. Thank you once again.
 
