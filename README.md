@@ -8,10 +8,10 @@
 >
 > or contact me on Discord about the issue: https://discord.gg/6y3BdzC
 
-# proton-ge-custom
+# GE-Proton
 
-> [!WARNING]
-> **RUNNING NON-STEAM GAMES WITH GE-PROTON OUTSIDE OF STEAM IS ONLY SUPPORTED USING [umu](https://github.com/Open-Wine-Components/umu-launcher):**
+> [!Warning]
+> **Running non-Steam games with GE-Proton outside of Steam is only supported using [umu](https://github.com/Open-Wine-Components/umu-launcher):**
 > 
 > Proton runs in a container, which uses a runtime environment and libraries specifically built for use within that container. Not running it as intended results in the container and therefore its runtime not being used, and severely breaks library compatibility. It causes Wine to attempt to search for libraries on your system instead of those it was built with/intended for within Proton. It may work, if enough libraries match, but it is not correct and not supportable due to library differences across Linux distributions.
 > 
@@ -116,7 +116,7 @@ This section is for those that use the native version of Steam.
 3. Extract the release tarball into `~/.steam/steam/compatibilitytools.d/`.
    * `tar -xf GE-Proton*.tar.gz -C ~/.steam/steam/compatibilitytools.d/`.
 4. Restart Steam.
-5. [Enable proton-ge-custom](#enabling).
+5. [Enable proton-ge-custom in Steam](#enabling).
   
     
 *Get the latest release of GE-Proton through your terminal. It is assumed that you have all of the necessary software to use these commands installed:*
@@ -180,7 +180,7 @@ The Steam Flatpak and [the unofficial build of GE-Proton provided by Flathub](ht
 	```bash
 	flatpak install com.valvesoftware.Steam.CompatibilityTool.Proton-GE
 	```
-3. [Enable proton-ge-custom](#enabling).
+3. [Enable proton-ge-custom in Steam](#enabling).
 
 ##### Manual
 
@@ -189,7 +189,7 @@ The Steam Flatpak and [the unofficial build of GE-Proton provided by Flathub](ht
 3. Extract the release tarball into `~/.var/app/com.valvesoftware.Steam/data/Steam/compatibilitytools.d/`.
    * `tar -xf GE-ProtonVERSION.tar.gz -C ~/.var/app/com.valvesoftware.Steam/data/Steam/compatibilitytools.d/`
 4. Restart Steam.
-5. [Enable proton-ge-custom](#enabling).   
+5. [Enable proton-ge-custom in Steam](#enabling).   
 
 *Get the latest GE-Proton release through your terminal. It is assumed that you have all of the necessary software to use these commands installed:*
 ```bash
@@ -251,11 +251,11 @@ This unofficial build isn't supported by GloriousEggroll nor Valve and wasn't te
 3. Extract the release tarball into `~/snap/steam/common/.steam/steam/compatibilitytools.d/`.
    * `tar -xf GE-ProtonVERSION.tar.gz -C ~/snap/steam/common/.steam/steam/compatibilitytools.d/`
 4. Restart Steam.
-5. [Enable proton-ge-custom](#enabling).
+5. [Enable proton-ge-custom in Steam](#enabling).
 
 
 ##### Enabling NTSync
-For NTSync to work, your kernel must be version 6.14 or newer and built with `CONFIG_NTSYNC=y` -OR- `CONFIG_NTSYNC=m`.
+For NTSync to work, your kernel must be version 6.14 or newer and built with `CONFIG_NTSYNC=y` or `CONFIG_NTSYNC=m`.
 If using `CONFIG_NTSYNC=m`, a module loading configuration is required followed by a reboot:
 
 /etc/modules-load.d/ntsync.conf
@@ -270,11 +270,11 @@ After this, a device `/dev/ntsync` should now exist on your system.
 
 Once NTSync is enabled on the system, if you launch a game with GE-Proton10-10 or newer using PROTON_LOG=1, Steam will generate a log for the game in your home folder `steam-XXXXXX.log`. Inside that log you should see `wineserver: NTSync up and running!`
 
-##### Enabling native Wayland
+##### Enabling Wayland
 
-GE-Proton includes support for Wine’s **Wayland driver** (`winewayland.drv`). By default, Proton uses X11/XWayland.
+GE-Proton includes support for Wine's Wayland driver (`winewayland.drv`). By default, Proton uses X11/XWayland.
 
-###### Minimum versions
+###### Required versions
 
 * **AMD / Intel:** Mesa **≥ 25.x**
 * **NVIDIA:** **≥ 575.x**
@@ -299,11 +299,11 @@ Check `steam-XXXX.log` for:
 Loaded L"C:\windows\system32\winewayland.drv"
 ```
 
-###### Optional: Enable HDR
+###### Enable HDR
 
 It should work if you have:
 
-- HDR-capable monitor.
+- A HDR-capable monitor.
 - A compositor with HDR support.
 - A game with HDR supports.
 
