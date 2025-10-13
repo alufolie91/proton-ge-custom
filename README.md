@@ -270,10 +270,9 @@ After this, a device `/dev/ntsync` should now exist on your system.
 
 Once NTSync is enabled on the system, if you launch a game with GE-Proton10-10 or newer using PROTON_LOG=1, Steam will generate a log for the game in your home folder `steam-XXXXXX.log`. Inside that log you should see `wineserver: NTSync up and running!`
 
-
 ##### Enabling native Wayland
 
-GE-Proton includes support for Wine’s **Wayland driver** (`winewayland.drv`). By default Proton uses X11/XWayland.
+GE-Proton includes support for Wine’s **Wayland driver** (`winewayland.drv`). By default, Proton uses X11/XWayland.
 
 ###### Minimum versions
 
@@ -282,7 +281,7 @@ GE-Proton includes support for Wine’s **Wayland driver** (`winewayland.drv`). 
 
 ###### How to enable
 
-Add to a game’s Launch Options:
+Add to a game’s launch options:
 
 ```bash
 PROTON_ENABLE_WAYLAND=1 %command%
