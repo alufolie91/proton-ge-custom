@@ -268,13 +268,13 @@ sudo modprobe ntsync
 ```
 After this, a device `/dev/ntsync` should now exist on your system.
 
-Once NTSync is enabled on the system, if you launch a game with GE-Proton10-10 or newer using PROTON_LOG=1, Steam will generate a log for the game in your home folder `steam-XXXXXX.log`. Inside that log you should see `wineserver: NTSync up and running!`
+Once NTSync is enabled on the system, if you launch a game with GE-Proton10-10 or newer using PROTON_LOG=1, a log will be generated for the game in your home folder with the filename `steam-XXXXXX.log`. Inside that log you should see `wineserver: NTSync up and running!`
 
 ##### Enabling Wayland
 
-GE-Proton includes support for Wine's Wayland driver (`winewayland.drv`). By default, Proton uses X11/XWayland.
+GE-Proton includes support for Wine's Wayland driver (`winewayland.drv`). By default, Proton uses X11 or XWayland.
 
-###### Required versions
+###### Required graphics driver versions
 
 * **AMD / Intel:** Mesa **≥ 25.x**
 * **NVIDIA:** **≥ 575.x**
@@ -303,9 +303,9 @@ Loaded L"C:\windows\system32\winewayland.drv"
 
 It should work if you have:
 
-- A HDR-capable monitor.
-- A compositor with HDR support.
-- A game with HDR supports.
+- A HDR-capable monitor
+- A compositor with HDR support
+- A game with HDR support.
 
 ```bash
 PROTON_ENABLE_HDR=1 %command%
