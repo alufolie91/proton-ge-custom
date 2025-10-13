@@ -7,7 +7,7 @@ index c2e8cd2..38f349a 100644
  dxvk_is_msvc = cpp.get_argument_syntax() == 'msvc'
  
 -compiler_args = ['-DNOMINMAX', '-DWIN32_LEAN_AND_MEAN']
-+compiler_args = ['-O3', '-march=znver2', '-DNOMINMAX', '-DWIN32_LEAN_AND_MEAN']
++compiler_args = ['-O3', '-mtune=znver2', '-DNOMINMAX', '-DWIN32_LEAN_AND_MEAN']
  link_args = []
  if not dxvk_is_msvc
    compiler_args += ['-Wno-unused-parameter']

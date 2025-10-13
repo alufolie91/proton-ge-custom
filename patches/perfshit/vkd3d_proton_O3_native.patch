@@ -9,7 +9,7 @@ index 3ef941b..a461c55 100644
 -    '-msse',
 -    '-msse2',
 +    '-O3',
-+    '-march=znver2',
++    '-mtune=znver2',
      # For some reason, the use of VLAs isn't in all+extra+pedantic
      # We don't want to use these accidentally from consts...
      '-Wvla',
