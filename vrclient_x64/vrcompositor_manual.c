@@ -361,8 +361,19 @@ static void free_compositor_texture( uint32_t type, struct submit_state *state )
 
 struct set_skybox_override_state
 {
+    int texture_type;
     w_Texture_t textures[6];
     w_VRVulkanTextureData_t vkdata[6];
+    ID3D12DXVKInteropDevice *d3d12_device; /* reference counted. */
+    ID3D12CommandQueue *d3d12_queue;       /* app provided for call, not reference counted. */
+    struct
+    {
+        uint64_t image;
+        VkImageSubresourceRange subresources;
+        VkImageLayout layout;
+    }
+    images[6];
+    unsigned int image_count;
 };
 
 static const w_Texture_t *set_skybox_override_d3d11_init( const w_Texture_t *textures, uint32_t count, struct set_skybox_override_state *state )
@@ -427,11 +438,97 @@ static const w_Texture_t *set_skybox_override_d3d11_init( const w_Texture_t *tex
     compositor_data.dxvk_device->lpVtbl->FlushRenderingCommands( compositor_data.dxvk_device );
     compositor_data.dxvk_device->lpVtbl->LockSubmissionQueue( compositor_data.dxvk_device );
 
+    state->texture_type = TextureType_DirectX;
+    return state->textures;
+}
+
+static const w_Texture_t *set_skybox_override_d3d12_init( const w_Texture_t *textures, uint32_t count, struct set_skybox_override_state *state )
+{
+    ID3D12DXVKInteropDevice2 *d3d12_device2;
+    ID3D12DXVKInteropDevice *d3d12_device;
+    w_D3D12TextureData_t *texture_data;
+    ID3D12CommandQueue *d3d12_queue;
+    ID3D12Resource *d3d12_resource;
+    VkImageSubresourceRange *range;
+    VkImageCreateInfo image_info;
+    VkImageLayout image_layout;
+    unsigned int i, j;
+    HRESULT hr;
+
+    for (i = 0; i < count; ++i)
+    {
+        const w_Texture_t *texture = &textures[i];
+
+        if (!texture->handle)
+        {
+            ERR( "No D3D11 texture %p.\n", texture );
+            return textures;
+        }
+        if (textures[i].eType != TextureType_DirectX12)
+        {
+            FIXME( "Mixing texture types is not supported.\n" );
+            return textures;
+        }
+        texture_data = texture->handle;
+        if (!(d3d12_resource = texture_data->m_pResource) || !(d3d12_queue = texture_data->m_pCommandQueue))
+        {
+            ERR( "Invalid D3D12 texture %p.\n", texture );
+            return texture;
+        }
+        d3d12_device2 = NULL;
+        hr = d3d12_queue->lpVtbl->GetDevice( d3d12_queue, &IID_ID3D12DXVKInteropDevice2, (void **)&d3d12_device2 );
+        if (SUCCEEDED(hr))
+            d3d12_device = (ID3D12DXVKInteropDevice *)d3d12_device2;
+        else
+            hr = d3d12_queue->lpVtbl->GetDevice( d3d12_queue, &IID_ID3D12DXVKInteropDevice, (void **)&d3d12_device );
+        if (FAILED(hr))
+        {
+            ERR( "Failed to get vkd3d-proton device.\n" );
+            return texture;
+        }
+        if ((state->d3d12_queue && state->d3d12_queue != d3d12_queue)
+             || (state->d3d12_device && state->d3d12_device != d3d12_device))
+        {
+            FIXME( "Varying queues or devices are not supported.\n" );
+            return textures;
+        }
+        state->textures[i] = vrclient_translate_texture_d3d12( texture, &state->vkdata[i], d3d12_device, d3d12_resource,
+                                                               d3d12_queue, &image_layout, &image_info );
+        state->d3d12_device = d3d12_device;
+        state->d3d12_queue = d3d12_queue;
+        compositor_data_set_d3d12_device( d3d12_device, d3d12_device2, d3d12_queue, &state->vkdata[i] );
+
+        for (j = 0; j < state->image_count; ++j)
+        {
+            if (state->images[j].image == state->vkdata[i].m_nImage)
+            {
+                WARN( "Duplicate image index %u.\n", i );
+                break;
+            }
+        }
+        if (j < state->image_count) continue;
+        state->images[j].image = state->vkdata[i].m_nImage;
+        range = &state->images[j].subresources;
+        range->aspectMask = VK_IMAGE_ASPECT_COLOR_BIT;
+        range->baseMipLevel = 0;
+        range->levelCount = image_info.mipLevels;
+        range->baseArrayLayer = 0;
+        range->layerCount = image_info.arrayLayers;
+        state->images[j].layout = image_layout;
+        ++state->image_count;
+    }
+    state->d3d12_device->lpVtbl->LockCommandQueue( state->d3d12_device, state->d3d12_queue );
+    for (i = 0; i < state->image_count; ++i)
+        transition_image_layout( (VkImage)state->images[i].image, &state->images[i].subresources,
+                                 state->images[i].layout, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL );
+
+    state->texture_type = TextureType_DirectX12;
     return state->textures;
 }
 
 static const w_Texture_t *set_skybox_override_init( const w_Texture_t *textures, uint32_t count, struct set_skybox_override_state *state )
 {
+    state->texture_type = -1;
     if (!count || count > 6)
     {
         WARN( "Invalid texture count %u.\n", count );
@@ -440,17 +537,32 @@ static const w_Texture_t *set_skybox_override_init( const w_Texture_t *textures,
 
     if (textures[0].eType == TextureType_DirectX)
         return set_skybox_override_d3d11_init( textures, count, state );
+    if (textures[0].eType == TextureType_DirectX12)
+        return set_skybox_override_d3d12_init( textures, count, state );
 
     if (textures[0].eType != TextureType_Vulkan)
         FIXME( "Conversion for type %u is not supported.\n", textures[0].eType );
     return textures;
 }
 
-static void set_skybox_override_done( const w_Texture_t *textures, uint32_t count )
+static void set_skybox_override_done( struct set_skybox_override_state *state )
 {
-    if (!count || count > 6) return;
-    while (count--) if (!textures[count].handle || textures[count].eType != TextureType_DirectX) return;
-    compositor_data.dxvk_device->lpVtbl->ReleaseSubmissionQueue( compositor_data.dxvk_device );
+    unsigned int i;
+
+    if (state->texture_type == TextureType_DirectX)
+    {
+        compositor_data.dxvk_device->lpVtbl->ReleaseSubmissionQueue( compositor_data.dxvk_device );
+    }
+    else if (state->texture_type == TextureType_DirectX12)
+    {
+        for (i = 0; i < state->image_count; ++i)
+        {
+            transition_image_layout( (VkImage)state->images[i].image, &state->images[i].subresources,
+                                     VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL, state->images[i].layout);
+        }
+        state->d3d12_device->lpVtbl->UnlockCommandQueue( state->d3d12_device, state->d3d12_queue );
+        state->d3d12_device->lpVtbl->Release( state->d3d12_device );
+    }
 }
 
 static void lock_queue(void)
@@ -643,7 +755,7 @@ void __thiscall winIVRCompositor_IVRCompositor_008_SetSkyboxOverride( struct w_i
 
     TRACE( "%p\n", _this );
     VRCLIENT_CALL( IVRCompositor_IVRCompositor_008_SetSkyboxOverride, &params );
-    set_skybox_override_done( textures, 6 );
+    set_skybox_override_done( &state );
 }
 
 uint32_t __thiscall winIVRCompositor_IVRCompositor_009_WaitGetPoses( struct w_iface *_this,
@@ -708,7 +820,7 @@ uint32_t __thiscall winIVRCompositor_IVRCompositor_009_SetSkyboxOverride( struct
     };
     TRACE( "%p\n", _this );
     VRCLIENT_CALL( IVRCompositor_IVRCompositor_009_SetSkyboxOverride, &params );
-    set_skybox_override_done( pTextures, unTextureCount );
+    set_skybox_override_done( &state );
     return params._ret;
 }
 
@@ -774,7 +886,7 @@ uint32_t __thiscall winIVRCompositor_IVRCompositor_010_SetSkyboxOverride( struct
     };
     TRACE( "%p\n", _this );
     VRCLIENT_CALL( IVRCompositor_IVRCompositor_010_SetSkyboxOverride, &params );
-    set_skybox_override_done( pTextures, unTextureCount );
+    set_skybox_override_done( &state );
     return params._ret;
 }
 
@@ -840,7 +952,7 @@ uint32_t __thiscall winIVRCompositor_IVRCompositor_011_SetSkyboxOverride( struct
     };
     TRACE( "%p\n", _this );
     VRCLIENT_CALL( IVRCompositor_IVRCompositor_011_SetSkyboxOverride, &params );
-    set_skybox_override_done( pTextures, unTextureCount );
+    set_skybox_override_done( &state );
     return params._ret;
 }
 
@@ -906,7 +1018,7 @@ uint32_t __thiscall winIVRCompositor_IVRCompositor_012_SetSkyboxOverride( struct
     };
     TRACE( "%p\n", _this );
     VRCLIENT_CALL( IVRCompositor_IVRCompositor_012_SetSkyboxOverride, &params );
-    set_skybox_override_done( pTextures, unTextureCount );
+    set_skybox_override_done( &state );
     return params._ret;
 }
 
@@ -972,7 +1084,7 @@ uint32_t __thiscall winIVRCompositor_IVRCompositor_013_SetSkyboxOverride( struct
     };
     TRACE( "%p\n", _this );
     VRCLIENT_CALL( IVRCompositor_IVRCompositor_013_SetSkyboxOverride, &params );
-    set_skybox_override_done( pTextures, unTextureCount );
+    set_skybox_override_done( &state );
     return params._ret;
 }
 
@@ -1038,7 +1150,7 @@ uint32_t __thiscall winIVRCompositor_IVRCompositor_014_SetSkyboxOverride( struct
     };
     TRACE( "%p\n", _this );
     VRCLIENT_CALL( IVRCompositor_IVRCompositor_014_SetSkyboxOverride, &params );
-    set_skybox_override_done( pTextures, unTextureCount );
+    set_skybox_override_done( &state );
     return params._ret;
 }
 
@@ -1104,7 +1216,7 @@ uint32_t __thiscall winIVRCompositor_IVRCompositor_015_SetSkyboxOverride( struct
     };
     TRACE( "%p\n", _this );
     VRCLIENT_CALL( IVRCompositor_IVRCompositor_015_SetSkyboxOverride, &params );
-    set_skybox_override_done( pTextures, unTextureCount );
+    set_skybox_override_done( &state );
     return params._ret;
 }
 
@@ -1170,7 +1282,7 @@ uint32_t __thiscall winIVRCompositor_IVRCompositor_016_SetSkyboxOverride( struct
     };
     TRACE( "%p\n", _this );
     VRCLIENT_CALL( IVRCompositor_IVRCompositor_016_SetSkyboxOverride, &params );
-    set_skybox_override_done( pTextures, unTextureCount );
+    set_skybox_override_done( &state );
     return params._ret;
 }
 
@@ -1236,7 +1348,7 @@ uint32_t __thiscall winIVRCompositor_IVRCompositor_017_SetSkyboxOverride( struct
     };
     TRACE( "%p\n", _this );
     VRCLIENT_CALL( IVRCompositor_IVRCompositor_017_SetSkyboxOverride, &params );
-    set_skybox_override_done( pTextures, unTextureCount );
+    set_skybox_override_done( &state );
     return params._ret;
 }
 
@@ -1302,7 +1414,7 @@ uint32_t __thiscall winIVRCompositor_IVRCompositor_018_SetSkyboxOverride( struct
     };
     TRACE( "%p\n", _this );
     VRCLIENT_CALL( IVRCompositor_IVRCompositor_018_SetSkyboxOverride, &params );
-    set_skybox_override_done( pTextures, unTextureCount );
+    set_skybox_override_done( &state );
     return params._ret;
 }
 
@@ -1368,7 +1480,7 @@ uint32_t __thiscall winIVRCompositor_IVRCompositor_019_SetSkyboxOverride( struct
     };
     TRACE( "%p\n", _this );
     VRCLIENT_CALL( IVRCompositor_IVRCompositor_019_SetSkyboxOverride, &params );
-    set_skybox_override_done( pTextures, unTextureCount );
+    set_skybox_override_done( &state );
     return params._ret;
 }
 
@@ -1434,7 +1546,7 @@ uint32_t __thiscall winIVRCompositor_IVRCompositor_020_SetSkyboxOverride( struct
     };
     TRACE( "%p\n", _this );
     VRCLIENT_CALL( IVRCompositor_IVRCompositor_020_SetSkyboxOverride, &params );
-    set_skybox_override_done( pTextures, unTextureCount );
+    set_skybox_override_done( &state );
     return params._ret;
 }
 
@@ -1558,7 +1670,7 @@ uint32_t __thiscall winIVRCompositor_IVRCompositor_021_SetSkyboxOverride( struct
     };
     TRACE( "%p\n", _this );
     VRCLIENT_CALL( IVRCompositor_IVRCompositor_021_SetSkyboxOverride, &params );
-    set_skybox_override_done( pTextures, unTextureCount );
+    set_skybox_override_done( &state );
     return params._ret;
 }
 
@@ -1682,7 +1794,7 @@ uint32_t __thiscall winIVRCompositor_IVRCompositor_022_SetSkyboxOverride( struct
     };
     TRACE( "%p\n", _this );
     VRCLIENT_CALL( IVRCompositor_IVRCompositor_022_SetSkyboxOverride, &params );
-    set_skybox_override_done( pTextures, unTextureCount );
+    set_skybox_override_done( &state );
     return params._ret;
 }
 
@@ -1806,7 +1918,7 @@ uint32_t __thiscall winIVRCompositor_IVRCompositor_024_SetSkyboxOverride( struct
     };
     TRACE( "%p\n", _this );
     VRCLIENT_CALL( IVRCompositor_IVRCompositor_024_SetSkyboxOverride, &params );
-    set_skybox_override_done( pTextures, unTextureCount );
+    set_skybox_override_done( &state );
     return params._ret;
 }
 
@@ -1930,7 +2042,7 @@ uint32_t __thiscall winIVRCompositor_IVRCompositor_026_SetSkyboxOverride( struct
     };
     TRACE( "%p\n", _this );
     VRCLIENT_CALL( IVRCompositor_IVRCompositor_026_SetSkyboxOverride, &params );
-    set_skybox_override_done( pTextures, unTextureCount );
+    set_skybox_override_done( &state );
     return params._ret;
 }
 
@@ -2054,7 +2166,7 @@ uint32_t __thiscall winIVRCompositor_IVRCompositor_027_SetSkyboxOverride( struct
     };
     TRACE( "%p\n", _this );
     VRCLIENT_CALL( IVRCompositor_IVRCompositor_027_SetSkyboxOverride, &params );
-    set_skybox_override_done( pTextures, unTextureCount );
+    set_skybox_override_done( &state );
     return params._ret;
 }
 
@@ -2238,7 +2350,7 @@ uint32_t __thiscall winIVRCompositor_IVRCompositor_028_SetSkyboxOverride( struct
     };
     TRACE( "%p\n", _this );
     VRCLIENT_CALL( IVRCompositor_IVRCompositor_028_SetSkyboxOverride, &params );
-    set_skybox_override_done( pTextures, unTextureCount );
+    set_skybox_override_done( &state );
     return params._ret;
 }
 
@@ -2423,6 +2535,6 @@ uint32_t __thiscall winIVRCompositor_IVRCompositor_029_SetSkyboxOverride( struct
     };
     TRACE( "%p\n", _this );
     VRCLIENT_CALL( IVRCompositor_IVRCompositor_029_SetSkyboxOverride, &params );
-    set_skybox_override_done( pTextures, unTextureCount );
+    set_skybox_override_done( &state );
     return params._ret;
 }
