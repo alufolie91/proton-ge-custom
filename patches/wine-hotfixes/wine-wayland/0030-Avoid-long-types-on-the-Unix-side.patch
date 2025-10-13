@@ -1,8 +1,8 @@
-From a8e8e69caf6c756556cfbc507ae53e6e99b0ad2b Mon Sep 17 00:00:00 2001
+From d8265168ee96ecbfa9f08c44b328f50d4387dc3a Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Wed, 7 May 2025 08:37:02 -0400
-Subject: [PATCH 030/335] Avoid long types on the Unix side.
+Subject: [PATCH 030/347] Avoid long types on the Unix side.
 
 Co-Authored-By: Alexandre Julliard <1130500+julliard@users.noreply.github.com>
 ---
@@ -53,10 +53,10 @@ index c8b67929aff..7fcd68d24d9 100644
          REGn_sig(1, context) = rec->ExceptionCode;
          PC_sig(context)      = (DWORD)__wine_syscall_dispatcher_return;
 diff --git a/dlls/ntdll/unix/signal_i386.c b/dlls/ntdll/unix/signal_i386.c
-index 33958f76ee9..323e2654258 100644
+index 817a8397cd7..48eb680a223 100644
 --- a/dlls/ntdll/unix/signal_i386.c
 +++ b/dlls/ntdll/unix/signal_i386.c
-@@ -1178,16 +1178,16 @@ NTSTATUS WINAPI NtGetContextThread( HANDLE handle, CONTEXT *context )
+@@ -1230,16 +1230,16 @@ NTSTATUS WINAPI NtGetContextThread( HANDLE handle, CONTEXT *context )
      }
  
      if (context->ContextFlags & (CONTEXT_INTEGER & ~CONTEXT_i386))
@@ -77,7 +77,7 @@ index 33958f76ee9..323e2654258 100644
                 context->Dr0, context->Dr1, context->Dr2, context->Dr3, context->Dr6, context->Dr7 );
  
      return STATUS_SUCCESS;
-@@ -1311,7 +1311,7 @@ static inline BOOL check_invalid_gs( ucontext_t *sigcontext, CONTEXT *context )
+@@ -1363,7 +1363,7 @@ static inline BOOL check_invalid_gs( ucontext_t *sigcontext, CONTEXT *context )
          instr++;
          continue;
      case 0x65:  /* %gs: */
@@ -86,7 +86,7 @@ index 33958f76ee9..323e2654258 100644
          GS_sig(sigcontext) = system_gs;
          return TRUE;
      default:
-@@ -1829,14 +1829,14 @@ static BOOL handle_syscall_fault( ucontext_t *sigcontext, void *stack_ptr,
+@@ -1881,14 +1881,14 @@ static BOOL handle_syscall_fault( ucontext_t *sigcontext, void *stack_ptr,
  
      if (!is_inside_syscall( sigcontext )) return FALSE;
  
@@ -104,7 +104,7 @@ index 33958f76ee9..323e2654258 100644
            context->Ebp, context->Esp, context->SegCs, context->SegDs,
            context->SegEs, context->SegFs, context->SegGs, context->EFlags );
  
-@@ -1858,10 +1858,10 @@ static BOOL handle_syscall_fault( ucontext_t *sigcontext, void *stack_ptr,
+@@ -1910,10 +1910,10 @@ static BOOL handle_syscall_fault( ucontext_t *sigcontext, void *stack_ptr,
      }
      else
      {

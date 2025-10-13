@@ -1,17 +1,17 @@
-From 25712b1b3fcccb8583509cedbd48a6806ea8b3cc Mon Sep 17 00:00:00 2001
+From b616277c3e913d701be346461340c131f9099e79 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty <etaash.mathamsetty@gmail.com>
 Date: Sat, 14 Jun 2025 11:22:44 -0400
-Subject: [PATCH 095/335] wine.inf: Add override for diabotical
+Subject: [PATCH 095/347] wine.inf: Add override for diabotical
 
 ---
  loader/wine.inf.in | 1 +
  1 file changed, 1 insertion(+)
 
 diff --git a/loader/wine.inf.in b/loader/wine.inf.in
-index 99142a485ac..441e5efe82e 100644
+index 453f9029ecf..1e22a6f67c1 100644
 --- a/loader/wine.inf.in
 +++ b/loader/wine.inf.in
-@@ -2994,6 +2994,7 @@ HKCU,Software\Wine\DllOverrides,"vcruntime140_1",0x2,"native,builtin"
+@@ -2995,6 +2995,7 @@ HKCU,Software\Wine\DllOverrides,"vcruntime140_1",0x2,"native,builtin"
  HKCU,Software\Wine\AppDefaults\ShadowOfWar.exe\DllOverrides,"amd_ags_x64",,"disabled"
  HKCU,Software\Wine\AppDefaults\TDUSC.exe\DllOverrides,"xinput1_3",,"native,builtin"
  HKCU,Software\Wine\AppDefaults\WRCG.exe\DllOverrides,"xinput1_3",,"native,builtin"

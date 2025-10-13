@@ -1,8 +1,8 @@
-From 7bd321212daf87ab22e5a1cec8b926f38a572dd2 Mon Sep 17 00:00:00 2001
+From b26408ff5f96e2079b4b902d9fb7a42b6470b76c Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Wed, 4 Jun 2025 21:55:27 -0400
-Subject: [PATCH 078/335] winegstreamer: Add env to enable media converter.
+Subject: [PATCH 078/347] winegstreamer: Add env to enable media converter.
 
 ---
  dlls/winegstreamer/unixlib.c | 11 ++++++-----

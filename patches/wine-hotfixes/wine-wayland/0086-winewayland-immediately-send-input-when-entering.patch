@@ -1,8 +1,8 @@
-From df37ce5d1ef9d055db56a756299968f8a6725fb9 Mon Sep 17 00:00:00 2001
+From 3c29be5cddc651a33c5b690145456bd725a6898f Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Mon, 9 Jun 2025 08:05:26 -0400
-Subject: [PATCH 086/335] winewayland: immediately send input when entering.
+Subject: [PATCH 086/347] winewayland: immediately send input when entering.
 
 ---
  dlls/winewayland.drv/wayland_pointer.c | 28 ++++++++++++++++++--------
