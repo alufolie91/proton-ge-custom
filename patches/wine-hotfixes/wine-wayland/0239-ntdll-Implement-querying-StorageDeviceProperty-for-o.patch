@@ -1,7 +1,7 @@
-From c1fab66755f019d167a8d5b585bcf8fdc916439e Mon Sep 17 00:00:00 2001
+From 495f01fcc232db9555bb646c60569e3e0e2ba1d0 Mon Sep 17 00:00:00 2001
 From: Alex Henrie <alexhenrie24@gmail.com>
 Date: Sun, 2 Feb 2025 19:04:53 -0700
-Subject: [PATCH 239/346] ntdll: Implement querying StorageDeviceProperty for
+Subject: [PATCH 239/347] ntdll: Implement querying StorageDeviceProperty for
  optical discs.
 
 Loosely based on query_property in dlls/mountmgr.sys/device.c.

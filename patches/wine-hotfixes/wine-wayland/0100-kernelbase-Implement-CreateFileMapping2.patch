@@ -1,7 +1,7 @@
-From faaf4888fa4be388edec0c18d1a8a20ef0c22c9e Mon Sep 17 00:00:00 2001
+From fe52d2a93a65400ce83a2243893348e691e20c25 Mon Sep 17 00:00:00 2001
 From: Alexandre Julliard <julliard@winehq.org>
 Date: Thu, 17 Apr 2025 20:33:59 +0200
-Subject: [PATCH 100/346] kernelbase: Implement CreateFileMapping2().
+Subject: [PATCH 100/347] kernelbase: Implement CreateFileMapping2().
 
 ---
  dlls/kernelbase/kernelbase.spec |  1 +
@@ -11,7 +11,7 @@ Subject: [PATCH 100/346] kernelbase: Implement CreateFileMapping2().
  4 files changed, 33 insertions(+), 3 deletions(-)
 
 diff --git a/dlls/kernelbase/kernelbase.spec b/dlls/kernelbase/kernelbase.spec
-index 7be3c1f0ad5..1399bc0da19 100644
+index 624606fab2e..3430c37225e 100644
 --- a/dlls/kernelbase/kernelbase.spec
 +++ b/dlls/kernelbase/kernelbase.spec
 @@ -192,6 +192,7 @@

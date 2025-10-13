@@ -1,7 +1,7 @@
-From a846240229a6905edc3f64317b6b558c991fa715 Mon Sep 17 00:00:00 2001
+From 05f4ea29e0632ae4f458089cda99c26481b5c6e0 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Ignacy=20Kuchci=C5=84ski?= <ignacykuchcinski@gmail.com>
 Date: Wed, 25 Jun 2025 23:41:32 +0200
-Subject: [PATCH 268/346] user32: Add GetPointerDeviceRects stub.
+Subject: [PATCH 268/347] user32: Add GetPointerDeviceRects stub.
 
 Wine-Bug: https://bugs.winehq.org/show_bug.cgi?id=57489
 ---

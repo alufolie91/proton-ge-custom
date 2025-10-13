@@ -1,8 +1,8 @@
-From 71ff67b0d1a8634703d2a9f2f1a9b0c35cdf0531 Mon Sep 17 00:00:00 2001
+From f0a04f265dcd3cc991e834492f6473e4e22fab7b Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Mon, 14 Jul 2025 03:45:49 -0400
-Subject: [PATCH 162/346] ntdll/ntsync: remove unused variable & fix datatypes.
+Subject: [PATCH 162/347] ntdll/ntsync: remove unused variable & fix datatypes.
 
 ---
  dlls/ntdll/unix/sync.c         | 7 +++----
@@ -49,7 +49,7 @@ index 8a09a8ee347..b587750c349 100644
      else
      {
 diff --git a/dlls/ntdll/unix/unix_private.h b/dlls/ntdll/unix/unix_private.h
-index fe73322dc4f..7e9ee6232dd 100644
+index 0b8deb605ba..8bb0bd4d465 100644
 --- a/dlls/ntdll/unix/unix_private.h
 +++ b/dlls/ntdll/unix/unix_private.h
 @@ -418,7 +418,7 @@ extern void call_raise_user_exception_dispatcher(void);

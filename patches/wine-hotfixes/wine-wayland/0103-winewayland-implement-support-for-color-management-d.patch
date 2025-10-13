@@ -1,7 +1,7 @@
-From cdfe72470737012f722dca32d1ef1f78869f6082 Mon Sep 17 00:00:00 2001
+From d1123499fcf2df6564df9c7d42be65028dbd2560 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty <etaash.mathamsetty@gmail.com>
 Date: Thu, 19 Jun 2025 22:08:46 -0400
-Subject: [PATCH 103/346] winewayland: implement support for color management
+Subject: [PATCH 103/347] winewayland: implement support for color management
  description change event.
 
 ---

@@ -1,7 +1,7 @@
-From 884179b2e258a170fd8f8909f0ffd4440eddfd7c Mon Sep 17 00:00:00 2001
+From b992b81550fa0a851e829164dab01f0284c69216 Mon Sep 17 00:00:00 2001
 From: Tobias Gruetzmacher <tobias-git@23.gs>
 Date: Thu, 3 Apr 2025 18:06:31 +0200
-Subject: [PATCH 313/346] winhttp: Handle HTTP status code 308 (Permanent
+Subject: [PATCH 313/347] winhttp: Handle HTTP status code 308 (Permanent
  Redirect).
 
 ---

@@ -1,7 +1,7 @@
-From 5527db5bfbfc887995ddccd9ff27358e56b9cc1b Mon Sep 17 00:00:00 2001
+From 44d82b453e9b0d07c335b7f53f4c12b719a2ea23 Mon Sep 17 00:00:00 2001
 From: Anders Kjersem <andersdev@proton.me>
 Date: Wed, 19 Mar 2025 23:51:42 +0000
-Subject: [PATCH 280/346] shcore: Implement OS_TABLETPC and OS_MEDIACENTER.
+Subject: [PATCH 280/347] shcore: Implement OS_TABLETPC and OS_MEDIACENTER.
 
 ---
  dlls/shcore/main.c | 6 ++----

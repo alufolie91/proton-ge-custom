@@ -1,7 +1,7 @@
-From 5c412527207377d08ee644034ec83d0660048b3e Mon Sep 17 00:00:00 2001
+From 05feda91beea327e899eda0c2bed2e0fec5e426e Mon Sep 17 00:00:00 2001
 From: Elizabeth Figura <zfigura@codeweavers.com>
 Date: Mon, 7 Jul 2025 21:44:10 -0400
-Subject: [PATCH 155/346] ntsync implementation
+Subject: [PATCH 155/347] ntsync implementation
 
 ---
  dlls/ntdll/unix/esync.c        |   2 +-
@@ -999,7 +999,7 @@ index d0bba284e77..5f59ba8e133 100644
          SERVER_START_REQ( get_thread_context )
          {
 diff --git a/dlls/ntdll/unix/unix_private.h b/dlls/ntdll/unix/unix_private.h
-index 1c3304fd548..fe73322dc4f 100644
+index 41f622fe231..0b8deb605ba 100644
 --- a/dlls/ntdll/unix/unix_private.h
 +++ b/dlls/ntdll/unix/unix_private.h
 @@ -114,6 +114,7 @@ struct ntdll_thread_data
@@ -1037,7 +1037,7 @@ index 1c3304fd548..fe73322dc4f 100644
  
  static inline ULONGLONG ticks_from_time_t( time_t time )
 diff --git a/dlls/ntdll/unix/virtual.c b/dlls/ntdll/unix/virtual.c
-index f9535370331..fd09ebcc3ad 100644
+index 7bbc72ecaa3..2ff8ece4c3f 100644
 --- a/dlls/ntdll/unix/virtual.c
 +++ b/dlls/ntdll/unix/virtual.c
 @@ -4195,6 +4195,7 @@ static TEB *init_teb( void *ptr, BOOL is_wow )

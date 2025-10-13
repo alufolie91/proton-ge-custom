@@ -1,8 +1,8 @@
-From 14577d0246cc4d1477974d70342cd036d6a2f6cf Mon Sep 17 00:00:00 2001
+From 1a9c08c8a74a6faa32f401260dae032395e482d7 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Mon, 12 May 2025 08:52:18 -0400
-Subject: [PATCH 042/346] minor formatting fix
+Subject: [PATCH 042/347] minor formatting fix
 
 ---
  dlls/winewayland.drv/wayland_surface.c | 2 +-

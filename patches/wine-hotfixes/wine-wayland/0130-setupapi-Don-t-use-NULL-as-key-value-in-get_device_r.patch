@@ -1,7 +1,7 @@
-From a76ef93a7743744993b553ddfb8e0edac925558f Mon Sep 17 00:00:00 2001
+From 60fe62aa8b979be68aa83c70f22641eb3f83faa3 Mon Sep 17 00:00:00 2001
 From: Paul Gofman <pgofman@codeweavers.com>
 Date: Sun, 22 Jun 2025 12:18:31 -0400
-Subject: [PATCH 130/346] setupapi: Don't use NULL as key value in
+Subject: [PATCH 130/347] setupapi: Don't use NULL as key value in
  get_device_reg_property().
 
 ---

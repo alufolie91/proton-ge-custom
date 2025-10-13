@@ -1,7 +1,7 @@
-From aaa28ccd0186f0c3cb30678890f93040a4d99b9f Mon Sep 17 00:00:00 2001
+From 66702ae0347feacb8671112ae07258d057c287e1 Mon Sep 17 00:00:00 2001
 From: Louis Lenders <xerox.xerox2000x@gmail.com>
 Date: Mon, 31 Mar 2025 08:18:37 +0200
-Subject: [PATCH 229/346] powrprof: Add stub for
+Subject: [PATCH 229/347] powrprof: Add stub for
  PowerRegisterForEffectivePowerModeNotifications.
 
 This patch makes msedge work in win10 mode, albeit I still have to add "--no-sandbox".

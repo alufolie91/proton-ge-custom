@@ -1,7 +1,7 @@
-From ee61acfd3ba8b0295cbcd01aee07c86b3b564336 Mon Sep 17 00:00:00 2001
+From 7b9a088f6abc0ac7e51044b91e7ea1989fecc443 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty <etaash.mathamsetty@gmail.com>
 Date: Mon, 4 Aug 2025 12:21:10 -0400
-Subject: [PATCH 214/346] winewayland: Fix uninitialized variable.
+Subject: [PATCH 214/347] winewayland: Fix uninitialized variable.
 
 ---
  dlls/winewayland.drv/display.c | 2 +-

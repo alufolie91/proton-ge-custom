@@ -1,7 +1,7 @@
-From ba8b685447e54f3198b6cc04dbc3581d2bedb788 Mon Sep 17 00:00:00 2001
+From fdf863ef3850db07c73172b4e105841ad28c5f09 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Bernhard=20=C3=9Cbelacker?= <bernhardu@mailbox.org>
 Date: Wed, 14 May 2025 00:12:42 +0200
-Subject: [PATCH 256/346] ntdll: Align records retrieved by
+Subject: [PATCH 256/347] ntdll: Align records retrieved by
  SystemProcessInformation.
 
 Wine-Bug: https://bugs.winehq.org/show_bug.cgi?id=55928
@@ -37,7 +37,7 @@ index 4d6cd7993a4..58acf1b7641 100644
  
          if (*len <= size)
 diff --git a/dlls/wow64/system.c b/dlls/wow64/system.c
-index 7e08e4a08a0..b52b0759ff0 100644
+index 5f3056a4179..3a79c83f629 100644
 --- a/dlls/wow64/system.c
 +++ b/dlls/wow64/system.c
 @@ -177,6 +177,7 @@ static NTSTATUS put_system_proc_info( SYSTEM_PROCESS_INFORMATION32 *info32,

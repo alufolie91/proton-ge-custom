@@ -1,8 +1,8 @@
-From 7cca8361d407f4a43e29fd4e18f823b2391662d6 Mon Sep 17 00:00:00 2001
+From aaaf469da4e751d773d4098d28180101b6cf9363 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Tue, 22 Jul 2025 15:26:51 -0400
-Subject: [PATCH 170/346] ntoskrnl: Implement PsGetProcessPeb.
+Subject: [PATCH 170/347] ntoskrnl: Implement PsGetProcessPeb.
 
 ---
  dlls/ntoskrnl.exe/ntoskrnl.c        | 9 +++++++++

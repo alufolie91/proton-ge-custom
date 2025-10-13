@@ -1,8 +1,8 @@
-From 17ae27ee7b0386f669bb43fb669653f03126cb9a Mon Sep 17 00:00:00 2001
+From 1e71b7bb3992fc5073a3bb6192375249e4b2dba7 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Fri, 29 Aug 2025 18:22:03 -0500
-Subject: [PATCH 330/346] amdxc: Properly check for WMMA support.
+Subject: [PATCH 330/347] amdxc: Properly check for WMMA support.
 
 ---
  dlls/amdxc64/amdxc_interfaces.idl |  26 ++++++++

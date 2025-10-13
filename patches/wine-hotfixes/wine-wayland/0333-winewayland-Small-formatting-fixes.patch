@@ -1,8 +1,8 @@
-From 7b902f8cb86a62a5e876b1fa862dd2a532617c02 Mon Sep 17 00:00:00 2001
+From 1054ff874d67200631e0ee6529a02b76a056bbca Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Tue, 30 Sep 2025 11:55:15 -0500
-Subject: [PATCH 333/346] winewayland: Small formatting fixes
+Subject: [PATCH 333/347] winewayland: Small formatting fixes
 
 ---
  dlls/winewayland.drv/wayland_pointer.c | 9 ++++-----

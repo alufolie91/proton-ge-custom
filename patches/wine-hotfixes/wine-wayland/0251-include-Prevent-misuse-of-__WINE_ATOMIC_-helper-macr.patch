@@ -1,7 +1,7 @@
-From eb9bd8a17122564b58233076f170e6b1c69d46ad Mon Sep 17 00:00:00 2001
+From 1fabcf9672f7eee476a0e341094351b333576d36 Mon Sep 17 00:00:00 2001
 From: Jinoh Kang <jinoh.kang.kr@gmail.com>
 Date: Sat, 1 Feb 2025 17:16:34 +0900
-Subject: [PATCH 251/346] include: Prevent misuse of __WINE_ATOMIC_* helper
+Subject: [PATCH 251/347] include: Prevent misuse of __WINE_ATOMIC_* helper
  macros for non-atomic large accesses.
 
 ---

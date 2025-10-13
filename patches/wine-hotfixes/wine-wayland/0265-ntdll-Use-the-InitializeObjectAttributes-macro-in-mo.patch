@@ -1,7 +1,7 @@
-From 1acc3e46dc93ea151ebf09eca061395d2d68d527 Mon Sep 17 00:00:00 2001
+From 5c1d55fdff8b67252d9a4b052d2b27789e51ebfe Mon Sep 17 00:00:00 2001
 From: Alexandre Julliard <julliard@winehq.org>
 Date: Fri, 28 Mar 2025 17:28:30 +0100
-Subject: [PATCH 265/346] ntdll: Use the InitializeObjectAttributes macro in
+Subject: [PATCH 265/347] ntdll: Use the InitializeObjectAttributes macro in
  more places.
 
 ---
@@ -192,10 +192,10 @@ index 6b6ca4a49dc..b716890276d 100644
      /* @@ Wine registry key: HKCU\Software\Wine\Debug */
      if (NtOpenKey( &hkey, KEY_ALL_ACCESS, &attr )) hkey = 0;
 diff --git a/dlls/ntdll/thread.c b/dlls/ntdll/thread.c
-index b1ef2103071..9ac09b05341 100644
+index d3f25fa7417..289e1b43bcf 100644
 --- a/dlls/ntdll/thread.c
 +++ b/dlls/ntdll/thread.c
-@@ -212,16 +212,9 @@ void set_native_thread_name( DWORD tid, const char *name )
+@@ -223,16 +223,9 @@ void set_native_thread_name( DWORD tid, const char *name )
  
      if (tid != -1)
      {

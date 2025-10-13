@@ -1,8 +1,8 @@
-From 2e30796c2e87dc28893529fb6e9139cf4232cb5e Mon Sep 17 00:00:00 2001
+From a60426670fbc75a2aa4c0c9d9b7eca81de95a165 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Sun, 24 Aug 2025 17:05:39 -0500
-Subject: [PATCH 300/346] HACK: kernelbase: in-process-gpu for idtech launcher.
+Subject: [PATCH 300/347] HACK: kernelbase: in-process-gpu for idtech launcher.
 
 ---
  dlls/kernelbase/process.c | 3 ++-

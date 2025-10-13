@@ -1,8 +1,8 @@
-From 0d0fe4c7f0f22f27ec9dad5eee33f3a47184bae6 Mon Sep 17 00:00:00 2001
+From d2751678a048981de68e1ab2757381c7f5770fa4 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Tue, 12 Aug 2025 00:43:16 -0400
-Subject: [PATCH 261/346] kernelbase: Implement FlsGetValue2
+Subject: [PATCH 261/347] kernelbase: Implement FlsGetValue2
 
 ---
  dlls/kernel32/kernel32.spec     | 1 +
@@ -22,7 +22,7 @@ index ec70a0b1d71..d921a7c129a 100644
  @ stdcall -import FlushConsoleInputBuffer(long)
  @ stdcall -import FlushFileBuffers(long)
 diff --git a/dlls/kernelbase/kernelbase.spec b/dlls/kernelbase/kernelbase.spec
-index 36440343497..15018feab52 100644
+index 3fba6f45173..b3d960f9283 100644
 --- a/dlls/kernelbase/kernelbase.spec
 +++ b/dlls/kernelbase/kernelbase.spec
 @@ -387,6 +387,7 @@

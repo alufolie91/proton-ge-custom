@@ -1,7 +1,7 @@
-From 40097e98312902a5824bb3fe36b1968806fdeb6c Mon Sep 17 00:00:00 2001
+From 0f54a7760e63989bfabbe9e876ae4cd0b4c63e31 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty <etaash.mathamsetty@gmail.com>
 Date: Wed, 6 Aug 2025 10:51:30 -0400
-Subject: [PATCH 241/346] kernel32: Implement SetThreadpoolTimerEx.
+Subject: [PATCH 241/347] kernel32: Implement SetThreadpoolTimerEx.
 
 ---
  dlls/kernel32/kernel32.spec     | 1 +
@@ -21,7 +21,7 @@ index 7681cbeb624..5e8923ef728 100644
  @ stdcall -import SetTimeZoneInformation(ptr)
  @ stub SetTimerQueueTimer
 diff --git a/dlls/kernelbase/kernelbase.spec b/dlls/kernelbase/kernelbase.spec
-index 20bcd712647..40464f6807a 100644
+index 1f1c28a9e6a..2bcf1eeaa33 100644
 --- a/dlls/kernelbase/kernelbase.spec
 +++ b/dlls/kernelbase/kernelbase.spec
 @@ -1545,7 +1545,7 @@

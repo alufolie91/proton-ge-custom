@@ -1,7 +1,7 @@
-From 3983584eafdd10d9eb6e348d356974da4c55a2f0 Mon Sep 17 00:00:00 2001
+From e1730bb39e74ac3bda2a3a8dae0a1bb7fd37cda8 Mon Sep 17 00:00:00 2001
 From: Attila Fidan <dev@print0.net>
 Date: Sun, 2 Feb 2025 08:26:56 +0000
-Subject: [PATCH 004/346] winewayland: Implement SetIMECompositionRect.
+Subject: [PATCH 004/347] winewayland: Implement SetIMECompositionRect.
 
 ---
  dlls/winewayland.drv/wayland_text_input.c | 47 +++++++++++++++++++++++

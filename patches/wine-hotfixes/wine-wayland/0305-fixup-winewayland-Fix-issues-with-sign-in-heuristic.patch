@@ -1,8 +1,8 @@
-From c04f71398dd726f75a77523ec3f6e2770248f938 Mon Sep 17 00:00:00 2001
+From f0149b1efeaf7441ce79bb66a4225a513945c5b5 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Thu, 28 Aug 2025 10:05:47 -0500
-Subject: [PATCH 305/346] fixup! winewayland: Fix issues with sign in
+Subject: [PATCH 305/347] fixup! winewayland: Fix issues with sign in
  heuristic.
 
 ---

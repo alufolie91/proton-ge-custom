@@ -1,7 +1,7 @@
-From 07deed1ec7ce0c9fb83214e85144edf419161582 Mon Sep 17 00:00:00 2001
+From f837c7db4a472bb6e1c1c68e9b375894f6681c8d Mon Sep 17 00:00:00 2001
 From: Torge Matthies <tmatthies@codeweavers.com>
 Date: Tue, 20 Feb 2024 16:45:49 +0100
-Subject: [PATCH 238/346] ntdll: Add thread_get_register_pointer_values-based
+Subject: [PATCH 238/347] ntdll: Add thread_get_register_pointer_values-based
  implementation of NtFlushProcessWriteBuffers.
 
 ---
@@ -9,7 +9,7 @@ Subject: [PATCH 238/346] ntdll: Add thread_get_register_pointer_values-based
  1 file changed, 45 insertions(+), 1 deletion(-)
 
 diff --git a/dlls/ntdll/unix/virtual.c b/dlls/ntdll/unix/virtual.c
-index c0ac9862261..8ba61b7b35b 100644
+index 02c82cb720c..1e5f60d06b3 100644
 --- a/dlls/ntdll/unix/virtual.c
 +++ b/dlls/ntdll/unix/virtual.c
 @@ -71,6 +71,9 @@

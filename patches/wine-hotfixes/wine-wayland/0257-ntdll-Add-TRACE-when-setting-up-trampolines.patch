@@ -1,8 +1,8 @@
-From 3e888de8faee5f06ea7291c389ea53d2eea69f57 Mon Sep 17 00:00:00 2001
+From 09a93cb74ac3fe161912da3177152835b9abb2a4 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Sun, 10 Aug 2025 21:53:04 -0400
-Subject: [PATCH 257/346] ntdll: Add TRACE when setting up trampolines
+Subject: [PATCH 257/347] ntdll: Add TRACE when setting up trampolines
 
 ---
  dlls/ntdll/loader.c      | 1 +
@@ -22,7 +22,7 @@ index b0ef14e22d0..1128553961d 100644
          if (is_steamclient32)
          {
 diff --git a/dlls/ntdll/unix/loader.c b/dlls/ntdll/unix/loader.c
-index 210bcf99555..0e2e20f13d8 100644
+index 0b05fe364d8..67498a629e7 100644
 --- a/dlls/ntdll/unix/loader.c
 +++ b/dlls/ntdll/unix/loader.c
 @@ -646,6 +646,8 @@ NTSTATUS exec_wineloader( char **argv, int socketfd, const struct pe_image_info

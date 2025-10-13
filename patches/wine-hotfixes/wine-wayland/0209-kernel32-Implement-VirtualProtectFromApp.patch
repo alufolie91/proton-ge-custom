@@ -1,8 +1,8 @@
-From 326a0fde1ad7e1089d128647d479fff90d8d5448 Mon Sep 17 00:00:00 2001
+From 886a3490c71bd526cda9fad6b852cd92b25d5fc5 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Tue, 29 Jul 2025 13:11:51 -0400
-Subject: [PATCH 209/346] kernel32: Implement VirtualProtectFromApp.
+Subject: [PATCH 209/347] kernel32: Implement VirtualProtectFromApp.
 
 ---
  dlls/kernel32/kernel32.spec     | 1 +
@@ -22,7 +22,7 @@ index 7148eb5819e..539050121d9 100644
  @ stdcall -import VirtualQueryEx(long ptr ptr long)
  @ stdcall -import VirtualUnlock(ptr long)
 diff --git a/dlls/kernelbase/kernelbase.spec b/dlls/kernelbase/kernelbase.spec
-index 1399bc0da19..30181dc0351 100644
+index 3430c37225e..23362fe5e3d 100644
 --- a/dlls/kernelbase/kernelbase.spec
 +++ b/dlls/kernelbase/kernelbase.spec
 @@ -1729,7 +1729,7 @@

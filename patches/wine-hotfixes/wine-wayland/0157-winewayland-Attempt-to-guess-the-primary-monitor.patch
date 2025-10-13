@@ -1,8 +1,8 @@
-From 8bea0a7c99b34eb02adddf03bc011c4bf8ab58f3 Mon Sep 17 00:00:00 2001
+From daa06720919a3102091efcbff0de51db12698371 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Fri, 11 Jul 2025 22:01:55 -0400
-Subject: [PATCH 157/346] winewayland: Attempt to guess the primary monitor.
+Subject: [PATCH 157/347] winewayland: Attempt to guess the primary monitor.
 
 ---
  dlls/winewayland.drv/display.c        | 38 ++++++++++++++++++++-------

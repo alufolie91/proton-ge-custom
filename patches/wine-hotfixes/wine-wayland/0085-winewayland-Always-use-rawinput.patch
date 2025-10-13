@@ -1,8 +1,8 @@
-From 0e94e044de7d95110a3506c4c0e71427cf5274a2 Mon Sep 17 00:00:00 2001
+From 61af3735284713e56372b0f0adb5c2524361e5f8 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Sun, 8 Jun 2025 13:46:36 -0400
-Subject: [PATCH 085/346] winewayland: Always use rawinput.
+Subject: [PATCH 085/347] winewayland: Always use rawinput.
 
 ---
  dlls/winewayland.drv/wayland_pointer.c | 55 +++++++++-----------------

@@ -1,7 +1,7 @@
-From 9935ce05f265ec2ced6a658118dd21f692b22dee Mon Sep 17 00:00:00 2001
+From 9a4fc1fd6b22cc9778e26a78444eff4389ba6145 Mon Sep 17 00:00:00 2001
 From: Julius Bettin <julius.bettin@protonmail.com>
 Date: Mon, 16 Jun 2025 19:56:38 -0400
-Subject: [PATCH 098/346] kernelbase: Implement HeapSummary.
+Subject: [PATCH 098/347] kernelbase: Implement HeapSummary.
 
 ---
  dlls/kernel32/kernel32.spec     |  2 +-
@@ -91,7 +91,7 @@ index 3e13c9ef9d5..1eb3364c1ce 100644
      if (pRtlGetNtGlobalFlags)
      {
 diff --git a/dlls/kernelbase/kernelbase.spec b/dlls/kernelbase/kernelbase.spec
-index 89320a8180c..7be3c1f0ad5 100644
+index 50053a85196..624606fab2e 100644
 --- a/dlls/kernelbase/kernelbase.spec
 +++ b/dlls/kernelbase/kernelbase.spec
 @@ -820,7 +820,7 @@

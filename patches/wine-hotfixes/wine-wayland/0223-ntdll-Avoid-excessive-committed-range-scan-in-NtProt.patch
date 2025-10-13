@@ -1,7 +1,7 @@
-From 7ec4efbd3fed24729f1c6637e8413f54b92479ef Mon Sep 17 00:00:00 2001
+From 50574fef621b4ccb7fd00a9d16c627779d65ff51 Mon Sep 17 00:00:00 2001
 From: Paul Gofman <pgofman@codeweavers.com>
 Date: Mon, 26 May 2025 13:05:53 -0600
-Subject: [PATCH 223/346] ntdll: Avoid excessive committed range scan in
+Subject: [PATCH 223/347] ntdll: Avoid excessive committed range scan in
  NtProtectVirtualMemory().
 
 ---
@@ -9,7 +9,7 @@ Subject: [PATCH 223/346] ntdll: Avoid excessive committed range scan in
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/dlls/ntdll/unix/virtual.c b/dlls/ntdll/unix/virtual.c
-index fd09ebcc3ad..5d8e4bd81ef 100644
+index 2ff8ece4c3f..50ee2d4bde3 100644
 --- a/dlls/ntdll/unix/virtual.c
 +++ b/dlls/ntdll/unix/virtual.c
 @@ -5655,7 +5655,7 @@ NTSTATUS WINAPI NtProtectVirtualMemory( HANDLE process, PVOID *addr_ptr, SIZE_T

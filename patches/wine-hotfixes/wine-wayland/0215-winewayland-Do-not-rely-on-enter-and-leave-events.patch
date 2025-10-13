@@ -1,7 +1,7 @@
-From add1110a042cf8bb70d8ddb253116344e942e2de Mon Sep 17 00:00:00 2001
+From 6a23935c1c814f27423506857084c9660a399df0 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty <etaash.mathamsetty@gmail.com>
 Date: Mon, 4 Aug 2025 13:21:51 -0400
-Subject: [PATCH 215/346] winewayland: Do not rely on enter and leave events.
+Subject: [PATCH 215/347] winewayland: Do not rely on enter and leave events.
 
 These don't work reliably
 ---

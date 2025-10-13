@@ -1,8 +1,8 @@
-From 114bbe7d93b89fea2eabeefb7658d045b852626d Mon Sep 17 00:00:00 2001
+From 608b6bd5a84f1fd3d8c073cf16093483bd755174 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Sun, 21 Sep 2025 14:49:22 -0500
-Subject: [PATCH 324/346] winewayland: Rework fractional scale redraws.
+Subject: [PATCH 324/347] winewayland: Rework fractional scale redraws.
 
 still have the bug where the context menu is off position sometimes, but this should get us closer to the intended result.
 ---

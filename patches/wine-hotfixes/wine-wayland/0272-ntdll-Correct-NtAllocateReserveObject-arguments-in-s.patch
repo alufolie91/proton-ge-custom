@@ -1,7 +1,7 @@
-From 94660349106c9e91a933b490c9d8e5f4c0acb278 Mon Sep 17 00:00:00 2001
+From 7262da1198fc7b0c4bd0eec688a7fb1c1cf438e1 Mon Sep 17 00:00:00 2001
 From: Alex Henrie <alexhenrie24@gmail.com>
 Date: Sun, 30 Mar 2025 20:34:04 -0600
-Subject: [PATCH 272/346] ntdll: Correct NtAllocateReserveObject arguments in
+Subject: [PATCH 272/347] ntdll: Correct NtAllocateReserveObject arguments in
  specfile.
 
 ---
@@ -9,10 +9,10 @@ Subject: [PATCH 272/346] ntdll: Correct NtAllocateReserveObject arguments in
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/dlls/ntdll/ntdll.spec b/dlls/ntdll/ntdll.spec
-index d99e6d5be9e..55581c7f31e 100644
+index 7e759c05343..50ad7dc9cf2 100644
 --- a/dlls/ntdll/ntdll.spec
 +++ b/dlls/ntdll/ntdll.spec
-@@ -145,7 +145,7 @@
+@@ -146,7 +146,7 @@
  @ stdcall -syscall NtAlertThread(long)
  @ stdcall -syscall NtAlertThreadByThreadId(ptr)
  @ stdcall -syscall NtAllocateLocallyUniqueId(ptr)

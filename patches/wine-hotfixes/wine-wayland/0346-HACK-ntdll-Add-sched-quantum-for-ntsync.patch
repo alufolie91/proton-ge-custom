@@ -1,8 +1,8 @@
-From afbff1d4fd28eeab8f3167f7e92976f9b93e1fb0 Mon Sep 17 00:00:00 2001
+From 974f4d6f803fffb7e0f57c7974068121d493adf1 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Tue, 7 Oct 2025 14:41:20 -0500
-Subject: [PATCH 346/346] HACK: ntdll: Add sched quantum for ntsync.
+Subject: [PATCH 346/347] HACK: ntdll: Add sched quantum for ntsync.
 
 It's hard to test this since ubisoft connect doesn't have updates that often... unfortunate
 ---

@@ -1,7 +1,7 @@
-From b1fca52a35fc029b3b578b8be671a584dd187f8d Mon Sep 17 00:00:00 2001
+From 07dc7638eabc317ee35b0d42065b59f25c52d72a Mon Sep 17 00:00:00 2001
 From: Yuxuan Shui <yshui@codeweavers.com>
 Date: Sat, 3 May 2025 21:57:23 +0100
-Subject: [PATCH 259/346] ntdll: Also relocate entry point for builtin modules.
+Subject: [PATCH 259/347] ntdll: Also relocate entry point for builtin modules.
 
 Discovered while I was working on ASan support. ASan shadow memory
 might be placed where the main image is normally loaded, forcing it to
@@ -11,7 +11,7 @@ relocate.
  1 file changed, 2 insertions(+), 3 deletions(-)
 
 diff --git a/dlls/ntdll/unix/virtual.c b/dlls/ntdll/unix/virtual.c
-index 8ba61b7b35b..f18e15b00fd 100644
+index 1e5f60d06b3..87b2b9c83ee 100644
 --- a/dlls/ntdll/unix/virtual.c
 +++ b/dlls/ntdll/unix/virtual.c
 @@ -3611,10 +3611,11 @@ static NTSTATUS virtual_map_image( HANDLE mapping, void **addr_ptr, SIZE_T *size

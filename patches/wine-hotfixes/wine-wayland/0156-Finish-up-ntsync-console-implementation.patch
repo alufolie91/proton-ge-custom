@@ -1,7 +1,7 @@
-From 372e9fbeb81dafbda5719716877e9d89b517d246 Mon Sep 17 00:00:00 2001
+From 46ecd2869342d9f2a92defe4b332e4c4bd771540 Mon Sep 17 00:00:00 2001
 From: Elizabeth Figura <zfigura@codeweavers.com>
 Date: Wed, 9 Jul 2025 12:06:51 -0400
-Subject: [PATCH 156/346] Finish up ntsync console implementation
+Subject: [PATCH 156/347] Finish up ntsync console implementation
 
 ---
  server/console.c | 207 ++++++++++++++++++++++++++++++++++-------------

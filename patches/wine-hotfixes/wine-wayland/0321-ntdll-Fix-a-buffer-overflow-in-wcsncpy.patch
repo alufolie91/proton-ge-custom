@@ -1,7 +1,7 @@
-From 38ab578faf916892c7b74bf6d4bd2b2822b02679 Mon Sep 17 00:00:00 2001
+From f0517eceb19f94441b32b23b3bb801dc01fa5115 Mon Sep 17 00:00:00 2001
 From: Haoyang Chen <chenhaoyang@kylinos.cn>
 Date: Wed, 10 Sep 2025 15:19:04 +0800
-Subject: [PATCH 321/346] ntdll: Fix a buffer overflow in wcsncpy.
+Subject: [PATCH 321/347] ntdll: Fix a buffer overflow in wcsncpy.
 
 ---
  dlls/ntdll/tests/string.c | 20 ++++++++++++++++++++

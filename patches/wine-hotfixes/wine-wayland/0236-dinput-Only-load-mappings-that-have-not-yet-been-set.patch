@@ -1,7 +1,7 @@
-From 5e78dec4bf026c97870b749a76496f02feb12b3d Mon Sep 17 00:00:00 2001
+From c453363c8b70eb16cd82727a11bfc7a5678eb1ae Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?R=C3=A9mi=20Bernon?= <rbernon@codeweavers.com>
 Date: Thu, 27 Mar 2025 14:31:27 +0100
-Subject: [PATCH 236/346] dinput: Only load mappings that have not yet been
+Subject: [PATCH 236/347] dinput: Only load mappings that have not yet been
  set.
 
 Wine-Bug: https://bugs.winehq.org/show_bug.cgi?id=57919

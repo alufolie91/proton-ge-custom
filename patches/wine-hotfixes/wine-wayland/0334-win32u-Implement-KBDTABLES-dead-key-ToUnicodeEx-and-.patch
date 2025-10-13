@@ -1,7 +1,7 @@
-From 78545d52ad1c439fbd079aa4d67e051e29580eaf Mon Sep 17 00:00:00 2001
+From 66c66be78d46dea564b346bee55e81d61585af51 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?R=C3=A9mi=20Bernon?= <rbernon@codeweavers.com>
 Date: Fri, 21 Jun 2024 13:29:40 +0200
-Subject: [PATCH 334/346] win32u: Implement KBDTABLES dead key ToUnicodeEx and
+Subject: [PATCH 334/347] win32u: Implement KBDTABLES dead key ToUnicodeEx and
  GetKeyNameText.
 
 ---

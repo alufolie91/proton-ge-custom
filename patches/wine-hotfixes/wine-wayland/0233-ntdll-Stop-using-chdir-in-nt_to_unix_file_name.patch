@@ -1,7 +1,7 @@
-From 6fb6303b499befb7ee08d1ff5631446e900cd2e3 Mon Sep 17 00:00:00 2001
+From 59fa1fc85b1a1d1d396adfd7aa41bf521f72af1f Mon Sep 17 00:00:00 2001
 From: Brendan Shanks <bshanks@codeweavers.com>
 Date: Wed, 12 Mar 2025 15:51:19 -0700
-Subject: [PATCH 233/346] ntdll: Stop using chdir() in nt_to_unix_file_name().
+Subject: [PATCH 233/347] ntdll: Stop using chdir() in nt_to_unix_file_name().
 
 ---
  dlls/ntdll/unix/file.c | 39 ++++++++++++++++++---------------------

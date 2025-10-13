@@ -1,7 +1,7 @@
-From fc6412f750636f55fccb41a85d4ed13efc2770a1 Mon Sep 17 00:00:00 2001
+From 7c1b7b26fa5f1ccf3a067be93ace11544ca4423b Mon Sep 17 00:00:00 2001
 From: Billy Laws <blaws05@gmail.com>
 Date: Mon, 11 Aug 2025 16:24:49 +0100
-Subject: [PATCH 308/346] ntdll/tests: Add
+Subject: [PATCH 308/347] ntdll/tests: Add
  THREAD_CREATE_FLAGS_BYPASS_PROCESS_FREEZE test.
 
 ---
@@ -72,7 +72,7 @@ index f7806e0fe62..605d8e5ba0a 100644
 +    test_thread_bypass_process_freeze();
  }
 diff --git a/include/winternl.h b/include/winternl.h
-index b0d3a671b76..df692d02207 100644
+index 40e7c17ea3c..cbb86a22463 100644
 --- a/include/winternl.h
 +++ b/include/winternl.h
 @@ -4015,8 +4015,9 @@ typedef struct _RTL_PROCESS_MODULE_INFORMATION_EX

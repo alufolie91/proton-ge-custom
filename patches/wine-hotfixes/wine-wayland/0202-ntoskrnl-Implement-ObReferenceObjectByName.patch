@@ -1,8 +1,8 @@
-From 1661a4a406b319cce2e97e5404c83811f4bf93eb Mon Sep 17 00:00:00 2001
+From 675aedf22a8aa0cd27ea062e60a772eabf2c485c Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Thu, 24 Jul 2025 17:42:00 -0400
-Subject: [PATCH 202/346] ntoskrnl: Implement ObReferenceObjectByName.
+Subject: [PATCH 202/347] ntoskrnl: Implement ObReferenceObjectByName.
 
 ---
  dlls/ntoskrnl.exe/ntoskrnl.c   | 34 +++++++++++++++++++++++++++++-----

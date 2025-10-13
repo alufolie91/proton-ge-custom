@@ -1,7 +1,7 @@
-From 283167f1da3307e373519178322f025dbfa594ae Mon Sep 17 00:00:00 2001
+From ee3e3fadc6449270c65bdd162a2894137927f1eb Mon Sep 17 00:00:00 2001
 From: Alexandre Julliard <julliard@winehq.org>
 Date: Thu, 17 Apr 2025 18:52:52 +0200
-Subject: [PATCH 099/346] ntdll: Add a stub for NtCreateSectionEx().
+Subject: [PATCH 099/347] ntdll: Add a stub for NtCreateSectionEx().
 
 ---
  dlls/ntdll/ntdll.spec       |  2 ++
@@ -12,10 +12,10 @@ Subject: [PATCH 099/346] ntdll: Add a stub for NtCreateSectionEx().
  5 files changed, 46 insertions(+)
 
 diff --git a/dlls/ntdll/ntdll.spec b/dlls/ntdll/ntdll.spec
-index 4ac3ce4dc36..d99e6d5be9e 100644
+index 677a48de2aa..7e759c05343 100644
 --- a/dlls/ntdll/ntdll.spec
 +++ b/dlls/ntdll/ntdll.spec
-@@ -192,6 +192,7 @@
+@@ -193,6 +193,7 @@
  # @ stub NtCreateProcessEx
  # @ stub NtCreateProfile
  @ stdcall -syscall NtCreateSection(ptr long ptr ptr long long long)
@@ -23,7 +23,7 @@ index 4ac3ce4dc36..d99e6d5be9e 100644
  @ stdcall -syscall NtCreateSemaphore(ptr long ptr long long)
  @ stdcall -syscall NtCreateSymbolicLinkObject(ptr long ptr ptr)
  @ stdcall -syscall NtCreateThread(ptr long ptr long ptr ptr ptr long)
-@@ -1260,6 +1261,7 @@
+@@ -1261,6 +1262,7 @@
  # @ stub ZwCreateProcessEx
  # @ stub ZwCreateProfile
  @ stdcall -private -syscall ZwCreateSection(ptr long ptr ptr long long long) NtCreateSection
@@ -32,7 +32,7 @@ index 4ac3ce4dc36..d99e6d5be9e 100644
  @ stdcall -private -syscall ZwCreateSymbolicLinkObject(ptr long ptr ptr) NtCreateSymbolicLinkObject
  @ stdcall -private -syscall ZwCreateThread(ptr long ptr long ptr ptr ptr long) NtCreateThread
 diff --git a/dlls/ntdll/signal_arm64ec.c b/dlls/ntdll/signal_arm64ec.c
-index 13d92bee67a..e3a9a664c9b 100644
+index 061c9a66680..c7a7106c4f3 100644
 --- a/dlls/ntdll/signal_arm64ec.c
 +++ b/dlls/ntdll/signal_arm64ec.c
 @@ -387,6 +387,7 @@ DEFINE_SYSCALL(NtCreateNamedPipeFile, (HANDLE *handle, ULONG access, OBJECT_ATTR
@@ -108,7 +108,7 @@ index ca362438340..5239089a0bd 100644
   *           wow64_NtFlushInstructionCache
   */
 diff --git a/include/winternl.h b/include/winternl.h
-index 465341849c8..5ca2bb07b1f 100644
+index 5a1118f9d87..2367798e639 100644
 --- a/include/winternl.h
 +++ b/include/winternl.h
 @@ -4554,6 +4554,7 @@ NTSYSAPI NTSTATUS  WINAPI NtCreatePort(PHANDLE,POBJECT_ATTRIBUTES,ULONG,ULONG,PU

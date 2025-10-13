@@ -1,8 +1,8 @@
-From 85e93d948b6818ee830a686aa0da8bffd276a995 Mon Sep 17 00:00:00 2001
+From df29cb9463d4c6f8fa56afd1dfb7187a8246cade Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Tue, 12 Aug 2025 14:34:52 -0400
-Subject: [PATCH 263/346] ntoskrnl: Add TRACE to create_process_object.
+Subject: [PATCH 263/347] ntoskrnl: Add TRACE to create_process_object.
 
 ---
  dlls/ntoskrnl.exe/ntoskrnl.c | 2 ++

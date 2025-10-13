@@ -1,8 +1,8 @@
-From 77ac4e3c950500a25794da4a96d1f1871e3b1b92 Mon Sep 17 00:00:00 2001
+From fb4e6838eb03be6dd502c9c3177afeea8e168ab4 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Fri, 15 Aug 2025 12:05:11 -0400
-Subject: [PATCH 292/346] HACK: ntdll: Make load_steam_overlay work with
+Subject: [PATCH 292/347] HACK: ntdll: Make load_steam_overlay work with
  winewayland.
 
 ---
@@ -10,7 +10,7 @@ Subject: [PATCH 292/346] HACK: ntdll: Make load_steam_overlay work with
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/dlls/ntdll/unix/virtual.c b/dlls/ntdll/unix/virtual.c
-index f18e15b00fd..d4582bf90d1 100644
+index 87b2b9c83ee..644a0b3ef33 100644
 --- a/dlls/ntdll/unix/virtual.c
 +++ b/dlls/ntdll/unix/virtual.c
 @@ -1027,7 +1027,7 @@ static void load_steam_overlay(const char *unix_lib_path)
