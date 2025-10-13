@@ -272,13 +272,8 @@ apply_all_in_dir() {
     echo "WINE: -PENDING- ncrypt: NCryptDecrypt implementation (PSN Login for Ghost of Tsushima)"
     apply_patch "../patches/wine-hotfixes/pending/NCryptDecrypt_implementation.patch"
 
-    # https://gitlab.winehq.org/wine/wine/-/merge_requests/7032
-    # https://bugs.winehq.org/show_bug.cgi?id=56259
-    # https://forum.winehq.org/viewtopic.php?t=38443
-    echo "WINE: -PENDING- add webview2 patches for GIRLS' FRONTLINE 2: EXILIUM"
-    apply_patch "../patches/wine-hotfixes/pending/webview2.patch"
-
     #https://github.com/GloriousEggroll/proton-ge-custom/issues/283
+    echo "WINE: -PENDING- quartz: backport to allow clannad videos to work"
     apply_patch "../patches/wine-hotfixes/pending/8848.patch"
 
 ### END WINE PENDING UPSTREAM SECTION ###
