@@ -45,7 +45,7 @@ import protonfixes
 #To enable debug logging, copy "user_settings.sample.py" to "user_settings.py"
 #and edit it if needed.
 
-CURRENT_PREFIX_VERSION="GE-Proton10-19"
+CURRENT_PREFIX_VERSION="GE-Proton10-20"
 
 PFX="Proton: "
 ld_path_var = "LD_LIBRARY_PATH"
@@ -2192,7 +2192,8 @@ class Session:
         # Prevent this warning for non-steam games:
         # [S_API FAIL] SteamAPI_Init() failed; no appID found.
         # Either launch the game from Steam, or put the file steam_appid.txt containing the correct appID in your game folder.
-        elif "UMU_ID" in os.environ:
+        # Also don't use steam api for US (3347400) versions of Girls Frontline: Exilium 2
+        elif "UMU_ID" in os.environ or os.environ.get("SteamGameId", 0) in ["3347400"]:
             log(sys.argv[2])
             if len(sys.argv) >=  3 and sys.argv[2].startswith('/'):
                 log("Executable a unix path, launching with /unix option.")
