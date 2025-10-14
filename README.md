@@ -13,9 +13,9 @@
 > [!Warning]
 > **Running non-Steam games with GE-Proton outside of Steam is only supported using [umu](https://github.com/Open-Wine-Components/umu-launcher):**
 > 
-> Proton runs in a container, which uses a runtime environment and libraries specifically built for use within that container. Not running it as intended results in the container and therefore its runtime not being used, and severely breaks library compatibility. It causes Wine to attempt to search for libraries on your system instead of those it was built with or intended for Proton. It may work, if enough libraries match, but it is not the expected environment and hard to support due to library differences between Linux distributions.
+> Proton runs in a container, which uses a runtime environment and libraries specifically built for use within that container. Not running it as intended results in the container and therefore its runtime not being used, which severely breaks library compatibility. It causes Wine to attempt to search for libraries on your system instead of those it was built with or intended for use with Proton. It may work if enough libraries match, but it is not the expected environment and not supported due to library differences across Linux distributions.
 > 
-> If you want Proton functionality outside of Steam, umu-launcher is a command-line tool that can run a containerized runtime environment that Proton expects. Any other method is not supported.
+> If you want Proton functionality outside of Steam, umu-launcher is a command-line tool that was designed to be able to mimic Steam in running the entire containerized runtime environment it needs in order to run Proton exactly as Steam does without needing Steam. Any other method is not supported.
 >
 >[Heroic](https://heroicgameslauncher.com/) has also enabled umu by default when using `GE-Proton`.
 >
