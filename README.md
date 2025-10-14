@@ -13,9 +13,9 @@
 > [!Warning]
 > **Running non-Steam games with GE-Proton outside of Steam is only supported using [umu](https://github.com/Open-Wine-Components/umu-launcher):**
 > 
-> Proton runs in a container, which uses a runtime environment and libraries specifically built for use within that container. Not running it as intended results in the container and therefore its runtime not being used, and severely breaks library compatibility. It causes Wine to attempt to search for libraries on your system instead of those it was built with/intended for within Proton. It may work, if enough libraries match, but it is not correct and not supportable due to library differences across Linux distributions.
+> Proton runs in a container, which uses a runtime environment and libraries specifically built for use within that container. Not running it as intended results in the container and therefore its runtime not being used, and severely breaks library compatibility. It causes Wine to attempt to search for libraries on your system instead of those it was built with or intended for Proton. It may work, if enough libraries match, but it is not the expected environment and hard to support due to library differences between Linux distributions.
 > 
-> If you want Proton functionality outside of Steam, umu-launcher is a cli tool that was designed to be able to mimic Steam in running the entire containerized runtime environment it needs in order to run Proton exactly as Steam does without needing Steam. Any other method is not supported.
+> If you want Proton functionality outside of Steam, umu-launcher is a command-line tool that can run a containerized runtime environment that Proton expects. Any other method is not supported.
 >
 >[Heroic](https://heroicgameslauncher.com/) has also enabled umu by default when using `GE-Proton`.
 >
@@ -24,7 +24,7 @@
 > [!Note]
 > (1) Please note, this is a custom build of Proton, and is not affiliated with Valve's Proton.
 > 
-> (2) Please also note I will not assist with unofficial builds of GE-Proton. The only version of proton-GE that I provide and will assist with builds of is the one provided within this repository, using the build system documented here.
+> (2) Please also note I will not assist with unofficial builds of GE-Proton. The only version of GE-Proton that I provide and will assist with builds of is the one provided within this repository, using the build system documented here.
 > 
 > (3) I cannot validate the accuracy or functionality of other builds that have not been built using the build system included here.
 
@@ -39,7 +39,7 @@
 		- [Manual](#manual)
 - [Building](#building)
 - [Enabling](#enabling)
-- [Modification](#modification)
+- [Options](#options)
 - [Credits](#credits)
 	- [TKG (Etienne Juvigny)](#tkg-etienne-juvigny)
 	- [Guy1524 (Derek Lesho)](#guy1524-derek-lesho)
@@ -81,7 +81,7 @@ Full patches can be viewed in [protonprep-valve-staging.sh](patches/protonprep-v
 
 ## Installation
 
-You must have the proper Vulkan drivers and packages installed on your system. VKD3D on AMD requires Mesa 22.0.0 or higher for the VK_KHR_dynamic_rendering extension. Check [here ](https://github.com/lutris/docs/blob/master/InstallingDrivers.md) for general driver installation guidance.
+You must have the proper Vulkan drivers and packages installed on your system. VKD3D on AMD requires Mesa 22.0.0 or higher for the VK_KHR_dynamic_rendering extension. Check [here](https://github.com/lutris/docs/blob/master/InstallingDrivers.md) for general driver installation guidance.
 
 ### Manual
 
@@ -101,9 +101,7 @@ asdf plugin add protonge
 asdf install protonge latest
 ```
 
-It's also possible to use the asdf plugin in Flatpak installations, by
-customizing the target `compatibilitytools.d` path. For more settings check the
-[plugin's official documentation](https://github.com/augustobmoura/asdf-protonge).
+It's also possible to use the asdf plugin in Flatpak installations, by customizing the target `compatibilitytools.d` path. For more settings check the [plugin's official documentation](https://github.com/augustobmoura/asdf-protonge).
 
 After every install you need to restart Steam, and [enable proton-ge-custom](#enabling).
 
@@ -253,64 +251,6 @@ This unofficial build isn't supported by GloriousEggroll nor Valve and wasn't te
 4. Restart Steam.
 5. [Enable proton-ge-custom in Steam](#enabling).
 
-
-##### Enabling NTSync
-For NTSync to work, your kernel must be version 6.14 or newer and built with `CONFIG_NTSYNC=y` or `CONFIG_NTSYNC=m`.
-If using `CONFIG_NTSYNC=m`, a module loading configuration is required followed by a reboot:
-
-/etc/modules-load.d/ntsync.conf
-```
-ntsync
-```
-You can also manually enable the module without reboot, just keep in mind the above configuration is needed for it to persist after reboots:
-```
-sudo modprobe ntsync
-```
-After this, a device `/dev/ntsync` should now exist on your system.
-
-Once NTSync is enabled on the system, if you launch a game with GE-Proton10-10 or newer using PROTON_LOG=1, a log will be generated for the game in your home folder with the filename `steam-XXXXXX.log`. Inside that log you should see `wineserver: NTSync up and running!`
-
-##### Enabling Wayland
-
-GE-Proton includes support for Wine's Wayland driver (`winewayland.drv`). By default, Proton uses X11 or XWayland.
-
-###### Required graphics driver versions
-
-* **AMD / Intel:** Mesa **≥ 25.x**
-* **NVIDIA:** **≥ 575.x**
-
-###### How to enable
-
-Add to a game’s launch options:
-
-```bash
-PROTON_ENABLE_WAYLAND=1 %command%
-```
-
-Verify with logging:
-
-```bash
-PROTON_LOG=1 %command%
-```
-
-Check `steam-XXXX.log` for:
-
-```
-Loaded L"C:\windows\system32\winewayland.drv"
-```
-
-###### Enable HDR
-
-It should work if you have:
-
-- A HDR-capable monitor
-- A compositor with HDR support
-- A game with HDR support.
-
-```bash
-PROTON_ENABLE_HDR=1 %command%
-```
-
 ## Building
 
 1. Clone this repository by executing:
@@ -352,7 +292,65 @@ The build will be placed within the build directory as SOME-BUILD-NAME-HERE.tar.
 2. At the bottom of the `Compatibility` tab, Check `Force the use of a specific Steam Play compatibility tool`, then select the desired Proton version.
 3. Launch the game.
 
-## Modification
+## Options
+
+
+###### Enable HDR
+
+It should work if you have:
+
+- A compositor with HDR support
+- A game with HDR support.
+- A monitor with HDR support.
+
+```bash
+PROTON_ENABLE_HDR=1 %command%
+```
+
+##### Enabling NTSync
+For NTSync to work, your kernel must be version 6.14 or newer and built with `CONFIG_NTSYNC=y` or `CONFIG_NTSYNC=m`.
+If using `CONFIG_NTSYNC=m`, a module loading configuration is required followed by a reboot:
+
+/etc/modules-load.d/ntsync.conf
+```
+ntsync
+```
+You can also manually enable the module without reboot, just keep in mind the above configuration is needed for it to persist after reboots:
+```
+sudo modprobe ntsync
+```
+After this, a device `/dev/ntsync` should now exist on your system.
+
+Once NTSync is enabled on the system, if you launch a game with GE-Proton10-10 or newer using PROTON_LOG=1, a log will be generated for the game in your home folder with the filename `steam-XXXXXX.log`. Inside that log you should see `wineserver: NTSync up and running!`
+
+##### Enabling Wayland
+
+GE-Proton includes support for Wine's Wayland driver (`winewayland.drv`). By default, Proton uses X11 or XWayland.
+
+###### Required graphics driver versions for Wayland
+
+* **AMD / Intel:** Mesa **≥ 25.x**
+* **NVIDIA:** **≥ 575.x**
+
+###### How to enable
+
+Add to a game’s launch options:
+
+```bash
+PROTON_ENABLE_WAYLAND=1 %command%
+```
+
+Verify with logging:
+
+```bash
+PROTON_LOG=1 %command%
+```
+
+Check `steam-XXXX.log` for:
+
+```
+Loaded L"C:\windows\system32\winewayland.drv"
+```
 
 Environment variable options:
 
