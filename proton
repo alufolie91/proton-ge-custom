@@ -45,7 +45,7 @@ import protonfixes
 #To enable debug logging, copy "user_settings.sample.py" to "user_settings.py"
 #and edit it if needed.
 
-CURRENT_PREFIX_VERSION="GE-Proton10-20"
+CURRENT_PREFIX_VERSION="GE-Proton10-21"
 
 PFX="Proton: "
 ld_path_var = "LD_LIBRARY_PATH"
@@ -1340,7 +1340,7 @@ def default_compat_config():
             ret.add("nomfdxgiman")
 
         if appid in [
-                # OPWR may be causing text input delays in login windows in these games on Wayland due to
+                # OPWR may be causing text input delays in login windows in these games on XWayland due to
                 # blit happening before presentation
                 "1172620", #Sea of Thieves
                 "962130", #Grounded
@@ -1375,6 +1375,10 @@ def default_compat_config():
                 "1180660", #Tell Me Why
                 "1238430", #Tell Me Why Chapter 2
                 "1266670", #Tell Me Why Chapter 3
+                ]:
+            ret.add("noopwrx11")
+
+        if appid in [
                 # Other issues arising from OWPR code path in apps, e. g., hitting unimplemented bits in
                 # d3dcompiler.
                 "230410", #Warframe
@@ -1422,6 +1426,7 @@ def default_compat_config():
                 "2842040", #Star Wars Outlaws
                 "245300", #Disney Epic Mickey 2: The Power of Two
                 "2594920", #Atelier Resleriana: Forgotten Alchemy and the Polar Night Liberator
+                "2586520", #Atelier Resleriana [JP]
                 "3209830", #Stronghold Crusader: Definitive Edition Demo
                 "3024040", #Stronghold Crusader: Definitive Edition
                 "2433890", #Stronghold: Definitive Edition Demo
@@ -1638,6 +1643,11 @@ class Session:
                     "1282690",
                 ]:
             self.env["WINE_HIDE_AMD_GPU"] = "1"
+
+        if "WINE_DISABLE_GAMESCOPE_MAX_SIZE_HACK" not in self.env and appid in [
+                    "3754990",
+                ]:
+            self.env["WINE_DISABLE_GAMESCOPE_MAX_SIZE_HACK"] = "1"
 
     def init_wine(self):
         if "HOST_LC_ALL" in self.env and len(self.env["HOST_LC_ALL"]) > 0:
@@ -1912,6 +1922,7 @@ class Session:
                     "524220", #NieR: Automata
                     "814380", #Sekiro: Shadows Die Twice
                     "374320", #DARK SOULS III
+                    "357190", #Ultimate Marvel vs Capcom 3
                     ]:
                 self.env["PROTON_LIMIT_RESOLUTIONS"] = "32"
 
@@ -1967,6 +1978,9 @@ class Session:
             self.env["WINE_DO_NOT_CREATE_DXGI_DEVICE_MANAGER"] = "1"
 
         if "noopwr" in self.compat_config:
+            self.env["WINE_DISABLE_VULKAN_OPWR"] = "1"
+
+        if "noopwrx11" in self.compat_config and "wayland" not in self.compat_config:
             self.env["WINE_DISABLE_VULKAN_OPWR"] = "1"
 
         if "PROTON_USE_XALIA" not in self.env:
@@ -2151,7 +2165,7 @@ class Session:
                 # IME implementation on some compositors is broken
                 if "WAYLANDDRV_NO_IME" not in self.env:
                     self.env["WAYLANDDRV_NO_IME"] = "1"
-                # FIXME: temporary workaround to libxkbcommon's current integration
+                # FIXME: temporary workaround for libxkbcommon's current integration
                 if "XLOCALEDIR" not in self.env:
                     self.env["XLOCALEDIR"] = g_proton.dist_dir + "share/X11/locale"
                 # Make sure SDL will still work with the controllers, steam sets this for some dumb reason
