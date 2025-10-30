@@ -97,15 +97,16 @@ apply_all_in_dir() {
 
     git revert --no-commit e813ca5771658b00875924ab88d525322e50d39f
 
-# This doesn't correctly resolve the issue. We have patches that handle this for gstreamer
-# Need to revert this so our patches work.
-
-    git revert --no-commit 37818f7a547f7090ef684f8202438374fc31a165
-
 ### END PROBLEMATIC COMMIT REVERT SECTION ###
 
+### (2-2) EM-10/WINE-WAYLAND PATCH SECTION ###
 
-### (2-2) WINE STAGING APPLY SECTION ###
+    echo "WINE: -CUSTOM- ETAASH WINE-WAYLAND+ PATCHES"
+    apply_all_in_dir "../patches/wine-hotfixes/wine-wayland/"
+
+### END EM-10/WINE-WAYLAND PATCH SECTION ###
+
+### (2-3) WINE STAGING APPLY SECTION ###
 
     echo "WINE: -STAGING- applying staging patches"
 
@@ -141,15 +142,17 @@ apply_all_in_dir() {
     -W kernel32-Debugger \
     -W ntdll-ext4-case-folder \
     -W user32-FlashWindowEx \
-    -W winex11-Fixed-scancodes \
     -W winex11-Window_Style \
-    -W winex11-ime-check-thread-data \
     -W winex11.drv-Query_server_position \
     -W wininet-Cleanup \
     -W cryptext-CryptExtOpenCER \
     -W wineboot-ProxySettings \
     -W version-VerQueryValue \
-    -W setupapi-DiskSpaceList
+    -W setupapi-DiskSpaceList \
+    -W mmsystem.dll16-MIDIHDR_Refcount \
+    -W vcomp_for_dynamic_init_i8 \
+    -W winex11-ime-check-thread-data \
+    -W winex11-Fixed-scancodes
 
     # NOTE: Some patches are applied manually because they -do- apply, just not cleanly, ie with patch fuzz.
     # A detailed list of why the above patches are disabled is listed below:
@@ -166,6 +169,10 @@ apply_all_in_dir() {
     # shell32-Progress_Dialog - relies on kernel32-CopyFileEx
     # shell32-ACE_Viewer - adds a UI tab, not needed, relies on kernel32-CopyFileEx
     # dbghelp-Debug_Symbols - Ubisoft Connect games (3/3 I had installed and could test) will crash inside pe_load_debug_info function with this enabled
+    # mmsystem.dll16-MIDIHDR_Refcount - triggers Werror
+    # vcomp_for_dynamic_init_i8 - triggers Werror
+    # winex11-ime-check-thread-data - triggers Werror
+    # winex11-Fixed-scancodes - needs winex11-ime-check-thread-data
 
     # ntdll-Syscall_Emulation - already applied
     # eventfd_synchronization - already applied
@@ -210,7 +217,7 @@ apply_all_in_dir() {
     apply_all_in_dir "../wine-staging/patches/loader-KeyboardLayouts/"
 
     echo "WINE: -STAGING- ntdll-Hide_Wine_Exports manually applied"
-    apply_all_in_dir "../wine-staging/patches/ntdll-Hide_Wine_Exports/"
+    apply_all_in_dir "../patches/wine-hotfixes/staging/ntdll-Hide_Wine_Exports/"
 
     echo "WINE: -STAGING- kernel32-Debugger manually applied"
     apply_all_in_dir "../wine-staging/patches/kernel32-Debugger/"
@@ -221,14 +228,14 @@ apply_all_in_dir() {
     echo "WINE: -STAGING- user32-FlashWindowEx manually applied"
     apply_all_in_dir "../wine-staging/patches/user32-FlashWindowEx/"
 
-    echo "WINE: -STAGING- winex11-Fixed-scancodes manually applied"
-    apply_all_in_dir "../wine-staging/patches/winex11-Fixed-scancodes/"
+#    echo "WINE: -STAGING- winex11-Fixed-scancodes manually applied"
+#    apply_all_in_dir "../wine-staging/patches/winex11-Fixed-scancodes/"
 
     echo "WINE: -STAGING- winex11-Window_Style manually applied"
     apply_all_in_dir "../wine-staging/patches/winex11-Window_Style/"
 
-    echo "WINE: -STAGING- winex11-ime-check-thread-data manually applied"
-    apply_all_in_dir "../wine-staging/patches/winex11-ime-check-thread-data/"
+#    echo "WINE: -STAGING- winex11-ime-check-thread-data manually applied"
+#    apply_all_in_dir "../wine-staging/patches/winex11-ime-check-thread-data/"
 
     echo "WINE: -STAGING- winex11.drv-Query_server_position manually applied"
     apply_all_in_dir "../wine-staging/patches/winex11.drv-Query_server_position/"
@@ -245,7 +252,7 @@ apply_all_in_dir() {
 
 ### END WINE STAGING APPLY SECTION ###
 
-### (2-3) GAME PATCH SECTION ###
+### (2-4) GAME PATCH SECTION ###
 
     echo "WINE: -GAME FIXES- assetto corsa hud fix"
     apply_patch "../patches/game-patches/assettocorsa-hud.patch"
@@ -268,11 +275,11 @@ apply_all_in_dir() {
 
 ### END GAME PATCH SECTION ###
 
-### (2-4) WINE HOTFIX/BACKPORT SECTION ###
+### (2-5) WINE HOTFIX/BACKPORT SECTION ###
 
 ### END WINE HOTFIX/BACKPORT SECTION ###
 
-### (2-5) WINE PENDING UPSTREAM SECTION ###
+### (2-6) WINE PENDING UPSTREAM SECTION ###
 
     # https://github.com/Frogging-Family/wine-tkg-git/commit/ca0daac62037be72ae5dd7bf87c705c989eba2cb
     echo "WINE: -PENDING- unity crash hotfix"
@@ -297,7 +304,7 @@ apply_all_in_dir() {
 ### END WINE PENDING UPSTREAM SECTION ###
 
 
-### (2-6) PROTON-GE ADDITIONAL CUSTOM PATCHES ###
+### (2-7) PROTON-GE ADDITIONAL CUSTOM PATCHES ###
 
     echo "WINE: -FSR- fullscreen hack fsr patch"
     apply_patch "../patches/proton/0001-fshack-Implement-AMD-FSR-upscaler-for-fullscreen-hac.patch"
@@ -322,9 +329,6 @@ apply_all_in_dir() {
 
     echo "WINE: -CUSTOM- Add envvar to allow method=automatic to be set for video orientation in gstreamer"
     apply_patch "../patches/proton/proton-use_winegstreamer_and_set_orientation-PROTON_MEDIA_USE_GST-PROTON_GST_VIDEO_ORIENTATION.patch"
-
-    echo "WINE: -CUSTOM- ETASSH WINE-WAYLAND+ PATCHES"
-    apply_all_in_dir "../patches/wine-hotfixes/wine-wayland/"
 
     echo "WINE: -CUSTOM- Add enhanced dualsense patches"
     apply_all_in_dir "../patches/proton/Dualsense/"
