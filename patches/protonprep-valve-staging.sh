@@ -333,6 +333,9 @@ apply_all_in_dir() {
     #echo "WINE: -CUSTOM- Add enhanced dualsense patches"
     #apply_all_in_dir "../patches/proton/Dualsense/"
 
+    echo "WINE: Fix some may be used uninitialized errors"
+    apply_patch "../patches/custom/9999-fixshit.patch"
+
     echo "WINE: Add Wine-to-Unix PID mapping"
     apply_patch "../patches/custom/proton10-unix-pid-maps.patch"
 

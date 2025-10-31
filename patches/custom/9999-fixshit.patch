@@ -1,0 +1,32 @@
+diff --git a/tools/widl/typegen.c b/tools/widl/typegen.c
+index c29bbba1c1c..db625b72295 100644
+--- a/tools/widl/typegen.c
++++ b/tools/widl/typegen.c
+@@ -3569,7 +3569,7 @@ static unsigned int write_union_tfs(FILE *file, const attr_list_t *attrs,
+     unsigned int nbranch = 0;
+     type_t *deftype = NULL;
+     short nodeftype = 0xffff;
+-    unsigned int dummy;
++    unsigned int dummy = 0;
+     var_t *f;
+ 
+     if (processed(type) &&
+diff --git a/tools/widl/write_sltg.c b/tools/widl/write_sltg.c
+index 414a8ec6855..dc74c2e457d 100644
+--- a/tools/widl/write_sltg.c
++++ b/tools/widl/write_sltg.c
+@@ -1154,12 +1154,12 @@ static int get_param_flags(const var_t *param)
+ static int add_func_desc(struct sltg_typelib *typelib, struct sltg_data *data, var_t *func,
+                          int idx, int dispid, short base_offset, struct sltg_hrefmap *hrefmap)
+ {
+-    struct sltg_data ret_data, *arg_data;
++    struct sltg_data ret_data, *arg_data = NULL;
+     int arg_count = 0, arg_data_size, optional = 0, old_size;
+     int funcflags = 0, invokekind = 1 /* INVOKE_FUNC */, helpcontext;
+     const char *helpstring;
+     const var_t *arg;
+-    short ret_desc_offset, *arg_desc_offset, arg_offset;
++    short ret_desc_offset, *arg_desc_offset = NULL, arg_offset;
+     struct sltg_function func_desc;
+ 
+     chat("add_func_desc: %s, idx %#x, dispid %#x\n", func->name, idx, dispid);
