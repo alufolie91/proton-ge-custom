@@ -330,9 +330,6 @@ apply_all_in_dir() {
     echo "WINE: -CUSTOM- Add envvar to allow method=automatic to be set for video orientation in gstreamer"
     apply_patch "../patches/proton/proton-use_winegstreamer_and_set_orientation-PROTON_MEDIA_USE_GST-PROTON_GST_VIDEO_ORIENTATION.patch"
 
-    #echo "WINE: -CUSTOM- Add enhanced dualsense patches"
-    #apply_all_in_dir "../patches/proton/Dualsense/"
-
     echo "WINE: Add Wine-to-Unix PID mapping"
     apply_patch "../patches/custom/proton10-unix-pid-maps.patch"
 
