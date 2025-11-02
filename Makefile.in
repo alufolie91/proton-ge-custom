@@ -714,7 +714,7 @@ $(eval $(call rules-cmake,vosk,x86_64,unix))
 ##
 
 # HACK: glib 2.0 in the runtime is old and causes a lot of errors with a newer GCC
-WINE_CFLAGS += -Wno-discarded-qualifiers
+WINE_CFLAGS += -Wno-discarded-qualifiers -O3 -mtune=native
 
 WINE_SOURCE_ARGS = \
   --exclude configure \
@@ -892,7 +892,7 @@ VKD3D_AUTOCONF_ARGS = \
 
 # LTO is enabled by default, but causes the build to fail. I havent't
 # investigated this yet.
-VKD3D_CFLAGS = -fno-lto
+VKD3D_CFLAGS = -fno-lto -O3 -mtune=native
 VKD3D_LDFLAGS = -static-libgcc $(CROSSLDFLAGS)
 VKD3D_DEPENDS = vulkan-headers spirv-headers
 
