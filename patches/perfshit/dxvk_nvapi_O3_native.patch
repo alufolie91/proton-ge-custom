@@ -1,5 +1,5 @@
 diff --git a/meson.build b/meson.build
-index c2e8cd2..38f349a 100644
+index c2e8cd2..79669d6 100644
 --- a/meson.build
 +++ b/meson.build
 @@ -11,7 +11,7 @@ cpp = meson.get_compiler('cpp')
@@ -7,7 +7,7 @@ index c2e8cd2..38f349a 100644
  dxvk_is_msvc = cpp.get_argument_syntax() == 'msvc'
  
 -compiler_args = ['-DNOMINMAX', '-DWIN32_LEAN_AND_MEAN']
-+compiler_args = ['-O3', '-mtune=native', '-DNOMINMAX', '-DWIN32_LEAN_AND_MEAN']
++compiler_args = ['-DNOMINMAX', '-DWIN32_LEAN_AND_MEAN', '-O3', '-mtune=native']
  link_args = []
  if not dxvk_is_msvc
    compiler_args += ['-Wno-unused-parameter']

@@ -1,5 +1,5 @@
 diff --git a/Makefile b/Makefile
-index c93f1c7..232aae4 100644
+index c93f1c7..4289348 100644
 --- a/Makefile
 +++ b/Makefile
 @@ -95,7 +95,7 @@ libmspack-install: libmspack-dist

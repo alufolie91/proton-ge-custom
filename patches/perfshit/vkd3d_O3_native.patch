@@ -1,8 +1,8 @@
 diff --git a/Makefile.am b/Makefile.am
-index dccd89dd..6396f052 100644
+index 886a42db..4aa33663 100644
 --- a/Makefile.am
 +++ b/Makefile.am
-@@ -652,7 +652,7 @@ dummy-vkd3d-version:
+@@ -656,7 +656,7 @@ dummy-vkd3d-version:
  ## Cross-compile tests
  cross_implibs = crosslibs/d3d12
  CROSS_CPPFLAGS = -I$(srcdir)/include -I$(srcdir)/include/private -I$(builddir)/include -I$(builddir)/tests
@@ -12,7 +12,7 @@ index dccd89dd..6396f052 100644
  EXTRA_DIST += $(cross_implibs:=.cross32.def) $(cross_implibs:=.cross64.def)
  EXTRA_DIST += tests/driver.c tests/shader_runner_d3d11.c tests/shader_runner_d3d9.c
 diff --git a/configure.ac b/configure.ac
-index 884d9238..72faca62 100644
+index c552ee52..08be53ab 100644
 --- a/configure.ac
 +++ b/configure.ac
 @@ -62,7 +62,7 @@ gl_LD_VERSION_SCRIPT

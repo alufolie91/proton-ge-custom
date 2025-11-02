@@ -1,13 +1,11 @@
 diff --git a/meson.build b/meson.build
-index 3ef941b..a461c55 100644
+index 83c53f10..db393d7e 100644
 --- a/meson.build
 +++ b/meson.build
-@@ -96,8 +96,8 @@ endif
- 
- add_project_arguments(vkd3d_compiler.get_supported_arguments([
+@@ -104,6 +104,8 @@ add_project_arguments(vkd3d_compiler.get_supported_arguments([
      '-fvisibility=hidden',
--    '-msse',
--    '-msse2',
+     '-msse',
+     '-msse2',
 +    '-O3',
 +    '-mtune=native',
      # For some reason, the use of VLAs isn't in all+extra+pedantic
