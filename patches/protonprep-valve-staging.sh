@@ -20,9 +20,6 @@ apply_all_in_dir() {
     git clean -xdf
     echo "DXVK: compile with O3"
     apply_patch "../patches/perfshit/dxvk_O3_native.patch"
-    #echo "DXVK: add low-latency patchset"
-    #apply_patch "../patches/perfshit/500-dxvk-gplasync-lowlatency_GPLALL-master-2.7.patch"
-    #apply_patch "../patches/perfshit/AVX2-AMD64.patch"
     popd
 
     pushd vkd3d
