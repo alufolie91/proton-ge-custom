@@ -736,7 +736,6 @@ WINE_SOURCE_ARGS = \
   --exclude server/request_trace.h \
 
 WINE_AUTOCONF_ARGS = \
-  #--enable-werror \
   --with-wayland \
   --with-mingw \
   --disable-tests
