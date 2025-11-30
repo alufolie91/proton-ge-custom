@@ -27,7 +27,7 @@ SHELL := /bin/bash
 STEAMRT_IMAGE ?= ghcr.io/open-wine-components/umu-sdk:latest
 
 # Valve version
-# STEAMRT_IMAGE ?= registry.gitlab.steamos.cloud/proton/sniper/sdk:3.0.20250519.130773-0
+# registry.gitlab.steamos.cloud/proton/sniper/sdk:3.0.20250519.130773-0
 
 ifeq ($(SRCDIR),)
 	foo := $(error SRCDIR not set, do not include Makefile.in directly, run ./configure.sh to generate Makefile)
