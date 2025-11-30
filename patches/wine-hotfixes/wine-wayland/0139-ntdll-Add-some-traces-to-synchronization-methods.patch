@@ -1,14 +1,14 @@
-From 3518a949713c27291115036b8e3475b9c6465c4c Mon Sep 17 00:00:00 2001
+From 294f1d8bdf2e7afee08cb30738025c05d3f159fc Mon Sep 17 00:00:00 2001
 From: Elizabeth Figura <zfigura@codeweavers.com>
 Date: Wed, 2 Jul 2025 20:53:50 -0400
-Subject: [PATCH 139/377] ntdll: Add some traces to synchronization methods.
+Subject: [PATCH 139/406] ntdll: Add some traces to synchronization methods.
 
 ---
  dlls/ntdll/unix/sync.c | 55 +++++++++++++++++++++++++++++++++++++++++-
  1 file changed, 54 insertions(+), 1 deletion(-)
 
 diff --git a/dlls/ntdll/unix/sync.c b/dlls/ntdll/unix/sync.c
-index 7ac12a97606..2903147e85e 100644
+index 5c9220b9f4b..52c57394500 100644
 --- a/dlls/ntdll/unix/sync.c
 +++ b/dlls/ntdll/unix/sync.c
 @@ -313,6 +313,9 @@ NTSTATUS WINAPI NtCreateSemaphore( HANDLE *handle, ACCESS_MASK access, const OBJ
@@ -217,5 +217,5 @@ index 7ac12a97606..2903147e85e 100644
      if ((ULONG_PTR)key & 1) return STATUS_INVALID_PARAMETER_1;
      if (alertable) flags |= SELECT_ALERTABLE;
 -- 
-2.51.0
+2.51.1
 

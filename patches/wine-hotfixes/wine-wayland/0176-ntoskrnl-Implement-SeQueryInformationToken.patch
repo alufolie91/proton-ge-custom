@@ -1,8 +1,8 @@
-From f6bef0b0a8cb0896b7acd9c747a268c54be7468f Mon Sep 17 00:00:00 2001
+From ebc1085e065192d6f2e1edbccd64a5430c27a2d1 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Wed, 23 Jul 2025 00:45:06 -0400
-Subject: [PATCH 176/377] ntoskrnl: Implement SeQueryInformationToken.
+Subject: [PATCH 176/406] ntoskrnl: Implement SeQueryInformationToken.
 
 ---
  dlls/ntoskrnl.exe/ntoskrnl.c        | 18 ++++++++++++++++++
@@ -10,7 +10,7 @@ Subject: [PATCH 176/377] ntoskrnl: Implement SeQueryInformationToken.
  2 files changed, 19 insertions(+), 1 deletion(-)
 
 diff --git a/dlls/ntoskrnl.exe/ntoskrnl.c b/dlls/ntoskrnl.exe/ntoskrnl.c
-index 092bf854f70..bc6a0e6a173 100644
+index 335fdf06a66..3d6a9ee482a 100644
 --- a/dlls/ntoskrnl.exe/ntoskrnl.c
 +++ b/dlls/ntoskrnl.exe/ntoskrnl.c
 @@ -4585,6 +4585,24 @@ static struct _OBJECT_TYPE token_type =
@@ -52,5 +52,5 @@ index 683c7703f69..353d9576a4c 100644
  @ stub SeQuerySessionIdToken
  @ stub SeRegisterLogonSessionTerminatedRoutine
 -- 
-2.51.0
+2.51.1
 

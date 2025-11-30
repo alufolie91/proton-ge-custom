@@ -1,8 +1,8 @@
-From 5ffaf96f321df3010bf0596cf5c8cbeaf0e3b3d1 Mon Sep 17 00:00:00 2001
+From af911c766e11a1b889b441e5d83482361a13705d Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Wed, 23 Jul 2025 15:36:53 -0400
-Subject: [PATCH 184/377] ntoskrnl: Add semi-stub for
+Subject: [PATCH 184/406] ntoskrnl: Add semi-stub for
  IoGetBaseFileSystemDeviceObject.
 
 ---
@@ -11,7 +11,7 @@ Subject: [PATCH 184/377] ntoskrnl: Add semi-stub for
  2 files changed, 10 insertions(+), 1 deletion(-)
 
 diff --git a/dlls/ntoskrnl.exe/ntoskrnl.c b/dlls/ntoskrnl.exe/ntoskrnl.c
-index 4e98ce4e041..7536f65a405 100644
+index 5bc679f1ca0..870aa073227 100644
 --- a/dlls/ntoskrnl.exe/ntoskrnl.c
 +++ b/dlls/ntoskrnl.exe/ntoskrnl.c
 @@ -3390,6 +3390,15 @@ DEVICE_OBJECT* WINAPI IoGetAttachedDeviceReference( DEVICE_OBJECT *device )
@@ -44,5 +44,5 @@ index 2f7dd939107..3b975bf45b2 100644
  @ stdcall IoGetConfigurationInformation()
  @ stdcall IoGetCurrentProcess()
 -- 
-2.51.0
+2.51.1
 

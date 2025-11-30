@@ -1,8 +1,8 @@
-From 5d18e3e7f2f0fd14a51cb932070ff91aa460e545 Mon Sep 17 00:00:00 2001
+From b0200120d60ad2f54f39b6a82ed1cc53a6e4d37d Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Tue, 22 Jul 2025 15:22:55 -0400
-Subject: [PATCH 157/377] ntoskrnl: Add stub for VslGetSecurePciEnabled.
+Subject: [PATCH 157/406] ntoskrnl: Add stub for VslGetSecurePciEnabled.
 
 ---
  dlls/ntoskrnl.exe/ntoskrnl.c        | 6 ++++++
@@ -10,7 +10,7 @@ Subject: [PATCH 157/377] ntoskrnl: Add stub for VslGetSecurePciEnabled.
  2 files changed, 7 insertions(+)
 
 diff --git a/dlls/ntoskrnl.exe/ntoskrnl.c b/dlls/ntoskrnl.exe/ntoskrnl.c
-index 9a64820cef8..a7d2fc97dfb 100644
+index ffff9e23887..cced027c148 100644
 --- a/dlls/ntoskrnl.exe/ntoskrnl.c
 +++ b/dlls/ntoskrnl.exe/ntoskrnl.c
 @@ -4686,6 +4686,12 @@ NTSTATUS WINAPI EtwUnregister(REGHANDLE handle)
@@ -39,5 +39,5 @@ index 1c2449d9f4d..6021709d30c 100644
  @ stub WRITE_REGISTER_BUFFER_ULONG
  @ stub WRITE_REGISTER_BUFFER_USHORT
 -- 
-2.51.0
+2.51.1
 

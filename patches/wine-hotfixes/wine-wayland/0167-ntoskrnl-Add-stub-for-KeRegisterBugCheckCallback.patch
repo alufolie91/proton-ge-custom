@@ -1,8 +1,8 @@
-From d00e4166b76190f0b649b94f875333a9b4fddc42 Mon Sep 17 00:00:00 2001
+From e9d827fe8d842298fd18217511f26e74ba1a445f Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Tue, 22 Jul 2025 16:48:42 -0400
-Subject: [PATCH 167/377] ntoskrnl: Add stub for KeRegisterBugCheckCallback.
+Subject: [PATCH 167/406] ntoskrnl: Add stub for KeRegisterBugCheckCallback.
 
 ---
  dlls/ntoskrnl.exe/ntoskrnl.c        | 11 +++++++++++
@@ -10,7 +10,7 @@ Subject: [PATCH 167/377] ntoskrnl: Add stub for KeRegisterBugCheckCallback.
  2 files changed, 12 insertions(+), 1 deletion(-)
 
 diff --git a/dlls/ntoskrnl.exe/ntoskrnl.c b/dlls/ntoskrnl.exe/ntoskrnl.c
-index c5806872bda..d9977b6bafd 100644
+index 8b0efe7fa1e..706f8eac561 100644
 --- a/dlls/ntoskrnl.exe/ntoskrnl.c
 +++ b/dlls/ntoskrnl.exe/ntoskrnl.c
 @@ -2848,6 +2848,17 @@ void WINAPI KeRevertToUserAffinityThreadEx(KAFFINITY affinity)
@@ -45,5 +45,5 @@ index 47e3dc597af..adb2882e8c7 100644
  @ stub KeReleaseInterruptSpinLock
  @ stub KeReleaseMutant
 -- 
-2.51.0
+2.51.1
 

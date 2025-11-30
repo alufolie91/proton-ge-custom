@@ -1,15 +1,15 @@
-From 2ba740180788488b2a886bfee9a73c7152b424fa Mon Sep 17 00:00:00 2001
+From ca6f582eedada5e7469e2165a16e4e1b14e693e8 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Thu, 24 Jul 2025 18:27:53 -0400
-Subject: [PATCH 192/377] HACK: ntoskrnl: Add stub Disk driver.
+Subject: [PATCH 192/406] HACK: ntoskrnl: Add stub Disk driver.
 
 ---
  dlls/ntoskrnl.exe/ntoskrnl.c | 2 ++
  1 file changed, 2 insertions(+)
 
 diff --git a/dlls/ntoskrnl.exe/ntoskrnl.c b/dlls/ntoskrnl.exe/ntoskrnl.c
-index 69e715ebc64..6b2c6be532a 100644
+index 14bb2d4cb77..34d54d0abfa 100644
 --- a/dlls/ntoskrnl.exe/ntoskrnl.c
 +++ b/dlls/ntoskrnl.exe/ntoskrnl.c
 @@ -5048,6 +5048,7 @@ BOOL WINAPI DllMain( HINSTANCE inst, DWORD reason, LPVOID reserved )
@@ -29,5 +29,5 @@ index 69e715ebc64..6b2c6be532a 100644
      case DLL_PROCESS_DETACH:
          LdrUnregisterDllNotification( ldr_notify_cookie );
 -- 
-2.51.0
+2.51.1
 

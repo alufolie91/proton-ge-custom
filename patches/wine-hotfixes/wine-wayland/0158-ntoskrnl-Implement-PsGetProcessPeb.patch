@@ -1,8 +1,8 @@
-From 77354b043c27d66f1b1adf8432458a9d647caddb Mon Sep 17 00:00:00 2001
+From dd249335d1ef637ff3779173b01d80e53fcef48a Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Tue, 22 Jul 2025 15:26:51 -0400
-Subject: [PATCH 158/377] ntoskrnl: Implement PsGetProcessPeb.
+Subject: [PATCH 158/406] ntoskrnl: Implement PsGetProcessPeb.
 
 ---
  dlls/ntoskrnl.exe/ntoskrnl.c        | 9 +++++++++
@@ -10,7 +10,7 @@ Subject: [PATCH 158/377] ntoskrnl: Implement PsGetProcessPeb.
  2 files changed, 10 insertions(+), 1 deletion(-)
 
 diff --git a/dlls/ntoskrnl.exe/ntoskrnl.c b/dlls/ntoskrnl.exe/ntoskrnl.c
-index a7d2fc97dfb..d1f0f2438a4 100644
+index cced027c148..90109306b2e 100644
 --- a/dlls/ntoskrnl.exe/ntoskrnl.c
 +++ b/dlls/ntoskrnl.exe/ntoskrnl.c
 @@ -2522,6 +2522,15 @@ HANDLE WINAPI PsGetProcessId(PEPROCESS process)
@@ -43,5 +43,5 @@ index 6021709d30c..e761bd2d4dc 100644
  @ stdcall PsGetProcessSectionBaseAddress(ptr)
  @ stub PsGetProcessSecurityPort
 -- 
-2.51.0
+2.51.1
 

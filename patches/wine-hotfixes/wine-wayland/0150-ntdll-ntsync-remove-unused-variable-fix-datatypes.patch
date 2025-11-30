@@ -1,8 +1,8 @@
-From c4b239d44e750a10a90c29645ed6f115f4e7b823 Mon Sep 17 00:00:00 2001
+From 1a426d1f7bf88a0c2106386582b06c6e630b8001 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Mon, 14 Jul 2025 03:45:49 -0400
-Subject: [PATCH 150/377] ntdll/ntsync: remove unused variable & fix datatypes.
+Subject: [PATCH 150/406] ntdll/ntsync: remove unused variable & fix datatypes.
 
 ---
  dlls/ntdll/unix/sync.c         | 7 +++----
@@ -10,7 +10,7 @@ Subject: [PATCH 150/377] ntdll/ntsync: remove unused variable & fix datatypes.
  2 files changed, 4 insertions(+), 5 deletions(-)
 
 diff --git a/dlls/ntdll/unix/sync.c b/dlls/ntdll/unix/sync.c
-index 8a09a8ee347..b587750c349 100644
+index e877d2eae53..8ed7c50e62e 100644
 --- a/dlls/ntdll/unix/sync.c
 +++ b/dlls/ntdll/unix/sync.c
 @@ -416,7 +416,7 @@ static inline unsigned int inproc_sync_handle_to_index( HANDLE handle, unsigned
@@ -49,7 +49,7 @@ index 8a09a8ee347..b587750c349 100644
      else
      {
 diff --git a/dlls/ntdll/unix/unix_private.h b/dlls/ntdll/unix/unix_private.h
-index 0b8deb605ba..8bb0bd4d465 100644
+index 7357d42ff6a..5c5600713b2 100644
 --- a/dlls/ntdll/unix/unix_private.h
 +++ b/dlls/ntdll/unix/unix_private.h
 @@ -418,7 +418,7 @@ extern void call_raise_user_exception_dispatcher(void);
@@ -62,5 +62,5 @@ index 0b8deb605ba..8bb0bd4d465 100644
  
  static inline ULONGLONG ticks_from_time_t( time_t time )
 -- 
-2.51.0
+2.51.1
 

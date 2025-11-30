@@ -1,15 +1,15 @@
-From f1ea16b6cc39b68709b0d233201601a5a884622e Mon Sep 17 00:00:00 2001
+From e782579684d6655e8705017729453320ecb9f050 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Tue, 22 Jul 2025 15:33:33 -0400
-Subject: [PATCH 159/377] ntoskrnl: Implement ProbeForWrite.
+Subject: [PATCH 159/406] ntoskrnl: Implement ProbeForWrite.
 
 ---
  dlls/ntoskrnl.exe/ntoskrnl.c | 10 +++++++++-
  1 file changed, 9 insertions(+), 1 deletion(-)
 
 diff --git a/dlls/ntoskrnl.exe/ntoskrnl.c b/dlls/ntoskrnl.exe/ntoskrnl.c
-index d1f0f2438a4..c961153538c 100644
+index 90109306b2e..09b2841322f 100644
 --- a/dlls/ntoskrnl.exe/ntoskrnl.c
 +++ b/dlls/ntoskrnl.exe/ntoskrnl.c
 @@ -3742,7 +3742,15 @@ void WINAPI ProbeForRead(void *address, SIZE_T length, ULONG alignment)
@@ -30,5 +30,5 @@ index d1f0f2438a4..c961153538c 100644
  
  /***********************************************************************
 -- 
-2.51.0
+2.51.1
 

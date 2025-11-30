@@ -1,7 +1,7 @@
-From fce07ddd016b95e5d31acca32963bf2b6cd8d00b Mon Sep 17 00:00:00 2001
+From 62c3d076751165b6d5ffb88853197e1f100ff281 Mon Sep 17 00:00:00 2001
 From: Elizabeth Figura <zfigura@codeweavers.com>
 Date: Wed, 2 Jul 2025 22:35:32 -0400
-Subject: [PATCH 141/377] ntdll: Retrieve and cache an ntsync device in wait
+Subject: [PATCH 141/406] ntdll: Retrieve and cache an ntsync device in wait
  calls.
 
 ---
@@ -51,7 +51,7 @@ index 6005c0fa322..7f193871048 100644
 + */
 +/* extern pthread_mutex_t fd_cache_mutex; */
 diff --git a/dlls/ntdll/unix/sync.c b/dlls/ntdll/unix/sync.c
-index 37c1279c6a2..5becd7005c7 100644
+index 8383e68a408..58ac264c0a9 100644
 --- a/dlls/ntdll/unix/sync.c
 +++ b/dlls/ntdll/unix/sync.c
 @@ -57,6 +57,9 @@
@@ -191,7 +191,7 @@ index 37c1279c6a2..5becd7005c7 100644
  /******************************************************************************
   *              NtCreateSemaphore (NTDLL.@)
 diff --git a/dlls/ntdll/unix/unix_private.h b/dlls/ntdll/unix/unix_private.h
-index 9f61a2a20c6..41f622fe231 100644
+index ad73f836041..d3fea9d153d 100644
 --- a/dlls/ntdll/unix/unix_private.h
 +++ b/dlls/ntdll/unix/unix_private.h
 @@ -221,6 +221,8 @@ extern NTSTATUS load_start_exe( WCHAR **image, void **module );
@@ -852,10 +852,10 @@ index 00000000000..47b2c4d44a2
 +    #endif
 +}
 diff --git a/server/protocol.def b/server/protocol.def
-index 5f5506adeb4..3daae88c972 100644
+index 1f2f0dc20a5..6a48db65749 100644
 --- a/server/protocol.def
 +++ b/server/protocol.def
-@@ -4254,3 +4254,7 @@ enum fsync_type
+@@ -4255,3 +4255,7 @@ enum fsync_type
      unsigned int shm_idx;
  @REPLY
  @END
@@ -1549,5 +1549,5 @@ index 6e38f2a8379..8de40b18686 100644
      { "NO_SUCH_FILE",                STATUS_NO_SUCH_FILE },
      { "NO_TOKEN",                    STATUS_NO_TOKEN },
 -- 
-2.51.0
+2.51.1
 

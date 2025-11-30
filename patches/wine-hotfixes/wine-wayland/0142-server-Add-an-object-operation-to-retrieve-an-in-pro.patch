@@ -1,7 +1,7 @@
-From 93dbb23f986fa4fec0b0285367a17b90a01750f4 Mon Sep 17 00:00:00 2001
+From 440cdd7a1144ce6cb4ffd91bda4c9d41358537bf Mon Sep 17 00:00:00 2001
 From: Elizabeth Figura <zfigura@codeweavers.com>
 Date: Thu, 3 Jul 2025 16:28:01 -0400
-Subject: [PATCH 142/377] server: Add an object operation to retrieve an
+Subject: [PATCH 142/406] server: Add an object operation to retrieve an
  in-process synchronization object.
 
 ---
@@ -51,7 +51,7 @@ Subject: [PATCH 142/377] server: Add an object operation to retrieve an
  create mode 100644 include/wine/ntsync.h
 
 diff --git a/dlls/ntdll/unix/sync.c b/dlls/ntdll/unix/sync.c
-index 5becd7005c7..b42fa2f36da 100644
+index 58ac264c0a9..a791a054951 100644
 --- a/dlls/ntdll/unix/sync.c
 +++ b/dlls/ntdll/unix/sync.c
 @@ -57,8 +57,8 @@
@@ -75,10 +75,10 @@ index 5becd7005c7..b42fa2f36da 100644
                  }
              }
 diff --git a/include/Makefile.in b/include/Makefile.in
-index 4db5c9dc1a8..01d37e961c7 100644
+index 8a124af634e..ad07fa46834 100644
 --- a/include/Makefile.in
 +++ b/include/Makefile.in
-@@ -942,6 +942,7 @@ SOURCES = \
+@@ -943,6 +943,7 @@ SOURCES = \
  	wine/mscvpdb.h \
  	wine/mssign.h \
  	wine/nsi.h \
@@ -377,10 +377,10 @@ index 4c5eadcb399..b310e76428b 100644
      device_file_destroy               /* destroy */
  };
 diff --git a/server/directory.c b/server/directory.c
-index cd17883458e..1e3f71d6e81 100644
+index 5ba66ec8d5b..f36b3a31cad 100644
 --- a/server/directory.c
 +++ b/server/directory.c
-@@ -83,6 +83,7 @@ static const struct object_ops object_type_ops =
+@@ -86,6 +86,7 @@ static const struct object_ops object_type_ops =
      default_unlink_name,          /* unlink_name */
      no_open_file,                 /* open_file */
      no_kernel_obj_list,           /* get_kernel_obj_list */
@@ -388,7 +388,7 @@ index cd17883458e..1e3f71d6e81 100644
      no_close_handle,              /* close_handle */
      no_destroy                    /* destroy */
  };
-@@ -135,6 +136,7 @@ static const struct object_ops directory_ops =
+@@ -138,6 +139,7 @@ static const struct object_ops directory_ops =
      default_unlink_name,          /* unlink_name */
      no_open_file,                 /* open_file */
      no_kernel_obj_list,           /* get_kernel_obj_list */
@@ -564,10 +564,10 @@ index 37f8f1a679c..f89778b924e 100644
      mailslot_device_file_destroy            /* destroy */
  };
 diff --git a/server/mapping.c b/server/mapping.c
-index feaf7730c08..da8b7883c6f 100644
+index 9451a89dba0..d43690adfca 100644
 --- a/server/mapping.c
 +++ b/server/mapping.c
-@@ -81,6 +81,7 @@ static const struct object_ops ranges_ops =
+@@ -82,6 +82,7 @@ static const struct object_ops ranges_ops =
      NULL,                      /* unlink_name */
      no_open_file,              /* open_file */
      no_kernel_obj_list,        /* get_kernel_obj_list */
@@ -575,7 +575,7 @@ index feaf7730c08..da8b7883c6f 100644
      no_close_handle,           /* close_handle */
      ranges_destroy             /* destroy */
  };
-@@ -119,6 +120,7 @@ static const struct object_ops shared_map_ops =
+@@ -120,6 +121,7 @@ static const struct object_ops shared_map_ops =
      NULL,                      /* unlink_name */
      no_open_file,              /* open_file */
      no_kernel_obj_list,        /* get_kernel_obj_list */
@@ -583,7 +583,7 @@ index feaf7730c08..da8b7883c6f 100644
      no_close_handle,           /* close_handle */
      shared_map_destroy         /* destroy */
  };
-@@ -196,6 +198,7 @@ static const struct object_ops mapping_ops =
+@@ -197,6 +199,7 @@ static const struct object_ops mapping_ops =
      default_unlink_name,         /* unlink_name */
      no_open_file,                /* open_file */
      mapping_get_kernel_obj_list, /* get_kernel_obj_list */
@@ -720,7 +720,7 @@ index fb3f3211fae..e212ec75a0d 100644
  
  int get_serial_async_timeout(struct object *obj, int type, int count);
 diff --git a/server/process.c b/server/process.c
-index 30f18d10dd4..f8893b79601 100644
+index 0d5446517b4..8faf3ae754d 100644
 --- a/server/process.c
 +++ b/server/process.c
 @@ -124,6 +124,7 @@ static const struct object_ops process_ops =
@@ -748,10 +748,10 @@ index 30f18d10dd4..f8893b79601 100644
      job_destroy                    /* destroy */
  };
 diff --git a/server/protocol.def b/server/protocol.def
-index 3daae88c972..7c22aa85b34 100644
+index 6a48db65749..2a90837992e 100644
 --- a/server/protocol.def
 +++ b/server/protocol.def
-@@ -4255,6 +4255,18 @@ enum fsync_type
+@@ -4256,6 +4256,18 @@ enum fsync_type
  @REPLY
  @END
  
@@ -771,7 +771,7 @@ index 3daae88c972..7c22aa85b34 100644
  @REQ(get_linux_sync_device)
  @END
 diff --git a/server/queue.c b/server/queue.c
-index 7a5f74ce334..d822a7bffd9 100644
+index 8e37d6b0aad..20d8c2d959c 100644
 --- a/server/queue.c
 +++ b/server/queue.c
 @@ -197,6 +197,7 @@ static const struct object_ops msg_queue_ops =
@@ -891,7 +891,7 @@ index 27a90d91dff..5a3f35054a2 100644
      symlink_destroy               /* destroy */
  };
 diff --git a/server/thread.c b/server/thread.c
-index 25b91a9b74a..8fbfd553cc6 100644
+index cdb0549f873..4dce10259b4 100644
 --- a/server/thread.c
 +++ b/server/thread.c
 @@ -115,6 +115,7 @@ static const struct object_ops thread_apc_ops =
@@ -975,5 +975,5 @@ index 8803d9bf619..ad4664e2b1e 100644
      desktop_destroy               /* destroy */
  };
 -- 
-2.51.0
+2.51.1
 

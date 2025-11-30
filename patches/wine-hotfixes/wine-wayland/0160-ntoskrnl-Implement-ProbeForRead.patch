@@ -1,15 +1,15 @@
-From f4ed486c800127576f5c2becc21d2301088446a7 Mon Sep 17 00:00:00 2001
+From fa50dcecd20eff085c77989ebdac346fab386fc2 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Tue, 22 Jul 2025 15:44:05 -0400
-Subject: [PATCH 160/377] ntoskrnl: Implement ProbeForRead.
+Subject: [PATCH 160/406] ntoskrnl: Implement ProbeForRead.
 
 ---
  dlls/ntoskrnl.exe/ntoskrnl.c | 15 ++++++++++++---
  1 file changed, 12 insertions(+), 3 deletions(-)
 
 diff --git a/dlls/ntoskrnl.exe/ntoskrnl.c b/dlls/ntoskrnl.exe/ntoskrnl.c
-index c961153538c..ebb20186563 100644
+index 09b2841322f..e27f8691719 100644
 --- a/dlls/ntoskrnl.exe/ntoskrnl.c
 +++ b/dlls/ntoskrnl.exe/ntoskrnl.c
 @@ -3734,7 +3734,17 @@ void WINAPI KeBugCheckEx(ULONG code, ULONG_PTR param1, ULONG_PTR param2, ULONG_P
@@ -42,5 +42,5 @@ index c961153538c..ebb20186563 100644
      for (volatile char *p = address; p < (char *)address + length; p++)
          *p |= 0;
 -- 
-2.51.0
+2.51.1
 
