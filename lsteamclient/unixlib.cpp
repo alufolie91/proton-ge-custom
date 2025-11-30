@@ -270,6 +270,7 @@ static NTSTATUS ISteamClient_Set_SteamAPI_CCheckCallbackRegisteredInProcess( Ifa
 
 LSTEAMCLIENT_UNIX_IMPL( ISteamClient, SteamClient020, Set_SteamAPI_CCheckCallbackRegisteredInProcess );
 LSTEAMCLIENT_UNIX_IMPL( ISteamClient, SteamClient021, Set_SteamAPI_CCheckCallbackRegisteredInProcess );
+LSTEAMCLIENT_UNIX_IMPL( ISteamClient, SteamClient023, Set_SteamAPI_CCheckCallbackRegisteredInProcess );
 
 template< typename Params >
 static NTSTATUS steamclient_next_callback( Params *params, bool wow64 )
@@ -340,6 +341,7 @@ static NTSTATUS steamclient_callback_message_receive( Params *params, bool wow64
     if (w_msg->m_iCallback == 703 /* SteamAPICallCompleted_t::k_iCallback */)
     {
         SteamAPICallCompleted_t_137 *c = (SteamAPICallCompleted_t_137 *)u_msg->m_pubParam;
+        SteamAPICallCompleted_t_137 *w = (SteamAPICallCompleted_t_137 *)(uint8_t *)w_msg->m_pubParam;
 
         if (sizeof(SteamAPICallCompleted_t_137) == w_msg->m_cubParam)
         {
@@ -347,7 +349,7 @@ static NTSTATUS steamclient_callback_message_receive( Params *params, bool wow64
 
             len = callback_len_utow( c->m_iCallback, c->m_cubParam, false );
             TRACE( "SteamAPICallCompleted_t id %d, size %d -> %d.\n", c->m_iCallback, c->m_cubParam, len );
-            c->m_cubParam = len;
+            w->m_cubParam = len;
         }
         else
         {
