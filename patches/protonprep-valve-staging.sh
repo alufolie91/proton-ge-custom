@@ -283,6 +283,11 @@ apply_all_in_dir() {
     echo "WINE: -PENDING- quartz: backport to allow clannad videos to work"
     apply_patch "../patches/wine-hotfixes/pending/8848.patch"
 
+    #https://github.com/Open-Wine-Components/umu-protonfixes/pull/370#issuecomment-3368898328
+    echo "WINE: -PENDING- add nvidia DLSS upgrade patch"
+    apply_patch "../patches/wine-hotfixes/pending/0001-HACK-kernelbase-allow-overriding-dlls-for-DLSS-XeSS-.patch"
+
+
 ### END WINE PENDING UPSTREAM SECTION ###
 
 
