@@ -26,9 +26,6 @@ SHELL := /bin/bash
 
 STEAMRT_IMAGE ?= ghcr.io/open-wine-components/umu-sdk:latest
 
-# Valve version
-# registry.gitlab.steamos.cloud/proton/sniper/sdk:3.0.20250519.130773-0
-
 ifeq ($(SRCDIR),)
 	foo := $(error SRCDIR not set, do not include Makefile.in directly, run ./configure.sh to generate Makefile)
 endif
@@ -840,7 +837,7 @@ WINE_x86_64_AUTOCONF_ARGS += \
   VKD3D_PE_CFLAGS="-I$(VULKAN_HEADERS_x86_64_DST)/include -I$(VKD3D_x86_64_DST)/include/vkd3d" \
   VKD3D_PE_LIBS="-L$(VKD3D_x86_64_LIBDIR)/vkd3d/x86_64-windows -l:libvkd3d-1.dll -l:libvkd3d-shader-1.dll"
 
-WINE_DEPENDS = gst_orc gstreamer gst_base ffmpeg openfst kaldi vosk
+WINE_DEPENDS = gst_orc gstreamer gst_base ffmpeg openfst kaldi vosk libxkbcommon libpcap
 WINE_i386_DEPENDS = vkd3d
 WINE_x86_64_DEPENDS = piper vkd3d
 WINE_aarch64_DEPENDS = piper
@@ -1054,7 +1051,9 @@ VKD3D_PROTON_aarch64_MESON_ARGS = --bindir=$(VKD3D_PROTON_aarch64_DST)/lib/wine/
 VKD3D_PROTON_HOST_DEPENDS = glslang
 
 ifneq ($(UNSTRIPPED_BUILD),)
-	VKD3D_PROTON_MESON_ARGS = -Denable_trace=true
+	VKD3D_PROTON_MESON_ARGS = -Denable_trace=true -Denable_extended_emulation=true
+else
+	VKD3D_PROTON_MESON_ARGS = -Denable_extended_emulation=true
 endif
 
 $(eval $(call rules-source,vkd3d-proton,$(SRCDIR)/vkd3d-proton))
