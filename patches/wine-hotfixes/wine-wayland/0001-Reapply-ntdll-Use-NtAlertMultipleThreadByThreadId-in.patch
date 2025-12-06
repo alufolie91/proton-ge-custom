@@ -1,8 +1,8 @@
-From 1a505d87096e1fc10312dda6cf372ece23611bd2 Mon Sep 17 00:00:00 2001
+From a86c4d102bc3a9352acbcd717a5a1ce870f5928e Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Mon, 24 Nov 2025 23:04:54 -0600
-Subject: [PATCH 001/406] Reapply "ntdll: Use NtAlertMultipleThreadByThreadId()
+Subject: [PATCH 001/409] Reapply "ntdll: Use NtAlertMultipleThreadByThreadId()
  in RtlWakeAddressAll()."
 
 This reverts commit 8e90faad8078a527928502d7e7753e6804ed7d08.

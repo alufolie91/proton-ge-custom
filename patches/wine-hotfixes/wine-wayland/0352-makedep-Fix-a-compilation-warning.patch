@@ -1,7 +1,7 @@
-From 57be9d032a5da079f8b560e40b7abe7bdd971a4f Mon Sep 17 00:00:00 2001
+From 86dc5ebdf0703441532f2a3c5a9f73fe80c288e0 Mon Sep 17 00:00:00 2001
 From: Sven Baars <sbaars@codeweavers.com>
 Date: Tue, 25 Mar 2025 20:57:36 +0100
-Subject: [PATCH 352/406] makedep: Fix a compilation warning.
+Subject: [PATCH 352/409] makedep: Fix a compilation warning.
 
 ---
  tools/makedep.c | 1 +

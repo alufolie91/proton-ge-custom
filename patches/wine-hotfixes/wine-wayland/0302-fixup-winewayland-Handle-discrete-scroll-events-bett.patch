@@ -1,8 +1,8 @@
-From 72930d5b55154244eeddb88ba48ffeba1c2c6bd3 Mon Sep 17 00:00:00 2001
+From 07122e0215936f1b207ee32f9e5d4a2c11c45a7f Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Thu, 11 Sep 2025 11:55:02 -0500
-Subject: [PATCH 302/406] fixup! winewayland: Handle discrete scroll events
+Subject: [PATCH 302/409] fixup! winewayland: Handle discrete scroll events
  better.
 
 ---

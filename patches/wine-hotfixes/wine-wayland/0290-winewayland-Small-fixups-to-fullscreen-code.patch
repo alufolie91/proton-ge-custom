@@ -1,8 +1,8 @@
-From f6ed69d069cfbcd5c5c849b7ef568d7439e39651 Mon Sep 17 00:00:00 2001
+From 8902cf1e4374201cc49022223f4be56620f0620e Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Sun, 31 Aug 2025 01:42:06 -0500
-Subject: [PATCH 290/406] winewayland: Small fixups to fullscreen code.
+Subject: [PATCH 290/409] winewayland: Small fixups to fullscreen code.
 
 ---
  dlls/winewayland.drv/wayland_surface.c | 5 -----

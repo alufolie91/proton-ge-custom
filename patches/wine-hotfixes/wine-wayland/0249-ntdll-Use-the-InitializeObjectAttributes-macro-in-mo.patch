@@ -1,7 +1,7 @@
-From 6754d5a5f751fdc21466a9fb00b44f78f6547e04 Mon Sep 17 00:00:00 2001
+From 62a03b5b82725e579b017676aa8b2a260c587bc1 Mon Sep 17 00:00:00 2001
 From: Alexandre Julliard <julliard@winehq.org>
 Date: Fri, 28 Mar 2025 17:28:30 +0100
-Subject: [PATCH 249/406] ntdll: Use the InitializeObjectAttributes macro in
+Subject: [PATCH 249/409] ntdll: Use the InitializeObjectAttributes macro in
  more places.
 
 ---

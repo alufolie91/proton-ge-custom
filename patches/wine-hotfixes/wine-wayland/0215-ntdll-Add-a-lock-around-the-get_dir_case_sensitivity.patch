@@ -1,7 +1,7 @@
-From f6145bc289618dfd387341571349e9f9a05a1360 Mon Sep 17 00:00:00 2001
+From d5353c17bf00b87a7ef2dcd11dd1d107fb9c72ad Mon Sep 17 00:00:00 2001
 From: Brendan Shanks <bshanks@codeweavers.com>
 Date: Thu, 13 Mar 2025 15:01:59 -0700
-Subject: [PATCH 215/406] ntdll: Add a lock around the
+Subject: [PATCH 215/409] ntdll: Add a lock around the
  get_dir_case_sensitivity_attr() fs_cache.
 
 Multiple threads could be modifying it simultaneously through

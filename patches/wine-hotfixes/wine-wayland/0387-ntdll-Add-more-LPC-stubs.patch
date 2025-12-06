@@ -1,7 +1,7 @@
-From 19572bc55d1e13b351ad42d917f9d76b6eb53d3f Mon Sep 17 00:00:00 2001
+From 5475f820298ef903ec39005a890bef210eb9e6c9 Mon Sep 17 00:00:00 2001
 From: Alexandre Julliard <julliard@winehq.org>
 Date: Thu, 17 Jul 2025 15:42:54 +0200
-Subject: [PATCH 387/406] ntdll: Add more LPC stubs.
+Subject: [PATCH 387/409] ntdll: Add more LPC stubs.
 
 They need explicit syscall ids.
 ---

@@ -1,7 +1,7 @@
-From c8783c2a8d61e8f4d83e655e5116b22eedae7cf1 Mon Sep 17 00:00:00 2001
+From 74f73f645bf1108e749d2dd835afe3721c894c0b Mon Sep 17 00:00:00 2001
 From: Jinoh Kang <jinoh.kang.kr@gmail.com>
 Date: Tue, 18 Feb 2025 00:07:17 +0900
-Subject: [PATCH 237/406] kernel32/tests: Test for unexpected
+Subject: [PATCH 237/409] kernel32/tests: Test for unexpected
  LDR_PROCESS_ATTACHED flag in import dependency loaded with
  DONT_RESOLVE_DLL_REFERENCES.
 

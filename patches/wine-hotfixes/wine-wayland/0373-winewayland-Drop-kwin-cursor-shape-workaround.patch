@@ -1,8 +1,8 @@
-From 4625cf3f556cfec20d97b2a0da67bd02a530d3e8 Mon Sep 17 00:00:00 2001
+From e261bc3e08061bb95446472c212a39c0e89dc279 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Fri, 7 Nov 2025 15:19:04 -0600
-Subject: [PATCH 373/406] winewayland: Drop kwin cursor shape workaround
+Subject: [PATCH 373/409] winewayland: Drop kwin cursor shape workaround
 
 Fixed in 6.5
 ---

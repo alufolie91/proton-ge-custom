@@ -1,7 +1,7 @@
-From 01f5eebd411cd7c678fd62dc61bebaedd0e2ddbf Mon Sep 17 00:00:00 2001
+From 72779082536d91b794eb26555c489695d4d785df Mon Sep 17 00:00:00 2001
 From: Mohamad Al-Jaf <mohamadaljaf@gmail.com>
 Date: Sun, 27 Apr 2025 22:39:13 -0400
-Subject: [PATCH 364/406] coremessaging: Partially implement
+Subject: [PATCH 364/409] coremessaging: Partially implement
  CreateDispatcherQueueController().
 
 Needed by Paint.NET installer.

@@ -1,7 +1,7 @@
-From a1a667ebe4538f0a31d0589bfa3f29a7ce9ffd9d Mon Sep 17 00:00:00 2001
+From 8583a65c71c5d3f4ad15fff4d116585e018607dd Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?R=C3=A9mi=20Bernon?= <rbernon@codeweavers.com>
 Date: Mon, 30 Jun 2025 09:59:16 +0200
-Subject: [PATCH 136/406] winewayland: Only detach/attach client surface if it
+Subject: [PATCH 136/409] winewayland: Only detach/attach client surface if it
  is different.
 
 Wine-Bug: https://bugs.winehq.org/show_bug.cgi?id=58423

@@ -1,7 +1,7 @@
-From cd292839813a9e9ee686d003f6c739391897cd30 Mon Sep 17 00:00:00 2001
+From 672cc23f27ea87b2ce4ed6de142cd6daa9e5450c Mon Sep 17 00:00:00 2001
 From: Dylan Donnell <dylan.donnell@student.griffith.ie>
 Date: Sun, 19 Oct 2025 13:37:58 +0200
-Subject: [PATCH 360/406] ntdll: Stop unwinding on access violation.
+Subject: [PATCH 360/409] ntdll: Stop unwinding on access violation.
 
 ---
  dlls/ntdll/signal_x86_64.c | 36 +++++++++++++++++++++++++++---------

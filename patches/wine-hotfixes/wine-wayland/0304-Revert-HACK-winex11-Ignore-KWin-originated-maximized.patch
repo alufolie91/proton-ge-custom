@@ -1,8 +1,8 @@
-From 88ec0f21b0caee2dfda6ad9c879fd6172f311277 Mon Sep 17 00:00:00 2001
+From 06f8c5d2d2b09b540445eb5b6e6a8bd338c702a2 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Thu, 18 Sep 2025 15:48:30 -0500
-Subject: [PATCH 304/406] Revert "HACK: winex11: Ignore KWin-originated
+Subject: [PATCH 304/409] Revert "HACK: winex11: Ignore KWin-originated
  maximized window state changes."
 
 This reverts commit dfe45c50b5f71eb3827fe2277f35a2b75d828608.

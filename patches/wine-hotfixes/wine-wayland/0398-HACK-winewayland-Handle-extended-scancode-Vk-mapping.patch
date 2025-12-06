@@ -1,8 +1,8 @@
-From 5381e27d789a647d6a916719a5a5932e2a218696 Mon Sep 17 00:00:00 2001
+From b4e879031fe102fd62135786eafed5056a7f80e9 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Wed, 26 Nov 2025 19:27:46 -0600
-Subject: [PATCH 399/406] HACK: winewayland: Handle extended scancode->Vk
+Subject: [PATCH 398/409] HACK: winewayland: Handle extended scancode->Vk
  mappings.
 
 ---

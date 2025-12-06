@@ -1,7 +1,7 @@
-From d5dac3c8cc3405f925c1a4318e4b5ebe363fc66b Mon Sep 17 00:00:00 2001
+From 9e7dc10750dae5a8fc451ad5aa1f889c77e4cd4b Mon Sep 17 00:00:00 2001
 From: Louis Lenders <xerox.xerox2000x@gmail.com>
 Date: Tue, 1 Apr 2025 22:59:51 +0200
-Subject: [PATCH 230/406] dwmapi: Do not prefer native dll.
+Subject: [PATCH 230/409] dwmapi: Do not prefer native dll.
 
 Wine-Bug: https://bugs.winehq.org/show_bug.cgi?id=58052
 ---

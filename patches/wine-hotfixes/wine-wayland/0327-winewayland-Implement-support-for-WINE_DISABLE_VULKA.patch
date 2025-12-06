@@ -1,8 +1,8 @@
-From 60adc34cb57882c94b1cad9c4e470a6ffc4e99fb Mon Sep 17 00:00:00 2001
+From ccf6e61dced89d86fce85d145ad4f9308dfb1672 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Tue, 14 Oct 2025 19:13:33 -0500
-Subject: [PATCH 327/406] winewayland: Implement support for
+Subject: [PATCH 327/409] winewayland: Implement support for
  WINE_DISABLE_VULKAN_OPWR.
 
 ---

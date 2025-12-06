@@ -1,7 +1,7 @@
-From 53c237d0ee00d6332c727f22c1364838fb171590 Mon Sep 17 00:00:00 2001
+From 04bb62b7f46ceb710914d394955af597c0536b74 Mon Sep 17 00:00:00 2001
 From: Louis Lenders <xerox.xerox2000x@gmail.com>
 Date: Tue, 26 Aug 2025 19:39:19 +0200
-Subject: [PATCH 297/406] iphlpapi: Add stub for SetPerTcp6ConnectionEStats.
+Subject: [PATCH 297/409] iphlpapi: Add stub for SetPerTcp6ConnectionEStats.
 
 Wine-Bug: https://bugs.winehq.org/show_bug.cgi?id=58635
 ---
