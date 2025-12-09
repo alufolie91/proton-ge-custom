@@ -86,7 +86,7 @@ index 046b447aafd..4b4cb6b13dd 100644
 +        max_channels = limit;
 +    }
 +
-+    if(max_channels > 8)
++    if(max_channels > ((limit == 8) ? 8 : 6))
          fmt->Format.nChannels = 2;
      else
          fmt->Format.nChannels = max_channels;
