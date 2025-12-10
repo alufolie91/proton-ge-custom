@@ -1,4 +1,4 @@
-From 12d48fde33ea0f77ebdf608e603bf3557970b1fc Mon Sep 17 00:00:00 2001
+From e615a66fa2ba14ed6a95ec707a5c9f0accb1b728 Mon Sep 17 00:00:00 2001
 From: Yuxuan Shui <yshui@codeweavers.com>
 Date: Sat, 3 May 2025 21:57:23 +0100
 Subject: [PATCH 243/409] ntdll: Also relocate entry point for builtin modules.

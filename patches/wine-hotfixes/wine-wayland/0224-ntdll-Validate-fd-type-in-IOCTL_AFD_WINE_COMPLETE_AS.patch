@@ -1,4 +1,4 @@
-From 5e276b944d4094580042dbc7e7152a4e52abd5d3 Mon Sep 17 00:00:00 2001
+From 8e51f10c7c66f06d7b331ad7ecbe41f8f76f4026 Mon Sep 17 00:00:00 2001
 From: Elizabeth Figura <zfigura@codeweavers.com>
 Date: Fri, 18 Apr 2025 14:23:35 -0500
 Subject: [PATCH 224/409] ntdll: Validate fd type in

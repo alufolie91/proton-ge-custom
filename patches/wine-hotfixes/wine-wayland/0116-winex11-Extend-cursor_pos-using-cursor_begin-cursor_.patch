@@ -1,4 +1,4 @@
-From b0875be38a0128d9671d07524c3e93cfd2b84082 Mon Sep 17 00:00:00 2001
+From 8243ae480af99ba881ca6a8bf581d63898bfbe09 Mon Sep 17 00:00:00 2001
 From: Byeongsik Jeon <bsjeon@hanmail.net>
 Date: Sat, 22 Feb 2025 00:51:43 +0900
 Subject: [PATCH 116/409] winex11: Extend cursor_pos using cursor_begin,

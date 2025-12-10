@@ -1,4 +1,4 @@
-From f00b176c65b8aad46078e65c5bdb9eeceee94cb4 Mon Sep 17 00:00:00 2001
+From 842bc1a4b8f0818ed5a04ee7e691ba971a2b610e Mon Sep 17 00:00:00 2001
 From: Alexandre Julliard <julliard@winehq.org>
 Date: Mon, 24 Feb 2025 12:17:33 +0100
 Subject: [PATCH 344/409] ntdll: Use the bundled tomcrypt for the crc32

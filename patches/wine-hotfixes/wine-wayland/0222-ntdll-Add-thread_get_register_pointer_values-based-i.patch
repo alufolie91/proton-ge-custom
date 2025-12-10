@@ -1,4 +1,4 @@
-From e1f8d8d6df9f3af1063fbb15a3ab979a60568534 Mon Sep 17 00:00:00 2001
+From 1d1a38869f301762ec47129429df1d70a600af38 Mon Sep 17 00:00:00 2001
 From: Torge Matthies <tmatthies@codeweavers.com>
 Date: Tue, 20 Feb 2024 16:45:49 +0100
 Subject: [PATCH 222/409] ntdll: Add thread_get_register_pointer_values-based

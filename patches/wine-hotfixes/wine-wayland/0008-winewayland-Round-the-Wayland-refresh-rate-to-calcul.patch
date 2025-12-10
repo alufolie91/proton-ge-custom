@@ -1,4 +1,4 @@
-From 3733aef630a8ad7b4113ea7b4a43d698923696fc Mon Sep 17 00:00:00 2001
+From d93cbaf3490929dc1ef3e6700256521e13074c45 Mon Sep 17 00:00:00 2001
 From: Alexandros Frantzis <alexandros.frantzis@collabora.com>
 Date: Thu, 6 Feb 2025 12:43:39 +0200
 Subject: [PATCH 008/409] winewayland: Round the Wayland refresh rate to

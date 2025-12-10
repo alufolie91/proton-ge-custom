@@ -1,4 +1,4 @@
-From 9e3cb77b5022bf211c5888996b33e95a65ea7c64 Mon Sep 17 00:00:00 2001
+From 317045a9607ebae9ac44fa28a07d4eea7d6041aa Mon Sep 17 00:00:00 2001
 From: Haoyang Chen <chenhaoyang@kylinos.cn>
 Date: Wed, 10 Sep 2025 15:19:04 +0800
 Subject: [PATCH 303/409] ntdll: Fix a buffer overflow in wcsncpy.

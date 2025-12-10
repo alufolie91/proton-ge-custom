@@ -1,4 +1,4 @@
-From e8bb2903785c5a34fe2a178d1ddece3946948998 Mon Sep 17 00:00:00 2001
+From 46d658b86b10a27457d92572a38fc04d0318f249 Mon Sep 17 00:00:00 2001
 From: Alexandre Julliard <julliard@winehq.org>
 Date: Thu, 5 Jun 2025 12:00:23 +0200
 Subject: [PATCH 369/409] tools: Support explicit syscall numbers in

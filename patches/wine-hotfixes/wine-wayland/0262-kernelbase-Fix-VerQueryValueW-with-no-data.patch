@@ -1,4 +1,4 @@
-From a2ffe2fb3ecb3a03d1f1f61d58df5354ff6815b9 Mon Sep 17 00:00:00 2001
+From 78581997af9944b7a75a4403d766c4b71e0f92d8 Mon Sep 17 00:00:00 2001
 From: Mark Jansen <mark.jansen@reactos.org>
 Date: Fri, 4 Nov 2022 19:17:37 +0100
 Subject: [PATCH 262/409] kernelbase: Fix VerQueryValueW with no data.

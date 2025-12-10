@@ -1,4 +1,4 @@
-From 0d7cd75995ca8de98ce2cea41ce450bac55d8081 Mon Sep 17 00:00:00 2001
+From dc467112f6aa018e81ae2f75f37f92d4c57f4080 Mon Sep 17 00:00:00 2001
 From: Alexandre Julliard <julliard@winehq.org>
 Date: Thu, 17 Apr 2025 18:52:52 +0200
 Subject: [PATCH 101/409] ntdll: Add a stub for NtCreateSectionEx().

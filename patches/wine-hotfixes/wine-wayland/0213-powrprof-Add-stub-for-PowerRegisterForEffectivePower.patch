@@ -1,4 +1,4 @@
-From 54482ca7db5a30073f7cfd7dc50e8eaac7e3b853 Mon Sep 17 00:00:00 2001
+From 8e7d89ac55a3d82e15bbaec088f100974594ebf0 Mon Sep 17 00:00:00 2001
 From: Louis Lenders <xerox.xerox2000x@gmail.com>
 Date: Mon, 31 Mar 2025 08:18:37 +0200
 Subject: [PATCH 213/409] powrprof: Add stub for

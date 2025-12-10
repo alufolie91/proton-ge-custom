@@ -1,4 +1,4 @@
-From c34701fc267b0c2a474b28fd17bfda29051e9a4e Mon Sep 17 00:00:00 2001
+From 8987f94581c0394a1596f938b658c00102342099 Mon Sep 17 00:00:00 2001
 From: Attila Fidan <dev@print0.net>
 Date: Mon, 17 Feb 2025 04:15:35 +0000
 Subject: [PATCH 015/409] winewayland: Update locked pointer position hint.

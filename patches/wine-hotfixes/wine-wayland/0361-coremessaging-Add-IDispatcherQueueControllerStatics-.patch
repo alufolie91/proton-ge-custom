@@ -1,4 +1,4 @@
-From 01b3a8bb2e4d2802a2cb6bd6af82ded9a8ce1bf6 Mon Sep 17 00:00:00 2001
+From e7c508a9291a1543b0279f4cfaa8e0986e2aadbf Mon Sep 17 00:00:00 2001
 From: Mohamad Al-Jaf <mohamadaljaf@gmail.com>
 Date: Mon, 21 Apr 2025 01:18:37 -0400
 Subject: [PATCH 361/409] coremessaging: Add IDispatcherQueueControllerStatics

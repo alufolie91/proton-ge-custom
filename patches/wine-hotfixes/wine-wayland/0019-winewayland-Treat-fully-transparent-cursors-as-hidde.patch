@@ -1,4 +1,4 @@
-From 7643a5adcf55cba8a646f6c3e65a08cc4a872a60 Mon Sep 17 00:00:00 2001
+From 0dbe39da89a8eedf733ff4a6151ebf6149f1e5a5 Mon Sep 17 00:00:00 2001
 From: Alexandros Frantzis <alexandros.frantzis@collabora.com>
 Date: Thu, 6 Mar 2025 17:09:58 +0200
 Subject: [PATCH 019/409] winewayland: Treat fully transparent cursors as

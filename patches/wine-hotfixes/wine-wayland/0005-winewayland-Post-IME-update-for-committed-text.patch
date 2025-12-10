@@ -1,4 +1,4 @@
-From 309fa6d2392b8c5ae7635ebe2197ca24d693f2ca Mon Sep 17 00:00:00 2001
+From 42e0d4ccf868e05d13de0c8fe2d91e462c839be0 Mon Sep 17 00:00:00 2001
 From: Attila Fidan <dev@print0.net>
 Date: Sun, 2 Feb 2025 08:07:41 +0000
 Subject: [PATCH 005/409] winewayland: Post IME update for committed text.

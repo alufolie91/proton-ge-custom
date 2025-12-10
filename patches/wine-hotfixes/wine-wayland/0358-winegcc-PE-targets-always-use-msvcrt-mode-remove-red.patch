@@ -1,4 +1,4 @@
-From 8e5133e6bf7bde50cb8f97d1ac50b0a047b7d3bc Mon Sep 17 00:00:00 2001
+From 85ac245489cb3d4031e4d035f1b12973193e00f7 Mon Sep 17 00:00:00 2001
 From: Alexandre Julliard <julliard@winehq.org>
 Date: Fri, 7 Mar 2025 15:48:16 +0100
 Subject: [PATCH 358/409] winegcc: PE targets always use msvcrt mode, remove

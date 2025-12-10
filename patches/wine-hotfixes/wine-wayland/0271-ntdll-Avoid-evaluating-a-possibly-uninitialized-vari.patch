@@ -1,4 +1,4 @@
-From d713a0496a3180e441f2790e146ddd592c114103 Mon Sep 17 00:00:00 2001
+From e58d8a51063e2c1ef771e1feebb0f2587d3f7825 Mon Sep 17 00:00:00 2001
 From: Sven Baars <sbaars@codeweavers.com>
 Date: Fri, 18 Apr 2025 16:25:03 +0200
 Subject: [PATCH 271/409] ntdll: Avoid evaluating a possibly uninitialized

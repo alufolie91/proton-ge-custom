@@ -1,4 +1,4 @@
-From fa7a486a7f2081d59b45125d8e0f0900c6ff6c27 Mon Sep 17 00:00:00 2001
+From 383521dbcb8c10e3cd1d65fa60b27bc8c38adfc8 Mon Sep 17 00:00:00 2001
 From: Alexandre Julliard <julliard@winehq.org>
 Date: Thu, 5 Jun 2025 12:00:59 +0200
 Subject: [PATCH 384/409] ntdll: Add explicit ids to a number of syscalls.

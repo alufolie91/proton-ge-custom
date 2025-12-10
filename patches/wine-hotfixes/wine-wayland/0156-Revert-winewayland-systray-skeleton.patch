@@ -1,4 +1,4 @@
-From d3523f73cc2978981a2f5af651e2b5f5eef57e2e Mon Sep 17 00:00:00 2001
+From 3c1a82b2452e478c7c71c8b991af9c1488f18be9 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty <etaash.mathamsetty@gmail.com>
 Date: Sun, 20 Jul 2025 16:45:14 -0400
 Subject: [PATCH 156/409] Revert "winewayland: systray skeleton"

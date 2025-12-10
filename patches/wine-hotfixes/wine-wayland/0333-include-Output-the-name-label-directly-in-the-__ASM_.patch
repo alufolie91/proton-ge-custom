@@ -1,4 +1,4 @@
-From 1d5bdb1c4a539e4500705b879a17ef10b9e4c611 Mon Sep 17 00:00:00 2001
+From 2e25771db2e58a40fbf80ba8ca04f78172478ee3 Mon Sep 17 00:00:00 2001
 From: Alexandre Julliard <julliard@winehq.org>
 Date: Sun, 18 May 2025 12:07:18 +0200
 Subject: [PATCH 333/409] include: Output the name label directly in the

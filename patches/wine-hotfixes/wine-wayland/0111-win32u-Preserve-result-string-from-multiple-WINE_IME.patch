@@ -1,4 +1,4 @@
-From 4d26e8c14772c6b04fe0bc0b040f3de0b07cbc51 Mon Sep 17 00:00:00 2001
+From 7fca162f4db5e5a678b2ede824acf4a0d5a8f896 Mon Sep 17 00:00:00 2001
 From: Byeongsik Jeon <bsjeon@hanmail.net>
 Date: Mon, 21 Oct 2024 08:19:49 +0900
 Subject: [PATCH 111/409] win32u: Preserve result string from multiple

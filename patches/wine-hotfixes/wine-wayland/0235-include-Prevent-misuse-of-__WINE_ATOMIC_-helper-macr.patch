@@ -1,4 +1,4 @@
-From 4c25b4d2396205e53fb1d141c720718c1978a73f Mon Sep 17 00:00:00 2001
+From ac65bada6105f6e6a5a1dbffbf5cc952066a4565 Mon Sep 17 00:00:00 2001
 From: Jinoh Kang <jinoh.kang.kr@gmail.com>
 Date: Sat, 1 Feb 2025 17:16:34 +0900
 Subject: [PATCH 235/409] include: Prevent misuse of __WINE_ATOMIC_* helper

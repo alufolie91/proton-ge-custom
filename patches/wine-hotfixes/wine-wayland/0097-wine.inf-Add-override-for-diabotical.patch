@@ -1,4 +1,4 @@
-From 03a08534ef4e35b25d23f74532bd27cc4e009d85 Mon Sep 17 00:00:00 2001
+From 2caf086c4f2033c4c1355e7d9de0f6e0a474188a Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty <etaash.mathamsetty@gmail.com>
 Date: Sat, 14 Jun 2025 11:22:44 -0400
 Subject: [PATCH 097/409] wine.inf: Add override for diabotical

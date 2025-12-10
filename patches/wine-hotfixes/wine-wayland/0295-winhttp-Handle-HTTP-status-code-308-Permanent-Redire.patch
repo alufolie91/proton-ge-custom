@@ -1,4 +1,4 @@
-From 03558dff1a9cc293d5614f74a624553acc891851 Mon Sep 17 00:00:00 2001
+From 58339693ae38138c95647a020b4c9240d021123b Mon Sep 17 00:00:00 2001
 From: Tobias Gruetzmacher <tobias-git@23.gs>
 Date: Thu, 3 Apr 2025 18:06:31 +0200
 Subject: [PATCH 295/409] winhttp: Handle HTTP status code 308 (Permanent

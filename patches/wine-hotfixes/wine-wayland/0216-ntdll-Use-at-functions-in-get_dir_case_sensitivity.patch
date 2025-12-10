@@ -1,4 +1,4 @@
-From 51ac5e1cb87bb90a95401f3b93df16bd29941183 Mon Sep 17 00:00:00 2001
+From 809df6f76801000d386f1cf28442a760b5081890 Mon Sep 17 00:00:00 2001
 From: Brendan Shanks <bshanks@codeweavers.com>
 Date: Thu, 13 Mar 2025 09:56:03 -0700
 Subject: [PATCH 216/409] ntdll: Use *at() functions in

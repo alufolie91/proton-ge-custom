@@ -1,4 +1,4 @@
-From 4bef4f9ba65b69be47a3365acb45ca9758625858 Mon Sep 17 00:00:00 2001
+From 7ba82085ec64f4c83274f8607344fadbb9692013 Mon Sep 17 00:00:00 2001
 From: Tobias Gruetzmacher <tobias-git@23.gs>
 Date: Thu, 3 Apr 2025 18:06:49 +0200
 Subject: [PATCH 296/409] urlmon: Handle HTTP status code 308 (Permanent

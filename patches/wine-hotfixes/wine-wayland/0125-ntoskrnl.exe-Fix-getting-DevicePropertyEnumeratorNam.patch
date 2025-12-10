@@ -1,4 +1,4 @@
-From 6620f3b52e2f44c66c05b90b7ac86edbfd81d4b6 Mon Sep 17 00:00:00 2001
+From d2c1e31f35a884f01441c0628177cac788ef8729 Mon Sep 17 00:00:00 2001
 From: Alexander Morozov <amorozov@etersoft.ru>
 Date: Thu, 24 Apr 2025 02:52:32 +0300
 Subject: [PATCH 125/409] ntoskrnl.exe: Fix getting

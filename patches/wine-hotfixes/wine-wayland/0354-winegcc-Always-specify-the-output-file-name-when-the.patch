@@ -1,4 +1,4 @@
-From 93becc7b4a21d4fc5be3e8993fc61d62c5e09113 Mon Sep 17 00:00:00 2001
+From 3916fabc4e6e9cb4db21ea82ae188043b5442d6f Mon Sep 17 00:00:00 2001
 From: Alexandre Julliard <julliard@winehq.org>
 Date: Wed, 5 Feb 2025 11:26:25 +0100
 Subject: [PATCH 354/409] winegcc: Always specify the output file name when

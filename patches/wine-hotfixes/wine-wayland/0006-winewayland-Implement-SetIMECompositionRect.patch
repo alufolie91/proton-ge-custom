@@ -1,4 +1,4 @@
-From 351fa43fbd8e25c599bb1242f1aa8488b9e02326 Mon Sep 17 00:00:00 2001
+From 265a250853d1527a87bb63ab3727b7d7d2505f36 Mon Sep 17 00:00:00 2001
 From: Attila Fidan <dev@print0.net>
 Date: Sun, 2 Feb 2025 08:26:56 +0000
 Subject: [PATCH 006/409] winewayland: Implement SetIMECompositionRect.

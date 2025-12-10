@@ -1,4 +1,4 @@
-From a86cc347cfcb914f0bada12c935e16bc2c9a0b8b Mon Sep 17 00:00:00 2001
+From b04a3cec3b7ee6b859f79dbb52934e4e87ecd70b Mon Sep 17 00:00:00 2001
 From: Jinoh Kang <jinoh.kang.kr@gmail.com>
 Date: Sat, 20 Sep 2025 16:12:08 +0900
 Subject: [PATCH 308/409] fluidsynth: Fix g_atomic_int_add() return value.

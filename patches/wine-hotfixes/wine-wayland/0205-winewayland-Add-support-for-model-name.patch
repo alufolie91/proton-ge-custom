@@ -1,4 +1,4 @@
-From 5c239a0981d54211269902b53be6edcd706701c8 Mon Sep 17 00:00:00 2001
+From 6b7509ff092042632f305f7bc7d00d2cd099a52c Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty <etaash.mathamsetty@gmail.com>
 Date: Tue, 5 Aug 2025 13:14:29 -0400
 Subject: [PATCH 205/409] winewayland: Add support for model name.

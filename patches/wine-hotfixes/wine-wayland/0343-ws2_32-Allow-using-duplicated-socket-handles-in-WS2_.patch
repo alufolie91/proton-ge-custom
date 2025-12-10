@@ -1,4 +1,4 @@
-From 63d3bf3e62b68e6dfa1b77ba8e54c40eb8c1465f Mon Sep 17 00:00:00 2001
+From ac22c0865d14cdd0e9b07fe74726720c451e20a5 Mon Sep 17 00:00:00 2001
 From: Elizabeth Figura <zfigura@codeweavers.com>
 Date: Fri, 18 Apr 2025 14:24:27 -0500
 Subject: [PATCH 343/409] ws2_32: Allow using duplicated socket handles in

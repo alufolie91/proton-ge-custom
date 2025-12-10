@@ -1,4 +1,4 @@
-From 3b78d471bf8a0c56f701edbc8b9168c3040c32ae Mon Sep 17 00:00:00 2001
+From a6e84365702c425935ca5b128f24d75b75c3c35a Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?R=C3=A9mi=20Bernon?= <rbernon@codeweavers.com>
 Date: Thu, 27 Mar 2025 14:31:27 +0100
 Subject: [PATCH 220/409] dinput: Only load mappings that have not yet been

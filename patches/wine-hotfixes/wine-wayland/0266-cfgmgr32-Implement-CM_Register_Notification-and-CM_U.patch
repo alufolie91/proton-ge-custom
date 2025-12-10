@@ -1,4 +1,4 @@
-From bb499469cfde9596207799618d59781385f8d66a Mon Sep 17 00:00:00 2001
+From 3cc7c57acbc6918bdfe98ae315088df86a091d80 Mon Sep 17 00:00:00 2001
 From: Vibhav Pant <vibhavp@gmail.com>
 Date: Wed, 19 Mar 2025 12:40:45 +0100
 Subject: [PATCH 266/409] cfgmgr32: Implement CM_Register_Notification and

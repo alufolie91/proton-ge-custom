@@ -1,4 +1,4 @@
-From c474e98aa5b56588a420064e8220f2d88c6fa6e5 Mon Sep 17 00:00:00 2001
+From 350dbd17e1394a3ec57d4024d5c07887e5819cae Mon Sep 17 00:00:00 2001
 From: Alexandre Julliard <julliard@winehq.org>
 Date: Thu, 23 Jan 2025 12:46:54 +0100
 Subject: [PATCH 332/409] include: Mark global asm functions as hidden.

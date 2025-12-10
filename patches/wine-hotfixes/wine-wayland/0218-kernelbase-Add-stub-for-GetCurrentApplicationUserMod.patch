@@ -1,4 +1,4 @@
-From 49b878c765b006c89f29907f34aa9d067fd685af Mon Sep 17 00:00:00 2001
+From be73c07205361101d6465251e599a2b7c68bf5ca Mon Sep 17 00:00:00 2001
 From: Louis Lenders <xerox.xerox2000x@gmail.com>
 Date: Fri, 14 Mar 2025 16:12:59 +0100
 Subject: [PATCH 218/409] kernelbase: Add stub for

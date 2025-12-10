@@ -1,4 +1,4 @@
-From fde6a709cc3a048a3cea9dd16a179867900f2930 Mon Sep 17 00:00:00 2001
+From 1c7593b301f703db64275ce5c698d20ea375e829 Mon Sep 17 00:00:00 2001
 From: Yuxuan Shui <yshui@codeweavers.com>
 Date: Tue, 29 Jul 2025 12:05:03 +0100
 Subject: [PATCH 337/409] ntdll: Fix inconsistency in LFH block size

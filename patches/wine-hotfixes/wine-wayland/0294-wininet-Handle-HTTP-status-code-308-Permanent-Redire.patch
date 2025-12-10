@@ -1,4 +1,4 @@
-From ec46e170863e64e8c4c975181bc1749eec7bb20f Mon Sep 17 00:00:00 2001
+From 4295d3ea45c3b6311b3ac4560f12c4881f313ab1 Mon Sep 17 00:00:00 2001
 From: Tobias Gruetzmacher <tobias-git@23.gs>
 Date: Thu, 3 Apr 2025 18:06:11 +0200
 Subject: [PATCH 294/409] wininet: Handle HTTP status code 308 (Permanent

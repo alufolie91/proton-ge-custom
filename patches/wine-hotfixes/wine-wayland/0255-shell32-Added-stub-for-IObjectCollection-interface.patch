@@ -1,4 +1,4 @@
-From f3baab006fc191ebefc92c808bd83db75e08cb42 Mon Sep 17 00:00:00 2001
+From 97407d12e32b037a3909e9337271379fd347a81c Mon Sep 17 00:00:00 2001
 From: Kevin Martinez <kevinrmartinezj@gmail.com>
 Date: Wed, 24 Jul 2024 17:22:57 -0400
 Subject: [PATCH 255/409] shell32: Added stub for IObjectCollection interface.

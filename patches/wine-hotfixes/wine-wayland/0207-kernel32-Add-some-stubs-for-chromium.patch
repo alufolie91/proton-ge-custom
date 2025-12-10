@@ -1,4 +1,4 @@
-From 86ec28f45e700cd3752f77582a9b6936ac7f22fb Mon Sep 17 00:00:00 2001
+From f27d901b349e40b31bb6cf160c05f1f37d99b71e Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty <etaash.mathamsetty@gmail.com>
 Date: Tue, 5 Aug 2025 16:28:54 -0400
 Subject: [PATCH 207/409] kernel32: Add some stubs for chromium.

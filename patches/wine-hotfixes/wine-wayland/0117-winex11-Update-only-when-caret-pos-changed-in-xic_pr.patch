@@ -1,4 +1,4 @@
-From 9a50be2f2d13e3d1b068dd0c2beafee26c3ce946 Mon Sep 17 00:00:00 2001
+From 06e2de911a7036f3cd30abecc022d32f6c1b7595 Mon Sep 17 00:00:00 2001
 From: Byeongsik Jeon <bsjeon@hanmail.net>
 Date: Thu, 10 Apr 2025 14:21:31 +0900
 Subject: [PATCH 117/409] winex11: Update only when caret pos changed in

@@ -1,4 +1,4 @@
-From 287695ab6f0a92fe94500f6304151447cdfb11f4 Mon Sep 17 00:00:00 2001
+From 2f56653381beb661763eaef75d075b5d05f0ac65 Mon Sep 17 00:00:00 2001
 From: Byeongsik Jeon <bsjeon@hanmail.net>
 Date: Sun, 6 Apr 2025 10:14:41 +0900
 Subject: [PATCH 113/409] win32u: Add more CompAttr, CompClause implementation

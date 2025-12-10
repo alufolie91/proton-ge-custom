@@ -1,4 +1,4 @@
-From 3356b4dd7e6cb77a093fc7503bd7971764d0acc3 Mon Sep 17 00:00:00 2001
+From 126937e2ea0069411992cdc1330c5379f609efc8 Mon Sep 17 00:00:00 2001
 From: Keno Fischer <keno@juliacomputing.com>
 Date: Wed, 15 Dec 2021 21:09:35 -0500
 Subject: [PATCH 338/409] ntdll: Make server requests robust to spurious short

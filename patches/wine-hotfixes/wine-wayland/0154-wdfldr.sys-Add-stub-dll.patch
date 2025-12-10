@@ -1,4 +1,4 @@
-From f14c75b389355c168f43c9abec5e641f4de8b07b Mon Sep 17 00:00:00 2001
+From 60a26c14d03405e2beef6a7ed21a2acc96032bb2 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty <etaash.mathamsetty@gmail.com>
 Date: Mon, 14 Jul 2025 18:01:48 -0400
 Subject: [PATCH 154/409] wdfldr.sys: Add stub dll.

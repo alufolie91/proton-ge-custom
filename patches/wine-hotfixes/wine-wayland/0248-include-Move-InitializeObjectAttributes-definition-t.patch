@@ -1,4 +1,4 @@
-From b931043dceed94e77c600d2e4fa7a72b44b561bc Mon Sep 17 00:00:00 2001
+From 7ee02cddd06d80fb517549474170a7effd7a07ff Mon Sep 17 00:00:00 2001
 From: Alexandre Julliard <julliard@winehq.org>
 Date: Fri, 28 Mar 2025 17:54:15 +0100
 Subject: [PATCH 248/409] include: Move InitializeObjectAttributes definition

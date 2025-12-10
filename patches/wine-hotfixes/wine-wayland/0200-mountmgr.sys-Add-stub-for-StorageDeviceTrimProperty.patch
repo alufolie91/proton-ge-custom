@@ -1,4 +1,4 @@
-From 6b21af0c348c4d72bd4f9be6f1416aa9bfe55bf1 Mon Sep 17 00:00:00 2001
+From 2e5ea48da9e3db6071ffb929a8babe97f8b7c07b Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty <etaash.mathamsetty@gmail.com>
 Date: Fri, 1 Aug 2025 12:53:09 -0400
 Subject: [PATCH 200/409] mountmgr.sys: Add stub for StorageDeviceTrimProperty.

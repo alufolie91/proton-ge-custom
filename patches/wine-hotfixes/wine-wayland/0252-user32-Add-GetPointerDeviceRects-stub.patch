@@ -1,4 +1,4 @@
-From 6e15f960c3dd1abd425d06409fddaf2f53addd4f Mon Sep 17 00:00:00 2001
+From 9713afa19afb6dddd234a47f66f820f516255b4c Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Ignacy=20Kuchci=C5=84ski?= <ignacykuchcinski@gmail.com>
 Date: Wed, 25 Jun 2025 23:41:32 +0200
 Subject: [PATCH 252/409] user32: Add GetPointerDeviceRects stub.

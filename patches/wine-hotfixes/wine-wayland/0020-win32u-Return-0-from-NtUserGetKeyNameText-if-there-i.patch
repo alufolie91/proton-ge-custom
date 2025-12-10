@@ -1,4 +1,4 @@
-From 2c868183cfef1cd9da852ff9be1b3769c474273b Mon Sep 17 00:00:00 2001
+From e9526be1f47057e9ca6b4fb0f1d670a50b200ce7 Mon Sep 17 00:00:00 2001
 From: Attila Fidan <dev@print0.net>
 Date: Thu, 20 Mar 2025 11:45:41 +0000
 Subject: [PATCH 020/409] win32u: Return 0 from NtUserGetKeyNameText if there

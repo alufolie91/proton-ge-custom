@@ -1,4 +1,4 @@
-From bb637f708e26bc3fb76976942dc53736d0bd4895 Mon Sep 17 00:00:00 2001
+From 7c452a119d25aabebd0b37f57bb953c9821c4669 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty <etaash.mathamsetty@gmail.com>
 Date: Sat, 14 Jun 2025 13:19:02 -0400
 Subject: [PATCH 098/409] winewayland: Implement support for HDR static

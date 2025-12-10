@@ -1,4 +1,4 @@
-From a675392e6619aeab3fcbeba0148f26f050fffa57 Mon Sep 17 00:00:00 2001
+From 5b8a7474dc407a8546aa08745a6c5c0c52913a97 Mon Sep 17 00:00:00 2001
 From: Byeongsik Jeon <bsjeon@hanmail.net>
 Date: Sat, 12 Apr 2025 22:32:26 +0900
 Subject: [PATCH 120/409] imm32: Fix the WM_IME_COMPOSITION messages to be

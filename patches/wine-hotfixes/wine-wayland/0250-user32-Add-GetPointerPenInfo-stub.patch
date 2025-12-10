@@ -1,4 +1,4 @@
-From dd2c3919e24ee497f0ce2e4c9b7a9a658a6b2edf Mon Sep 17 00:00:00 2001
+From 71111e40c666c2a679dcbe74f1e993a1fa5a012c Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Ignacy=20Kuchci=C5=84ski?= <ignacykuchcinski@gmail.com>
 Date: Thu, 19 Jun 2025 19:31:04 +0200
 Subject: [PATCH 250/409] user32: Add GetPointerPenInfo stub.

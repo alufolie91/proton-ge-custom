@@ -1,4 +1,4 @@
-From e53c25ca796c52be24c8052743ca27f1db9fbe0a Mon Sep 17 00:00:00 2001
+From 679338497e3bd726b09f761722c24d0e4b199803 Mon Sep 17 00:00:00 2001
 From: William Horvath <william@horvath.blog>
 Date: Wed, 22 Jan 2025 02:18:09 -0800
 Subject: [PATCH 268/409] ntdll: Fix the return value of NtDelayExecution.

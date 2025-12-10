@@ -1,4 +1,4 @@
-From 7f313b857d76d9e40b23baa74e3522117d3e71b1 Mon Sep 17 00:00:00 2001
+From 68b973343fa3d1e282387b9ccc8b90f4bf6457d5 Mon Sep 17 00:00:00 2001
 From: Nikolay Sivov <nsivov@codeweavers.com>
 Date: Sat, 12 Apr 2025 21:21:49 +0200
 Subject: [PATCH 214/409] combase: Add a stub for SetRestrictedErrorInfo().

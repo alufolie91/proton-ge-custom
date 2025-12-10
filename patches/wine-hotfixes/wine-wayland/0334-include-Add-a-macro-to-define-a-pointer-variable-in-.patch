@@ -1,4 +1,4 @@
-From 049e4221c95209ed28b241451cd16414c5c6bad3 Mon Sep 17 00:00:00 2001
+From d2b589727e9a7ed4d19deb8642d2f242806f56b8 Mon Sep 17 00:00:00 2001
 From: Alexandre Julliard <julliard@winehq.org>
 Date: Sun, 18 May 2025 12:13:06 +0200
 Subject: [PATCH 334/409] include: Add a macro to define a pointer variable in

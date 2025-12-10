@@ -1,4 +1,4 @@
-From 95d6c6ff9a9b817683c536c06e852e3710c4e122 Mon Sep 17 00:00:00 2001
+From db38224d0c2bc56fa6a38dbcf3a9d867a40e1574 Mon Sep 17 00:00:00 2001
 From: Elizabeth Figura <zfigura@codeweavers.com>
 Date: Wed, 2 Jul 2025 21:08:28 -0400
 Subject: [PATCH 140/409] ntdll: Add stub functions for in-process

@@ -1,4 +1,4 @@
-From 9272c7e472b57d316233375e351edda69214820e Mon Sep 17 00:00:00 2001
+From 45be430bd35d5fe0955401bd98880cb7af982aea Mon Sep 17 00:00:00 2001
 From: Alex Henrie <alexhenrie24@gmail.com>
 Date: Fri, 27 Jun 2025 22:11:08 -0600
 Subject: [PATCH 209/409] ntdll: Don't skip synchronous read when serial read

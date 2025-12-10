@@ -1,4 +1,4 @@
-From e67b9c061df44fa0f85bb5325238dfef39f0f877 Mon Sep 17 00:00:00 2001
+From e05e0603786b06486f3f3cec95d72b4b9a76f3e1 Mon Sep 17 00:00:00 2001
 From: Alexandros Frantzis <alexandros.frantzis@collabora.com>
 Date: Mon, 17 Mar 2025 09:19:43 +0200
 Subject: [PATCH 023/409] winewayland: Support wl_data_device for copies from

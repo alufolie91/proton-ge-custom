@@ -1,4 +1,4 @@
-From ebe622c7f104ef6c061fa308a061cbcc6f7c7b9f Mon Sep 17 00:00:00 2001
+From 252bdc74a5f29308a51e08777e02526a5601261a Mon Sep 17 00:00:00 2001
 From: Piotr Caban <piotr@codeweavers.com>
 Date: Thu, 24 Apr 2025 06:24:51 +0200
 Subject: [PATCH 341/409] msvcrt: Avoid dynamic allocation when storing locale

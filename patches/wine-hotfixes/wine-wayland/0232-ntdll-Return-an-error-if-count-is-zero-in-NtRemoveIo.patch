@@ -1,4 +1,4 @@
-From b18ccb675bb627ce805b99aaab0a181c3db07c7b Mon Sep 17 00:00:00 2001
+From d0f2577c2a49fc4f36fbc1b3064ac7837f28b67c Mon Sep 17 00:00:00 2001
 From: Alex Henrie <alexhenrie24@gmail.com>
 Date: Tue, 7 Jan 2025 00:20:45 -0700
 Subject: [PATCH 232/409] ntdll: Return an error if count is zero in

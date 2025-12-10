@@ -1,4 +1,4 @@
-From 0c4594385eb05f0e3c0b3f81dc3843f2a6e70802 Mon Sep 17 00:00:00 2001
+From 9c1e3b2371524b8cab54ba9b5cf49fea1bb3013e Mon Sep 17 00:00:00 2001
 From: Elizabeth Figura <zfigura@codeweavers.com>
 Date: Fri, 18 Apr 2025 14:10:42 -0500
 Subject: [PATCH 342/409] ws2_32/tests: Add tests for socket handle validity

@@ -1,4 +1,4 @@
-From 5475f820298ef903ec39005a890bef210eb9e6c9 Mon Sep 17 00:00:00 2001
+From 35b20df431b9b4cf2b361591c4b7fefc610db537 Mon Sep 17 00:00:00 2001
 From: Alexandre Julliard <julliard@winehq.org>
 Date: Thu, 17 Jul 2025 15:42:54 +0200
 Subject: [PATCH 387/409] ntdll: Add more LPC stubs.

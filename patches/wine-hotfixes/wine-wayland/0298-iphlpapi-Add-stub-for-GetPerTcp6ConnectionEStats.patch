@@ -1,4 +1,4 @@
-From 0d6c099d51a0fd6478cd098e9cfd946fb8c8c44e Mon Sep 17 00:00:00 2001
+From 32fa21c484620742cb502d61564cc2b6e669935c Mon Sep 17 00:00:00 2001
 From: Louis Lenders <xerox.xerox2000x@gmail.com>
 Date: Sat, 6 Sep 2025 10:26:11 +0200
 Subject: [PATCH 298/409] iphlpapi: Add stub for GetPerTcp6ConnectionEStats.

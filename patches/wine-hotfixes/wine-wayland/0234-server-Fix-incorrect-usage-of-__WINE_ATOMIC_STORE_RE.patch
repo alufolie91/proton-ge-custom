@@ -1,4 +1,4 @@
-From b43a7172faa4e42ee693ef9dd1f3520dda1c057a Mon Sep 17 00:00:00 2001
+From 07e3940c870dcf666e9f4cc805bfe8bec36d99c9 Mon Sep 17 00:00:00 2001
 From: Jinoh Kang <jinoh.kang.kr@gmail.com>
 Date: Sat, 1 Feb 2025 23:00:05 +0900
 Subject: [PATCH 234/409] server: Fix incorrect usage of

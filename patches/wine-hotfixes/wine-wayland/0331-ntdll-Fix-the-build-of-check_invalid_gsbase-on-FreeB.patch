@@ -1,4 +1,4 @@
-From 74f531ab2be2f076a3b11d07f84c9b919564366c Mon Sep 17 00:00:00 2001
+From 6542d88ce57a251e2690702027612c9a98ed054f Mon Sep 17 00:00:00 2001
 From: Gerald Pfeifer <gerald@pfeifer.com>
 Date: Sun, 7 Sep 2025 23:32:32 +0200
 Subject: [PATCH 331/409] ntdll: Fix the build of check_invalid_gsbase() on

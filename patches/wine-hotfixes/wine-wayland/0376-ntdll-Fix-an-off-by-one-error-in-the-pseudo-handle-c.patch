@@ -1,4 +1,4 @@
-From 19b853f8d75bdb7b040b2e55a0e39f6b0b96e59a Mon Sep 17 00:00:00 2001
+From df7013bf01a086b84ddeea7fe8a13b4ca6aa1806 Mon Sep 17 00:00:00 2001
 From: Marc-Aurel Zent <mzent@codeweavers.com>
 Date: Thu, 30 Oct 2025 22:02:27 +0100
 Subject: [PATCH 376/409] ntdll: Fix an off-by-one error in the pseudo-handle

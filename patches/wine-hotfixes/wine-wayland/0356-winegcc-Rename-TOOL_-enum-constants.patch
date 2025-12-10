@@ -1,4 +1,4 @@
-From b8791df356d2c8d9382b745b0116c1f7d558a5a7 Mon Sep 17 00:00:00 2001
+From 19d52f29e2743f3f6d24c0590999e1b3745df16d Mon Sep 17 00:00:00 2001
 From: Brendan Shanks <bshanks@codeweavers.com>
 Date: Fri, 28 Feb 2025 16:52:42 -0800
 Subject: [PATCH 356/409] winegcc: Rename TOOL_ enum constants.

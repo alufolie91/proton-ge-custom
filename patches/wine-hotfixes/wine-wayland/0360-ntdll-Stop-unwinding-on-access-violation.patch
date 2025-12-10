@@ -1,4 +1,4 @@
-From 672cc23f27ea87b2ce4ed6de142cd6daa9e5450c Mon Sep 17 00:00:00 2001
+From 8dee5689bdd3c3cdbd8ce4b6257fc5ec0271df59 Mon Sep 17 00:00:00 2001
 From: Dylan Donnell <dylan.donnell@student.griffith.ie>
 Date: Sun, 19 Oct 2025 13:37:58 +0200
 Subject: [PATCH 360/409] ntdll: Stop unwinding on access violation.

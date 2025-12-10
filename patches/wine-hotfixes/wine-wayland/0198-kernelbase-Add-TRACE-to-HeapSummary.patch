@@ -1,4 +1,4 @@
-From 882f244c0c61a662dc7ed5b25c72f77ed775feaf Mon Sep 17 00:00:00 2001
+From 1fc52c7da5a9285636c20521f287a856d9779e6b Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty <etaash.mathamsetty@gmail.com>
 Date: Wed, 30 Jul 2025 17:12:16 -0400
 Subject: [PATCH 198/409] kernelbase: Add TRACE to HeapSummary.

@@ -1,4 +1,4 @@
-From a813c50827103ea8af2583653cf14f7d2c9fb807 Mon Sep 17 00:00:00 2001
+From 420c346e9ced6bd73896467ed91f7da0bd4dec8a Mon Sep 17 00:00:00 2001
 From: Alexandros Frantzis <alexandros.frantzis@collabora.com>
 Date: Fri, 7 Feb 2025 14:33:53 +0200
 Subject: [PATCH 010/409] winewayland: Support copying text from win32

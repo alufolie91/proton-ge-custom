@@ -1,4 +1,4 @@
-From 3e124e75145ef4400fb0dffb40c8ccc15e4b7f7e Mon Sep 17 00:00:00 2001
+From b2516a1bc4f7d7b49b9d21e5dc668f37768cd887 Mon Sep 17 00:00:00 2001
 From: Jacek Caban <jacek@codeweavers.com>
 Date: Thu, 13 Feb 2025 14:34:25 +0100
 Subject: [PATCH 226/409] ntdll: Use signed type for IAT offset in

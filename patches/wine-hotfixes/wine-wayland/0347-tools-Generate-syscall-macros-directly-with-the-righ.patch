@@ -1,4 +1,4 @@
-From 32ee5d182957e803f261944f317955a2491dfda9 Mon Sep 17 00:00:00 2001
+From 3acd355a6e6195250be8edec81a84a78635c8151 Mon Sep 17 00:00:00 2001
 From: Alexandre Julliard <julliard@winehq.org>
 Date: Tue, 29 Apr 2025 18:00:58 +0200
 Subject: [PATCH 347/409] tools: Generate syscall macros directly with the

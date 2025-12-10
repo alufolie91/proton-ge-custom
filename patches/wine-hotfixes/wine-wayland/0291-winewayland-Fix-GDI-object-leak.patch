@@ -1,4 +1,4 @@
-From 1480bd6302b6eb523cebdbc36ca9ae740ea9de5a Mon Sep 17 00:00:00 2001
+From 35f0158f764098cdac46031adcb1aec5cc3e6bf5 Mon Sep 17 00:00:00 2001
 From: Alexandros Frantzis <alexandros.frantzis@collabora.com>
 Date: Thu, 4 Sep 2025 14:36:55 +0300
 Subject: [PATCH 291/409] winewayland: Fix GDI object leak.

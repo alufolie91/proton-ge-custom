@@ -1,4 +1,4 @@
-From ca23a4ecefdad9aa7bfd26758b1eae7b93b47b5d Mon Sep 17 00:00:00 2001
+From 5c51c8723cca877087b63935062c316ae9ee0e85 Mon Sep 17 00:00:00 2001
 From: Piotr Caban <piotr@codeweavers.com>
 Date: Mon, 24 Mar 2025 11:16:57 +0100
 Subject: [PATCH 270/409] msvcrt: Update file position in _flsbuf() in append

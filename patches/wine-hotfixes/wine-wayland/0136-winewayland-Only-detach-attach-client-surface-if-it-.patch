@@ -1,4 +1,4 @@
-From 8583a65c71c5d3f4ad15fff4d116585e018607dd Mon Sep 17 00:00:00 2001
+From 76a668e43a6f7fc495acb2577fc5ac64141443ab Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?R=C3=A9mi=20Bernon?= <rbernon@codeweavers.com>
 Date: Mon, 30 Jun 2025 09:59:16 +0200
 Subject: [PATCH 136/409] winewayland: Only detach/attach client surface if it

@@ -1,4 +1,4 @@
-From a423681a6fff258f6896188c910961d8d748c3e9 Mon Sep 17 00:00:00 2001
+From 1fa38de608d365a80bc0abf9e0e33ab9ff8aead3 Mon Sep 17 00:00:00 2001
 From: Mark Jansen <mark.jansen@reactos.org>
 Date: Fri, 4 Nov 2022 19:13:24 +0100
 Subject: [PATCH 261/409] version/tests: Add a test for an empty value in

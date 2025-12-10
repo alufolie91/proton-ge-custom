@@ -1,4 +1,4 @@
-From 2db5009330c6fab393406b4107c269036d292fcb Mon Sep 17 00:00:00 2001
+From da298c78d5b507c23068263467f0949653a6363c Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty <etaash.mathamsetty@gmail.com>
 Date: Tue, 5 Aug 2025 13:42:45 -0400
 Subject: [PATCH 206/409] winewayland: Add support for display make.

@@ -1,4 +1,4 @@
-From 0c96a1b80f4edf857e5b7ee4ddc79fadb23d92b3 Mon Sep 17 00:00:00 2001
+From f497213f7377b0a47cbf83a76a750e989f0fa0d9 Mon Sep 17 00:00:00 2001
 From: Alexandre Julliard <julliard@winehq.org>
 Date: Mon, 12 May 2025 15:56:25 +0200
 Subject: [PATCH 385/409] ntdll: Don't require syscall flag on Zw functions.

@@ -1,4 +1,4 @@
-From a004610e5a2e77f9efb2c8f1a9f445011a3fc204 Mon Sep 17 00:00:00 2001
+From 3fb3807aaaa0d76e366018a873a2c80c34b114d1 Mon Sep 17 00:00:00 2001
 From: Marc-Aurel Zent <mzent@codeweavers.com>
 Date: Thu, 30 Oct 2025 21:42:58 +0100
 Subject: [PATCH 374/409] kernelbase: Use NT_ERROR() to check for errors in

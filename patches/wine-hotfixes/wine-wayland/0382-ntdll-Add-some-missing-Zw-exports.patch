@@ -1,4 +1,4 @@
-From db164fabdf7311edf12ed34e73254a790cbd02d3 Mon Sep 17 00:00:00 2001
+From b879819a5c608e0e40a5fadf09070f41d623b34d Mon Sep 17 00:00:00 2001
 From: Alexandre Julliard <julliard@winehq.org>
 Date: Tue, 25 Feb 2025 13:45:33 +0100
 Subject: [PATCH 382/409] ntdll: Add some missing Zw exports.

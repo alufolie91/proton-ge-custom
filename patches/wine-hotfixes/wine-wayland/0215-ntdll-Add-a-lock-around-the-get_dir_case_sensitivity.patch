@@ -1,4 +1,4 @@
-From d5353c17bf00b87a7ef2dcd11dd1d107fb9c72ad Mon Sep 17 00:00:00 2001
+From d8f2a935d60def8cbbc3640021c1b6367d5f0954 Mon Sep 17 00:00:00 2001
 From: Brendan Shanks <bshanks@codeweavers.com>
 Date: Thu, 13 Mar 2025 15:01:59 -0700
 Subject: [PATCH 215/409] ntdll: Add a lock around the

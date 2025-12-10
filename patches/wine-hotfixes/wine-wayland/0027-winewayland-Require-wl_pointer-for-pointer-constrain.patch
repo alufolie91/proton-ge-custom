@@ -1,4 +1,4 @@
-From 34730c2bd561a4506fb02d53f6293a8cf4e96e67 Mon Sep 17 00:00:00 2001
+From 2577ff6951ae2b5fb2588cb1c5a1e30e600be641 Mon Sep 17 00:00:00 2001
 From: Attila Fidan <dev@print0.net>
 Date: Sun, 20 Apr 2025 11:30:03 +0000
 Subject: [PATCH 027/409] winewayland: Require wl_pointer for pointer

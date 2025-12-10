@@ -1,4 +1,4 @@
-From 176d5e46db2c841c3f1959b453541a00304ba0ed Mon Sep 17 00:00:00 2001
+From b1342fb81f92e4e9ad0ba0745a8a6f0ea921c6f3 Mon Sep 17 00:00:00 2001
 From: Alexandre Julliard <julliard@winehq.org>
 Date: Thu, 17 Jul 2025 15:29:33 +0200
 Subject: [PATCH 386/409] ntdll: Add NtAccessCheckByTypeAndAuditAlarm() and

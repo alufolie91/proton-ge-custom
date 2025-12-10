@@ -1,4 +1,4 @@
-From e53d8fe6ba88ff1d3570905db9b85a98d90d1a66 Mon Sep 17 00:00:00 2001
+From 7339e1ace582b0e106d1405f81df8d554bdc7e95 Mon Sep 17 00:00:00 2001
 From: Alexandre Julliard <julliard@winehq.org>
 Date: Tue, 29 Apr 2025 18:22:32 +0200
 Subject: [PATCH 335/409] ntdll: Add a test for invalid syscall numbers.
