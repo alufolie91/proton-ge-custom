@@ -1,8 +1,8 @@
-From 293dab34d0e0bf91abe353882ef8e791e4632930 Mon Sep 17 00:00:00 2001
+From 1730597778c6f382507ea4554242487eaedc93d8 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Tue, 22 Jul 2025 21:34:12 -0400
-Subject: [PATCH 172/377] ntoskrnl: Add semi-stub for MmGetVirtualForPhysical.
+Subject: [PATCH 172/409] ntoskrnl: Add semi-stub for MmGetVirtualForPhysical.
 
 ---
  dlls/ntoskrnl.exe/ntoskrnl.c        | 10 ++++++++++
@@ -10,7 +10,7 @@ Subject: [PATCH 172/377] ntoskrnl: Add semi-stub for MmGetVirtualForPhysical.
  2 files changed, 11 insertions(+), 1 deletion(-)
 
 diff --git a/dlls/ntoskrnl.exe/ntoskrnl.c b/dlls/ntoskrnl.exe/ntoskrnl.c
-index e06a05cbeab..f39b1a80fae 100644
+index 0a7b95529ec..f118be786aa 100644
 --- a/dlls/ntoskrnl.exe/ntoskrnl.c
 +++ b/dlls/ntoskrnl.exe/ntoskrnl.c
 @@ -3042,6 +3042,16 @@ PHYSICAL_ADDRESS WINAPI MmGetPhysicalAddress(void *virtual_address)
@@ -44,5 +44,5 @@ index 25f3eca19e0..e893042adec 100644
  @ stub MmHighestUserAddress
  @ stdcall MmIsAddressValid(ptr)
 -- 
-2.51.0
+2.51.1
 

@@ -1,7 +1,7 @@
-From d886db880181e53a4d80ff479fea603f1ad311ac Mon Sep 17 00:00:00 2001
+From 60a26c14d03405e2beef6a7ed21a2acc96032bb2 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty <etaash.mathamsetty@gmail.com>
 Date: Mon, 14 Jul 2025 18:01:48 -0400
-Subject: [PATCH 154/377] wdfldr.sys: Add stub dll.
+Subject: [PATCH 154/409] wdfldr.sys: Add stub dll.
 
 ---
  configure.ac                    |  1 +
@@ -14,10 +14,10 @@ Subject: [PATCH 154/377] wdfldr.sys: Add stub dll.
  create mode 100644 dlls/wdfldr.sys/wdfldr.sys.spec
 
 diff --git a/configure.ac b/configure.ac
-index 73deb27f9d4..6b33769fa10 100644
+index 35f6f1c7c72..bf02c5529aa 100644
 --- a/configure.ac
 +++ b/configure.ac
-@@ -3263,6 +3263,7 @@ WINE_CONFIG_MAKEFILE(dlls/wbemdisp)
+@@ -3265,6 +3265,7 @@ WINE_CONFIG_MAKEFILE(dlls/wbemdisp)
  WINE_CONFIG_MAKEFILE(dlls/wbemdisp/tests)
  WINE_CONFIG_MAKEFILE(dlls/wbemprox)
  WINE_CONFIG_MAKEFILE(dlls/wbemprox/tests)
@@ -117,5 +117,5 @@ index 00000000000..51c5e2ba7d7
 +@ stdcall WdfVersionUnbind(ptr ptr ptr)
 +@ stub WdfVersionUnbindClass
 -- 
-2.51.0
+2.51.1
 

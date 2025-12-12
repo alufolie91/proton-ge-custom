@@ -1,8 +1,8 @@
-From 86fd713049519a699369131d9e26ec4308e6ab42 Mon Sep 17 00:00:00 2001
+From 4a9a595ad72f88b207a89762fae653c9c56d2eee Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Thu, 24 Jul 2025 17:42:00 -0400
-Subject: [PATCH 190/377] ntoskrnl: Implement ObReferenceObjectByName.
+Subject: [PATCH 190/409] ntoskrnl: Implement ObReferenceObjectByName.
 
 ---
  dlls/ntoskrnl.exe/ntoskrnl.c   | 34 +++++++++++++++++++++++++++++-----
@@ -15,7 +15,7 @@ Subject: [PATCH 190/377] ntoskrnl: Implement ObReferenceObjectByName.
  7 files changed, 113 insertions(+), 7 deletions(-)
 
 diff --git a/dlls/ntoskrnl.exe/ntoskrnl.c b/dlls/ntoskrnl.exe/ntoskrnl.c
-index ae83f9fd4ec..96065453881 100644
+index a7d816d1741..03b10f2b93a 100644
 --- a/dlls/ntoskrnl.exe/ntoskrnl.c
 +++ b/dlls/ntoskrnl.exe/ntoskrnl.c
 @@ -3250,10 +3250,11 @@ NTSTATUS WINAPI ObReferenceObjectByName( UNICODE_STRING *ObjectName,
@@ -192,10 +192,10 @@ index d8f00369c41..74a94f10a9e 100644
 +    release_object( manager );
 +}
 diff --git a/server/protocol.def b/server/protocol.def
-index 1c93066b6d8..6dc375021cd 100644
+index 23453fbaba5..337750125f2 100644
 --- a/server/protocol.def
 +++ b/server/protocol.def
-@@ -3811,6 +3811,17 @@ struct handle_info
+@@ -3812,6 +3812,17 @@ struct handle_info
  @END
  
  
@@ -295,5 +295,5 @@ index b70342f9581..64dd9864f29 100644
      "grant_process_admin_token",
      "get_token_info",
 -- 
-2.51.0
+2.51.1
 

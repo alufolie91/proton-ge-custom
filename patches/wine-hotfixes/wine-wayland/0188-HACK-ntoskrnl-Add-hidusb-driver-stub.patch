@@ -1,15 +1,15 @@
-From d4bcbc296f4c9d237ef98b8561cda2365d6c22da Mon Sep 17 00:00:00 2001
+From 0f9f38f14b746601bfbcea09e7a86842534fb6c5 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Thu, 24 Jul 2025 01:10:41 -0400
-Subject: [PATCH 188/377] HACK: ntoskrnl: Add hidusb driver stub.
+Subject: [PATCH 188/409] HACK: ntoskrnl: Add hidusb driver stub.
 
 ---
  dlls/ntoskrnl.exe/ntoskrnl.c | 6 ++++--
  1 file changed, 4 insertions(+), 2 deletions(-)
 
 diff --git a/dlls/ntoskrnl.exe/ntoskrnl.c b/dlls/ntoskrnl.exe/ntoskrnl.c
-index 733a212bfba..84f8d16b214 100644
+index 4d5c75c0643..b87caf6657a 100644
 --- a/dlls/ntoskrnl.exe/ntoskrnl.c
 +++ b/dlls/ntoskrnl.exe/ntoskrnl.c
 @@ -5011,7 +5011,7 @@ BOOL WINAPI VslGetSecurePciEnabled(void)
@@ -40,5 +40,5 @@ index 733a212bfba..84f8d16b214 100644
      case DLL_PROCESS_DETACH:
          LdrUnregisterDllNotification( ldr_notify_cookie );
 -- 
-2.51.0
+2.51.1
 

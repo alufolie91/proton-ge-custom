@@ -1,15 +1,15 @@
-From c7d88ffc8933fdff2f429846a79791ba8aae9501 Mon Sep 17 00:00:00 2001
+From 63a6d66a6035654f88341f746c24829fadf58175 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Thu, 24 Jul 2025 18:27:41 -0400
-Subject: [PATCH 191/377] fixup! ntoskrnl: Implement PsGetProcessSessionId.
+Subject: [PATCH 191/409] fixup! ntoskrnl: Implement PsGetProcessSessionId.
 
 ---
  dlls/ntoskrnl.exe/ntoskrnl.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/dlls/ntoskrnl.exe/ntoskrnl.c b/dlls/ntoskrnl.exe/ntoskrnl.c
-index 96065453881..69e715ebc64 100644
+index 03b10f2b93a..14bb2d4cb77 100644
 --- a/dlls/ntoskrnl.exe/ntoskrnl.c
 +++ b/dlls/ntoskrnl.exe/ntoskrnl.c
 @@ -2592,7 +2592,7 @@ HANDLE WINAPI PsGetProcessInheritedFromUniqueProcessId( PEPROCESS process )
@@ -22,5 +22,5 @@ index 96065453881..69e715ebc64 100644
  }
  
 -- 
-2.51.0
+2.51.1
 

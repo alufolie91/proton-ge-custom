@@ -1,8 +1,8 @@
-From 587e41600f32ee1711f6fd2ed018e7ae121bef8f Mon Sep 17 00:00:00 2001
+From f03a8262b9d393ffea5929d74b93feb26fad450e Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Wed, 23 Jul 2025 12:46:14 -0400
-Subject: [PATCH 181/377] ntoskrnl: Add stub for
+Subject: [PATCH 181/409] ntoskrnl: Add stub for
  KeCapturePersistentThreadState.
 
 ---
@@ -11,7 +11,7 @@ Subject: [PATCH 181/377] ntoskrnl: Add stub for
  2 files changed, 9 insertions(+), 1 deletion(-)
 
 diff --git a/dlls/ntoskrnl.exe/ntoskrnl.c b/dlls/ntoskrnl.exe/ntoskrnl.c
-index 37a6f6b3a77..1009bbb29c0 100644
+index cf12aab9fba..ec4b1c227dc 100644
 --- a/dlls/ntoskrnl.exe/ntoskrnl.c
 +++ b/dlls/ntoskrnl.exe/ntoskrnl.c
 @@ -4931,6 +4931,14 @@ void WINAPI KeUnstackDetachProcess(KAPC_STATE *apc_state)
@@ -43,5 +43,5 @@ index 09e5d8da942..2f7dd939107 100644
  @ stub KeConnectInterrupt
  @ stub KeDcacheFlushCount
 -- 
-2.51.0
+2.51.1
 

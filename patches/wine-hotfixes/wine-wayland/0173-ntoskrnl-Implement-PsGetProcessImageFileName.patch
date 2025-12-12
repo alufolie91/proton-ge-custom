@@ -1,8 +1,8 @@
-From 428bee55a83be64f404555500cf574d5aa38e0ae Mon Sep 17 00:00:00 2001
+From 43c535a877d6252fd4d1137107e28e7a468c9482 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Tue, 22 Jul 2025 22:11:36 -0400
-Subject: [PATCH 173/377] ntoskrnl: Implement PsGetProcessImageFileName.
+Subject: [PATCH 173/409] ntoskrnl: Implement PsGetProcessImageFileName.
 
 ---
  dlls/ntoskrnl.exe/ntoskrnl.c         | 19 +++++++++++++++++++
@@ -11,7 +11,7 @@ Subject: [PATCH 173/377] ntoskrnl: Implement PsGetProcessImageFileName.
  3 files changed, 21 insertions(+), 1 deletion(-)
 
 diff --git a/dlls/ntoskrnl.exe/ntoskrnl.c b/dlls/ntoskrnl.exe/ntoskrnl.c
-index f39b1a80fae..13f0ce27bde 100644
+index f118be786aa..0cbc548829d 100644
 --- a/dlls/ntoskrnl.exe/ntoskrnl.c
 +++ b/dlls/ntoskrnl.exe/ntoskrnl.c
 @@ -2465,6 +2465,8 @@ NTSTATUS WINAPI FsRtlRegisterUncProvider(PHANDLE MupHandle, PUNICODE_STRING Redi
@@ -80,5 +80,5 @@ index a1f07a75dcd..c7bcce2c7e3 100644
  
  struct _KTHREAD
 -- 
-2.51.0
+2.51.1
 

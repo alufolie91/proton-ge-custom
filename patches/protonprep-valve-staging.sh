@@ -149,7 +149,9 @@ apply_all_in_dir() {
     -W mmsystem.dll16-MIDIHDR_Refcount \
     -W vcomp_for_dynamic_init_i8 \
     -W winex11-ime-check-thread-data \
-    -W winex11-Fixed-scancodes
+    -W winex11-Fixed-scancodes \
+    -W Staging \
+    -W vkd3d-latest
 
     # NOTE: Some patches are applied manually because they -do- apply, just not cleanly, ie with patch fuzz.
     # A detailed list of why the above patches are disabled is listed below:
@@ -186,6 +188,7 @@ apply_all_in_dir() {
     # wined3d-zero-inf-shaders - already applied
     # ntdll-RtlQueryPackageIdentity - already applied
     # version-VerQueryValue - just a test and doesn't apply cleanly. not relevant for gaming
+    # vkd3d-latest - already applied
 
     # applied manually:
     # ** loader-KeyboardLayouts - note -- always use and/or rebase this --  needed to prevent Overwatch huge FPS drop
@@ -198,6 +201,7 @@ apply_all_in_dir() {
     # winex11-ime-check-thread-data
     # winex11.drv-Query_server_position
     # wininet-Cleanup
+    # Staging
 
     # rebase and applied manually:
     # ** loader-KeyboardLayouts - note -- always use and/or rebase this --  needed to prevent Overwatch huge FPS drop
@@ -246,6 +250,8 @@ apply_all_in_dir() {
     echo "WINE: -STAGING- wineboot-ProxySettings manually applied"
     apply_all_in_dir "../patches/wine-hotfixes/staging/wineboot-ProxySettings/"
 
+    echo "WINE: -STAGING- Staging manually applied"
+    apply_all_in_dir "../wine-staging/patches/Staging/"
 
 ### END WINE STAGING APPLY SECTION ###
 
@@ -298,11 +304,19 @@ apply_all_in_dir() {
     echo "WINE: -PENDING- quartz: backport to allow clannad videos to work"
     apply_patch "../patches/wine-hotfixes/pending/8848.patch"
 
+    #https://github.com/Open-Wine-Components/umu-protonfixes/pull/370#issuecomment-3368898328
+    echo "WINE: -PENDING- add nvidia DLSS upgrade patch"
+    apply_patch "../patches/wine-hotfixes/pending/0001-HACK-kernelbase-allow-overriding-dlls-for-DLSS-XeSS-.patch"
+
+
 ### END WINE PENDING UPSTREAM SECTION ###
 
 
 ### (2-7) PROTON-GE ADDITIONAL CUSTOM PATCHES ###
 
+    echo "WINE: Add an env variable to override channel count in winealsa"
+    apply_patch "../patches/proton/winealsa-override-channel-count.patch"
+    
     echo "WINE: -FSR- fullscreen hack fsr patch"
     apply_patch "../patches/proton/0001-fshack-Implement-AMD-FSR-upscaler-for-fullscreen-hac.patch"
 

@@ -1,8 +1,8 @@
-From 7c1b45a458296e4e0b4360e5c82ad01d40a8fc4d Mon Sep 17 00:00:00 2001
+From 2caf138f6672cc7771ab2623246af8c8135c50b9 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Tue, 22 Jul 2025 16:09:07 -0400
-Subject: [PATCH 164/377] ntoskrnl: Implement PsGetCurrentThreadTeb.
+Subject: [PATCH 164/409] ntoskrnl: Implement PsGetCurrentThreadTeb.
 
 ---
  dlls/ntoskrnl.exe/ntoskrnl.c        | 7 +++++++
@@ -10,7 +10,7 @@ Subject: [PATCH 164/377] ntoskrnl: Implement PsGetCurrentThreadTeb.
  2 files changed, 8 insertions(+)
 
 diff --git a/dlls/ntoskrnl.exe/ntoskrnl.c b/dlls/ntoskrnl.exe/ntoskrnl.c
-index fc2ab7ed0d1..6c45e4165de 100644
+index 1fd174b7c16..1c327f9e30f 100644
 --- a/dlls/ntoskrnl.exe/ntoskrnl.c
 +++ b/dlls/ntoskrnl.exe/ntoskrnl.c
 @@ -3264,6 +3264,13 @@ HANDLE WINAPI PsGetCurrentThreadId(void)
@@ -40,5 +40,5 @@ index 06d78d2cac3..1524d526e72 100644
  @ stub PsGetCurrentThreadStackBase
  @ stub PsGetCurrentThreadStackLimit
 -- 
-2.51.0
+2.51.1
 

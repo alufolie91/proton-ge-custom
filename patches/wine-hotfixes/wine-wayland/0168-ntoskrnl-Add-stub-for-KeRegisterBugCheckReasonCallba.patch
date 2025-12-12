@@ -1,8 +1,8 @@
-From df85c27b94df034ad890d5bb654b49d8cfe5d28b Mon Sep 17 00:00:00 2001
+From 0d910e94bc1e4a41746f49d746ea7d9799a04490 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Tue, 22 Jul 2025 16:53:06 -0400
-Subject: [PATCH 168/377] ntoskrnl: Add stub for
+Subject: [PATCH 168/409] ntoskrnl: Add stub for
  KeRegisterBugCheckReasonCallback.
 
 ---
@@ -11,7 +11,7 @@ Subject: [PATCH 168/377] ntoskrnl: Add stub for
  2 files changed, 11 insertions(+), 1 deletion(-)
 
 diff --git a/dlls/ntoskrnl.exe/ntoskrnl.c b/dlls/ntoskrnl.exe/ntoskrnl.c
-index d9977b6bafd..2393357ddaa 100644
+index 706f8eac561..651f4a28c70 100644
 --- a/dlls/ntoskrnl.exe/ntoskrnl.c
 +++ b/dlls/ntoskrnl.exe/ntoskrnl.c
 @@ -2859,6 +2859,16 @@ BOOL WINAPI KeRegisterBugCheckCallback(void *record, void *routine,
@@ -45,5 +45,5 @@ index adb2882e8c7..8b9a1ea7b62 100644
  @ stub KeReleaseMutant
  @ stdcall KeReleaseMutex(ptr long)
 -- 
-2.51.0
+2.51.1
 

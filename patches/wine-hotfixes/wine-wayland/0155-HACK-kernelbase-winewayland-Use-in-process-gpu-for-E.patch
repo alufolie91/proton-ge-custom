@@ -1,7 +1,7 @@
-From 0bac5723af1a5bf1f9505b459eea8be9b8a76037 Mon Sep 17 00:00:00 2001
+From 18cdb5d82ec2159e8ede624127398d4bef265b88 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty <etaash.mathamsetty@gmail.com>
 Date: Thu, 17 Jul 2025 09:50:37 -0400
-Subject: [PATCH 155/377] HACK: kernelbase: winewayland: Use --in-process-gpu
+Subject: [PATCH 155/409] HACK: kernelbase: winewayland: Use --in-process-gpu
  for EA App.
 
 ---
@@ -9,10 +9,10 @@ Subject: [PATCH 155/377] HACK: kernelbase: winewayland: Use --in-process-gpu
  1 file changed, 3 insertions(+), 2 deletions(-)
 
 diff --git a/dlls/kernelbase/process.c b/dlls/kernelbase/process.c
-index e385e90d174..cd0957f5c08 100644
+index 0b82a2450d9..412eb87b7e8 100644
 --- a/dlls/kernelbase/process.c
 +++ b/dlls/kernelbase/process.c
-@@ -626,7 +626,8 @@ static const WCHAR *hack_append_command_line( const WCHAR *cmd )
+@@ -625,7 +625,8 @@ static const WCHAR *hack_append_command_line( const WCHAR *cmd )
      static const struct option wayland_options[] = {
          {L"launcher_epic.exe", L" --in-process-gpu"}, /* ZZZ EGS */
          {L"Battle.net.exe", L" --in-process-gpu"},
@@ -22,7 +22,7 @@ index e385e90d174..cd0957f5c08 100644
      };
  
      unsigned int i;
-@@ -639,7 +640,7 @@ static const WCHAR *hack_append_command_line( const WCHAR *cmd )
+@@ -638,7 +639,7 @@ static const WCHAR *hack_append_command_line( const WCHAR *cmd )
      GetEnvironmentVariableA("WINE_WAYLAND_HACKS",
          wayland_hack_enabled, sizeof(wayland_hack_enabled));
  
@@ -32,5 +32,5 @@ index e385e90d174..cd0957f5c08 100644
          for (i = 0; i < ARRAY_SIZE(wayland_options); ++i)
          {
 -- 
-2.51.0
+2.51.1
 

@@ -1,8 +1,8 @@
-From debbd314db161099a4c205f53db11018512365f2 Mon Sep 17 00:00:00 2001
+From 3953bc3a05d1ba712bbe0997f64105f60dc1e5b5 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Tue, 22 Jul 2025 16:14:35 -0400
-Subject: [PATCH 165/377] ntoskrnl: Implement PsGetCurrentThreadProcess.
+Subject: [PATCH 165/409] ntoskrnl: Implement PsGetCurrentThreadProcess.
 
 ---
  dlls/ntoskrnl.exe/ntoskrnl.c        | 8 ++++++++
@@ -10,7 +10,7 @@ Subject: [PATCH 165/377] ntoskrnl: Implement PsGetCurrentThreadProcess.
  2 files changed, 9 insertions(+)
 
 diff --git a/dlls/ntoskrnl.exe/ntoskrnl.c b/dlls/ntoskrnl.exe/ntoskrnl.c
-index 6c45e4165de..48015efd969 100644
+index 1c327f9e30f..f1b5bb36cf0 100644
 --- a/dlls/ntoskrnl.exe/ntoskrnl.c
 +++ b/dlls/ntoskrnl.exe/ntoskrnl.c
 @@ -3272,6 +3272,14 @@ TEB *WINAPI PsGetCurrentThreadTeb(void)
@@ -41,5 +41,5 @@ index 1524d526e72..ffe4e6561b8 100644
  @ stub PsGetCurrentThreadStackLimit
  @ stub PsGetJobLock
 -- 
-2.51.0
+2.51.1
 

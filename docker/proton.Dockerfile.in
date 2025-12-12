@@ -66,22 +66,31 @@ RUN apt-get install -y \
 && rm -rf /opt/usr/share/doc /opt/usr/share/info /opt/usr/share/man \
 && rm -rf /var/lib/apt/lists/*
 
-COPY ninja-jobserver-client.patch /tmp
-
-RUN wget -q @NINJA_URLBASE@/@NINJA_SOURCE@ \
-&& echo '@NINJA_SHA256@ @NINJA_SOURCE@' \
+RUN cd /tmp \
+&& wget -q @NINJA_URLBASE@/@NINJA_SOURCE@ \
 && echo '@NINJA_SHA256@ @NINJA_SOURCE@' | sha256sum -c - \
-&& tar xf @NINJA_SOURCE@ -C /tmp && rm @NINJA_SOURCE@ \
+&& unzip @NINJA_SOURCE@ && rm @NINJA_SOURCE@ \
 && cd /tmp/ninja-@NINJA_VERSION@ \
-&& patch -p1 < /tmp/ninja-jobserver-client.patch \
 && mkdir build \
 && cd build \
-&& cmake .. \
+&& cmake .. -DCMAKE_BUILD_TYPE=Release \
 && make \
 && cp ninja $(which ninja) \
 && cd / \
-&& rm -rf /tmp/ninja-@NINJA_VERSION@ \
-&& rm -rf /tmp/ninja-jobserver-client.patch
+&& rm -rf /tmp/ninja-@NINJA_VERSION@
+
+RUN cd /tmp \
+&& wget -q @AFDKO_URLBASE@/@AFDKO_SOURCE@ \
+&& echo '@AFDKO_SHA256@ @AFDKO_SOURCE@' | sha256sum -c - \
+&& unzip @AFDKO_SOURCE@ && rm @AFDKO_SOURCE@ \
+&& cd /tmp/afdko-@AFDKO_VERSION@ \
+&& mkdir build \
+&& cd build \
+&& CC=clang CXX=clang++ cmake .. -DCMAKE_BUILD_TYPE=Debug \
+&& CC=clang CXX=clang++ make \
+&& cp -f bin/* /usr/libexec/afdko/  \
+&& cd / \
+&& rm -rf /tmp/afdko-@AFDKO_VERSION@
 
 ENTRYPOINT ["/usr/bin/tini-static", "-s", "-g", "--"]
 

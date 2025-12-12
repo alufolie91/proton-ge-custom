@@ -1,7 +1,7 @@
-From 26447805735f1b06bae99d6104c7fea8b9f220ad Mon Sep 17 00:00:00 2001
+From 1c503c2763860f5d1382c5c572de28c242d704eb Mon Sep 17 00:00:00 2001
 From: Elizabeth Figura <zfigura@codeweavers.com>
 Date: Mon, 7 Jul 2025 21:44:10 -0400
-Subject: [PATCH 143/377] ntsync implementation
+Subject: [PATCH 143/409] ntsync implementation
 
 ---
  dlls/ntdll/unix/esync.c        |   2 +-
@@ -58,7 +58,7 @@ index 3074f7c72ea..f9f65b28d3d 100644
      return do_esync_cached;
  #else
 diff --git a/dlls/ntdll/unix/file.c b/dlls/ntdll/unix/file.c
-index b3db4a975dd..77b1477a30f 100644
+index 22d7fb35d7b..248abc7d357 100644
 --- a/dlls/ntdll/unix/file.c
 +++ b/dlls/ntdll/unix/file.c
 @@ -7027,7 +7027,7 @@ NTSTATUS WINAPI NtLockFile( HANDLE file, HANDLE event, PIO_APC_ROUTINE apc, void
@@ -84,10 +84,10 @@ index 4d9f5cde7b2..b2b16eafb0e 100644
  
      return do_fsync_cached;
 diff --git a/dlls/ntdll/unix/process.c b/dlls/ntdll/unix/process.c
-index ee7235bf8b0..40917012c19 100644
+index 32f307ce028..e36137a4a66 100644
 --- a/dlls/ntdll/unix/process.c
 +++ b/dlls/ntdll/unix/process.c
-@@ -920,7 +920,7 @@ NTSTATUS WINAPI NtCreateUserProcess( HANDLE *process_handle_ptr, HANDLE *thread_
+@@ -923,7 +923,7 @@ NTSTATUS WINAPI NtCreateUserProcess( HANDLE *process_handle_ptr, HANDLE *thread_
  
      /* wait for the new process info to be ready */
  
@@ -154,7 +154,7 @@ index 30fc6fc9214..44b605c8856 100644
          fsync_close( handle );
  
 diff --git a/dlls/ntdll/unix/sync.c b/dlls/ntdll/unix/sync.c
-index b42fa2f36da..8a09a8ee347 100644
+index a791a054951..e877d2eae53 100644
 --- a/dlls/ntdll/unix/sync.c
 +++ b/dlls/ntdll/unix/sync.c
 @@ -30,9 +30,11 @@
@@ -726,8 +726,8 @@ index b42fa2f36da..8a09a8ee347 100644
 +        wine_server_call( req );
 +    }
 +    SERVER_END_REQ;
- }
- 
++}
++
 +static int get_inproc_alert_obj(void)
 +{
 +    struct ntdll_thread_data *data = ntdll_get_thread_data();
@@ -819,8 +819,8 @@ index b42fa2f36da..8a09a8ee347 100644
 +        return STATUS_TIMEOUT;
 +    else
 +        return errno_to_status( errno );
-+}
-+
+ }
+ 
 +
  static NTSTATUS inproc_wait( DWORD count, const HANDLE *handles, BOOLEAN wait_any,
                               BOOLEAN alertable, const LARGE_INTEGER *timeout )
@@ -986,10 +986,10 @@ index b42fa2f36da..8a09a8ee347 100644
  
  /******************************************************************************
 diff --git a/dlls/ntdll/unix/thread.c b/dlls/ntdll/unix/thread.c
-index d0bba284e77..5f59ba8e133 100644
+index 54b0420d2f1..53129999240 100644
 --- a/dlls/ntdll/unix/thread.c
 +++ b/dlls/ntdll/unix/thread.c
-@@ -1854,7 +1854,7 @@ NTSTATUS get_thread_context( HANDLE handle, void *context, BOOL *self, USHORT ma
+@@ -1864,7 +1864,7 @@ NTSTATUS get_thread_context( HANDLE handle, void *context, BOOL *self, USHORT ma
  
      if (ret == STATUS_PENDING)
      {
@@ -999,7 +999,7 @@ index d0bba284e77..5f59ba8e133 100644
          SERVER_START_REQ( get_thread_context )
          {
 diff --git a/dlls/ntdll/unix/unix_private.h b/dlls/ntdll/unix/unix_private.h
-index 41f622fe231..0b8deb605ba 100644
+index d3fea9d153d..7357d42ff6a 100644
 --- a/dlls/ntdll/unix/unix_private.h
 +++ b/dlls/ntdll/unix/unix_private.h
 @@ -114,6 +114,7 @@ struct ntdll_thread_data
@@ -1037,10 +1037,10 @@ index 41f622fe231..0b8deb605ba 100644
  
  static inline ULONGLONG ticks_from_time_t( time_t time )
 diff --git a/dlls/ntdll/unix/virtual.c b/dlls/ntdll/unix/virtual.c
-index 33cea2a8331..0a123358ad2 100644
+index 7378c967a5d..2eafc15bae7 100644
 --- a/dlls/ntdll/unix/virtual.c
 +++ b/dlls/ntdll/unix/virtual.c
-@@ -4199,6 +4199,7 @@ static TEB *init_teb( void *ptr, BOOL is_wow )
+@@ -4214,6 +4214,7 @@ static TEB *init_teb( void *ptr, BOOL is_wow )
      thread_data->reply_fd   = -1;
      thread_data->wait_fd[0] = -1;
      thread_data->wait_fd[1] = -1;
@@ -2530,7 +2530,7 @@ index e212ec75a0d..c860ec1d1e0 100644
  /* serial functions */
  
 diff --git a/server/process.c b/server/process.c
-index f8893b79601..297ba84e466 100644
+index 8faf3ae754d..ae987a6cfd5 100644
 --- a/server/process.c
 +++ b/server/process.c
 @@ -96,6 +96,7 @@ static unsigned int process_map_access( struct object *obj, unsigned int access
@@ -2661,10 +2661,10 @@ index e332069c56f..8cf5c2fba1f 100644
      unsigned int         fsync_idx;
      struct cpu_topology_override cpu_override; /* Overridden CPUs to host CPUs mapping. */
 diff --git a/server/protocol.def b/server/protocol.def
-index 7c22aa85b34..1c93066b6d8 100644
+index 2a90837992e..23453fbaba5 100644
 --- a/server/protocol.def
 +++ b/server/protocol.def
-@@ -4270,3 +4270,26 @@ enum inproc_sync_type
+@@ -4271,3 +4271,26 @@ enum inproc_sync_type
  /* Obtain a fd for the ntsync device */
  @REQ(get_linux_sync_device)
  @END
@@ -2692,7 +2692,7 @@ index 7c22aa85b34..1c93066b6d8 100644
 +    obj_handle_t handle;          /* handle to the event */
 +@END
 diff --git a/server/queue.c b/server/queue.c
-index d822a7bffd9..b4c4ab4138f 100644
+index 20d8c2d959c..ad6547a2bce 100644
 --- a/server/queue.c
 +++ b/server/queue.c
 @@ -146,6 +146,8 @@ struct msg_queue
@@ -3183,7 +3183,7 @@ index 977286615dc..af2f778108c 100644
      sock_destroy                  /* destroy */
  };
 diff --git a/server/thread.c b/server/thread.c
-index 8fbfd553cc6..9804d45ef7f 100644
+index 4dce10259b4..28e49a09bed 100644
 --- a/server/thread.c
 +++ b/server/thread.c
 @@ -190,6 +190,7 @@ static unsigned int thread_get_fsync_idx( struct object *obj, enum fsync_type *t
@@ -3203,7 +3203,7 @@ index 8fbfd553cc6..9804d45ef7f 100644
      no_close_handle,            /* close_handle */
      destroy_thread              /* destroy */
  };
-@@ -312,6 +313,8 @@ static inline void init_thread_structure( struct thread *thread )
+@@ -313,6 +314,8 @@ static inline void init_thread_structure( struct thread *thread )
      thread->token           = NULL;
      thread->desc            = NULL;
      thread->desc_len        = 0;
@@ -3212,7 +3212,7 @@ index 8fbfd553cc6..9804d45ef7f 100644
  
      thread->creation_time = current_time;
      thread->exit_time     = 0;
-@@ -477,6 +480,14 @@ static struct list *thread_get_kernel_obj_list( struct object *obj )
+@@ -483,6 +486,14 @@ static struct list *thread_get_kernel_obj_list( struct object *obj )
      return &thread->kernel_object;
  }
  
@@ -3227,7 +3227,7 @@ index 8fbfd553cc6..9804d45ef7f 100644
  /* cleanup everything that is no longer needed by a dead thread */
  /* used by destroy_thread and kill_thread */
  static void cleanup_thread( struct thread *thread )
-@@ -533,6 +544,8 @@ static void destroy_thread( struct object *obj )
+@@ -539,6 +550,8 @@ static void destroy_thread( struct object *obj )
      if (thread->id) free_ptid( thread->id );
      if (thread->token) release_object( thread->token );
  
@@ -3236,7 +3236,7 @@ index 8fbfd553cc6..9804d45ef7f 100644
      if (do_esync())
          close( thread->esync_fd );
      if (thread->fsync_idx)
-@@ -1316,6 +1329,9 @@ static int queue_apc( struct process *process, struct thread *thread, struct thr
+@@ -1322,6 +1335,9 @@ static int queue_apc( struct process *process, struct thread *thread, struct thr
      {
          wake_thread( thread );
  
@@ -3246,7 +3246,7 @@ index 8fbfd553cc6..9804d45ef7f 100644
          if (do_fsync() && queue == &thread->user_apc)
              fsync_wake_futex( thread->fsync_apc_idx );
  
-@@ -1353,6 +1369,8 @@ void thread_cancel_apc( struct thread *thread, struct object *owner, enum apc_ty
+@@ -1359,6 +1375,8 @@ void thread_cancel_apc( struct thread *thread, struct object *owner, enum apc_ty
          apc->executed = 1;
          wake_up( &apc->obj, 0 );
          release_object( apc );
@@ -3255,7 +3255,7 @@ index 8fbfd553cc6..9804d45ef7f 100644
          return;
      }
  }
-@@ -1367,6 +1385,9 @@ static struct thread_apc *thread_dequeue_apc( struct thread *thread, int system
+@@ -1373,6 +1391,9 @@ static struct thread_apc *thread_dequeue_apc( struct thread *thread, int system
      {
          apc = LIST_ENTRY( ptr, struct thread_apc, entry );
          list_remove( ptr );
@@ -3265,7 +3265,7 @@ index 8fbfd553cc6..9804d45ef7f 100644
      }
  
      if (do_fsync() && list_empty( &thread->system_apc ) && list_empty( &thread->user_apc ))
-@@ -1475,6 +1496,7 @@ void kill_thread( struct thread *thread, int violent_death )
+@@ -1481,6 +1502,7 @@ void kill_thread( struct thread *thread, int violent_death )
      if (do_esync())
          esync_abandon_mutexes( thread );
      wake_up( &thread->obj, 0 );
@@ -3273,7 +3273,7 @@ index 8fbfd553cc6..9804d45ef7f 100644
      if (violent_death) send_thread_signal( thread, SIGQUIT );
      cleanup_thread( thread );
      remove_process_thread( thread->process, thread );
-@@ -2272,3 +2294,12 @@ DECL_HANDLER(get_next_thread)
+@@ -2279,3 +2301,12 @@ DECL_HANDLER(get_next_thread)
      set_error( STATUS_NO_MORE_ENTRIES );
      release_object( process );
  }
@@ -3287,10 +3287,10 @@ index 8fbfd553cc6..9804d45ef7f 100644
 +        reply->handle = alloc_handle( current->process, current->inproc_alert_event, SYNCHRONIZE, 0 );
 +}
 diff --git a/server/thread.h b/server/thread.h
-index 057ad9ec2ae..c1d606950fb 100644
+index d9b057311a7..4b21eea2238 100644
 --- a/server/thread.h
 +++ b/server/thread.h
-@@ -97,6 +97,8 @@ struct thread
+@@ -98,6 +98,8 @@ struct thread
      data_size_t            desc_len;      /* thread description length in bytes */
      WCHAR                 *desc;          /* thread description string */
      struct completion_wait *completion_wait; /* completion port wait object the thread is associated with */
@@ -3385,5 +3385,5 @@ index ca367a6fb7d..e3058f48bd8 100644
      if (timer->fsync_idx) fsync_free_shm_idx( timer->fsync_idx );
  }
 -- 
-2.51.0
+2.51.1
 
