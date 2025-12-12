@@ -43,8 +43,8 @@ DIST_VERSION := $(DST_BASE)/version
 DEPLOY_DIR := ./deploy
 REDIST_DIR := ./redist
 
-i386_CFLAGS    := -mstackrealign -march=nocona -mtune=core-avx2 -mfpmath=sse
-x86_64_CFLAGS  := -mcmodel=small -march=nocona -mtune=core-avx2 -mfpmath=sse
+i386_CFLAGS    := -mstackrealign -march=nocona -mtune=native -mfpmath=sse
+x86_64_CFLAGS  := -mcmodel=small -march=nocona -mtune=native -mfpmath=sse
 aarch64_CFLAGS := -march=armv8.2-a -mtune=cortex-x3
 
 CFLAGS  = -O3 -fwrapv -fno-strict-aliasing
