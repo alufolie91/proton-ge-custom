@@ -263,7 +263,7 @@ apply_all_in_dir() {
 
     # https://steamcommunity.com/app/2074920/discussions/0/604168604057160448/
     echo "WINE: -GAME FIXES- the first descendant patch"
-    apply_patch "../patches/game-patches/the-first-descendant-eac.patch
+    apply_patch "../patches/game-patches/the-first-descendant-eac.patch"
 
 
 ### END GAME PATCH SECTION ###
