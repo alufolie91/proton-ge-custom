@@ -261,6 +261,11 @@ apply_all_in_dir() {
     echo "WINE: -GAME FIXES- add le mans ultimate patches"
     apply_patch "../patches/game-patches/lemansultimate-gameinput.patch"
 
+    # https://steamcommunity.com/app/2074920/discussions/0/604168604057160448/
+    echo "WINE: -GAME FIXES- the first descendant patch"
+    apply_patch "../patches/game-patches/the-first-descendant-eac.patch
+
+
 ### END GAME PATCH SECTION ###
 
 ### (2-5) WINE HOTFIX/BACKPORT SECTION ###
