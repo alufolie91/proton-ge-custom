@@ -1,0 +1,43 @@
+From 320dc0c06f6a0d686525a369960471d5f1ab2338 Mon Sep 17 00:00:00 2001
+From: Etaash Mathamsetty
+ <45927311+Etaash-mathamsetty@users.noreply.github.com>
+Date: Tue, 22 Jul 2025 15:22:55 -0400
+Subject: [PATCH 158/410] ntoskrnl: Add stub for VslGetSecurePciEnabled.
+
+---
+ dlls/ntoskrnl.exe/ntoskrnl.c        | 6 ++++++
+ dlls/ntoskrnl.exe/ntoskrnl.exe.spec | 1 +
+ 2 files changed, 7 insertions(+)
+
+diff --git a/dlls/ntoskrnl.exe/ntoskrnl.c b/dlls/ntoskrnl.exe/ntoskrnl.c
+index ffff9e23887..cced027c148 100644
+--- a/dlls/ntoskrnl.exe/ntoskrnl.c
++++ b/dlls/ntoskrnl.exe/ntoskrnl.c
+@@ -4686,6 +4686,12 @@ NTSTATUS WINAPI EtwUnregister(REGHANDLE handle)
+     return STATUS_SUCCESS;
+ }
+ 
++BOOL WINAPI VslGetSecurePciEnabled(void)
++{
++    FIXME("stub!\n");
++    return TRUE;
++}
++
+ /*****************************************************
+  *           DllMain
+  */
+diff --git a/dlls/ntoskrnl.exe/ntoskrnl.exe.spec b/dlls/ntoskrnl.exe/ntoskrnl.exe.spec
+index 1c2449d9f4d..6021709d30c 100644
+--- a/dlls/ntoskrnl.exe/ntoskrnl.exe.spec
++++ b/dlls/ntoskrnl.exe/ntoskrnl.exe.spec
+@@ -1388,6 +1388,7 @@
+ @ stub VfFailDriver
+ @ stub VfFailSystemBIOS
+ @ stub VfIsVerificationEnabled
++@ stdcall VslGetSecurePciEnabled()
+ @ stub WRITE_REGISTER_BUFFER_UCHAR
+ @ stub WRITE_REGISTER_BUFFER_ULONG
+ @ stub WRITE_REGISTER_BUFFER_USHORT
+-- 
+2.51.1
+
