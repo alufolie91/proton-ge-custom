@@ -64,9 +64,6 @@
 [submodule "dav1d"]
 	path = dav1d
 	url = https://github.com/videolan/dav1d.git
-[submodule "glslang"]
-        path = glslang
-        url = https://github.com/KhronosGroup/glslang
 [submodule "gst-plugins-rs"]
 	path = gst-plugins-rs
 	url = https://github.com/sdroege/gst-plugin-rs
