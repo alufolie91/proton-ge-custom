@@ -40,28 +40,6 @@ apply_all_in_dir() {
     pushd protonfixes
     git reset --hard HEAD
     git clean -xdf
-    pushd subprojects
-    pushd libmspack
-    git reset --hard HEAD
-    git clean -xdf
-    popd
-    pushd umu-database
-    git reset --hard HEAD
-    git clean -xdf
-    popd
-    pushd unzip
-    git reset --hard HEAD
-    git clean -xdf
-    popd
-    pushd winetricks
-    git reset --hard HEAD
-    git clean -xdf
-    echo "WINETRICKS: fix broken gnutls when fetching https"
-    apply_patch "../../../patches/winetricks/winetrick_gnutls_fix.patch"
-    echo "WINETRICKS: fix broken mono/dotnet removal"
-    apply_patch "../../../patches/winetricks/winetricks_dotnet_remove_fix.patch"
-    popd
-    popd
     popd
 
 ### END PREP SECTION ###
