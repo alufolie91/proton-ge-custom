@@ -1,5 +1,5 @@
 diff --git a/dlls/winealsa.drv/alsa.c b/dlls/winealsa.drv/alsa.c
-index 046b447aafd..4b4cb6b13dd 100644
+index 046b447aafd..6b63340f9f3 100644
 --- a/dlls/winealsa.drv/alsa.c
 +++ b/dlls/winealsa.drv/alsa.c
 @@ -42,9 +42,16 @@
@@ -111,3 +111,24 @@ index 046b447aafd..4b4cb6b13dd 100644
  exit:
      free(params);
      snd_pcm_close(handle);
+@@ -2440,6 +2473,7 @@ static NTSTATUS alsa_get_prop_value(void *args)
+     } else if (flow != eCapture && IsEqualPropertyKey(*prop, PKEY_AudioEndpoint_PhysicalSpeakers)) {
+         unsigned int num_speakers, card, device;
+         char hwname[255];
++        int limit;
+ 
+         if (sscanf(name, "plughw:%u,%u", &card, &device))
+             sprintf(hwname, "hw:%u,%u", card, device); /* must be hw rather than plughw to work */
+@@ -2452,8 +2486,10 @@ static NTSTATUS alsa_get_prop_value(void *args)
+             return STATUS_SUCCESS;
+         }
+         out->vt = VT_UI4;
+-
+-        if (num_speakers > 6)
++        limit = get_max_channels_override();
++        if (limit == 8 && num_speakers == 8)
++            out->ulVal = KSAUDIO_SPEAKER_7POINT1_SURROUND;
++        else if (num_speakers > 6)
+             out->ulVal = KSAUDIO_SPEAKER_STEREO;
+         else if (num_speakers == 6)
+             out->ulVal = KSAUDIO_SPEAKER_5POINT1;
