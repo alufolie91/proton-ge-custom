@@ -1,0 +1,45 @@
+diff --git a/dlls/ws2_32/protocol.c b/dlls/ws2_32/protocol.c
+index eef2c34b3e4..4c4198bc396 100644
+--- a/dlls/ws2_32/protocol.c
++++ b/dlls/ws2_32/protocol.c
+@@ -148,6 +148,14 @@ static int dns_only_query( const char *node, const struct addrinfo *hints, struc
+     return 0;
+ }
+ 
++static BOOL should_block_host(const char *name)
++{
++    const char *env = getenv("WINE_HOSTBLOCK");
++    if (!env || !*env || !strcmp(env, "0")) return FALSE;
++
++    return name && !strcasecmp(name, "modules-cdn.eac-prod.on.epicgames.com");
++}
++
+ static BOOL eac_download_hack(void)
+ {
+     static int eac_download_hack_enabled = -1;
+@@ -188,6 +196,12 @@ int WINAPI getaddrinfo( const char *node, const char *service,
+ 
+     if (node)
+     {
++        if (should_block_eac_host(nodename))
++        {
++            SetLastError(WSAHOST_NOT_FOUND);
++            return WSAHOST_NOT_FOUND;
++        }
++
+         if (eac_download_hack() && !strcmp(node, "download-alt.easyanticheat.net"))
+         {
+             SetLastError(WSAHOST_NOT_FOUND);
+@@ -952,6 +966,12 @@ struct hostent * WINAPI gethostbyname( const char *name )
+         return NULL;
+     }
+ 
++    if (should_block_eac_host(nodename))
++    {
++        SetLastError( WSAHOST_NOT_FOUND );
++        return NULL;
++    }
++
+     if (eac_download_hack() && name && !strcmp(name, "download-alt.easyanticheat.net"))
+     {
+         SetLastError( WSAHOST_NOT_FOUND );

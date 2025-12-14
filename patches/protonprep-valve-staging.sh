@@ -261,10 +261,6 @@ apply_all_in_dir() {
     echo "WINE: -GAME FIXES- add le mans ultimate patches"
     apply_patch "../patches/game-patches/lemansultimate-gameinput.patch"
 
-    # https://steamcommunity.com/app/2074920/discussions/0/604168604057160448/
-    echo "WINE: -GAME FIXES- the first descendant patch"
-    apply_patch "../patches/game-patches/the-first-descendant-eac.patch"
-
 
 ### END GAME PATCH SECTION ###
 
@@ -330,6 +326,10 @@ apply_all_in_dir() {
 
     echo "WINE: -CUSTOM- Add envvar to allow method=automatic to be set for video orientation in gstreamer"
     apply_patch "../patches/proton/proton-use_winegstreamer_and_set_orientation-PROTON_MEDIA_USE_GST-PROTON_GST_VIDEO_ORIENTATION.patch"
+
+    # https://steamcommunity.com/app/2074920/discussions/0/604168604057160448/
+    echo "WINE: --CUSTOM-- add WINE_HOSTBLOCK envvar to allow working around some failed anticheats (notably eac)"
+    apply_patch "../patches/proton/wine_host_block_envvar.patch"
 
     echo "WINE: RUN AUTOCONF TOOLS/MAKE_REQUESTS"
     autoreconf -f
