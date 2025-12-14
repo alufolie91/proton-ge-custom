@@ -1,27 +1,44 @@
 diff --git a/dlls/ws2_32/protocol.c b/dlls/ws2_32/protocol.c
-index eef2c34b3e4..4c4198bc396 100644
+index eef2c34b3e4..cd5e734e3f4 100644
 --- a/dlls/ws2_32/protocol.c
 +++ b/dlls/ws2_32/protocol.c
-@@ -148,6 +148,14 @@ static int dns_only_query( const char *node, const struct addrinfo *hints, struc
+@@ -148,6 +148,31 @@ static int dns_only_query( const char *node, const struct addrinfo *hints, struc
      return 0;
  }
  
 +static BOOL should_block_host(const char *name)
 +{
-+    const char *env = getenv("WINE_HOSTBLOCK");
-+    if (!env || !*env || !strcmp(env, "0")) return FALSE;
++    const char *blk = getenv("WINE_HOSTBLOCK");
++    char *copy, *tok, *save;
 +
-+    return name && !strcasecmp(name, "modules-cdn.eac-prod.on.epicgames.com");
++    if (!blk || !*blk || !name || !*name) return FALSE;
++
++    copy = strdup(blk);
++    if (!copy) return FALSE;
++
++    for (tok = strtok_r(copy, ",; \t\r\n", &save);
++         tok;
++    tok = strtok_r(NULL, ",; \t\r\n", &save))
++         {
++             if (*tok && !strcasecmp(name, tok))
++             {
++                 free(copy);
++                 return TRUE;
++             }
++         }
++
++         free(copy);
++         return FALSE;
 +}
 +
  static BOOL eac_download_hack(void)
  {
      static int eac_download_hack_enabled = -1;
-@@ -188,6 +196,12 @@ int WINAPI getaddrinfo( const char *node, const char *service,
+@@ -188,6 +213,12 @@ int WINAPI getaddrinfo( const char *node, const char *service,
  
      if (node)
      {
-+        if (should_block_eac_host(nodename))
++        if (should_block_host(node))
 +        {
 +            SetLastError(WSAHOST_NOT_FOUND);
 +            return WSAHOST_NOT_FOUND;
@@ -30,11 +47,11 @@ index eef2c34b3e4..4c4198bc396 100644
          if (eac_download_hack() && !strcmp(node, "download-alt.easyanticheat.net"))
          {
              SetLastError(WSAHOST_NOT_FOUND);
-@@ -952,6 +966,12 @@ struct hostent * WINAPI gethostbyname( const char *name )
+@@ -952,6 +983,12 @@ struct hostent * WINAPI gethostbyname( const char *name )
          return NULL;
      }
  
-+    if (should_block_eac_host(nodename))
++    if (should_block_host(name))
 +    {
 +        SetLastError( WSAHOST_NOT_FOUND );
 +        return NULL;
