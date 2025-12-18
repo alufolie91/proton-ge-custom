@@ -96,4 +96,4 @@
         url = https://github.com/FEX-Emu/FEX.git
 [submodule "glslang"]
 	path = glslang
-	url = ./glslang
+	url = https://github.com/KhronosGroup/glslang.git
