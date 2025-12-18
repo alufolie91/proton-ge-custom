@@ -19,10 +19,19 @@ jobs:
           - file: ${{ inputs.name }}.tar.gz
           - file: ${{ inputs.name }}.tar.zst
           - file: ${{ inputs.name }}.sha512sum
+
     runs-on: ubuntu-latest
+
     steps:
+      - name: Verify release exists
+        run: |
+          gh release view "${{ inputs.version }}" \
+            --repo "${{ github.server_url }}/${{ github.repository }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Download ${{ matrix.file }} artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         with:
           name: ${{ matrix.file }}
 

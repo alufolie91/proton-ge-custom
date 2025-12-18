@@ -1783,7 +1783,7 @@ XrResult WINAPI xrCreateVulkanInstanceKHR(XrInstance instance,
 
   vulkan_create_info = *createInfo->vulkanCreateInfo;
   callback.sType = VK_STRUCTURE_TYPE_CREATE_INFO_WINE_INSTANCE_CALLBACK;
-  callback.native_create_callback = (PFN_native_vkCreateInstance)g_vk_create_instance_callback;
+  callback.native_create_callback = g_vk_create_instance_callback;
   callback.context = &context;
   callback.pNext = vulkan_create_info.pNext;
   vulkan_create_info.pNext = &callback;
@@ -1818,7 +1818,7 @@ XrResult WINAPI xrCreateVulkanDeviceKHR(XrInstance instance,
 
   vulkan_create_info = *createInfo->vulkanCreateInfo;
   callback.sType = VK_STRUCTURE_TYPE_CREATE_INFO_WINE_DEVICE_CALLBACK;
-  callback.native_create_callback = (PFN_native_vkCreateDevice)g_vk_create_device_callback;
+  callback.native_create_callback = g_vk_create_device_callback;
   callback.context = &context;
   callback.pNext = vulkan_create_info.pNext;
   vulkan_create_info.pNext = &callback;
@@ -1835,7 +1835,23 @@ XrResult WINAPI xrCreateVulkanDeviceKHR(XrInstance instance,
 }
 
 XrResult WINAPI xrGetInstanceProcAddr(XrInstance instance, const char *fn_name, PFN_xrVoidFunction *out_fn) {
+  struct is_available_instance_function_openxr_params params =
+  {
+    .instance = instance,
+    .name = fn_name,
+  };
+  NTSTATUS _status;
+
   TRACE("%s\n", fn_name);
+
+  _status = UNIX_CALL(is_available_instance_function, &params);
+  assert(!_status && "is_available_instance_function");
+
+  if (params.ret)
+  {
+    WARN("is_available_instance_function failed for %s, ret %d\n", fn_name, params.ret);
+    return params.ret;
+  }
 
   *out_fn = wine_xr_get_instance_proc_addr(fn_name);
   if (!*out_fn) {

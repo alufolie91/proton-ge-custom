@@ -70,9 +70,6 @@
 [submodule "graphene"]
 	path = graphene
 	url = https://github.com/ebassi/graphene
-[submodule "glslang"]
-	path = glslang
-	url = https://github.com/KhronosGroup/glslang
 [submodule "openfst"]
 	path = openfst
 	url = https://github.com/alphacep/openfst
@@ -90,4 +87,13 @@
 [submodule "libxkbcommon"]
         path = libxkbcommon
         url = https://github.com/xkbcommon/libxkbcommon.git
-        branch = libxkbcommon-1.7.0
+	branch = libxkbcommon-1.7.0
+[submodule "libpcap"]
+	path = libpcap
+	url = https://github.com/the-tcpdump-group/libpcap.git
+[submodule "FEX"]
+        path = FEX
+        url = https://github.com/FEX-Emu/FEX.git
+[submodule "glslang"]
+	path = glslang
+	url = https://github.com/KhronosGroup/glslang.git

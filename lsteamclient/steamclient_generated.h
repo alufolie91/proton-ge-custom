@@ -84,6 +84,7 @@ extern struct w_iface *create_winISteamUserStats_STEAMUSERSTATS_INTERFACE_VERSIO
 extern struct w_iface *create_winISteamVideo_STEAMVIDEO_INTERFACE_V001( struct u_iface );
 extern struct w_iface *create_winISteamVideo_STEAMVIDEO_INTERFACE_V002( struct u_iface );
 extern struct w_iface *create_winISteamVideo_STEAMVIDEO_INTERFACE_V007( struct u_iface );
+extern struct w_iface *create_winISteamBilling_SteamBilling002( struct u_iface );
 extern struct w_iface *create_winISteamClient_SteamClient006( struct u_iface );
 extern struct w_iface *create_winISteamClient_SteamClient007( struct u_iface );
 extern struct w_iface *create_winISteamClient_SteamClient008( struct u_iface );
@@ -100,6 +101,7 @@ extern struct w_iface *create_winISteamClient_SteamClient018( struct u_iface );
 extern struct w_iface *create_winISteamClient_SteamClient019( struct u_iface );
 extern struct w_iface *create_winISteamClient_SteamClient020( struct u_iface );
 extern struct w_iface *create_winISteamClient_SteamClient021( struct u_iface );
+extern struct w_iface *create_winISteamClient_SteamClient023( struct u_iface );
 extern struct w_iface *create_winISteamController_SteamController003( struct u_iface );
 extern struct w_iface *create_winISteamController_SteamController004( struct u_iface );
 extern struct w_iface *create_winISteamController_SteamController005( struct u_iface );

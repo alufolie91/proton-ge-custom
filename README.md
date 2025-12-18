@@ -318,6 +318,17 @@ ntsync
 You can also manually enable the module without reboot, just keep in mind the above configuration is needed for it to persist after reboots:
 ```
 sudo modprobe ntsync
+
+> [!NOTE]
+> As of right now, in-game Steam overlay WILL NOT work with Wayland enabled.
+
+
+## Building
+
+1. Clone this repo by executing:
+
+```sh
+git clone --recurse-submodules http://github.com/gloriouseggroll/proton-ge-custom
 ```
 After this, a device `/dev/ntsync` should now exist on your system.
 
@@ -369,7 +380,7 @@ Environment variable options:
 | <tt>nontsync</tt>      | <tt>PROTON_NO_NTSYNC</tt>       | Do not use the ntsync kernel module for in-process synchronization primitives. |
 | <tt>forcelgadd</tt>   | <tt>PROTON_FORCE_LARGE_ADDRESS_AWARE</tt> | Force Wine to enable the LARGE_ADDRESS_AWARE flag for all executables. |
 | <tt>heapdelayfree</tt>| <tt>PROTON_HEAP_DELAY_FREE</tt>| Delay freeing some memory, to work around application use-after-free bugs. |
-| <tt>noxim</tt>        | <tt>PROTON_NO_XIM</tt>         | Enabled by default. Do not attempt to use XIM (X Input Methods) support. XIM support is known to cause crashes with libx11 older than version 1.7. |
+|                       | <tt>HOST_LC_ALL</tt>           | Set value to a locale to override all other system locale settings for a game.  This variable should be used instead of `LC_ALL`. |
 | <tt>enablenvapi</tt>  | <tt>PROTON_ENABLE_NVAPI</tt>   | Enable NVIDIA's NVAPI GPU support library. |
 | <tt>noforcelgadd</tt> |                                | Disable forcelgadd. If both this and `forcelgadd` are set, enabled wins. |
 | <tt>oldglstr</tt>     | <tt>PROTON_OLD_GL_STRING</tt>  | Set some driver overrides to limit the length of the GL extension string, for old games that crash on very long extension strings. |
@@ -380,8 +391,15 @@ Environment variable options:
 |                       | <tt>WINE_FULLSCREEN_FSR</tt>   | Enable AMD FidelityFX Super Resolution (FSR), use in conjunction with `WINE_FULLSCREEN_FSR_STRENGTH`. Only works in Vulkan games (DXVK and VKD3D-Proton included). |
 |                       | <tt>WINE_FULLSCREEN_FSR_STRENGTH</tt> | AMD FidelityFX Super Resolution (FSR) strength, the default sharpening of 5 is enough without needing modification, but can be changed with 0-5 if wanted. 0 is the maximum sharpness, higher values mean less sharpening. 2 is the AMD recommended default and is set by GE-Proton by default. |
 |                       | <tt>WINE_FULLSCREEN_FSR_CUSTOM_MODE</tt> | Set fake resolution of the screen. This can be useful in games that render in native resolution regardless of the selected resolution. Parameter `WIDTHxHEIGHT` |
-|                       | <tt>WINE_DO_NOT_CREATE_DXGI_DEVICE_MANAGER</tt> | Set to 1 to enable. Required for video playback in some games to not be miscolored |
-|                       | <tt>COPYPREFIX</tt> | Set to 1 to enable. If -steamdeck is used as a Steam launch option or if SteamDeck=1 is set as an environment variable, copies the game's prefix and shader cache from the game partition to the local Steam 'steamapps' folder. The Logic is reversed if the -steamdeck is not used as a Steam launch option or if SteamDeck=0 is set as an environment variable |
+|                       | <tt>WINE_DO_NOT_CREATE_DXGI_DEVICE_MANAGER</tt> | Set to 1 to enable. Required for video playback in some games to not be miscolored (usually tinted pink) |
+|                       | <tt>COPYPREFIX</tt> | Set to 1 to enable. If -steamdeck is used on steam (or SteamDeck=1 is set), copies the game's prefix and shader cache from the game partition to the local steam steamapps folder. Logic is reversed if -steamdeck not enabled (or SteamDeck=0) |
+| `fsr4`               | `PROTON_FSR4_UPGRADE`          | Automatically download `amdxcffx64.dll` and upgrade games with FSR 3.1 to use FSR 4. Version to download can be specified by supplying it as a value, like so `PROTON_FSR4_UPGRADE="4.0.1"`, instead of `1`. Downloads version `4.0.2` of the required DLL by default. This option also disables AMD Anti-Lag 2 currently due to various issues.                                                                                      |
+| `fsr4hud`            | `PROTON_FSR4_INDICATOR`        | Enable the FSR4 watermark at the top left portion of the screen.                                                                                                                                                                                                                                                                                                                                                                      |
+| `fsr4rdna3`          | `PROTON_FSR4_RDNA3_UPGRADE`    | Identical to `PROTON_FSR4_UPGRADE` but for RDNA3 GPUs. Enables some required compatibility options and downloads version `4.0.0` of the DLL by default.                                                                                                                                                                                                                                                                               |
+| `fsr3`               | `PROTON_FSR3_UPGRADE`          |                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| `dlss`               | `PROTON_DLSS_UPGRADE`          | Automatically download and use newer versions of `nvngx_dlss(d\|g).dll` DLLs. Version to download can be specified by supplying it as a value, like so `PROTON_DLSS_UPGRADE="310.2"`, instead of `1`, to download version `310.2.1.0`. This option also sets `DXVK_NVAPI_DRS_SETTINGS` to use the latest preset. If you provide your own config for it through this environment variable, your configuration is going to be applied.. |
+| `dlsshud`            | `PROTON_DLSS_INDICATOR`        | Enable the DLSS overlay at the bottom left portion of the screen. This is exactly the same as `FSR4_WATERMARK=1`                                                                                                                                                                                                                                                                                                                      |
+| `xess`               | `PROTON_XESS_UPGRADE`          |                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 
 ## Credits
 
