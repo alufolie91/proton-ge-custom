@@ -64,6 +64,10 @@ apply_all_in_dir() {
     echo "WINE: -CUSTOM- ETAASH WINE-WAYLAND+ PATCHES"
     apply_all_in_dir "../patches/wine-hotfixes/wine-wayland/"
 
+    echo "WINE: ntsync hotfix from paul"
+    apply_patch "../patches/proton/0001-fixup-ntdll-Wait-for-thread-suspension-in-NtSuspendT.patch"
+
+
 ### END EM-10/WINE-WAYLAND PATCH SECTION ###
 
 ### (2-3) WINE STAGING APPLY SECTION ###
@@ -238,7 +242,6 @@ apply_all_in_dir() {
     # https://github.com/JacKeTUs/wine/commits/lmu-d2d1-tinkering
     echo "WINE: -GAME FIXES- add le mans ultimate patches"
     apply_patch "../patches/game-patches/lemansultimate-gameinput.patch"
-
 
 ### END GAME PATCH SECTION ###
 
