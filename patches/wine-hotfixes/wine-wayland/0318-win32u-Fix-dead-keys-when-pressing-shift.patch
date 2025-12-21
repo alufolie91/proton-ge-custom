@@ -1,8 +1,8 @@
-From 16ac96e77579f438926a4f6098cc7a5c732dd233 Mon Sep 17 00:00:00 2001
+From f9ef83d1dcb421c88914a30341e652e286f98903 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Wed, 1 Oct 2025 22:56:28 -0500
-Subject: [PATCH 318/414] win32u: Fix dead keys when pressing shift.
+Subject: [PATCH 318/423] win32u: Fix dead keys when pressing shift.
 
 ---
  dlls/win32u/input.c | 3 ++-
@@ -29,5 +29,5 @@ index dc8e97ed39b..c28f9829c2a 100644
      {
          DEADKEY *key = kbd_tables->pDeadKey;
 -- 
-2.51.1
+2.52.0
 

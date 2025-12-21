@@ -1,8 +1,8 @@
-From a486c5f4a1c527ded8a013dbee19822807cbcfc9 Mon Sep 17 00:00:00 2001
+From f82302b79e634b89f891e6ccd69c3b389f5f3568 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Mon, 25 Aug 2025 12:54:57 -0500
-Subject: [PATCH 285/414] winewayland: revert back to old rawinput hardware
+Subject: [PATCH 285/423] winewayland: revert back to old rawinput hardware
  inputs.
 
 ---
@@ -27,5 +27,5 @@ index 0557df63048..27b05a1eb09 100644
      }
  
 -- 
-2.51.1
+2.52.0
 

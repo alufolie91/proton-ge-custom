@@ -1,8 +1,8 @@
-From 4e5f6c8c54157370b256797f87e6d7104ea31f27 Mon Sep 17 00:00:00 2001
+From 33a4ce1ad79083ff380ab6a46f8d6e0b14cc7efd Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Tue, 27 May 2025 00:08:02 -0400
-Subject: [PATCH 067/414] winebus: Ignore steam input virtual controller when
+Subject: [PATCH 067/423] winebus: Ignore steam input virtual controller when
  PROTON_PREFER_SDL is set.
 
 ---
@@ -31,5 +31,5 @@ index 2aba9b91f7b..5eabf42add0 100644
      {
          TRACE("evdev %s: ignoring %s, in SDL ignore list\n", debugstr_a(devnode), debugstr_device_desc(&desc));
 -- 
-2.51.1
+2.52.0
 

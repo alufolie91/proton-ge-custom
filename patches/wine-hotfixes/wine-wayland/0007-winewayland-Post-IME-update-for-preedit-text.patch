@@ -1,7 +1,7 @@
-From 49106e21930f31faeea80f2eab1ffa78f5efef2f Mon Sep 17 00:00:00 2001
+From 7063302a79ea7fcdf2e9d171b2bb83122973f9db Mon Sep 17 00:00:00 2001
 From: Attila Fidan <dev@print0.net>
 Date: Sat, 8 Feb 2025 05:59:04 +0000
-Subject: [PATCH 007/414] winewayland: Post IME update for preedit text.
+Subject: [PATCH 007/423] winewayland: Post IME update for preedit text.
 
 ---
  dlls/winewayland.drv/wayland_text_input.c | 21 ++++++++++++++++++++-
@@ -74,5 +74,5 @@ index afc480e6652..5c5ce5bf130 100644
      struct wl_surface *wl_surface;
      pthread_mutex_t mutex;
 -- 
-2.51.1
+2.52.0
 

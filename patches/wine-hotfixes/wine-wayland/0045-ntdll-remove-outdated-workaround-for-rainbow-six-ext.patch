@@ -1,8 +1,8 @@
-From dd6f4a9c2ac1619915a6d82e46cc4043f63db882 Mon Sep 17 00:00:00 2001
+From 179bd8138b6ce96ce6a7f64e4852f93c15b0a2b6 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Tue, 13 May 2025 16:29:55 -0400
-Subject: [PATCH 045/414] ntdll: remove outdated workaround for rainbow six
+Subject: [PATCH 045/423] ntdll: remove outdated workaround for rainbow six
  extraction
 
 ---
@@ -28,5 +28,5 @@ index 45b24fe155b..1ee577b6797 100644
      if ((env_str = getenv( "WINE_RES_MEM_LOW_BOUND" )))
          release_reserved_memory_low_bound = (void *)strtol( env_str, NULL, 0x10 );
 -- 
-2.51.1
+2.52.0
 

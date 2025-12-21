@@ -1,8 +1,8 @@
-From 5a426e9273b8fb6daa65d1f9cc331747e229f3f9 Mon Sep 17 00:00:00 2001
+From 4b6f2ac1c809cd6f8a294d85534337f4e1dc27a2 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Sun, 25 May 2025 22:07:01 -0400
-Subject: [PATCH 065/414] HACK: winewayland: Add option to offset monitor
+Subject: [PATCH 065/423] HACK: winewayland: Add option to offset monitor
  positions.
 
 ---
@@ -50,5 +50,5 @@ index 9f414d7540e..84eee57714b 100644
          output->current.resolved_y = output->current.logical_y;
      }
 -- 
-2.51.1
+2.52.0
 

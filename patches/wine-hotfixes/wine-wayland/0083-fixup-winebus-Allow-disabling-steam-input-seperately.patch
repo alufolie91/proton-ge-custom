@@ -1,8 +1,8 @@
-From 237a049467b57ec684a105452fba4405f1798902 Mon Sep 17 00:00:00 2001
+From 7e2793c05b8b4ea6a981555f77ff583d7939a956 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Sat, 7 Jun 2025 22:52:48 -0400
-Subject: [PATCH 083/414] fixup! winebus: Allow disabling steam input
+Subject: [PATCH 083/423] fixup! winebus: Allow disabling steam input
  seperately
 
 ---
@@ -23,5 +23,5 @@ index 5eabf42add0..733ff9ac35b 100644
              return;
          }
 -- 
-2.51.1
+2.52.0
 

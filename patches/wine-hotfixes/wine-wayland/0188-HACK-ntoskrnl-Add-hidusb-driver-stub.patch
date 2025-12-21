@@ -1,8 +1,8 @@
-From 76e36d2b3f62ed30a355392da588ec7dd42c7b87 Mon Sep 17 00:00:00 2001
+From 5baad037a2c2e3121befa40e9eb77fee58a770ef Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Thu, 24 Jul 2025 01:10:41 -0400
-Subject: [PATCH 188/414] HACK: ntoskrnl: Add hidusb driver stub.
+Subject: [PATCH 188/423] HACK: ntoskrnl: Add hidusb driver stub.
 
 ---
  dlls/ntoskrnl.exe/ntoskrnl.c | 6 ++++--
@@ -40,5 +40,5 @@ index 4d5c75c0643..b87caf6657a 100644
      case DLL_PROCESS_DETACH:
          LdrUnregisterDllNotification( ldr_notify_cookie );
 -- 
-2.51.1
+2.52.0
 
