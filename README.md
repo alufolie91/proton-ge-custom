@@ -2,7 +2,7 @@
 >  **Myself (GloriousEggroll) and this project (GE-Proton) are not affiliated with any other websites related to GE-Proton. There is no existing website for GE-Proton other than this GitHub repository.**
 
 > [!Important]
-> **If you have an issue that happens with my GE-Proton build, provided from this repository, that does bot happen on Valve's Proton, please do not open a bug report on Valve's bug tracker.**
+> **If you have an issue that happens with my GE-Proton build, provided from this repository, that does not happen on Valve's Proton, please do not open a bug report on Valve's bug tracker.**
 >
 > Instead, open an issue on this repository's issue tracker: https://github.com/GloriousEggroll/proton-ge-custom/issues
 >
