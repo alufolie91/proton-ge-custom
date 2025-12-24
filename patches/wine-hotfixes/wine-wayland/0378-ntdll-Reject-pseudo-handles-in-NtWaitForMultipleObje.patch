@@ -1,7 +1,7 @@
-From 45ea766efca07b8486a105b57d0656682f423163 Mon Sep 17 00:00:00 2001
+From 60d47171fd596a584ab1686e0231e4cde1cf1f61 Mon Sep 17 00:00:00 2001
 From: Marc-Aurel Zent <mzent@codeweavers.com>
 Date: Thu, 30 Oct 2025 22:12:40 +0100
-Subject: [PATCH 378/409] ntdll: Reject pseudo-handles in
+Subject: [PATCH 378/423] ntdll: Reject pseudo-handles in
  NtWaitForMultipleObjects.
 
 ---
@@ -66,5 +66,5 @@ index 475bf648323..4ee3c808626 100644
      {
          TRACE( "-> %#x\n", ret );
 -- 
-2.51.1
+2.52.0
 

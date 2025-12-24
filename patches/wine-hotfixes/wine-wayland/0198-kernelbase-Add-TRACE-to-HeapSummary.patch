@@ -1,7 +1,7 @@
-From 1fc52c7da5a9285636c20521f287a856d9779e6b Mon Sep 17 00:00:00 2001
+From 72cbc1588347488fa4caa2204a3b159b5a7abf10 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty <etaash.mathamsetty@gmail.com>
 Date: Wed, 30 Jul 2025 17:12:16 -0400
-Subject: [PATCH 198/409] kernelbase: Add TRACE to HeapSummary.
+Subject: [PATCH 198/423] kernelbase: Add TRACE to HeapSummary.
 
 ---
  dlls/kernelbase/memory.c | 2 ++
@@ -21,5 +21,5 @@ index 02de01bea0d..58ca3b47141 100644
      {
          /* needs to be set to the exact size by the caller */
 -- 
-2.51.1
+2.52.0
 

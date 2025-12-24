@@ -1,8 +1,8 @@
-From c8dd4f51d6ce1419f9f7b11b75cd23d6c3c851bc Mon Sep 17 00:00:00 2001
+From 0262471ee46c7c4b648fc8ddab1e204589000de1 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Thu, 11 Sep 2025 11:55:02 -0500
-Subject: [PATCH 302/409] fixup! winewayland: Handle discrete scroll events
+Subject: [PATCH 302/423] fixup! winewayland: Handle discrete scroll events
  better.
 
 ---
@@ -23,5 +23,5 @@ index 52626dda20f..82fcae9bfef 100644
          unsigned int axis_stop;
      } pointer_frame;
 -- 
-2.51.1
+2.52.0
 

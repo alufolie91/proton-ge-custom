@@ -1,8 +1,8 @@
-From 9b93b8886db82eb40c21998651c9754ef6bf6847 Mon Sep 17 00:00:00 2001
+From 545df99bfc845db3196473e34da2e1ce0e85af13 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Wed, 21 May 2025 19:43:39 -0400
-Subject: [PATCH 055/409] fixup! winewayland: Handle rotated screens.
+Subject: [PATCH 055/423] fixup! winewayland: Handle rotated screens.
 
 ---
  dlls/winewayland.drv/wayland_output.c | 3 +--
@@ -23,5 +23,5 @@ index ce388d02f21..dbd51fbc8dc 100644
                  const int32_t temp = mode->width;
                  mode->width = mode->height;
 -- 
-2.51.1
+2.52.0
 

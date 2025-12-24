@@ -1,7 +1,7 @@
-From 1c7593b301f703db64275ce5c698d20ea375e829 Mon Sep 17 00:00:00 2001
+From e52c29014a41ab764a558b81986a409d87ed35e0 Mon Sep 17 00:00:00 2001
 From: Yuxuan Shui <yshui@codeweavers.com>
 Date: Tue, 29 Jul 2025 12:05:03 +0100
-Subject: [PATCH 337/409] ntdll: Fix inconsistency in LFH block size
+Subject: [PATCH 337/423] ntdll: Fix inconsistency in LFH block size
  calculation during realloc.
 
 For allocation, the block size calculation is snapped to block bin sizes, but
@@ -25,10 +25,10 @@ heap_resize_block_lfh.
  1 file changed, 1 insertion(+)
 
 diff --git a/dlls/ntdll/heap.c b/dlls/ntdll/heap.c
-index 4ff7405f27c..ad412e4764b 100644
+index c194f2058dc..924f889e8e4 100644
 --- a/dlls/ntdll/heap.c
 +++ b/dlls/ntdll/heap.c
-@@ -2195,6 +2195,7 @@ static NTSTATUS heap_resize_block_lfh( struct block *block, ULONG flags, SIZE_T
+@@ -2197,6 +2197,7 @@ static NTSTATUS heap_resize_block_lfh( struct block *block, ULONG flags, SIZE_T
      if (ROUND_SIZE( *old_size, BLOCK_ALIGN - 1) != ROUND_SIZE( size, BLOCK_ALIGN - 1)) return STATUS_NO_MEMORY;
      if (size >= *old_size) return STATUS_NO_MEMORY;
  
@@ -37,5 +37,5 @@ index 4ff7405f27c..ad412e4764b 100644
      block->tail_size = block_size - sizeof(*block) - size;
      initialize_block( block, *old_size, size, flags );
 -- 
-2.51.1
+2.52.0
 

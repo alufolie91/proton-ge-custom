@@ -1,8 +1,8 @@
-From 449667d764e4f0e016d56ed9fb224158a80001ce Mon Sep 17 00:00:00 2001
+From e5ff56dfa1d3141bbd971f482202c388a678b30b Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Sat, 21 Jun 2025 18:54:32 -0400
-Subject: [PATCH 121/409] opengl32: Use VirtualAlloc instead of
+Subject: [PATCH 121/423] opengl32: Use VirtualAlloc instead of
  NtAllocateVirtualMemory
 
 ---
@@ -50,5 +50,5 @@ index 238f70cdb61..f9fbc8ecdc4 100644
      if (!slot) slot = &mappings[count++];
  
 -- 
-2.51.1
+2.52.0
 

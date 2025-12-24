@@ -1,7 +1,7 @@
-From d2b589727e9a7ed4d19deb8642d2f242806f56b8 Mon Sep 17 00:00:00 2001
+From 6141b16c4d0b7af6968bedc4d3f6f65f41382706 Mon Sep 17 00:00:00 2001
 From: Alexandre Julliard <julliard@winehq.org>
 Date: Sun, 18 May 2025 12:13:06 +0200
-Subject: [PATCH 334/409] include: Add a macro to define a pointer variable in
+Subject: [PATCH 334/423] include: Add a macro to define a pointer variable in
  assembly.
 
 ---
@@ -96,5 +96,5 @@ index 6fef6944afd..172d7c8aa6e 100644
  # define __ASM_GLOBAL_IMPORT(name) __ASM_DEFINE_IMPORT(__ASM_NAME(#name))
  #else
 -- 
-2.51.1
+2.52.0
 

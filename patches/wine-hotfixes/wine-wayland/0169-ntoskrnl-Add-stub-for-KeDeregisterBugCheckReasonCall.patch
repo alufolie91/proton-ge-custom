@@ -1,8 +1,8 @@
-From d79e0b68ff2a395790ba258614c37800cadcafbf Mon Sep 17 00:00:00 2001
+From 026e7397da7db274a3a6b314669231f7836e0a3c Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Tue, 22 Jul 2025 17:45:10 -0400
-Subject: [PATCH 169/409] ntoskrnl: Add stub for
+Subject: [PATCH 169/423] ntoskrnl: Add stub for
  KeDeregisterBugCheckReasonCallback.
 
 ---
@@ -45,5 +45,5 @@ index 8b9a1ea7b62..f82202c000e 100644
  @ stub KeDisconnectInterrupt
  @ stdcall KeEnterCriticalRegion()
 -- 
-2.51.1
+2.52.0
 

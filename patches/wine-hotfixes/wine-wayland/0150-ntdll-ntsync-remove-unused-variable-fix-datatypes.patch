@@ -1,8 +1,8 @@
-From f9aeb2cc6eff482e3b723c05ed3941214fcc8091 Mon Sep 17 00:00:00 2001
+From 114e61cdd6e281c2056a61a0cada0e18a1682098 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Mon, 14 Jul 2025 03:45:49 -0400
-Subject: [PATCH 150/409] ntdll/ntsync: remove unused variable & fix datatypes.
+Subject: [PATCH 150/423] ntdll/ntsync: remove unused variable & fix datatypes.
 
 ---
  dlls/ntdll/unix/sync.c         | 7 +++----
@@ -49,10 +49,10 @@ index e877d2eae53..8ed7c50e62e 100644
      else
      {
 diff --git a/dlls/ntdll/unix/unix_private.h b/dlls/ntdll/unix/unix_private.h
-index 7357d42ff6a..5c5600713b2 100644
+index 9c1b9a0dcea..666dc6ec68e 100644
 --- a/dlls/ntdll/unix/unix_private.h
 +++ b/dlls/ntdll/unix/unix_private.h
-@@ -418,7 +418,7 @@ extern void call_raise_user_exception_dispatcher(void);
+@@ -420,7 +420,7 @@ extern void call_raise_user_exception_dispatcher(void);
  extern const char * wine_debuginfostr_pc(void *pc);
  
  #define TICKSPERSEC 10000000
@@ -62,5 +62,5 @@ index 7357d42ff6a..5c5600713b2 100644
  
  static inline ULONGLONG ticks_from_time_t( time_t time )
 -- 
-2.51.1
+2.52.0
 

@@ -1,7 +1,7 @@
-From 9713afa19afb6dddd234a47f66f820f516255b4c Mon Sep 17 00:00:00 2001
+From bf5950e8b63ae33173ad2fe6a1dcee6ec91d38e7 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Ignacy=20Kuchci=C5=84ski?= <ignacykuchcinski@gmail.com>
 Date: Wed, 25 Jun 2025 23:41:32 +0200
-Subject: [PATCH 252/409] user32: Add GetPointerDeviceRects stub.
+Subject: [PATCH 252/423] user32: Add GetPointerDeviceRects stub.
 
 Wine-Bug: https://bugs.winehq.org/show_bug.cgi?id=57489
 ---
@@ -42,5 +42,5 @@ index 0126acd8a5f..d723a62a03b 100644
  # @ stub GetPointerFrameInfo
  # @ stub GetPointerFrameInfoHistory
 -- 
-2.51.1
+2.52.0
 

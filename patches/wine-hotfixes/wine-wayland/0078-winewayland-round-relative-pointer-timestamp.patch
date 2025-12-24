@@ -1,8 +1,8 @@
-From 68392ba56b0f9a2afc6698d5a7a396e65e5f59c0 Mon Sep 17 00:00:00 2001
+From e635b6c4f31c7fa6263c9673c2de2bc84f4d524c Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Tue, 3 Jun 2025 18:49:14 -0400
-Subject: [PATCH 078/409] winewayland: round relative pointer timestamp
+Subject: [PATCH 078/423] winewayland: round relative pointer timestamp
 
 ---
  dlls/winewayland.drv/wayland_pointer.c | 2 +-
@@ -22,5 +22,5 @@ index 73741495c3c..e1be487d1d7 100644
      input.mi.dy = round(pointer->accum_y);
      input.mi.dwFlags = MOUSEEVENTF_MOVE;
 -- 
-2.51.1
+2.52.0
 

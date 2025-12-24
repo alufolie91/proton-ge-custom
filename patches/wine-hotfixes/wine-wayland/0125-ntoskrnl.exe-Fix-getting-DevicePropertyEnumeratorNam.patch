@@ -1,7 +1,7 @@
-From d2c1e31f35a884f01441c0628177cac788ef8729 Mon Sep 17 00:00:00 2001
+From 6144fd5d642a8f8ae9ffb76a9a797f2dbdd40114 Mon Sep 17 00:00:00 2001
 From: Alexander Morozov <amorozov@etersoft.ru>
 Date: Thu, 24 Apr 2025 02:52:32 +0300
-Subject: [PATCH 125/409] ntoskrnl.exe: Fix getting
+Subject: [PATCH 125/423] ntoskrnl.exe: Fix getting
  DevicePropertyEnumeratorName.
 
 ---
@@ -58,5 +58,5 @@ index d442b17272a..e45c9e5d7aa 100644
  
  static void test_device_registry_key(void)
 -- 
-2.51.1
+2.52.0
 

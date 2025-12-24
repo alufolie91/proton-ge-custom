@@ -1,7 +1,7 @@
-From 5c51c8723cca877087b63935062c316ae9ee0e85 Mon Sep 17 00:00:00 2001
+From 9b41cba5dfd2d74a12930b776ad0f7bb9cefcb9e Mon Sep 17 00:00:00 2001
 From: Piotr Caban <piotr@codeweavers.com>
 Date: Mon, 24 Mar 2025 11:16:57 +0100
-Subject: [PATCH 270/409] msvcrt: Update file position in _flsbuf() in append
+Subject: [PATCH 270/423] msvcrt: Update file position in _flsbuf() in append
  mode.
 
 Wine-Bug: https://bugs.winehq.org/show_bug.cgi?id=56837
@@ -58,5 +58,5 @@ index 9ce3654bebe..6ead01e9e2d 100644
    free(tempf);
  }
 -- 
-2.51.1
+2.52.0
 

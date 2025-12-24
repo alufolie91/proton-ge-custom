@@ -1,7 +1,7 @@
-From d718e20c56fbaaaa455a9b8fecee3351dcd4f197 Mon Sep 17 00:00:00 2001
+From 7292050f90110e1dbccf6e9792b7af281a49c944 Mon Sep 17 00:00:00 2001
 From: Jacek Caban <jacek@codeweavers.com>
 Date: Mon, 3 Mar 2025 16:00:54 +0100
-Subject: [PATCH 357/409] winegcc: Don't include host include paths when
+Subject: [PATCH 357/423] winegcc: Don't include host include paths when
  compiling with MSVCRT.
 
 ---
@@ -29,5 +29,5 @@ index 1deea6f610a..a2144a4af7b 100644
      }
      else if (opts->wine_objdir)
 -- 
-2.51.1
+2.52.0
 

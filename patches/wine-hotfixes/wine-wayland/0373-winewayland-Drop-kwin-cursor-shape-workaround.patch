@@ -1,8 +1,8 @@
-From 26ec4cc20a89f2a746381fdc44490dc9daf9a774 Mon Sep 17 00:00:00 2001
+From 1e892a0bfe32938273eca0a82555c38cd68b403a Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Fri, 7 Nov 2025 15:19:04 -0600
-Subject: [PATCH 373/409] winewayland: Drop kwin cursor shape workaround
+Subject: [PATCH 373/423] winewayland: Drop kwin cursor shape workaround
 
 Fixed in 6.5
 ---
@@ -23,5 +23,5 @@ index fa3abde3c91..5290990eaa1 100644
  
      if (info.hbmColor) NtGdiDeleteObjectApp(info.hbmColor);
 -- 
-2.51.1
+2.52.0
 

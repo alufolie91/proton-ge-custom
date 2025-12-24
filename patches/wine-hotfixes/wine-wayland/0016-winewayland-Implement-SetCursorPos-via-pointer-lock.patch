@@ -1,7 +1,7 @@
-From 88f8cc10381d0240e7a750da018a3af61981bf66 Mon Sep 17 00:00:00 2001
+From c4f56ec8c99d1e4f32fb1db88ef4bdcd405179b9 Mon Sep 17 00:00:00 2001
 From: Attila Fidan <dev@print0.net>
 Date: Sun, 16 Feb 2025 10:00:41 +0000
-Subject: [PATCH 016/409] winewayland: Implement SetCursorPos via pointer lock.
+Subject: [PATCH 016/423] winewayland: Implement SetCursorPos via pointer lock.
 
 ---
  dlls/winewayland.drv/wayland_pointer.c | 42 ++++++++++++++++++++++----
@@ -130,5 +130,5 @@ index ca7ec47b674..1d4ddeb3425 100644
      .pSysCommand = WAYLAND_SysCommand,
      .pUpdateDisplayDevices = WAYLAND_UpdateDisplayDevices,
 -- 
-2.51.1
+2.52.0
 

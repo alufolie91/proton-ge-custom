@@ -55,28 +55,6 @@ apply_all_in_dir() {
     git clean -xdf
     echo "PROTONFIXES: compile with O3"
     apply_patch "../patches/perfshit/protonfixesO3.patch"
-    pushd subprojects
-    pushd libmspack
-    git reset --hard HEAD
-    git clean -xdf
-    popd
-    pushd umu-database
-    git reset --hard HEAD
-    git clean -xdf
-    popd
-    pushd unzip
-    git reset --hard HEAD
-    git clean -xdf
-    popd
-    pushd winetricks
-    git reset --hard HEAD
-    git clean -xdf
-    echo "WINETRICKS: fix broken gnutls when fetching https"
-    apply_patch "../../../patches/winetricks/winetrick_gnutls_fix.patch"
-    echo "WINETRICKS: fix broken mono/dotnet removal"
-    apply_patch "../../../patches/winetricks/winetricks_dotnet_remove_fix.patch"
-    popd
-    popd
     popd
 
 ### END PREP SECTION ###
@@ -100,6 +78,10 @@ apply_all_in_dir() {
 
     echo "WINE: -CUSTOM- ETAASH WINE-WAYLAND+ PATCHES"
     apply_all_in_dir "../patches/wine-hotfixes/wine-wayland/"
+
+    echo "WINE: ntsync hotfix from paul"
+    apply_patch "../patches/proton/0001-fixup-ntdll-Wait-for-thread-suspension-in-NtSuspendT.patch"
+
 
 ### END EM-10/WINE-WAYLAND PATCH SECTION ###
 
@@ -343,6 +325,10 @@ apply_all_in_dir() {
 
     echo "WINE: Add Wine-to-Unix PID mapping"
     apply_patch "../patches/custom/proton10-unix-pid-maps.patch"
+
+    # https://steamcommunity.com/app/2074920/discussions/0/604168604057160448/
+    echo "WINE: --CUSTOM-- add WINE_HOSTBLOCK envvar to allow working around some failed anticheats (notably eac)"
+    apply_patch "../patches/proton/wine_host_block_envvar.patch"
 
     echo "WINE: RUN AUTOCONF TOOLS/MAKE_REQUESTS"
     autoreconf -f

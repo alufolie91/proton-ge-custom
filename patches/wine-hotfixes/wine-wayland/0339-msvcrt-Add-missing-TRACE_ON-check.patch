@@ -1,7 +1,7 @@
-From 5f751011245c9d1806386daa53655230ce59b485 Mon Sep 17 00:00:00 2001
+From bcdf5faf987a7d8207668d0b16690b30ce72946b Mon Sep 17 00:00:00 2001
 From: Herman Semenov <GermanAizek@yandex.ru>
 Date: Sun, 19 Jan 2025 13:13:32 +0300
-Subject: [PATCH 339/409] msvcrt: Add missing TRACE_ON check.
+Subject: [PATCH 339/423] msvcrt: Add missing TRACE_ON check.
 
 ---
  dlls/msvcrt/undname.c | 1 +
@@ -20,5 +20,5 @@ index 923ec67d363..054bb6b7426 100644
          int i;
          char c;
 -- 
-2.51.1
+2.52.0
 

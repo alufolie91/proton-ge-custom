@@ -1,7 +1,7 @@
-From e387b61a7de2990ab32236eba114f53acaf72274 Mon Sep 17 00:00:00 2001
+From f826b7fb1db9461f5b192af488ed11420b6421c5 Mon Sep 17 00:00:00 2001
 From: William Horvath <william@horvath.blog>
 Date: Tue, 21 Jan 2025 17:07:11 -0800
-Subject: [PATCH 329/409] ntdll: Check for invalid gs_base in the 64-bit
+Subject: [PATCH 329/423] ntdll: Check for invalid gs_base in the 64-bit
  segv_handler.
 
 Adapted from check_invalid_gs in signal_i386.c. PE-side code can
@@ -27,7 +27,7 @@ Wine-Bug: https://bugs.winehq.org/show_bug.cgi?id=57444
  2 files changed, 89 insertions(+), 1 deletion(-)
 
 diff --git a/dlls/ntdll/tests/exception.c b/dlls/ntdll/tests/exception.c
-index 80ab3679288..a90a5a75f36 100644
+index 8d4ba7ec0e4..51a0414ae4a 100644
 --- a/dlls/ntdll/tests/exception.c
 +++ b/dlls/ntdll/tests/exception.c
 @@ -2852,6 +2852,12 @@ static const struct exception
@@ -146,5 +146,5 @@ index ce064dbc6e0..cd4a2ab471c 100644
              leave_handler( ucontext );
              return;
 -- 
-2.51.1
+2.52.0
 

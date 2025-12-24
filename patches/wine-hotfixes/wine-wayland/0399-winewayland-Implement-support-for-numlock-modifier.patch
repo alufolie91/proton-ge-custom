@@ -1,8 +1,8 @@
-From 98a8920913c43b30f2674739c7ca9c81c1cc0305 Mon Sep 17 00:00:00 2001
+From c751192131605f7d80e0e548db27d2c20b0d67eb Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Wed, 26 Nov 2025 21:10:58 -0600
-Subject: [PATCH 399/409] winewayland: Implement support for numlock modifier.
+Subject: [PATCH 399/423] winewayland: Implement support for numlock modifier.
 
 ---
  dlls/winewayland.drv/wayland_keyboard.c | 30 +++++++++++++++++++++++++
@@ -77,5 +77,5 @@ index 18e88e813aa..9c086d64cee 100644
      pthread_mutex_t mutex;
  };
 -- 
-2.51.1
+2.52.0
 

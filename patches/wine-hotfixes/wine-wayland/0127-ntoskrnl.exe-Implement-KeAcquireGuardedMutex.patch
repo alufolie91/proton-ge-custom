@@ -1,7 +1,7 @@
-From 3bb9dac925ac2ca75ad0ed1608242df2ed6d4202 Mon Sep 17 00:00:00 2001
+From 90e6eac5fe09b71c05d99e0ff1c00e15c4dccaff Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty <etaash.mathamsetty@gmail.com>
 Date: Thu, 26 Jan 2023 15:07:16 -0500
-Subject: [PATCH 127/409] ntoskrnl.exe: Implement KeAcquireGuardedMutex.
+Subject: [PATCH 127/423] ntoskrnl.exe: Implement KeAcquireGuardedMutex.
 
 ---
  dlls/ntoskrnl.exe/ntoskrnl.exe.spec |  2 ++
@@ -56,5 +56,5 @@ index d9b5726b920..331c3e1bce2 100644
  {
      KTIMER *timer = timer_;
 -- 
-2.51.1
+2.52.0
 

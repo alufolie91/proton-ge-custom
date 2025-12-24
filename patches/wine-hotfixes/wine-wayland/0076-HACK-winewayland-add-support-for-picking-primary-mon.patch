@@ -1,8 +1,8 @@
-From a430683254c4e069e3bf3b862ae4438b786d1a05 Mon Sep 17 00:00:00 2001
+From fa341ae3907b2acdf51c8d304f46d8ac4764e2e4 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Mon, 2 Jun 2025 17:45:59 -0400
-Subject: [PATCH 076/409] HACK: winewayland: add support for picking primary
+Subject: [PATCH 076/423] HACK: winewayland: add support for picking primary
  monitor name.
 
 ---
@@ -62,5 +62,5 @@ index f1eb6be8e46..bb8f0e03d26 100644
       * to right, but ensure the primary output is first. */
      qsort(output_info_array->data, num_outputs, sizeof(struct output_info),
 -- 
-2.51.1
+2.52.0
 

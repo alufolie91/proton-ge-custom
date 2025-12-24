@@ -1,8 +1,8 @@
-From 10f357ea9259e2c6050649e4d5b2d9ba2c7474ff Mon Sep 17 00:00:00 2001
+From 92fa682db5291519d4818d293d1cb4fdea29c2ae Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Fri, 13 Jun 2025 14:46:40 -0400
-Subject: [PATCH 096/409] Import WIP atidxx implementation
+Subject: [PATCH 096/423] Import WIP atidxx implementation
 
 ---
  configure.ac                      |   1 +
@@ -1067,5 +1067,5 @@ index 3a0dd59d492..6a866240adc 100644
  HKCU,Software\Wine\DllOverrides,"vcruntime140_1",0x2,"native,builtin"
  HKCU,Software\Wine\AppDefaults\ShadowOfWar.exe\DllOverrides,"amd_ags_x64",,"disabled"
 -- 
-2.51.1
+2.52.0
 

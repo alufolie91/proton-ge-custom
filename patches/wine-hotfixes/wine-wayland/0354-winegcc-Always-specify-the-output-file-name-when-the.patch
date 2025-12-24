@@ -1,7 +1,7 @@
-From 3916fabc4e6e9cb4db21ea82ae188043b5442d6f Mon Sep 17 00:00:00 2001
+From 1688c4a9bb72d43b12fb7d76f3b316ca50e7b97a Mon Sep 17 00:00:00 2001
 From: Alexandre Julliard <julliard@winehq.org>
 Date: Wed, 5 Feb 2025 11:26:25 +0100
-Subject: [PATCH 354/409] winegcc: Always specify the output file name when
+Subject: [PATCH 354/423] winegcc: Always specify the output file name when
  there's no spec file.
 
 Wine-Bug: https://bugs.winehq.org/show_bug.cgi?id=41342
@@ -31,5 +31,5 @@ index dc7ef71ce42..2421bbe3fc8 100644
          strarray_add(&spec_args, opts->gui_app ? "windows" : "console");
          if (opts->large_address_aware) strarray_add( &spec_args, "--large-address-aware" );
 -- 
-2.51.1
+2.52.0
 

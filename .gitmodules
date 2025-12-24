@@ -70,9 +70,6 @@
 [submodule "graphene"]
 	path = graphene
 	url = https://github.com/ebassi/graphene
-[submodule "glslang"]
-	path = glslang
-	url = https://github.com/KhronosGroup/glslang
 [submodule "openfst"]
 	path = openfst
 	url = https://github.com/alphacep/openfst
@@ -97,3 +94,6 @@
 [submodule "FEX"]
         path = FEX
         url = https://github.com/FEX-Emu/FEX.git
+[submodule "glslang"]
+	path = glslang
+	url = https://github.com/KhronosGroup/glslang.git

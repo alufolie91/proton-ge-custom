@@ -1,7 +1,7 @@
-From ac65bada6105f6e6a5a1dbffbf5cc952066a4565 Mon Sep 17 00:00:00 2001
+From 2ae0cfefaf1b3f6b82d6e3adaebdeccbc5d3596d Mon Sep 17 00:00:00 2001
 From: Jinoh Kang <jinoh.kang.kr@gmail.com>
 Date: Sat, 1 Feb 2025 17:16:34 +0900
-Subject: [PATCH 235/409] include: Prevent misuse of __WINE_ATOMIC_* helper
+Subject: [PATCH 235/423] include: Prevent misuse of __WINE_ATOMIC_* helper
  macros for non-atomic large accesses.
 
 ---
@@ -28,5 +28,5 @@ index 5d45d1aa063..98546854b57 100644
  #define __WINE_ATOMIC_LOAD_ACQUIRE(ptr, ret) __atomic_load(ptr, ret, __ATOMIC_ACQUIRE)
  #define __WINE_ATOMIC_LOAD_RELAXED(ptr, ret) __atomic_load(ptr, ret, __ATOMIC_RELAXED)
 -- 
-2.51.1
+2.52.0
 

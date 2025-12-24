@@ -1,14 +1,14 @@
-From b879819a5c608e0e40a5fadf09070f41d623b34d Mon Sep 17 00:00:00 2001
+From 3067bd44642d1b83333e08f072d8497a67126e4e Mon Sep 17 00:00:00 2001
 From: Alexandre Julliard <julliard@winehq.org>
 Date: Tue, 25 Feb 2025 13:45:33 +0100
-Subject: [PATCH 382/409] ntdll: Add some missing Zw exports.
+Subject: [PATCH 382/423] ntdll: Add some missing Zw exports.
 
 ---
  dlls/ntdll/ntdll.spec | 23 ++++++++++++++++-------
  1 file changed, 16 insertions(+), 7 deletions(-)
 
 diff --git a/dlls/ntdll/ntdll.spec b/dlls/ntdll/ntdll.spec
-index 49b28d5ddad..3fd05949d00 100644
+index 6dc66fed702..bb5ded0ff92 100644
 --- a/dlls/ntdll/ntdll.spec
 +++ b/dlls/ntdll/ntdll.spec
 @@ -1225,13 +1225,14 @@
@@ -97,5 +97,5 @@ index 49b28d5ddad..3fd05949d00 100644
  @ stdcall -private -syscall ZwWriteFileGather(long long ptr ptr ptr ptr long ptr ptr) NtWriteFileGather
  # @ stub ZwWriteRequestData
 -- 
-2.51.1
+2.52.0
 

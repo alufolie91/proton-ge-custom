@@ -1,8 +1,8 @@
-From a6327fb734e8682edb19308cbf2066ac60c45e9b Mon Sep 17 00:00:00 2001
+From b3957bc184f527ff74c676084b61ff0e716fc8e7 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Fri, 15 Aug 2025 11:41:18 -0400
-Subject: [PATCH 274/409] winewayland: Add support for xdg-toplevel-tag-v1.
+Subject: [PATCH 274/423] winewayland: Add support for xdg-toplevel-tag-v1.
 
 ---
  dlls/winewayland.drv/Makefile.in             |  3 +-
@@ -187,5 +187,5 @@ index 00000000000..5e20bdf45f8
 +
 +</protocol>
 -- 
-2.51.1
+2.52.0
 

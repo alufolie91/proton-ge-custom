@@ -1,7 +1,7 @@
-From 28128718ab63b85a4280a21ed03c3ec1fd57516c Mon Sep 17 00:00:00 2001
+From 10c0b265a3f871c4df477dd72eed26b4821421cc Mon Sep 17 00:00:00 2001
 From: Joachim Priesner <joachim.priesner@web.de>
 Date: Sun, 13 Apr 2025 11:21:40 +0200
-Subject: [PATCH 293/409] msvcrt: Concurrency: Fix signed/unsigned comparison.
+Subject: [PATCH 293/423] msvcrt: Concurrency: Fix signed/unsigned comparison.
 
 SchedulerPolicy_SetPolicyValue(ContextPriority, THREAD_PRIORITY_BELOW_NORMAL)
 would erroneously throw an exception because THREAD_PRIORITY_BELOW_NORMAL == -1
@@ -24,5 +24,5 @@ index 561b4d23289..3d019a86f8f 100644
                  && val != INHERIT_THREAD_PRIORITY) {
              invalid_scheduler_policy_value e;
 -- 
-2.51.1
+2.52.0
 

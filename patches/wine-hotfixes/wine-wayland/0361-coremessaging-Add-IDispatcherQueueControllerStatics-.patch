@@ -1,7 +1,7 @@
-From e7c508a9291a1543b0279f4cfaa8e0986e2aadbf Mon Sep 17 00:00:00 2001
+From 5631d43ea52d44a9fdf1665f4e0cfb28548be85b Mon Sep 17 00:00:00 2001
 From: Mohamad Al-Jaf <mohamadaljaf@gmail.com>
 Date: Mon, 21 Apr 2025 01:18:37 -0400
-Subject: [PATCH 361/409] coremessaging: Add IDispatcherQueueControllerStatics
+Subject: [PATCH 361/423] coremessaging: Add IDispatcherQueueControllerStatics
  stub.
 
 ---
@@ -456,5 +456,5 @@ index 3a349edd4f8..152d4b6d901 100644
      [
          contract(Windows.Foundation.UniversalApiContract, 1.0),
 -- 
-2.51.1
+2.52.0
 

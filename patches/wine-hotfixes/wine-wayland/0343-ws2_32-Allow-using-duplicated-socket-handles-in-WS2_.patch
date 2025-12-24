@@ -1,7 +1,7 @@
-From ac22c0865d14cdd0e9b07fe74726720c451e20a5 Mon Sep 17 00:00:00 2001
+From 840a78eeb2fa173f0f11cc699e8856bf6d28ef51 Mon Sep 17 00:00:00 2001
 From: Elizabeth Figura <zfigura@codeweavers.com>
 Date: Fri, 18 Apr 2025 14:24:27 -0500
-Subject: [PATCH 343/409] ws2_32: Allow using duplicated socket handles in
+Subject: [PATCH 343/423] ws2_32: Allow using duplicated socket handles in
  WS2_sendto().
 
 Wine-Bug: http://bugs.winehq.org/show_bug.cgi?id=58122
@@ -79,5 +79,5 @@ index df8adcd0343..82eff3e2b32 100644
      ret = WSASend((SOCKET)invalid, &wsabuf, 1, NULL, 0, NULL, NULL);
      ok(ret == -1, "got %d\n", ret);
 -- 
-2.51.1
+2.52.0
 

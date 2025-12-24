@@ -1,7 +1,7 @@
-From 6a4226781269c880120f384a71155b092cc102f9 Mon Sep 17 00:00:00 2001
+From 175d8a32aa94d7d41f0656c934273baaa7061119 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty <etaash.mathamsetty@gmail.com>
 Date: Thu, 19 Jun 2025 22:08:46 -0400
-Subject: [PATCH 105/409] winewayland: implement support for color management
+Subject: [PATCH 105/423] winewayland: implement support for color management
  description change event.
 
 ---
@@ -70,5 +70,5 @@ index 83cef777e7c..c0ce474ed8f 100644
              output->wp_image_description_info_v1,
              &image_description_info_listener, output);
 -- 
-2.51.1
+2.52.0
 

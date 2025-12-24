@@ -1,8 +1,8 @@
-From f2d268bd8a9fd9170d5f7aa3a8e3414366e4f0f7 Mon Sep 17 00:00:00 2001
+From 4bb3c769dedce48d18d4f4a24826c4eb3d093d38 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Sat, 10 May 2025 01:54:58 -0400
-Subject: [PATCH 038/409] winewayland: Don't use a destroyed surface in text
+Subject: [PATCH 038/423] winewayland: Don't use a destroyed surface in text
  input.
 
 Co-Authored-By: Attila Fidan <dev@print0.net>
@@ -140,5 +140,5 @@ index 5e04b410202..386b10c687c 100644
  };
  
 -- 
-2.51.1
+2.52.0
 

@@ -1,7 +1,7 @@
-From 7ee02cddd06d80fb517549474170a7effd7a07ff Mon Sep 17 00:00:00 2001
+From fe76206b4a5749bb971845eb227646a0955f7a61 Mon Sep 17 00:00:00 2001
 From: Alexandre Julliard <julliard@winehq.org>
 Date: Fri, 28 Mar 2025 17:54:15 +0100
-Subject: [PATCH 248/409] include: Move InitializeObjectAttributes definition
+Subject: [PATCH 248/423] include: Move InitializeObjectAttributes definition
  to ntdef.h.
 
 ---
@@ -31,7 +31,7 @@ index 8f7e8fae826..fc6d99835ed 100644
  #define BASETYPES
  typedef unsigned char UCHAR, *PUCHAR;
 diff --git a/include/winternl.h b/include/winternl.h
-index 7feebf28ba1..0541438feee 100644
+index 3aadb562466..1c01efd6475 100644
 --- a/include/winternl.h
 +++ b/include/winternl.h
 @@ -5325,16 +5325,6 @@ NTSYSAPI NTSTATUS WINAPI wine_unix_to_nt_file_name( const char *name, WCHAR *buf
@@ -52,5 +52,5 @@ index 7feebf28ba1..0541438feee 100644
  #define NtCurrentThread()  ((HANDLE)~(ULONG_PTR)1)
  
 -- 
-2.51.1
+2.52.0
 

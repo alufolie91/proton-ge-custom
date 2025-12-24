@@ -1,8 +1,8 @@
-From af122bf341f52a47093b81a7bd8ac400a623e7f3 Mon Sep 17 00:00:00 2001
+From 1467f84c95ae437d8046e63b33d43b92f7f7a2ce Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Wed, 23 Jul 2025 00:45:06 -0400
-Subject: [PATCH 176/409] ntoskrnl: Implement SeQueryInformationToken.
+Subject: [PATCH 176/423] ntoskrnl: Implement SeQueryInformationToken.
 
 ---
  dlls/ntoskrnl.exe/ntoskrnl.c        | 18 ++++++++++++++++++
@@ -52,5 +52,5 @@ index 683c7703f69..353d9576a4c 100644
  @ stub SeQuerySessionIdToken
  @ stub SeRegisterLogonSessionTerminatedRoutine
 -- 
-2.51.1
+2.52.0
 

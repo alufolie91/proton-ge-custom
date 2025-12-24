@@ -1,7 +1,7 @@
-From 65b1586114d9379dcc0d5777b2a8a61429556977 Mon Sep 17 00:00:00 2001
+From a1788af451d57407f668c7d42e3773b2fadb2db5 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?R=C3=A9mi=20Bernon?= <rbernon@codeweavers.com>
 Date: Fri, 21 Jun 2024 13:29:40 +0200
-Subject: [PATCH 316/409] win32u: Implement KBDTABLES dead key ToUnicodeEx and
+Subject: [PATCH 316/423] win32u: Implement KBDTABLES dead key ToUnicodeEx and
  GetKeyNameText.
 
 ---
@@ -148,5 +148,5 @@ index 5dcc4af8ceb..4ba74259236 100644
      UINT                          spy_indent;             /* Current spy indent */
      BOOL                          clipping_cursor;        /* thread is currently clipping */
 -- 
-2.51.1
+2.52.0
 

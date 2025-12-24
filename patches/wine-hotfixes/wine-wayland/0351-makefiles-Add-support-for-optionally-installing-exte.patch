@@ -1,7 +1,7 @@
-From f51747aae179c0bd191798c06024217f887b73bd Mon Sep 17 00:00:00 2001
+From 0faf81a968235e1bb319ad9c0134af8c5bea6db3 Mon Sep 17 00:00:00 2001
 From: Alexandre Julliard <julliard@winehq.org>
 Date: Thu, 27 Feb 2025 11:01:48 +0100
-Subject: [PATCH 351/409] makefiles: Add support for optionally installing
+Subject: [PATCH 351/423] makefiles: Add support for optionally installing
  external libs.
 
 ---
@@ -34,5 +34,5 @@ index 4ab60eb2797..16cf7491b72 100644
              if (make->importlib) strarray_add( &make->install[INSTALL_DEV], make->importlib );
              if (make->staticlib) strarray_add( &make->install[INSTALL_DEV], make->staticlib );
 -- 
-2.51.1
+2.52.0
 

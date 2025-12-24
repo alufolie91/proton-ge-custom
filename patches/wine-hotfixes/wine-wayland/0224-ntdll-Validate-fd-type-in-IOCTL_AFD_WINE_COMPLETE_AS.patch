@@ -1,7 +1,7 @@
-From 8e51f10c7c66f06d7b331ad7ecbe41f8f76f4026 Mon Sep 17 00:00:00 2001
+From c0c432fbdd4b1b6ecb9fa1b44a2ae2786a442129 Mon Sep 17 00:00:00 2001
 From: Elizabeth Figura <zfigura@codeweavers.com>
 Date: Fri, 18 Apr 2025 14:23:35 -0500
-Subject: [PATCH 224/409] ntdll: Validate fd type in
+Subject: [PATCH 224/423] ntdll: Validate fd type in
  IOCTL_AFD_WINE_COMPLETE_ASYNC.
 
 ---
@@ -31,5 +31,5 @@ index df786711f32..a09f0fc3f54 100644
              status = *(NTSTATUS *)in_buffer;
              file_complete_async( handle, options, event, apc, apc_user, io, status, 0 );
 -- 
-2.51.1
+2.52.0
 

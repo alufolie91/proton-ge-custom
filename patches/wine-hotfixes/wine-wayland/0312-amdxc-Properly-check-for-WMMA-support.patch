@@ -1,8 +1,8 @@
-From c52220e2d35fe6eaff8e55954b8f920b453ca92e Mon Sep 17 00:00:00 2001
+From d3a047322cca6a50c52fa12d57af307f57c61a72 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Fri, 29 Aug 2025 18:22:03 -0500
-Subject: [PATCH 312/409] amdxc: Properly check for WMMA support.
+Subject: [PATCH 312/423] amdxc: Properly check for WMMA support.
 
 ---
  dlls/amdxc64/amdxc_interfaces.idl |  26 ++++++++
@@ -224,5 +224,5 @@ index 4b04848a862..d96406b6212 100644
          return S_OK;
      } else if (IsEqualGUID(iid, &IID_IAmdExtAntiLagApi)) {
 -- 
-2.51.1
+2.52.0
 

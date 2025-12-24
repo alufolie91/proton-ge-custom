@@ -1,8 +1,8 @@
-From 4dc2fa28af17f529e6d669ffbe453d7168285652 Mon Sep 17 00:00:00 2001
+From 58db445703240cebe9f196a705eb652276b4acce Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Wed, 22 Oct 2025 22:35:19 -0500
-Subject: [PATCH 371/409] HACK: kernelbase: Add --in-process-gpu for Paradox
+Subject: [PATCH 371/423] HACK: kernelbase: Add --in-process-gpu for Paradox
  Launcher.
 
 ---
@@ -24,5 +24,5 @@ index 5dcffcb6cde..8e38c13a2c7 100644
  
      unsigned int i;
 -- 
-2.51.1
+2.52.0
 

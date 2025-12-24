@@ -1,7 +1,7 @@
-From 1d1a38869f301762ec47129429df1d70a600af38 Mon Sep 17 00:00:00 2001
+From 7e9b04e6031a3c7b82db279de40489592e6065b7 Mon Sep 17 00:00:00 2001
 From: Torge Matthies <tmatthies@codeweavers.com>
 Date: Tue, 20 Feb 2024 16:45:49 +0100
-Subject: [PATCH 222/409] ntdll: Add thread_get_register_pointer_values-based
+Subject: [PATCH 222/423] ntdll: Add thread_get_register_pointer_values-based
  implementation of NtFlushProcessWriteBuffers.
 
 ---
@@ -73,5 +73,5 @@ index afccb3f06d1..8c159aea4df 100644
  #define MEMBARRIER_CMD_PRIVATE_EXPEDITED            0x08
  #define MEMBARRIER_CMD_REGISTER_PRIVATE_EXPEDITED   0x10
 -- 
-2.51.1
+2.52.0
 

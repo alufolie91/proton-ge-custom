@@ -1,8 +1,8 @@
-From 65c134773d5c2dcfcdb2d6004ea13be6f1b64146 Mon Sep 17 00:00:00 2001
+From c27b8691cc31b7cd356df362cde0fc9f3c544428 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Tue, 30 Sep 2025 11:55:15 -0500
-Subject: [PATCH 315/409] winewayland: Small formatting fixes
+Subject: [PATCH 315/423] winewayland: Small formatting fixes
 
 ---
  dlls/winewayland.drv/wayland_pointer.c | 9 ++++-----
@@ -43,5 +43,5 @@ index bd1c19485fd..e7bf4b4f27b 100644
          pointer->pointer_frame.wheelH -= (int)input.mi.mouseData;
          input.mi.dwFlags = MOUSEEVENTF_HWHEEL;
 -- 
-2.51.1
+2.52.0
 

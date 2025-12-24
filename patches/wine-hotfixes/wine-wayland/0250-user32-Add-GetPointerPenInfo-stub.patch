@@ -1,7 +1,7 @@
-From 71111e40c666c2a679dcbe74f1e993a1fa5a012c Mon Sep 17 00:00:00 2001
+From 2973346c8c9b24fae630406097251ebe280ca1e0 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Ignacy=20Kuchci=C5=84ski?= <ignacykuchcinski@gmail.com>
 Date: Thu, 19 Jun 2025 19:31:04 +0200
-Subject: [PATCH 250/409] user32: Add GetPointerPenInfo stub.
+Subject: [PATCH 250/423] user32: Add GetPointerPenInfo stub.
 
 Wine-Bug: https://bugs.winehq.org/show_bug.cgi?id=57489
 ---
@@ -41,5 +41,5 @@ index 05019ee2bae..95c97cfcac3 100644
  @ stdcall GetPointerTouchInfo(long ptr)
  @ stdcall GetPointerTouchInfoHistory(long ptr ptr)
 -- 
-2.51.1
+2.52.0
 

@@ -1,7 +1,7 @@
-From b1342fb81f92e4e9ad0ba0745a8a6f0ea921c6f3 Mon Sep 17 00:00:00 2001
+From 66790cb4dc69146e03405d495d8aabce53152e29 Mon Sep 17 00:00:00 2001
 From: Alexandre Julliard <julliard@winehq.org>
 Date: Thu, 17 Jul 2025 15:29:33 +0200
-Subject: [PATCH 386/409] ntdll: Add NtAccessCheckByTypeAndAuditAlarm() and
+Subject: [PATCH 386/423] ntdll: Add NtAccessCheckByTypeAndAuditAlarm() and
  NtCloseObjectAuditAlarm() stubs.
 
 They need explicit syscall ids.
@@ -17,7 +17,7 @@ They need explicit syscall ids.
  8 files changed, 429 insertions(+), 318 deletions(-)
 
 diff --git a/dlls/ntdll/ntdll.spec b/dlls/ntdll/ntdll.spec
-index e28e63efa21..70d9829a811 100644
+index 337deeaf604..1a753b11823 100644
 --- a/dlls/ntdll/ntdll.spec
 +++ b/dlls/ntdll/ntdll.spec
 @@ -134,7 +134,7 @@
@@ -951,7 +951,7 @@ index 98546854b57..982a3143fca 100644
  {
    WORD   Type;
 diff --git a/include/winternl.h b/include/winternl.h
-index c18551a7547..349ef297387 100644
+index 7561062d9d6..12780719c32 100644
 --- a/include/winternl.h
 +++ b/include/winternl.h
 @@ -4540,7 +4540,8 @@ NTSYSAPI NTSTATUS  WINAPI LdrUnlockLoaderLock(ULONG,ULONG_PTR);
@@ -965,5 +965,5 @@ index c18551a7547..349ef297387 100644
  NTSYSAPI NTSTATUS  WINAPI NtAdjustGroupsToken(HANDLE,BOOLEAN,PTOKEN_GROUPS,ULONG,PTOKEN_GROUPS,PULONG);
  NTSYSAPI NTSTATUS  WINAPI NtAdjustPrivilegesToken(HANDLE,BOOLEAN,PTOKEN_PRIVILEGES,DWORD,PTOKEN_PRIVILEGES,PDWORD);
 -- 
-2.51.1
+2.52.0
 

@@ -1,8 +1,8 @@
-From 8241eec92bced3ab7c31cc4a5aebebd2449463cc Mon Sep 17 00:00:00 2001
+From 73bd6c1948b3997f6a8f4e41f03a55c5d7c13525 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Wed, 19 Nov 2025 01:20:22 -0600
-Subject: [PATCH 390/409] winewayland: Separate swiss german and german scanvk
+Subject: [PATCH 390/423] winewayland: Separate swiss german and german scanvk
  mappings.
 
 ---
@@ -42,5 +42,5 @@ index 926df4d8f11..ec72d75f0ff 100644
      }
      if (strstr(xkb_layout, "dvorak")) scan2vk = scan2vk_dvorak;
 -- 
-2.51.1
+2.52.0
 

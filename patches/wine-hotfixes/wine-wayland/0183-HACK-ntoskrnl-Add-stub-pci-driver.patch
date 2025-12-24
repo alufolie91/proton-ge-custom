@@ -1,8 +1,8 @@
-From 0556760e03b0ef137ba08bbe1ff82dc7d1812d60 Mon Sep 17 00:00:00 2001
+From 820e8017a627d2b04bec47aa90da691211bef726 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Wed, 23 Jul 2025 15:17:03 -0400
-Subject: [PATCH 183/409] HACK: ntoskrnl: Add stub pci driver.
+Subject: [PATCH 183/423] HACK: ntoskrnl: Add stub pci driver.
 
 ---
  dlls/ntoskrnl.exe/ntoskrnl.c | 9 +++++++++
@@ -43,5 +43,5 @@ index ec4b1c227dc..5bc679f1ca0 100644
      case DLL_PROCESS_DETACH:
          LdrUnregisterDllNotification( ldr_notify_cookie );
 -- 
-2.51.1
+2.52.0
 

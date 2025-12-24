@@ -1,7 +1,7 @@
-From 5415afff81cc0c69384ef39a298a5b8130916e23 Mon Sep 17 00:00:00 2001
+From 2b1fb1b1d19e339ac98ee10010b20321af68fe7c Mon Sep 17 00:00:00 2001
 From: Louis Lenders <xerox.xerox2000x@gmail.com>
 Date: Thu, 6 Mar 2025 18:09:52 +0100
-Subject: [PATCH 208/409] ntdll: Silence the noisy FIXME in
+Subject: [PATCH 208/423] ntdll: Silence the noisy FIXME in
  RtlGetCurrentProcessorNumberEx.
 
 This one is frequently flooding the console while testing various dotnet core programs.
@@ -10,10 +10,10 @@ This one is frequently flooding the console while testing various dotnet core pr
  1 file changed, 5 insertions(+), 1 deletion(-)
 
 diff --git a/dlls/ntdll/rtl.c b/dlls/ntdll/rtl.c
-index 643d6f3ce49..deee078faa2 100644
+index 732b819c151..230526d651a 100644
 --- a/dlls/ntdll/rtl.c
 +++ b/dlls/ntdll/rtl.c
-@@ -842,7 +842,11 @@ BOOL WINAPI RtlSetCurrentTransaction(HANDLE new_transaction)
+@@ -848,7 +848,11 @@ BOOL WINAPI RtlSetCurrentTransaction(HANDLE new_transaction)
   */
  void WINAPI RtlGetCurrentProcessorNumberEx(PROCESSOR_NUMBER *processor)
  {
@@ -27,5 +27,5 @@ index 643d6f3ce49..deee078faa2 100644
      processor->Number = NtGetCurrentProcessorNumber();
      processor->Reserved = 0;
 -- 
-2.51.1
+2.52.0
 

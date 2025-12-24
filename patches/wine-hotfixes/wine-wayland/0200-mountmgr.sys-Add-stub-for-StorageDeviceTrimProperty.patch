@@ -1,7 +1,7 @@
-From 2e5ea48da9e3db6071ffb929a8babe97f8b7c07b Mon Sep 17 00:00:00 2001
+From 72e56d975a2e78e1779e45b58eeef300aba8548f Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty <etaash.mathamsetty@gmail.com>
 Date: Fri, 1 Aug 2025 12:53:09 -0400
-Subject: [PATCH 200/409] mountmgr.sys: Add stub for StorageDeviceTrimProperty.
+Subject: [PATCH 200/423] mountmgr.sys: Add stub for StorageDeviceTrimProperty.
 
 ---
  dlls/mountmgr.sys/device.c | 27 +++++++++++++++++++++++++++
@@ -65,5 +65,5 @@ index 0cb6d01f9b9..653fbaea42d 100644
      ULONG                       Version;
      ULONG                       Size;
 -- 
-2.51.1
+2.52.0
 

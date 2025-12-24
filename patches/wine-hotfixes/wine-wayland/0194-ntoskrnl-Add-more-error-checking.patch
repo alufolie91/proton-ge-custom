@@ -1,8 +1,8 @@
-From ea5958204f83363ff743762ff2a8dc329afb5d7d Mon Sep 17 00:00:00 2001
+From 040f38539069141b4ae8427f3ce5567e852d9103 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Thu, 24 Jul 2025 19:53:46 -0400
-Subject: [PATCH 194/409] ntoskrnl: Add more error checking
+Subject: [PATCH 194/423] ntoskrnl: Add more error checking
 
 ---
  dlls/ntoskrnl.exe/ntoskrnl.c | 33 +++++++++++++++++++--------------
@@ -57,5 +57,5 @@ index 933ab5e25c7..10d1056dfb3 100644
      IsWow64Process( handle, &process->wow64 );
  
 -- 
-2.51.1
+2.52.0
 

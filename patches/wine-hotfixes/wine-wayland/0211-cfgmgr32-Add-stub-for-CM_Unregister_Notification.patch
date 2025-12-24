@@ -1,7 +1,7 @@
-From e6b1cd0d0488b604ab1e344ed701f6dc25481450 Mon Sep 17 00:00:00 2001
+From dbfeab1157da171278a86a58e888e52cc0c1d3d9 Mon Sep 17 00:00:00 2001
 From: Vibhav Pant <vibhavp@gmail.com>
 Date: Tue, 22 Oct 2024 11:43:37 +0530
-Subject: [PATCH 211/409] cfgmgr32: Add stub for CM_Unregister_Notification.
+Subject: [PATCH 211/423] cfgmgr32: Add stub for CM_Unregister_Notification.
 
 ---
  dlls/cfgmgr32/cfgmgr32.spec |  1 +
@@ -52,5 +52,5 @@ index 7c8cab065ba..580d5d1cc26 100644
  CMAPI CONFIGRET WINAPI CM_Request_Device_EjectW(DEVINST dev, PPNP_VETO_TYPE type, LPWSTR name, ULONG length, ULONG flags);
  #define     CM_Request_Device_Eject WINELIB_NAME_AW(CM_Get_Device_ID_List_Ex)
 -- 
-2.51.1
+2.52.0
 

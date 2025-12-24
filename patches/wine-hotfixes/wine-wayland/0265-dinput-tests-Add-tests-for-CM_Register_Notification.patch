@@ -1,7 +1,7 @@
-From 1d9a17eddffa687b83ea11db132ce9d77b06d667 Mon Sep 17 00:00:00 2001
+From cb9ae7e243ccb55d63623237cef28498d1ea5aff Mon Sep 17 00:00:00 2001
 From: Vibhav Pant <vibhavp@gmail.com>
 Date: Tue, 11 Mar 2025 21:53:20 +0530
-Subject: [PATCH 265/409] dinput/tests: Add tests for CM_Register_Notification.
+Subject: [PATCH 265/423] dinput/tests: Add tests for CM_Register_Notification.
 
 ---
  dlls/dinput/tests/Makefile.in |   2 +-
@@ -358,5 +358,5 @@ index f7199d2b17e..0c068d04b04 100644
      DestroyWindow( hwnd );
      UnregisterClassW( class.lpszClassName, class.hInstance );
 -- 
-2.51.1
+2.52.0
 

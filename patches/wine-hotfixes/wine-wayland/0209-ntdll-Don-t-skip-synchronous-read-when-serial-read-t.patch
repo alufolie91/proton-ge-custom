@@ -1,7 +1,7 @@
-From 45be430bd35d5fe0955401bd98880cb7af982aea Mon Sep 17 00:00:00 2001
+From ef8a7ed28c15b374ac0ba23a6f14304a0ee99961 Mon Sep 17 00:00:00 2001
 From: Alex Henrie <alexhenrie24@gmail.com>
 Date: Fri, 27 Jun 2025 22:11:08 -0600
-Subject: [PATCH 209/409] ntdll: Don't skip synchronous read when serial read
+Subject: [PATCH 209/423] ntdll: Don't skip synchronous read when serial read
  timeout is infinite.
 
 If get_io_timeouts sets the interval timeout to 0, it means that the
@@ -31,5 +31,5 @@ index 248abc7d357..c90f5e99813 100644
              status = register_async_file_read( handle, event, apc, apc_user, iosb_ptr,
                                                 buffer, total, length, FALSE );
 -- 
-2.51.1
+2.52.0
 

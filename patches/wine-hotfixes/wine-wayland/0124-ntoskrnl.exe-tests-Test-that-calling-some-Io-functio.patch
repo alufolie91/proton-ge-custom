@@ -1,7 +1,7 @@
-From 632d410a570e48482f1bdea969d46dff9fc6e4cf Mon Sep 17 00:00:00 2001
+From d11aac8ebdb309e4914aa04a2ce249fd236f8457 Mon Sep 17 00:00:00 2001
 From: Alexander Morozov <amorozov@etersoft.ru>
 Date: Thu, 24 Apr 2025 02:49:56 +0300
-Subject: [PATCH 124/409] ntoskrnl.exe/tests: Test that calling some Io
+Subject: [PATCH 124/423] ntoskrnl.exe/tests: Test that calling some Io
  functions does not result in receiving IRP_MN_QUERY_ID.
 
 ---
@@ -213,5 +213,5 @@ index 98bd3795e98..2523fa5318d 100644
  
      ret = NtOpenFile(&child, SYNCHRONIZE, &attr, &io, 0, 0);
 -- 
-2.51.1
+2.52.0
 

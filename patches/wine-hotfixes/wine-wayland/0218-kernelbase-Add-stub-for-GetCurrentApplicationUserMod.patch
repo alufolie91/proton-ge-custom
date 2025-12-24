@@ -1,7 +1,7 @@
-From be73c07205361101d6465251e599a2b7c68bf5ca Mon Sep 17 00:00:00 2001
+From ba985b7519a0cfc5346ab7df350e2c3261a9463d Mon Sep 17 00:00:00 2001
 From: Louis Lenders <xerox.xerox2000x@gmail.com>
 Date: Fri, 14 Mar 2025 16:12:59 +0100
-Subject: [PATCH 218/409] kernelbase: Add stub for
+Subject: [PATCH 218/423] kernelbase: Add stub for
  GetCurrentApplicationUserModelId.
 
 Wine-Bug: https://bugs.winehq.org/show_bug.cgi?id=57964
@@ -12,7 +12,7 @@ Wine-Bug: https://bugs.winehq.org/show_bug.cgi?id=57964
  3 files changed, 10 insertions(+), 1 deletion(-)
 
 diff --git a/dlls/kernel32/kernel32.spec b/dlls/kernel32/kernel32.spec
-index dc0aa0b975f..47e809ec8fb 100644
+index 6d3712ce428..4741760831c 100644
 --- a/dlls/kernel32/kernel32.spec
 +++ b/dlls/kernel32/kernel32.spec
 @@ -636,6 +636,7 @@
@@ -56,5 +56,5 @@ index 17b414128b2..268ccfcd570 100644
  /***********************************************************************
   *         GetCurrentPackageFamilyName   (kernelbase.@)
 -- 
-2.51.1
+2.52.0
 
