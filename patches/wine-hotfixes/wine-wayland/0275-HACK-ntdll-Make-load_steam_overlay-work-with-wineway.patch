@@ -1,8 +1,8 @@
-From fc9ee837886192cd95ff43609412dab4d71c9eda Mon Sep 17 00:00:00 2001
+From fcebb741df52ffef6abd2fb39465fe03732826e7 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Fri, 15 Aug 2025 12:05:11 -0400
-Subject: [PATCH 275/423] HACK: ntdll: Make load_steam_overlay work with
+Subject: [PATCH 275/473] HACK: ntdll: Make load_steam_overlay work with
  winewayland.
 
 ---

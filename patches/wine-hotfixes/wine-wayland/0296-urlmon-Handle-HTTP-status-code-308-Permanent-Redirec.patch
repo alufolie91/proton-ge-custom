@@ -1,7 +1,7 @@
-From 5d08db37650fc1aa5ce64cadc635abe5a3b0a447 Mon Sep 17 00:00:00 2001
+From 856eecc57c72bf99e178cd93fcdad93638c637de Mon Sep 17 00:00:00 2001
 From: Tobias Gruetzmacher <tobias-git@23.gs>
 Date: Thu, 3 Apr 2025 18:06:49 +0200
-Subject: [PATCH 296/423] urlmon: Handle HTTP status code 308 (Permanent
+Subject: [PATCH 296/473] urlmon: Handle HTTP status code 308 (Permanent
  Redirect).
 
 ---

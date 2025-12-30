@@ -1,7 +1,7 @@
-From 7c27b2010d6ff53f2330bc82daa689a29e9ca332 Mon Sep 17 00:00:00 2001
+From 30c0c71ac0f17046089fc15a61ccdc58a1a78b87 Mon Sep 17 00:00:00 2001
 From: Alexandre Julliard <julliard@winehq.org>
 Date: Tue, 20 May 2025 22:21:24 +0200
-Subject: [PATCH 383/423] winedump: Dump syscall numbers.
+Subject: [PATCH 383/473] winedump: Dump syscall numbers.
 
 ---
  tools/winedump/pe.c | 104 ++++++++++++++++++++++++++++++++++++++++++++

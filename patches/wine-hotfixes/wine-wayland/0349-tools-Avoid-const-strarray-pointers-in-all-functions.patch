@@ -1,7 +1,7 @@
-From b3fdf8a0c52eed5267ca907a0da164355a616203 Mon Sep 17 00:00:00 2001
+From a933d2e645a36fc398ecf3e2a2aeae7feaf95fb9 Mon Sep 17 00:00:00 2001
 From: Alexandre Julliard <julliard@winehq.org>
 Date: Wed, 26 Feb 2025 21:34:22 +0100
-Subject: [PATCH 349/423] tools: Avoid const strarray pointers in all
+Subject: [PATCH 349/473] tools: Avoid const strarray pointers in all
  functions.
 
 ---

@@ -1,8 +1,8 @@
-From 4bda3b65b2be54455031c7f675eec8528747fb3b Mon Sep 17 00:00:00 2001
+From ce58ffbe055907c4114dbf03ddfb49d733904ad7 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Fri, 5 Sep 2025 23:31:13 -0500
-Subject: [PATCH 292/423] winewayland: Add env to disable IME.
+Subject: [PATCH 292/473] winewayland: Add env to disable IME.
 
 ---
  dlls/winewayland.drv/wayland.c | 18 ++++++++++++++++++

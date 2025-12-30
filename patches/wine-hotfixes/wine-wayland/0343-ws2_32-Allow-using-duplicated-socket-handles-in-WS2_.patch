@@ -1,7 +1,7 @@
-From 840a78eeb2fa173f0f11cc699e8856bf6d28ef51 Mon Sep 17 00:00:00 2001
+From 49e27ab03ed47bb27f41663cd6d679dc23679061 Mon Sep 17 00:00:00 2001
 From: Elizabeth Figura <zfigura@codeweavers.com>
 Date: Fri, 18 Apr 2025 14:24:27 -0500
-Subject: [PATCH 343/423] ws2_32: Allow using duplicated socket handles in
+Subject: [PATCH 343/473] ws2_32: Allow using duplicated socket handles in
  WS2_sendto().
 
 Wine-Bug: http://bugs.winehq.org/show_bug.cgi?id=58122

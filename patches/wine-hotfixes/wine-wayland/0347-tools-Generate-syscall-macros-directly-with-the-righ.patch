@@ -1,7 +1,7 @@
-From a8fe4f45f667d1e7653131162f48f5d633dc62a8 Mon Sep 17 00:00:00 2001
+From 36e93eb96639c377013da1dbfbefbbdf9c7c3b46 Mon Sep 17 00:00:00 2001
 From: Alexandre Julliard <julliard@winehq.org>
 Date: Tue, 29 Apr 2025 18:00:58 +0200
-Subject: [PATCH 347/423] tools: Generate syscall macros directly with the
+Subject: [PATCH 347/473] tools: Generate syscall macros directly with the
  right offset.
 
 ---

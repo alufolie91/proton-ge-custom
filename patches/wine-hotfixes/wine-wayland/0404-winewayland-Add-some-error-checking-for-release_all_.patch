@@ -1,8 +1,8 @@
-From 40ea8e2d888d04d0765945221b6b7999fe09f68c Mon Sep 17 00:00:00 2001
+From 10ab2fc4a93a32d8570f388f3b686206651cecaa Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Fri, 28 Nov 2025 15:32:35 -0600
-Subject: [PATCH 404/423] winewayland: Add some error checking for
+Subject: [PATCH 404/473] winewayland: Add some error checking for
  release_all_keys.
 
 ---

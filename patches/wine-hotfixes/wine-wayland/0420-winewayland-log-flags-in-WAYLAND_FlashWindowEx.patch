@@ -1,8 +1,8 @@
-From 61208ae40a82270a410c221d0945dde929344876 Mon Sep 17 00:00:00 2001
+From 2be5c3e97f6389205818dd871768eafe5157d4e9 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Sat, 20 Dec 2025 13:32:03 -0500
-Subject: [PATCH 420/423] winewayland: log flags in WAYLAND_FlashWindowEx.
+Subject: [PATCH 420/473] winewayland: log flags in WAYLAND_FlashWindowEx.
 
 ---
  dlls/winewayland.drv/window.c | 2 +-

@@ -1,7 +1,7 @@
-From b7540fea5b2925a2ca39e6cd80b48971e75f2995 Mon Sep 17 00:00:00 2001
+From 614459dd5b16300552ddacd15cda212441b573f2 Mon Sep 17 00:00:00 2001
 From: Sven Baars <sbaars@codeweavers.com>
 Date: Fri, 18 Apr 2025 16:25:03 +0200
-Subject: [PATCH 271/423] ntdll: Avoid evaluating a possibly uninitialized
+Subject: [PATCH 271/473] ntdll: Avoid evaluating a possibly uninitialized
  variable in RtlExpandEnvironmentStrings(). (Valgrind).
 
 ---

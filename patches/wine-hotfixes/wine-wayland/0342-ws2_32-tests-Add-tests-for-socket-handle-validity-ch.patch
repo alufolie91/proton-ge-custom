@@ -1,7 +1,7 @@
-From 6f4cd27630d1b3490cadd37062f9ffe68576dbb2 Mon Sep 17 00:00:00 2001
+From 5ed68bb7ece392ad05f65fe80b3d38c1c49b0d20 Mon Sep 17 00:00:00 2001
 From: Elizabeth Figura <zfigura@codeweavers.com>
 Date: Fri, 18 Apr 2025 14:10:42 -0500
-Subject: [PATCH 342/423] ws2_32/tests: Add tests for socket handle validity
+Subject: [PATCH 342/473] ws2_32/tests: Add tests for socket handle validity
  checks in send functions.
 
 ---

@@ -1,8 +1,8 @@
-From 95f37c208a027a86a221e16f7a41f5c1a229978a Mon Sep 17 00:00:00 2001
+From 0c4a97071e0329d1ac9fbe5f1bfd7a9bd2d6688a Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Sun, 21 Dec 2025 01:00:54 -0500
-Subject: [PATCH 422/423] advapi32: Add semi-stub for
+Subject: [PATCH 422/473] advapi32: Add semi-stub for
  RegCreateKeyTransacted[A/W].
 
 ---

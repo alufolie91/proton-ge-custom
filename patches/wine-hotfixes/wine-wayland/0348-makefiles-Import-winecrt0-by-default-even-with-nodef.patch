@@ -1,7 +1,7 @@
-From afc777aaf972dc1d6f1d7fe03e905bcc65be5eaf Mon Sep 17 00:00:00 2001
+From e0171fb66c5d886da344a56e0d6046771e9b3047 Mon Sep 17 00:00:00 2001
 From: Alexandre Julliard <julliard@winehq.org>
 Date: Wed, 26 Feb 2025 17:02:19 +0100
-Subject: [PATCH 348/423] makefiles: Import winecrt0 by default even with
+Subject: [PATCH 348/473] makefiles: Import winecrt0 by default even with
  -nodefaultlibs.
 
 ---

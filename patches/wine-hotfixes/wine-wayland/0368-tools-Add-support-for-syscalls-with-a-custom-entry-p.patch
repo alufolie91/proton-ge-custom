@@ -1,7 +1,7 @@
-From 15b4b5426ccda0eb9d94a45de21ede4cab7205d7 Mon Sep 17 00:00:00 2001
+From bdfd292dcef582e694d9d3f150941cd54624df34 Mon Sep 17 00:00:00 2001
 From: Alexandre Julliard <julliard@winehq.org>
 Date: Mon, 12 May 2025 13:24:55 +0200
-Subject: [PATCH 368/423] tools: Add support for syscalls with a custom entry
+Subject: [PATCH 368/473] tools: Add support for syscalls with a custom entry
  point.
 
 ---

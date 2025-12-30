@@ -1,8 +1,8 @@
-From c0e51269b6d57558e5682f72b88f603f96c612f1 Mon Sep 17 00:00:00 2001
+From 42fa37dd6eef33c2738f2f979bcc7dfbebcbdd15 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Sun, 30 Nov 2025 22:28:42 -0600
-Subject: [PATCH 406/423] winewayland: Properly implement locked keys.
+Subject: [PATCH 406/473] winewayland: Properly implement locked keys.
 
 ---
  dlls/winewayland.drv/wayland_keyboard.c | 102 ++++++++++++++++++------

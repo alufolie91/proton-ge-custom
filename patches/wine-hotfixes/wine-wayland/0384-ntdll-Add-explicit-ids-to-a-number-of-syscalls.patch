@@ -1,7 +1,7 @@
-From 246e768499c25f41dbee4429ce854d73bdea112a Mon Sep 17 00:00:00 2001
+From 172e73a04dafd6c065490a6a5729a594253e37ff Mon Sep 17 00:00:00 2001
 From: Alexandre Julliard <julliard@winehq.org>
 Date: Thu, 5 Jun 2025 12:00:59 +0200
-Subject: [PATCH 384/423] ntdll: Add explicit ids to a number of syscalls.
+Subject: [PATCH 384/473] ntdll: Add explicit ids to a number of syscalls.
 
 For the ones that seem to be mostly stable across Windows versions,
 based on the syscall table by Mateusz "j00ru" Jurczyk.

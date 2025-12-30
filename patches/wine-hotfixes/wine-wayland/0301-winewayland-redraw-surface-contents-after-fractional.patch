@@ -1,8 +1,8 @@
-From 30eb44661a563283b4ec1a335f08bfb7a7447de8 Mon Sep 17 00:00:00 2001
+From fabd716addb0ab888deba95dba44d56cb641d090 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Wed, 10 Sep 2025 12:29:19 -0500
-Subject: [PATCH 301/423] winewayland: redraw surface contents after fractional
+Subject: [PATCH 301/473] winewayland: redraw surface contents after fractional
  scale event.
 
 ---

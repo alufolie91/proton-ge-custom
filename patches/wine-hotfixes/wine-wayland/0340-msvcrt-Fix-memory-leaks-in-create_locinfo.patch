@@ -1,7 +1,7 @@
-From 1078c01f7bfed51820c8c8aedd40febddde0cfd6 Mon Sep 17 00:00:00 2001
+From c86b8e9be8124ab852d8c9c3938e51a1ac66c86c Mon Sep 17 00:00:00 2001
 From: Piotr Caban <piotr@codeweavers.com>
 Date: Wed, 23 Apr 2025 20:05:06 +0200
-Subject: [PATCH 340/423] msvcrt: Fix memory leaks in create_locinfo.
+Subject: [PATCH 340/473] msvcrt: Fix memory leaks in create_locinfo.
 
 ---
  dlls/msvcrt/locale.c | 9 +++++++--

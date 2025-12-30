@@ -1,8 +1,8 @@
-From 7c336a3225a1797e0d5df4ee5b60c884f1332cb4 Mon Sep 17 00:00:00 2001
+From 6aedd8531c06d715a273c844df854d0623a98200 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Wed, 13 Aug 2025 03:56:55 -0400
-Subject: [PATCH 253/423] ntdll: Add SystemPowerInformation semi-stub.
+Subject: [PATCH 253/473] ntdll: Add SystemPowerInformation semi-stub.
 
 ---
  dlls/ntdll/unix/system.c | 13 +++++++++++++

@@ -1,8 +1,8 @@
-From c02754cd29c4160af56752c17d509612fd10a307 Mon Sep 17 00:00:00 2001
+From d9972fa88750d965b15b5b84b07051b75201fcbf Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Fri, 5 Dec 2025 09:41:28 -0600
-Subject: [PATCH 409/423] winewayland: Implement vulkan surface update.
+Subject: [PATCH 409/473] winewayland: Implement vulkan surface update.
 
 based on: https://gitlab.winehq.org/wine/wine/-/commit/9be0cf187b69f8e60c65993b8e1eba4f7d4ca0a0
 ---

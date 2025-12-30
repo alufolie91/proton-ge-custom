@@ -1,8 +1,8 @@
-From 028c87d29e7b16347b009aa12a9e8a4bba0ade44 Mon Sep 17 00:00:00 2001
+From 9865e6bb19c826274a7902dc27db976998886451 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Fri, 19 Dec 2025 22:38:53 -0500
-Subject: [PATCH 418/423] winewayland: Add TRACE for wgl_swapbuffers.
+Subject: [PATCH 418/473] winewayland: Add TRACE for wgl_swapbuffers.
 
 ---
  dlls/winewayland.drv/opengl.c | 3 +++

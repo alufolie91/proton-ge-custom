@@ -1,8 +1,8 @@
-From 4c3589b8aa46e3a7c85ab946227b623be4d3e1fb Mon Sep 17 00:00:00 2001
+From 0b76ea3733ca98ddde0cf142b543500890ee8d91 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Mon, 1 Dec 2025 10:45:35 -0600
-Subject: [PATCH 407/423] winewayland: Check for desktop window before using
+Subject: [PATCH 407/473] winewayland: Check for desktop window before using
  opwr workarounds.
 
 ---

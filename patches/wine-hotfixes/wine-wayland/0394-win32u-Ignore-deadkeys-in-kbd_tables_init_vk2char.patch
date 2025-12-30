@@ -1,8 +1,8 @@
-From 6b40d1dba3e86231691626eef605e82ffb8fbebe Mon Sep 17 00:00:00 2001
+From 93f2cee9f41629b4d55593ae17765c260c6bbcaf Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Wed, 19 Nov 2025 03:12:27 -0600
-Subject: [PATCH 394/423] win32u: Ignore deadkeys in kbd_tables_init_vk2char.
+Subject: [PATCH 394/473] win32u: Ignore deadkeys in kbd_tables_init_vk2char.
 
 ---
  dlls/win32u/input.c | 9 ++++++++-

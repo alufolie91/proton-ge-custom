@@ -1,8 +1,8 @@
-From 1de2e5723642f8d148c198d8a85b2869f53c7ce6 Mon Sep 17 00:00:00 2001
+From 5f4457470dcc748efe5826fc1e2cd4505c6dc033 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Wed, 26 Nov 2025 13:32:17 -0600
-Subject: [PATCH 397/423] ntdll: Add some more special env vars.
+Subject: [PATCH 397/473] ntdll: Add some more special env vars.
 
 ---
  dlls/ntdll/unix/env.c | 7 ++++++-

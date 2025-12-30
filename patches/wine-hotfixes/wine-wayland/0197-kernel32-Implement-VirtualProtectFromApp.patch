@@ -1,8 +1,8 @@
-From 59dd8e103f319a44a1c382f1a66cb8ac7a2d859b Mon Sep 17 00:00:00 2001
+From 1c8f5bdd95a25a87ec362fc3cd55145a2ae50840 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Tue, 29 Jul 2025 13:11:51 -0400
-Subject: [PATCH 197/423] kernel32: Implement VirtualProtectFromApp.
+Subject: [PATCH 197/473] kernel32: Implement VirtualProtectFromApp.
 
 ---
  dlls/kernel32/kernel32.spec     | 1 +

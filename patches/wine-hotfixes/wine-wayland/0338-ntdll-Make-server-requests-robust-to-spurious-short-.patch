@@ -1,7 +1,7 @@
-From e1f96a7b25a3549a73d51400d8d23cf56d5fd55a Mon Sep 17 00:00:00 2001
+From baafc90bc76f7c3ecaf43ac4fd6d98f7bfc70b38 Mon Sep 17 00:00:00 2001
 From: Keno Fischer <keno@juliacomputing.com>
 Date: Wed, 15 Dec 2021 21:09:35 -0500
-Subject: [PATCH 338/423] ntdll: Make server requests robust to spurious short
+Subject: [PATCH 338/473] ntdll: Make server requests robust to spurious short
  writes.
 
 It is possible for the write/writev functions in send_request to

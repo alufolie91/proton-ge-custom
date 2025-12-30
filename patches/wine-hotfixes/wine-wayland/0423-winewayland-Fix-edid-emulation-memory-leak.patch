@@ -1,8 +1,8 @@
-From 50d77015b49e84753415a9ed2e694d898f00f2ff Mon Sep 17 00:00:00 2001
+From a093c57b9b564273da0a2390ad77d2f5e16435ff Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Sun, 21 Dec 2025 01:01:54 -0500
-Subject: [PATCH 423/423] winewayland: Fix edid emulation memory leak.
+Subject: [PATCH 423/473] winewayland: Fix edid emulation memory leak.
 
 Rather minor leak
 ---

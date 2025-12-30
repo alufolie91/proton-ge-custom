@@ -1,7 +1,7 @@
-From c2b22517c933b35c34f89de315a93a9c6dd0514c Mon Sep 17 00:00:00 2001
+From a604ed35d25ef9fc97693a00b72841ab33331427 Mon Sep 17 00:00:00 2001
 From: Louis Lenders <xerox.xerox2000x@gmail.com>
 Date: Tue, 18 Mar 2025 18:54:18 +0100
-Subject: [PATCH 219/423] win32u: Add stub for
+Subject: [PATCH 219/473] win32u: Add stub for
  NtUserSetAdditionalForegroundBoostProcesses.
 
 Microsoft Edge worked if windows version is set to win8.1 (or win7) but

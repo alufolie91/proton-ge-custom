@@ -1,7 +1,7 @@
-From 4155a22c95a4b7a50f7f7093ea2453c7c8ec9362 Mon Sep 17 00:00:00 2001
+From 0a694c08cb5acff2d0fc9655e7b713b39b486801 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty <etaash.mathamsetty@gmail.com>
 Date: Tue, 5 Dec 2023 22:07:07 -0500
-Subject: [PATCH 381/423] ntdll: Implement NtGetNextProcess.
+Subject: [PATCH 381/473] ntdll: Implement NtGetNextProcess.
 
 ---
  dlls/ntdll/ntdll.spec          |   1 +

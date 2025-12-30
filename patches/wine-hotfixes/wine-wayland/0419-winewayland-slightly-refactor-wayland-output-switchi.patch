@@ -1,8 +1,8 @@
-From 7d5ae20f34417f8e22cf232df325133080975a36 Mon Sep 17 00:00:00 2001
+From 45c65794667bdd416eca9dae74176d7ecb9df282 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Sat, 20 Dec 2025 13:19:03 -0500
-Subject: [PATCH 419/423] winewayland: slightly refactor wayland output
+Subject: [PATCH 419/473] winewayland: slightly refactor wayland output
  switching.
 
 ---

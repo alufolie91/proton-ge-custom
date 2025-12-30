@@ -1,8 +1,8 @@
-From c48770c1a2bdc69b1561375b6094dcb1b282085f Mon Sep 17 00:00:00 2001
+From 3449a36a11296afced5de65a1610d9d5dece0ffc Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Sun, 24 Aug 2025 17:10:45 -0500
-Subject: [PATCH 284/423] wine.inf: Move WRC9 workaround next to WRCG.
+Subject: [PATCH 284/473] wine.inf: Move WRC9 workaround next to WRCG.
 
 ---
  loader/wine.inf.in | 2 +-

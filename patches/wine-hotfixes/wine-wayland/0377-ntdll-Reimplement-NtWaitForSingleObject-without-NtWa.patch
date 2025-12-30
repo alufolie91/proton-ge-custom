@@ -1,7 +1,7 @@
-From 87877d044816d226a003bfb6dff78e0dedd006bc Mon Sep 17 00:00:00 2001
+From 416899ee4d264c7d9c9f9718016fa2afc1050ab4 Mon Sep 17 00:00:00 2001
 From: Marc-Aurel Zent <mzent@codeweavers.com>
 Date: Wed, 29 Oct 2025 11:05:57 +0100
-Subject: [PATCH 377/423] ntdll: Reimplement NtWaitForSingleObject without
+Subject: [PATCH 377/473] ntdll: Reimplement NtWaitForSingleObject without
  NtWaitForMultipleObjects.
 
 ---

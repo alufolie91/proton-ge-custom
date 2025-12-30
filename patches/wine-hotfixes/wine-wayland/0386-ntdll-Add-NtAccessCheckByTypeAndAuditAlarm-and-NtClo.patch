@@ -1,7 +1,7 @@
-From 66790cb4dc69146e03405d495d8aabce53152e29 Mon Sep 17 00:00:00 2001
+From b1b7a3fe0ed4d008c8ab3e585acf661ea8e01950 Mon Sep 17 00:00:00 2001
 From: Alexandre Julliard <julliard@winehq.org>
 Date: Thu, 17 Jul 2025 15:29:33 +0200
-Subject: [PATCH 386/423] ntdll: Add NtAccessCheckByTypeAndAuditAlarm() and
+Subject: [PATCH 386/473] ntdll: Add NtAccessCheckByTypeAndAuditAlarm() and
  NtCloseObjectAuditAlarm() stubs.
 
 They need explicit syscall ids.

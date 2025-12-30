@@ -1,7 +1,7 @@
-From 0a180b63d875d61086e2458805b6d989f1745acb Mon Sep 17 00:00:00 2001
+From 9983e3faa82d96db99a126fc5e79662ee02b2126 Mon Sep 17 00:00:00 2001
 From: Alexandre Julliard <julliard@winehq.org>
 Date: Fri, 7 Mar 2025 16:00:44 +0100
-Subject: [PATCH 353/423] winegcc: Merge the utility functions into the main
+Subject: [PATCH 353/473] winegcc: Merge the utility functions into the main
  file.
 
 ---

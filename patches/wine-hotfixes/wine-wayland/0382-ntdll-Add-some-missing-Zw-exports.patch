@@ -1,7 +1,7 @@
-From 3067bd44642d1b83333e08f072d8497a67126e4e Mon Sep 17 00:00:00 2001
+From f4956f4518f51c4ea8661fca817a66e78d1878a9 Mon Sep 17 00:00:00 2001
 From: Alexandre Julliard <julliard@winehq.org>
 Date: Tue, 25 Feb 2025 13:45:33 +0100
-Subject: [PATCH 382/423] ntdll: Add some missing Zw exports.
+Subject: [PATCH 382/473] ntdll: Add some missing Zw exports.
 
 ---
  dlls/ntdll/ntdll.spec | 23 ++++++++++++++++-------

@@ -1,8 +1,8 @@
-From ca1feb7eeb120e5522a5565524f5cc3577dae00d Mon Sep 17 00:00:00 2001
+From 0af4d3ec24e7036b164873546b4a38fb03305ea1 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Sun, 14 Dec 2025 12:06:11 -0600
-Subject: [PATCH 416/423] atiadlxx: Add catalyst version.
+Subject: [PATCH 416/473] atiadlxx: Add catalyst version.
 
 ---
  dlls/atiadlxx/atiadlxx_main.c | 4 ++--

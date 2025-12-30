@@ -1,8 +1,8 @@
-From efdc7cdc868043b0f3e6ffa510efbd2e7f0c804b Mon Sep 17 00:00:00 2001
+From ca124de28781bd815f29fe47d1f934bf27f6bddd Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Sat, 13 Dec 2025 22:32:05 -0600
-Subject: [PATCH 415/423] atidxx: Fixup vtable layouts.
+Subject: [PATCH 415/473] atidxx: Fixup vtable layouts.
 
 finally the mystery is solved
 ---

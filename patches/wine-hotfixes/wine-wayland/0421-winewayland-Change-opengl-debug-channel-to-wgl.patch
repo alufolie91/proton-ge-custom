@@ -1,8 +1,8 @@
-From 3aa0c003fd04ccf5562c2eaed94a2bc76c935ba3 Mon Sep 17 00:00:00 2001
+From b31b97ff348f196899f8cab954def764b0d05127 Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Sat, 20 Dec 2025 13:23:06 -0500
-Subject: [PATCH 421/423] winewayland: Change opengl debug channel to wgl.
+Subject: [PATCH 421/473] winewayland: Change opengl debug channel to wgl.
 
 ---
  dlls/winewayland.drv/opengl.c | 7 +++----

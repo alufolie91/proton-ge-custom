@@ -1,8 +1,8 @@
-From 06c0a6c3bce322d391053ef49e67855e70b17f56 Mon Sep 17 00:00:00 2001
+From dd2e473b00073b3b7af58aac90d203db45ae94dc Mon Sep 17 00:00:00 2001
 From: Etaash Mathamsetty
  <45927311+Etaash-mathamsetty@users.noreply.github.com>
 Date: Sat, 24 May 2025 13:26:50 -0400
-Subject: [PATCH 062/423] winedmo: Fix double free
+Subject: [PATCH 062/473] winedmo: Fix double free
 
 ---
  dlls/winedmo/unix_demuxer_mediaconv.c | 3 +++
