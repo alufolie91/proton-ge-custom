@@ -61,6 +61,7 @@ apply_all_in_dir() {
 
 ### (2-2) EM-10/WINE-WAYLAND PATCH SECTION ###
 
+
     echo "WINE: -CUSTOM- ETAASH WINE-WAYLAND+ PATCHES"
     apply_all_in_dir "../patches/wine-hotfixes/wine-wayland/"
 
@@ -309,7 +310,7 @@ apply_all_in_dir() {
     apply_patch "../patches/proton/proton-use_winegstreamer_and_set_orientation-PROTON_MEDIA_USE_GST-PROTON_GST_VIDEO_ORIENTATION.patch"
 
     # https://steamcommunity.com/app/2074920/discussions/0/604168604057160448/
-    echo "WINE: --CUSTOM-- add WINE_HOSTBLOCK envvar to allow working around some failed anticheats (notably eac)"
+    echo "WINE: --CUSTOM-- add WINE_HOSTBLOCK envvar to allow working around some problematic anticheats (notably eac)"
     apply_patch "../patches/proton/wine_host_block_envvar.patch"
 
     echo "WINE: RUN AUTOCONF TOOLS/MAKE_REQUESTS"

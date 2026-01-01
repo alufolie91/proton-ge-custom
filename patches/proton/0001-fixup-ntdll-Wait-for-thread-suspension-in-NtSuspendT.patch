@@ -9,10 +9,10 @@ Subject: [PATCH] fixup! ntdll: Wait for thread suspension in
  1 file changed, 2 insertions(+)
 
 diff --git a/dlls/ntdll/unix/thread.c b/dlls/ntdll/unix/thread.c
-index f602b9bee5c..dd408a36bdb 100644
+index 54b0420d2f1..10f1fb3df51 100644
 --- a/dlls/ntdll/unix/thread.c
 +++ b/dlls/ntdll/unix/thread.c
-@@ -1686,6 +1686,8 @@ NTSTATUS WINAPI NtSuspendThread( HANDLE handle, ULONG *ret_count )
+@@ -1690,6 +1690,8 @@ NTSTATUS WINAPI NtSuspendThread( HANDLE handle, ULONG *ret_count )
      if (ret == STATUS_PENDING && wait_handle)
      {
          NtWaitForSingleObject( wait_handle, FALSE, NULL );
