@@ -1,0 +1,31 @@
+diff --git a/meson.build b/meson.build
+index 342ecc4a3..951979391 100644
+--- a/meson.build
++++ b/meson.build
+@@ -14,6 +14,8 @@ compiler_args = [
+   '-msse2',
+   '-msse3',
+   '-mfpmath=sse',
++  '-O3',
++  '-mtune=native',
+   '-Wimplicit-fallthrough',
+   # gcc
+   '-Wno-missing-field-initializers',
+@@ -93,7 +95,7 @@ if platform == 'windows'
+     endif
+   else
+     # setup file alignment + enable PDB output for MSVC builds
+-    # PDBs are useful for Windows consumers of DXVK 
++    # PDBs are useful for Windows consumers of DXVK
+     compiler_args += [
+       '/Z7'
+     ]
+@@ -162,7 +164,7 @@ else
+   if (not lib_sdl3.found() and not lib_sdl2.found() and not lib_glfw.found())
+     error('SDL3, SDL2, or GLFW are required to build dxvk-native')
+   endif
+-  
++
+   dxvk_name_prefix = 'dxvk_'
+   dxvk_pkg_prefix = 'dxvk-'
+ 

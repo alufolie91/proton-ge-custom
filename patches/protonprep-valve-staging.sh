@@ -18,16 +18,29 @@ apply_all_in_dir() {
     pushd dxvk
     git reset --hard HEAD
     git clean -xdf
+    echo "DXVK: compile with O3"
+    apply_patch "../patches/perfshit/dxvk_O3_native.patch"
+    popd
+
+    pushd vkd3d
+    git reset --hard HEAD
+    git clean -xdf
+    echo "VKD3D: compile with O3"
+    apply_patch "../patches/perfshit/vkd3d_O3_native.patch"
     popd
 
     pushd vkd3d-proton
     git reset --hard HEAD
     git clean -xdf
+    echo "VKD3D-PROTON: compile with O3"
+    apply_patch "../patches/perfshit/vkd3d_proton_O3_native.patch"
     popd
 
     pushd dxvk-nvapi
     git reset --hard HEAD
     git clean -xdf
+    echo "DXVK-nvapi: compile with O3"
+    apply_patch "../patches/perfshit/dxvk_nvapi_O3_native.patch"
     popd
 
     pushd gstreamer
@@ -40,6 +53,8 @@ apply_all_in_dir() {
     pushd protonfixes
     git reset --hard HEAD
     git clean -xdf
+    echo "PROTONFIXES: compile with O3"
+    apply_patch "../patches/perfshit/protonfixesO3.patch"
     popd
 
 ### END PREP SECTION ###
@@ -308,6 +323,9 @@ apply_all_in_dir() {
 
     echo "WINE: -CUSTOM- Add envvar to allow method=automatic to be set for video orientation in gstreamer"
     apply_patch "../patches/proton/proton-use_winegstreamer_and_set_orientation-PROTON_MEDIA_USE_GST-PROTON_GST_VIDEO_ORIENTATION.patch"
+
+    echo "WINE: Add Wine-to-Unix PID mapping"
+    apply_patch "../patches/custom/proton10-unix-pid-maps.patch"
 
     # https://steamcommunity.com/app/2074920/discussions/0/604168604057160448/
     echo "WINE: --CUSTOM-- add WINE_HOSTBLOCK envvar to allow working around some problematic anticheats (notably eac)"
