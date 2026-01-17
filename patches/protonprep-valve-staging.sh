@@ -282,6 +282,9 @@ apply_all_in_dir() {
 
 ### (2-7) PROTON-GE ADDITIONAL CUSTOM PATCHES ###
 
+    echo "WINE: Add an env variable to enable fast polling in winepulse"
+    apply_patch "../patches/proton/winepulse-fast-polling.patch"
+
     echo "WINE: Add an env variable to override channel count in winealsa"
     apply_patch "../patches/proton/winealsa-override-channel-count.patch"
     
