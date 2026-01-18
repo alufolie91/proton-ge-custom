@@ -1,5 +1,5 @@
 diff --git a/dlls/winealsa.drv/alsa.c b/dlls/winealsa.drv/alsa.c
-index 046b447aafd..2d0f3a18d41 100644
+index 046b447aafd..78d30fface1 100644
 --- a/dlls/winealsa.drv/alsa.c
 +++ b/dlls/winealsa.drv/alsa.c
 @@ -42,8 +42,44 @@
@@ -306,17 +306,7 @@ index 046b447aafd..2d0f3a18d41 100644
      switch (stream->alsa_format)
      {
  #ifndef WORDS_BIGENDIAN
-@@ -1368,6 +1597,9 @@ static void alsa_write_data(struct alsa_stream *stream)
- 
-     /* this call seems to be required to get an accurate snd_pcm_state() */
-     avail = snd_pcm_avail_update(stream->pcm_handle);
-+ /* --- Your new debugger line goes here! --- */
-+    TRACE("RAM buffer: %u frames, HW buffer: %lu frames\n", stream->held_frames, stream->alsa_bufsize_frames - avail);
-+    /* ------------------------------------------- */
- 
-     if(snd_pcm_state(stream->pcm_handle) == SND_PCM_STATE_XRUN){
-         TRACE("XRun state, recovering\n");
-@@ -1872,6 +2104,7 @@ static NTSTATUS alsa_is_format_supported(void *args)
+@@ -1872,6 +2101,7 @@ static NTSTATUS alsa_is_format_supported(void *args)
      unsigned int max = 0, min = 0;
      int err;
      int alsa_channels, alsa_channel_map[32];
@@ -324,7 +314,7 @@ index 046b447aafd..2d0f3a18d41 100644
  
      params->result = S_OK;
  
-@@ -1951,6 +2184,13 @@ static NTSTATUS alsa_is_format_supported(void *args)
+@@ -1951,6 +2181,13 @@ static NTSTATUS alsa_is_format_supported(void *args)
          WARN("Unable to get max channels: %d (%s)\n", err, snd_strerror(err));
          goto exit;
      }
@@ -338,7 +328,7 @@ index 046b447aafd..2d0f3a18d41 100644
      if(params->fmt_in->nChannels > max){
          params->result = S_FALSE;
          closest->Format.nChannels = max;
-@@ -2008,7 +2248,7 @@ static NTSTATUS alsa_get_mix_format(void *args)
+@@ -2008,7 +2245,7 @@ static NTSTATUS alsa_get_mix_format(void *args)
      snd_pcm_format_mask_t *formats;
      unsigned int max_rate, max_channels;
      int err;
@@ -347,7 +337,7 @@ index 046b447aafd..2d0f3a18d41 100644
      params->result = alsa_open_device(params->device, params->flow, &pcm_handle, &hw_params);
      if(FAILED(params->result))
          return STATUS_SUCCESS;
-@@ -2057,7 +2297,12 @@ static NTSTATUS alsa_get_mix_format(void *args)
+@@ -2057,7 +2294,12 @@ static NTSTATUS alsa_get_mix_format(void *args)
          goto exit;
      }
  
@@ -361,7 +351,7 @@ index 046b447aafd..2d0f3a18d41 100644
          fmt->Format.nChannels = 2;
      else
          fmt->Format.nChannels = max_channels;
-@@ -2310,7 +2555,7 @@ static unsigned int alsa_probe_num_speakers(char *name)
+@@ -2310,7 +2552,7 @@ static unsigned int alsa_probe_num_speakers(char *name)
      snd_pcm_hw_params_t *params;
      int err;
      unsigned int max_channels = 0;
@@ -370,7 +360,7 @@ index 046b447aafd..2d0f3a18d41 100644
      if ((err = snd_pcm_open(&handle, name, SND_PCM_STREAM_PLAYBACK, SND_PCM_NONBLOCK)) < 0) {
          WARN("The device \"%s\" failed to open: %d (%s).\n",
                  name, err, snd_strerror(err));
-@@ -2336,6 +2581,11 @@ static unsigned int alsa_probe_num_speakers(char *name)
+@@ -2336,6 +2578,11 @@ static unsigned int alsa_probe_num_speakers(char *name)
          goto exit;
      }
  
@@ -382,7 +372,7 @@ index 046b447aafd..2d0f3a18d41 100644
  exit:
      free(params);
      snd_pcm_close(handle);
-@@ -2440,6 +2690,7 @@ static NTSTATUS alsa_get_prop_value(void *args)
+@@ -2440,6 +2687,7 @@ static NTSTATUS alsa_get_prop_value(void *args)
      } else if (flow != eCapture && IsEqualPropertyKey(*prop, PKEY_AudioEndpoint_PhysicalSpeakers)) {
          unsigned int num_speakers, card, device;
          char hwname[255];
@@ -390,7 +380,7 @@ index 046b447aafd..2d0f3a18d41 100644
  
          if (sscanf(name, "plughw:%u,%u", &card, &device))
              sprintf(hwname, "hw:%u,%u", card, device); /* must be hw rather than plughw to work */
-@@ -2452,8 +2703,10 @@ static NTSTATUS alsa_get_prop_value(void *args)
+@@ -2452,8 +2700,10 @@ static NTSTATUS alsa_get_prop_value(void *args)
              return STATUS_SUCCESS;
          }
          out->vt = VT_UI4;
@@ -403,3 +393,4 @@ index 046b447aafd..2d0f3a18d41 100644
              out->ulVal = KSAUDIO_SPEAKER_STEREO;
          else if (num_speakers == 6)
              out->ulVal = KSAUDIO_SPEAKER_5POINT1;
+
