@@ -1,5 +1,5 @@
 diff --git a/dlls/winepulse.drv/pulse.c b/dlls/winepulse.drv/pulse.c
-index 85062ead684..7d2fce8125b 100644
+index 85062ead684..b527a114026 100644
 --- a/dlls/winepulse.drv/pulse.c
 +++ b/dlls/winepulse.drv/pulse.c
 @@ -59,6 +59,21 @@ DEFINE_GUID(GUID_NULL,0,0,0,0,0,0,0,0,0,0,0);
@@ -50,7 +50,7 @@ index 85062ead684..7d2fce8125b 100644
  
      period->timer_last_time += period->period;
  
-@@ -1653,19 +1669,69 @@ static void pa_streams_timer_cb(pa_mainloop_api *api, pa_time_event *e, const st
+@@ -1653,19 +1669,70 @@ static void pa_streams_timer_cb(pa_mainloop_api *api, pa_time_event *e, const st
              {
                  pulse_write(stream);
  
@@ -92,7 +92,8 @@ index 85062ead684..7d2fce8125b 100644
 +                              (unsigned int)safe_bytes, 
 +                              (unsigned int)(adv_bytes - safe_bytes));
 +                    }
-+                    stream->lcl_offs_bytes = (stream->lcl_offs_bytes + safe_bytes) % stream->real_bufsize_bytes;
++                    stream->lcl_offs_bytes += safe_bytes;
++                    stream->lcl_offs_bytes %= stream->real_bufsize_bytes; 
 +                    stream->held_bytes -= safe_bytes;
 +                }
 +                else
@@ -128,3 +129,4 @@ index 85062ead684..7d2fce8125b 100644
      }
      pa_context_rttime_restart(pulse_ctx, e, period->timer_last_time + period->period);
  }
+
