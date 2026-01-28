@@ -83,12 +83,6 @@ jobs:
           name: ${{ inputs.name }}.tar.gz
           path: ./build/${{ inputs.name }}.tar.gz
 
-      - name: Upload artifact ${{ inputs.name }}.tar.zst
-        uses: actions/upload-artifact@v5
-        with:
-          name: ${{ inputs.name }}.tar.zst
-          path: ./build/${{ inputs.name }}.tar.zst
-
       - name: Upload artifact ${{ inputs.name }}.sha512sum
         uses: actions/upload-artifact@v5
         with:
